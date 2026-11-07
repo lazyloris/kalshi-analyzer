@@ -1,0 +1,10 @@
+name: Discover
+on:
+  push:
+    branches: [discover]
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python scratch_discover.py
