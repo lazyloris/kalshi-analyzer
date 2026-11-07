@@ -18,6 +18,9 @@ Shared rules (per-book overrides in `config.py`): edge >= 8c after fees, price 5
 
 All settings live in `kalshi_analyzer/config.py`. **Change one thing at a time and bump that book's `version`** so results stay comparable.
 
+### When to check back
+Every trade records when its market closes and when the result should land (close + Kalshi's usual settle delay: about 8h for weather, which waits for the next-morning NWS report; about 1h for 5pm price markets). Each hour the bot also values open trades at the current bid ("if sold now") next to the model's expected P&L. The dashboard shows a **When to check back** table and a "Results by" column. Delays are estimates in `SETTLE_DELAY_HOURS` in `config.py`.
+
 ### Restart a book
 GitHub, then **Actions**, then **Reset a book**, then **Run workflow**, then pick a book (or `all`). Its trades move to `data/<book>/archive/` and it starts again at $1,000. Price history is kept. From a laptop: `python -m kalshi_analyzer reset bitcoin`.
 

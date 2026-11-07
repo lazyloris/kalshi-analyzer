@@ -50,7 +50,7 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
 select, button { font: inherit; font-size: 13px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
 .books { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 14px; }
-.books button { text-align: left; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; }
+.books button { display: flex; flex-direction: column; justify-content: flex-start; text-align: left; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; }
 .books button[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
 .books .bn { font-weight: 600; font-size: 14px; display: block; }
 .books .bv { font-size: 13px; font-variant-numeric: tabular-nums; }
@@ -73,6 +73,9 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
   <p class="sub" id="sub">Loading…</p>
 
   <div class="tiles" id="tiles"></div>
+
+  <h2>When to check back</h2>
+  <div class="card scroll" id="upcoming"></div>
 
   <h2>Paper bankroll</h2>
   <div class="card"><div id="curve"></div></div>
@@ -137,7 +140,8 @@ getJSON("data/books.json").then(idx => {
     const pnl = b.bankroll - b.starting_bankroll;
     return `<button role="tab" data-id="${b.id}" aria-selected="false"><span class="bn">${esc(b.short)}</span>` +
       `<span class="bv">$${b.bankroll.toFixed(0)} <span class="${cls(pnl)}">${pnl ? money(pnl) : ""}</span></span>` +
-      `<span class="bm">${b.settled} settled · ${b.open} open</span></button>`;
+      `<span class="bm">${b.settled} settled · ${b.open} open</span>` +
+      (b.next_results_by ? `<span class="bm">next results ${when(b.next_results_by)}</span>` : "") + `</button>`;
   }).join("");
   $("books").querySelectorAll("button").forEach(btn => btn.onclick = () => load(btn.dataset.id));
   load(pick);
@@ -162,10 +166,14 @@ function render(s, trades) {
     ["Settled trades", t.n, `${s.open_count} open ($${s.open_exposure.toFixed(2)} at risk)`],
     ["Win rate", t.n ? pct(t.win_rate) : "–", t.n ? `${t.wins} of ${t.n}` : "no results yet"],
     ["Return on cost", t.n ? `<span class="${cls(t.roi)}">${pct(t.roi)}</span>` : "–", t.n ? `fees paid $${t.fees.toFixed(2)}` : ""],
+    ["Open trades right now", s.open_marked ? `<span class="${cls(s.open_mark_pnl)}">${money(s.open_mark_pnl)}</span>` : "–",
+      !s.open_count ? "nothing open" : (s.open_marked ? "if sold at today's bids" : "valued after the next hourly run") +
+        ` · model expects ${money(s.open_expected_pnl)} at settlement`],
     ["Brier score (lower is better)", t.n ? t.brier_model : "–", t.n ? `market prices: ${t.brier_market} · ${t.brier_model < t.brier_market ? "model is ahead" : "market is ahead"}` : "model vs market"],
   ];
   $("tiles").innerHTML = tiles.map(([l, v, n]) => `<div class="tile"><div class="label">${l}</div><div class="value">${v}</div><div class="note">${n}</div></div>`).join("");
 
+  drawUpcoming(s.upcoming || []);
   drawCurve(s.bankroll_curve || [], start);
   drawBreakdowns(s.breakdowns || {});
   drawCalib(s.calibration || []);
@@ -266,17 +274,36 @@ function drawCalib(rows) {
 }
 
 let shown = 25;
+function when(iso) {
+  if (!iso || iso === "unknown") return "unknown";
+  const d = new Date(iso), h = (d - Date.now()) / 36e5;
+  const abs = d.toLocaleString(undefined, {weekday: "short", hour: "numeric", minute: "2-digit"});
+  if (h < -1) return `${abs} (any time now)`;
+  if (h < 1) return `${abs} (within the hour)`;
+  return h < 48 ? `${abs} (in ${Math.round(h)}h)` : `${abs} (in ${Math.round(h / 24)} days)`;
+}
+
+function drawUpcoming(rows) {
+  if (!rows.length) { $("upcoming").innerHTML = `<div class="empty">No open trades, so nothing is waiting on a result.</div>`; return; }
+  $("upcoming").innerHTML = table(["Results expected (your time)", "Market closes", "Trades", "At risk", "Model expects"],
+    rows.map(r => [`<b>${when(r.results_by)}</b>`, r.closes_at ? new Date(r.closes_at).toLocaleString(undefined, {weekday: "short", hour: "numeric", minute: "2-digit"}) : "–",
+      r.n, "$" + r.at_risk.toFixed(2), `<span class="${cls(r.expected_pnl)}">${money(r.expected_pnl)}</span>`]), [2, 3, 4]) +
+    `<p style="color:var(--muted);font-size:12px;margin:8px 0 0">Results time is an estimate: market close plus Kalshi's usual settle delay (weather waits for the next-morning NWS report; 5pm prices settle within about an hour). The dashboard updates within an hour after that.</p>`;
+}
+
 function drawTrades(trades) {
   const st = $("fStatus").value, city = $("fCity").value;
   const rows = trades.filter(t => (!city || t.city === city) &&
     (!st || (st === "open" ? t.status === "open" : t.status === "settled" && (st === "win") === (t.won === "1"))));
   if (!rows.length) { $("trades").innerHTML = `<div class="empty">No trades yet. The bot only buys when the forecast and the price disagree by at least the minimum edge.</div>`; return; }
-  $("trades").innerHTML = table(["Day", "Market", "Bet", "Price", "Model", "Edge", "Forecast → actual", "Result", "P&L", "Why"], rows.slice(0, shown).map(t => {
+  $("trades").innerHTML = table(["Day", "Market", "Bet", "Price", "Model", "Edge", "Forecast → actual", "Result", "Results by", "P&L", "Why"], rows.slice(0, shown).map(t => {
     const res = t.status === "open" ? `<span class="pill open">open</span>` : t.won === "1" ? `<span class="pill win">won</span>` : `<span class="pill loss">lost</span>`;
     return [t.target_date, esc(t.city), `${t.side.toUpperCase()} ${esc(t.bracket)} ×${t.contracts}`, (t.price * 100).toFixed(0) + "¢",
       pct(+t.model_p), (t.edge * 100).toFixed(1) + "¢", fmtVal(t.forecast) + (t.actual ? " → " + fmtVal(t.actual) : ""), res,
-      t.pnl ? `<span class="${cls(+t.pnl)}">${money(+t.pnl)}</span>` : "–", `<div class="why">${esc(t.why || "")}</div>`];
-  }), [3, 4, 5, 8]) + (rows.length > shown ? `<p><button id="more">Show more (${rows.length - shown} left)</button></p>` : "");
+      t.status === "open" ? when(t.results_by) : (t.closed_at ? new Date(t.closed_at).toLocaleString(undefined, {month: "short", day: "numeric", hour: "numeric"}) : "–"),
+      t.pnl ? `<span class="${cls(+t.pnl)}">${money(+t.pnl)}</span>` :
+        (t.mark_pnl !== "" && t.mark_pnl != null ? `<span class="${cls(+t.mark_pnl)}" title="value if sold at today's bid">${money(+t.mark_pnl)} now</span>` : "–"), `<div class="why">${esc(t.why || "")}</div>`];
+  }), [3, 4, 5, 9]) + (rows.length > shown ? `<p><button id="more">Show more (${rows.length - shown} left)</button></p>` : "");
   const mb = $("more"); if (mb) mb.onclick = () => { shown += 50; drawTrades(trades); };
 }
 </script>

@@ -134,6 +134,19 @@ def suggestions(settled, bd, acc):
     return sorted(s, key=lambda x: -x["priority"])
 
 
+def upcoming(open_):
+    """Open trades grouped by when their results should land, soonest first."""
+    groups = defaultdict(list)
+    for t in open_:
+        groups[t.get("results_by") or "unknown"].append(t)
+    out = []
+    for when, ts in sorted(groups.items(), key=lambda kv: (kv[0] == "unknown", kv[0])):
+        out.append({"results_by": when, "closes_at": ts[0].get("closes_at", ""), "n": len(ts),
+                    "at_risk": round(sum(float(t["cost"]) for t in ts), 2),
+                    "expected_pnl": round(sum(float(t["expected_pnl"] or 0) for t in ts), 2)})
+    return out
+
+
 def bankroll_curve(settled, start):
     bank, pts = start, []
     for r in sorted(settled, key=lambda r: r["closed_at"]):
@@ -161,6 +174,10 @@ def build(book_id, trades, forecasts, actuals, now):
         "open_exposure": round(sum(float(t["cost"]) for t in open_), 2),
         "totals": summarize(settled),
         "open_count": len(open_),
+        "open_mark_pnl": round(sum(float(t["mark_pnl"]) for t in open_ if t.get("mark_pnl") not in (None, "")), 2),
+        "open_marked": sum(1 for t in open_ if t.get("mark_pnl") not in (None, "")),
+        "open_expected_pnl": round(sum(float(t["expected_pnl"]) for t in open_ if t.get("expected_pnl") not in (None, "")), 2),
+        "upcoming": upcoming(open_),
         "breakdowns": bd,
         "calibration": calibration(settled),
         "forecast_accuracy": acc,
