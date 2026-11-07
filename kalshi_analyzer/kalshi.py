@@ -20,6 +20,19 @@ def _price(m, name):
     return v / 100 if v > 1 else v
 
 
+def _volume(m):
+    """Contracts traded. Newer API responses use fixed-point strings (volume_fp)."""
+    for k in ("volume_fp", "volume", "volume_24h_fp", "volume_24h"):
+        v = m.get(k)
+        if v not in (None, ""):
+            try:
+                if float(v):
+                    return float(v)
+            except (TypeError, ValueError):
+                pass
+    return 0
+
+
 def target_date_from_event(event_ticker):
     """KXHIGHNY-25NOV07 -> date(2025, 11, 7)."""
     code = event_ticker.split("-")[-1]
@@ -42,7 +55,7 @@ def normalize(m, series):
         "yes_ask": _price(m, "yes_ask"),
         "no_bid": _price(m, "no_bid"),
         "no_ask": _price(m, "no_ask"),
-        "volume": m.get("volume") or 0,
+        "volume": _volume(m),
         "status": m.get("status"),
         "result": m.get("result") or "",
         "expiration_value": m.get("expiration_value") or "",
