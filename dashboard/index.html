@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalshi Paper Trader</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --series: #2a78d6; --up: #006300; --down: #d03b3b;
+  --good: #0ca30c; --bad: #d03b3b; --border: #e1e0d9;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --series: #3987e5; --up: #0ca30c; --down: #e66767; --border: #2c2c2a;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --series: #3987e5; --up: #0ca30c; --down: #e66767; --border: #2c2c2a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink);
+  font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 22px; margin: 0 0 4px; }
+h2 { font-size: 16px; margin: 32px 0 10px; }
+.sub { color: var(--ink-2); margin: 0 0 20px; font-size: 14px; }
+.tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; }
+.tile, .card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.tile .label { color: var(--ink-2); font-size: 13px; }
+.tile .value { font-size: 26px; font-weight: 600; font-variant-numeric: tabular-nums; margin-top: 2px; }
+.tile .note { color: var(--muted); font-size: 12px; }
+.up { color: var(--up); } .down { color: var(--down); }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--ink-2); font-weight: 500; white-space: nowrap; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+.bar { display: inline-block; height: 8px; border-radius: 0 4px 4px 0; vertical-align: middle; }
+.pill { display: inline-block; padding: 1px 8px; border-radius: 99px; font-size: 12px; border: 1px solid var(--border); white-space: nowrap; }
+.pill.win::before { content: "✓ "; color: var(--good); } .pill.loss::before { content: "✗ "; color: var(--bad); }
+.pill.open::before { content: "◷ "; color: var(--muted); }
+.controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+select, button { font: inherit; font-size: 13px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+.tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
+.tabs button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
+svg text { fill: var(--muted); font-size: 11px; }
+.tip { position: fixed; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 6px;
+  padding: 6px 8px; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.15); display: none; z-index: 5; }
+.empty { color: var(--muted); font-size: 14px; padding: 12px 0; }
+ol { margin: 0; padding-left: 20px; } li { margin: 4px 0; }
+.why { max-width: 460px; color: var(--ink-2); }
+footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <h1>Kalshi weather paper trader</h1>
+  <p class="sub" id="sub">Loading…</p>
+
+  <div class="tiles" id="tiles"></div>
+
+  <h2>Paper bankroll</h2>
+  <div class="card"><div id="curve"></div></div>
+
+  <h2>Why trades won or lost</h2>
+  <div class="card">
+    <div class="tabs" id="tabs"></div>
+    <div class="scroll" id="breakdown"></div>
+  </div>
+
+  <div class="grid2">
+    <div>
+      <h2>Calibration: does "60%" win 60% of the time?</h2>
+      <div class="card"><div id="calib"></div></div>
+    </div>
+    <div>
+      <h2>Suggested next change</h2>
+      <div class="card" id="suggest"></div>
+    </div>
+  </div>
+
+  <h2>Weather forecast accuracy</h2>
+  <div class="card scroll" id="accuracy"></div>
+
+  <h2>Trades</h2>
+  <div class="card">
+    <div class="controls">
+      <select id="fStatus" aria-label="Status"><option value="">All trades</option><option value="open">Open</option><option value="win">Wins</option><option value="loss">Losses</option></select>
+      <select id="fCity" aria-label="City"><option value="">All cities</option></select>
+    </div>
+    <div class="scroll" id="trades"></div>
+  </div>
+
+  <h2>Current rules</h2>
+  <div class="card scroll" id="rules"></div>
+
+  <footer>Fake money on real Kalshi prices. Learning project, not financial advice. Updated hourly by GitHub Actions.</footer>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const $ = id => document.getElementById(id);
+const money = v => (v >= 0 ? "+$" : "−$") + Math.abs(v).toFixed(2);
+const pct = v => (v * 100).toFixed(0) + "%";
+const cls = v => v > 0 ? "up" : v < 0 ? "down" : "";
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const tip = $("tip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block";
+  const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8); tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px"; }
+function hideTip() { tip.style.display = "none"; }
+
+Promise.all([fetch("data/summary.json").then(r => r.json()), fetch("data/trades.json").then(r => r.json())])
+  .then(([s, trades]) => render(s, trades))
+  .catch(() => { $("sub").textContent = "No data yet. The first hourly run will create it."; });
+
+function render(s, trades) {
+  const t = s.totals || {n: 0};
+  $("sub").textContent = `Strategy ${s.strategy_version} · updated ${new Date(s.generated_at).toLocaleString()}`;
+  const start = 1000, pnl = s.bankroll - start;
+  const tiles = [
+    ["Paper bankroll", "$" + s.bankroll.toFixed(2), `<span class="${cls(pnl)}">${money(pnl)}</span> since start`],
+    ["Settled trades", t.n, `${s.open_count} open ($${s.open_exposure.toFixed(2)} at risk)`],
+    ["Win rate", t.n ? pct(t.win_rate) : "–", t.n ? `${t.wins} of ${t.n}` : "no results yet"],
+    ["Return on cost", t.n ? `<span class="${cls(t.roi)}">${pct(t.roi)}</span>` : "–", t.n ? `fees paid $${t.fees.toFixed(2)}` : ""],
+    ["Brier score (lower is better)", t.n ? t.brier_model : "–", t.n ? `market prices: ${t.brier_market} · ${t.brier_model < t.brier_market ? "model is ahead" : "market is ahead"}` : "model vs market"],
+  ];
+  $("tiles").innerHTML = tiles.map(([l, v, n]) => `<div class="tile"><div class="label">${l}</div><div class="value">${v}</div><div class="note">${n}</div></div>`).join("");
+
+  drawCurve(s.bankroll_curve || [], start);
+  drawBreakdowns(s.breakdowns || {});
+  drawCalib(s.calibration || []);
+
+  const sg = s.suggestions || [];
+  $("suggest").innerHTML = sg.length ? "<ol>" + sg.slice(0, 5).map(x => `<li>${esc(x.text)}</li>`).join("") + "</ol>" +
+    `<p class="note" style="color:var(--muted);font-size:12px;margin:10px 0 0">Change one rule at a time and bump the strategy version.</p>` : `<div class="empty">Nothing yet.</div>`;
+
+  const acc = s.forecast_accuracy || [];
+  $("accuracy").innerHTML = acc.length ? table(["City", "Days ahead", "Days measured", "Bias (actual − forecast)", "Avg miss", "Spread", "Sigma used"],
+    acc.map(a => [a.city, a.days_ahead, a.n, (a.bias > 0 ? "+" : "") + a.bias + "°F", a.mae + "°F", a.stdev ?? "–", a.sigma_used]), [1,2,3,4,5,6])
+    : `<div class="empty">Fills in after the first days settle. This tells us if the weather service runs hot or cold in each city.</div>`;
+
+  const cities = [...new Set(trades.map(x => x.city))].sort();
+  $("fCity").innerHTML += cities.map(c => `<option>${esc(c)}</option>`).join("");
+  const draw = () => { shown = 25; drawTrades(trades); };
+  $("fStatus").onchange = draw; $("fCity").onchange = draw; draw();
+
+  const r = s.rules || {};
+  $("rules").innerHTML = table(["Rule", "Value"], [
+    ["Minimum edge after fees", (r.MIN_EDGE * 100) + "¢"], ["Price range", `${r.MIN_PRICE * 100}¢ to ${r.MAX_PRICE * 100}¢`],
+    ["Max bid/ask spread", (r.MAX_SPREAD * 100) + "¢"], ["Stop trading before the high", r.MIN_LEAD_HOURS + " hours"],
+    ["Max positions per city-day", r.MAX_POSITIONS_PER_EVENT], ["Paper stake per trade", "$" + r.STAKE_DOLLARS],
+    ["Forecast spread (sigma) by days ahead", Object.entries(s.sigma_by_lead_days || {}).map(([k, v]) => `${k}d: ${v}°F`).join(", ")]]);
+}
+
+function table(head, rows, numCols = []) {
+  return `<table><thead><tr>${head.map((h, i) => `<th class="${numCols.includes(i) ? "num" : ""}">${h}</th>`).join("")}</tr></thead><tbody>` +
+    rows.map(r => `<tr>${r.map((c, i) => `<td class="${numCols.includes(i) ? "num" : ""}">${c}</td>`).join("")}</tr>`).join("") + "</tbody></table>";
+}
+
+function drawCurve(pts, start) {
+  const el = $("curve");
+  if (!pts.length) { el.innerHTML = `<div class="empty">The line starts once the first trades settle (weather markets settle the morning after).</div>`; return; }
+  const data = [{t: null, bankroll: start}, ...pts];
+  const W = el.clientWidth || 700, H = 220, m = {l: 52, r: 12, t: 10, b: 24};
+  const ys = data.map(d => d.bankroll), lo = Math.min(...ys, start), hi = Math.max(...ys, start), pad = Math.max(5, (hi - lo) * .1);
+  const y = v => m.t + (H - m.t - m.b) * (1 - (v - (lo - pad)) / ((hi + pad) - (lo - pad)));
+  const x = i => m.l + (W - m.l - m.r) * (data.length === 1 ? 0 : i / (data.length - 1));
+  const ticks = [lo - pad, start, hi + pad].map(v => Math.round(v));
+  let svg = `<svg width="${W}" height="${H}" role="img" aria-label="Paper bankroll over settled trades">`;
+  ticks.forEach(v => svg += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="var(--grid)"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">$${v}</text>`);
+  svg += `<path d="${data.map((d, i) => (i ? "L" : "M") + x(i) + "," + y(d.bankroll)).join("")}" fill="none" stroke="var(--series)" stroke-width="2" stroke-linejoin="round"/>`;
+  svg += `<text x="${m.l}" y="${H - 6}">start</text><text x="${W - m.r}" y="${H - 6}" text-anchor="end">trade ${pts.length}</text>`;
+  svg += `<line id="xh" y1="${m.t}" y2="${H - m.b}" stroke="var(--axis)" visibility="hidden"/><circle id="dot" r="4" fill="var(--series)" stroke="var(--surface)" stroke-width="2" visibility="hidden"/>`;
+  svg += `<rect x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent" id="hit"/></svg>`;
+  el.innerHTML = svg;
+  const hit = el.querySelector("#hit"), xh = el.querySelector("#xh"), dot = el.querySelector("#dot");
+  hit.onmousemove = e => {
+    const r = hit.getBoundingClientRect(), i = Math.round((e.clientX - r.left) / r.width * (data.length - 1));
+    const d = data[Math.max(0, Math.min(data.length - 1, i))], ii = data.indexOf(d);
+    xh.setAttribute("x1", x(ii)); xh.setAttribute("x2", x(ii)); xh.setAttribute("visibility", "visible");
+    dot.setAttribute("cx", x(ii)); dot.setAttribute("cy", y(d.bankroll)); dot.setAttribute("visibility", "visible");
+    showTip(e, `<b>$${d.bankroll.toFixed(2)}</b><br>${d.t ? new Date(d.t).toLocaleString() : "starting balance"}`);
+  };
+  hit.onmouseleave = () => { hideTip(); xh.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); };
+}
+
+const DIMS = {cause: "Cause", city: "City", edge: "Edge at entry", price: "Entry price", bracket_distance: "Bracket vs forecast", days_ahead: "Days ahead", side: "Yes / No", bracket_type: "Bracket type", version: "Strategy version"};
+const CAUSES = {forecast_right: "Forecast was right", lucky: "Lucky (big forecast miss)", forecast_miss: "Big forecast miss", close_call: "Close call at bracket edge", market_smarter: "Market priced it better", unknown_actual: "Actual not reported"};
+let dim = "cause";
+function drawBreakdowns(bd) {
+  $("tabs").innerHTML = Object.entries(DIMS).map(([k, l]) => `<button aria-pressed="${k === dim}" data-k="${k}">${l}</button>`).join("");
+  $("tabs").querySelectorAll("button").forEach(b => b.onclick = () => { dim = b.dataset.k; drawBreakdowns(bd); });
+  const g = bd[dim] || {}, rows = Object.entries(g);
+  if (!rows.length) { $("breakdown").innerHTML = `<div class="empty">Each settled trade gets a reason (forecast right, close call, big forecast miss, market priced it better). The stats show up here.</div>`; return; }
+  const maxAbs = Math.max(...rows.map(([, v]) => Math.abs(v.pnl)), 1);
+  $("breakdown").innerHTML = table(["Group", "Trades", "Win rate", "P&L", "", "ROI", "Brier model / market"], rows.map(([k, v]) => [
+    esc(dim === "cause" ? (CAUSES[k] || k) : k), v.n, pct(v.win_rate), `<span class="${cls(v.pnl)}">${money(v.pnl)}</span>`,
+    `<span class="bar" style="width:${Math.max(2, 90 * Math.abs(v.pnl) / maxAbs)}px;background:${v.pnl >= 0 ? "var(--up)" : "var(--down)"}" title="${money(v.pnl)}"></span>`,
+    pct(v.roi), `${v.brier_model} / ${v.brier_market}`]), [1, 2, 3, 5]);
+}
+
+function drawCalib(rows) {
+  const el = $("calib");
+  if (!rows.length) { el.innerHTML = `<div class="empty">Needs settled trades. Dots on the diagonal mean the model's percentages are honest.</div>`; return; }
+  const S = Math.min(el.clientWidth || 320, 340), m = 34, P = S - m - 10;
+  const sx = v => m + v * P, sy = v => 10 + (1 - v) * P, maxN = Math.max(...rows.map(r => r.n));
+  let svg = `<svg width="${S}" height="${S}" role="img" aria-label="Calibration: predicted vs actual win rate">`;
+  [0, .5, 1].forEach(v => svg += `<line x1="${sx(0)}" x2="${sx(1)}" y1="${sy(v)}" y2="${sy(v)}" stroke="var(--grid)"/><text x="${m - 4}" y="${sy(v) + 4}" text-anchor="end">${v * 100}%</text><text x="${sx(v)}" y="${S - 8}" text-anchor="middle">${v * 100}%</text>`);
+  svg += `<line x1="${sx(0)}" y1="${sy(0)}" x2="${sx(1)}" y2="${sy(1)}" stroke="var(--axis)" stroke-dasharray="4 4"/>`;
+  rows.forEach((r, i) => svg += `<circle data-i="${i}" cx="${sx(r.predicted)}" cy="${sy(r.actual)}" r="${5 + 7 * Math.sqrt(r.n / maxN)}" fill="var(--series)" fill-opacity=".8" stroke="var(--surface)" stroke-width="2"/>`);
+  el.innerHTML = svg + `</svg><div style="color:var(--muted);font-size:12px">Across: model's chance. Up: how often it won. Bigger dot, more trades.</div>`;
+  el.querySelectorAll("circle").forEach(c => { const r = rows[c.dataset.i];
+    c.onmousemove = e => showTip(e, `Model said ${r.bucket}<br>Predicted ${pct(r.predicted)}, won ${pct(r.actual)}<br>${r.n} trades`); c.onmouseleave = hideTip; });
+}
+
+let shown = 25;
+function drawTrades(trades) {
+  const st = $("fStatus").value, city = $("fCity").value;
+  const rows = trades.filter(t => (!city || t.city === city) &&
+    (!st || (st === "open" ? t.status === "open" : t.status === "settled" && (st === "win") === (t.won === "1"))));
+  if (!rows.length) { $("trades").innerHTML = `<div class="empty">No trades yet. The bot only buys when the forecast and the price disagree by at least the minimum edge.</div>`; return; }
+  $("trades").innerHTML = table(["Day", "City", "Bet", "Price", "Model", "Edge", "Forecast", "Result", "P&L", "Why"], rows.slice(0, shown).map(t => {
+    const res = t.status === "open" ? `<span class="pill open">open</span>` : t.won === "1" ? `<span class="pill win">won</span>` : `<span class="pill loss">lost</span>`;
+    return [t.target_date, esc(t.city), `${t.side.toUpperCase()} ${esc(t.bracket)} ×${t.contracts}`, (t.price * 100).toFixed(0) + "¢",
+      pct(+t.model_p), (t.edge * 100).toFixed(1) + "¢", `${t.forecast_high}°F${t.actual_high ? " → " + t.actual_high + "°F" : ""}`, res,
+      t.pnl ? `<span class="${cls(+t.pnl)}">${money(+t.pnl)}</span>` : "–", `<div class="why">${esc(t.why || "")}</div>`];
+  }), [3, 4, 5, 8]) + (rows.length > shown ? `<p><button id="more">Show more (${rows.length - shown} left)</button></p>` : "");
+  const mb = $("more"); if (mb) mb.onclick = () => { shown += 50; drawTrades(trades); };
+}
+</script>
+</body>
+</html>
