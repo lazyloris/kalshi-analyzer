@@ -30,6 +30,7 @@ def test_price_fields():
          "cap_strike": 56, "yes_bid_dollars": "0.2000", "yes_ask": 25, "no_bid_dollars": "0.7500", "no_ask_dollars": "0.8000"}
     n = kalshi.normalize(m, "KXHIGHNY")
     assert (n["yes_bid"], n["yes_ask"], n["no_ask"]) == (0.2, 0.25, 0.8)
+    assert kalshi.normalize(dict(m, volume_fp="1234.00"), "KXHIGHNY")["volume"] == 1234.0
 
 
 def mk(ticker, st, floor, cap, yb, ya, day="2026-11-08"):
