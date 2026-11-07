@@ -1,0 +1,4 @@
+# Runtime uses only the Python standard library.
+tzdata; sys_platform == "win32"
+# Tests
+pytest
