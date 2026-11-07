@@ -1,26 +1,34 @@
 {
- "generated_at": "2026-11-07T04:28+00:00",
- "strategy_version": "weather-v1",
+ "book": "bitcoin",
+ "name": "Crypto: Bitcoin 5pm price",
+ "short": "Bitcoin",
+ "kind": "crypto",
+ "unit": "$",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-07T05:02+00:00",
+ "strategy_version": "crypto-v1",
  "rules": {
   "MIN_EDGE": 0.08,
   "MIN_PRICE": 0.05,
   "MAX_PRICE": 0.9,
   "MAX_SPREAD": 0.1,
-  "MIN_LEAD_HOURS": 6,
+  "MIN_LEAD_HOURS": 2,
   "MAX_POSITIONS_PER_EVENT": 2,
   "STAKE_DOLLARS": 10.0
  },
- "sigma_by_lead_days": {
-  "0": 2.0,
-  "1": 2.5,
-  "2": 3.2
+ "model": {
+  "fallback_vol": 0.5,
+  "asset": "BTC-USD"
  },
+ "markets": [
+  "KXBTCD"
+ ],
  "bankroll": 1000.0,
- "open_exposure": 145.34,
+ "open_exposure": 21.14,
  "totals": {
   "n": 0
  },
- "open_count": 14,
+ "open_count": 2,
  "breakdowns": {
   "city": {},
   "side": {},

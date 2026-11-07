@@ -1,0 +1,56 @@
+{
+ "book": "trending",
+ "name": "Trending: Spotify, Netflix, apps, YouTube, Steam",
+ "short": "Trending",
+ "kind": "fade",
+ "unit": "",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-07T05:02+00:00",
+ "strategy_version": "fade-v1",
+ "rules": {
+  "MIN_EDGE": 0.08,
+  "MIN_PRICE": 0.05,
+  "MAX_PRICE": 0.97,
+  "MAX_SPREAD": 0.05,
+  "MIN_LEAD_HOURS": 2,
+  "MAX_POSITIONS_PER_EVENT": 2,
+  "STAKE_DOLLARS": 10.0
+ },
+ "model": {
+  "fade_min_yes": 0.03,
+  "fade_max_yes": 0.1
+ },
+ "markets": [
+  "KXSPOTIFYARTIST",
+  "KXNETFLIXRANKING",
+  "KXAPPRANKFREE2",
+  "KXYTDAILYTOPVIDEO",
+  "KXTOPSELLERS"
+ ],
+ "bankroll": 1000.0,
+ "open_exposure": 0,
+ "totals": {
+  "n": 0
+ },
+ "open_count": 0,
+ "breakdowns": {
+  "city": {},
+  "side": {},
+  "edge": {},
+  "price": {},
+  "days_ahead": {},
+  "bracket_distance": {},
+  "bracket_type": {},
+  "cause": {},
+  "version": {}
+ },
+ "calibration": [],
+ "forecast_accuracy": [],
+ "suggestions": [
+  {
+   "priority": 0,
+   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+  }
+ ],
+ "bankroll_curve": []
+}

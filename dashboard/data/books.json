@@ -1,0 +1,55 @@
+{
+ "generated_at": "2026-11-07T05:02+00:00",
+ "books": [
+  {
+   "id": "weather_high",
+   "name": "Weather: daily highs",
+   "short": "Highs",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 14,
+   "version": "weather-v1"
+  },
+  {
+   "id": "weather_low",
+   "name": "Weather: daily lows",
+   "short": "Lows",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 3,
+   "version": "weather-low-v1"
+  },
+  {
+   "id": "bitcoin",
+   "name": "Crypto: Bitcoin 5pm price",
+   "short": "Bitcoin",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 2,
+   "version": "crypto-v1"
+  },
+  {
+   "id": "gold",
+   "name": "Commodity: gold 5pm price",
+   "short": "Gold",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 0,
+   "version": "gold-v1"
+  },
+  {
+   "id": "trending",
+   "name": "Trending: Spotify, Netflix, apps, YouTube, Steam",
+   "short": "Trending",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 0,
+   "version": "fade-v1"
+  }
+ ]
+}
