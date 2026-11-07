@@ -1,0 +1,38 @@
+name: Reset a book
+
+# Actions tab -> "Reset a book" -> Run workflow -> pick the book.
+# Archives that book's trades (kept in data/<book>/archive/) and restarts it at $1,000.
+on:
+  workflow_dispatch:
+    inputs:
+      book:
+        description: Which book to restart
+        required: true
+        type: choice
+        options: [weather_high, weather_low, bitcoin, gold, trending, all]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trader
+  cancel-in-progress: false
+
+jobs:
+  reset:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m kalshi_analyzer reset "${{ inputs.book }}"
+      - name: Save
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add -A data dashboard/data reports
+          git diff --cached --quiet && exit 0
+          git commit -m "reset book: ${{ inputs.book }}"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1

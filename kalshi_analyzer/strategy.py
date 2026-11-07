@@ -1,74 +1,134 @@
-"""weather-v1: buy the side the forecast says is underpriced, hold to settlement.
+"""One rule for every book: buy the side our model says is underpriced, hold to settlement.
 
-Rule, in plain words:
-  1. Model the day's high as Normal(NWS forecast + city bias, sigma for that lead time).
-  2. For each temperature bracket, compute the model's chance it hits.
-  3. If model chance - (ask price + fee per contract) >= MIN_EDGE on YES or NO, buy that side.
-  4. Skip thin/odd markets (price outside 5-90c, spread > 10c, < 6h before the high).
-  5. At most 2 positions per city-day, never re-buy the same market, $10 per trade.
+  1. Model the outcome:
+       weather: actual temp ~ Normal(NWS forecast + city bias, sigma for days ahead)
+       crypto:  price at 5pm ~ lognormal around the Coinbase spot price, 30-day realized volatility
+  2. For each bracket, compute the model's chance it hits.
+  3. If model chance - (ask + fee per contract) >= MIN_EDGE on YES or NO, buy that side.
+  4. Skip thin/odd markets (price outside 5-90c, spread > 10c, too close to the outcome).
+  5. At most 2 positions per event, never re-buy the same market, flat paper stake.
 """
 import datetime as dt
 import math
 from zoneinfo import ZoneInfo
 
 from . import config as C
-from .model import bracket_center, bracket_label, bracket_probability, taker_fee
+from .model import (bracket_center, bracket_label, bracket_probability, lognormal_probability,
+                    price_sigma, taker_fee)
 
 
-def lead_info(target_date: str, tz: str, now: dt.datetime):
-    """Hours from now until ~4pm local on the target date (when highs usually happen)."""
+def _f(v):
+    return None if v in (None, "") else float(v)
+
+
+def weather_lead(book, target_date, tz, now):
+    """Hours until the usual time of the high/low on the target date, and days ahead (local)."""
     d = dt.date.fromisoformat(target_date)
-    peak = dt.datetime(d.year, d.month, d.day, 16, tzinfo=ZoneInfo(tz))
-    local_today = now.astimezone(ZoneInfo(tz)).date()
-    return (peak - now).total_seconds() / 3600, (d - local_today).days
+    peak = dt.datetime(d.year, d.month, d.day, book["peak_hour"], tzinfo=ZoneInfo(tz))
+    return (peak - now).total_seconds() / 3600, (d - now.astimezone(ZoneInfo(tz)).date()).days
 
 
-def evaluate(m, forecast_high, now):
+def model(book_id, m, ctx, now):
+    """Return (p_yes, forecast, sigma, lead_hours, lead_days, label) or None if we can't model it."""
+    book = C.BOOKS[book_id]
+    st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
+    if book["kind"] == "weather":
+        stn = C.STATIONS[book["series"][m["series"]]]
+        lead_hours, lead_days = weather_lead(book, m["target_date"], stn["tz"], now)
+        sigma = book["sigma_by_lead_days"].get(lead_days)
+        fc = ctx.get("forecasts", {}).get(m["target_date"])
+        if fc is None or sigma is None:
+            return None
+        mu = fc + book["bias"].get(m["series"], 0.0)
+        return bracket_probability(st, lo, hi, mu, sigma), mu, sigma, lead_hours, lead_days, stn["city"]
+    spot, vol = ctx.get("spot"), ctx.get("vol")
+    close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
+    if spot is None or close is None:
+        return None
+    hours = (close - now).total_seconds() / 3600
+    if hours <= 0:
+        return None
+    p = lognormal_probability(st, lo, hi, spot, vol, hours)
+    return p, spot, price_sigma(spot, vol, hours), hours, int(hours // 24), C.ASSET_NAMES.get(book["series"][m["series"]], m["series"])
+
+
+def evaluate(book_id, m, ctx, now):
     """Return (snapshot_row, candidate_trade_or_None) for one market."""
-    city = C.CITIES[m["series"]]
-    lead_hours, lead_days = lead_info(m["target_date"], city["tz"], now)
-    sigma = C.SIGMA_BY_LEAD_DAYS.get(lead_days)
+    book, R = C.BOOKS[book_id], C.rules(book_id)
     snap = {k: m[k] for k in ("series", "ticker", "target_date", "strike_type", "floor", "cap",
                               "yes_bid", "yes_ask", "no_bid", "no_ask", "volume")}
-    snap.update(time=now.isoformat(timespec="minutes"), forecast_high=forecast_high, sigma=sigma or "")
-    if forecast_high is None or sigma is None:
-        snap["model_p"] = ""
+    snap["time"] = now.isoformat(timespec="minutes")
+    if book["kind"] == "fade":
+        return snap, fade(book_id, m, now, snap)
+    try:
+        res = model(book_id, m, ctx, now)
+    except ValueError:  # bracket type the model doesn't understand
+        res = None
+    if res is None:
+        snap.update(forecast="", sigma="", model_p="")
         return snap, None
-    mu = forecast_high + C.CITY_BIAS_F.get(m["series"], 0.0)
-    p_yes = bracket_probability(m["strike_type"], _f(m["floor"]), _f(m["cap"]), mu, sigma)
-    snap["model_p"] = round(p_yes, 4)
-    if lead_hours < C.MIN_LEAD_HOURS:
+    p_yes, mu, sigma, lead_hours, lead_days, label = res
+    snap.update(forecast=round(mu, 2), sigma=round(sigma, 3), model_p=round(p_yes, 4))
+    if lead_hours < R["MIN_LEAD_HOURS"]:
         return snap, None
 
     best = None
+    st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
     for side, p, ask, bid in (("yes", p_yes, m["yes_ask"], m["yes_bid"]),
                               ("no", 1 - p_yes, m["no_ask"], m["no_bid"])):
-        if ask is None or bid is None or not (C.MIN_PRICE <= ask <= C.MAX_PRICE):
+        if ask is None or bid is None or not (R["MIN_PRICE"] <= ask <= R["MAX_PRICE"]):
             continue
         spread = ask - bid
-        if spread > C.MAX_SPREAD:
+        if spread > R["MAX_SPREAD"]:
             continue
-        contracts = max(1, math.floor(C.STAKE_DOLLARS / ask))
+        contracts = max(1, math.floor(R["STAKE_DOLLARS"] / ask))
         fee = taker_fee(contracts, ask, C.FEE_RATE)
         edge = p - ask - fee / contracts
-        if edge >= C.MIN_EDGE and (best is None or edge > best["edge"]):
+        if edge >= R["MIN_EDGE"] and (best is None or edge > best["edge"]):
             best = {
-                "strategy_version": C.STRATEGY_VERSION,
+                "book": book_id, "strategy_version": book["version"],
                 "opened_at": now.isoformat(timespec="minutes"),
-                "series": m["series"], "city": city["city"], "ticker": m["ticker"],
+                "series": m["series"], "city": label, "ticker": m["ticker"],
                 "event_ticker": m["event_ticker"], "target_date": m["target_date"],
-                "bracket": bracket_label(m["strike_type"], _f(m["floor"]), _f(m["cap"])),
-                "strike_type": m["strike_type"], "floor": m["floor"], "cap": m["cap"],
+                "bracket": bracket_label(st, lo, hi, book["unit"]),
+                "strike_type": st, "floor": m["floor"], "cap": m["cap"],
                 "side": side, "contracts": contracts, "price": round(ask, 4), "fee": fee,
                 "cost": round(contracts * ask + fee, 2), "model_p": round(p, 4),
                 "market_p": round(ask, 4), "edge": round(edge, 4),
-                "forecast_high": forecast_high, "sigma": sigma,
+                "forecast": round(mu, 2), "sigma": round(sigma, 3), "unit": book["unit"],
                 "lead_hours": round(lead_hours, 1), "lead_days": lead_days,
-                "distance_f": round(bracket_center(m["strike_type"], _f(m["floor"]), _f(m["cap"])) - mu, 1),
+                "distance": round(bracket_center(st, lo, hi) - mu, 2),
                 "spread": round(spread, 4), "volume": m["volume"], "status": "open",
             }
     return snap, best
 
 
-def _f(v):
-    return None if v in (None, "") else float(v)
+def fade(book_id, m, now, snap):
+    """Trending book: buy NO when YES is a cheap long shot. 'Model' = the market price minus nothing;
+    the stats measure whether long shots really win less often than their price says."""
+    book, R = C.BOOKS[book_id], C.rules(book_id)
+    snap.update(forecast="", sigma="", model_p="")
+    ya, yb, na, nb = m["yes_ask"], m["yes_bid"], m["no_ask"], m["no_bid"]
+    close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
+    if None in (ya, yb, na, nb) or close is None:
+        return None
+    hours = (close - now).total_seconds() / 3600
+    if hours < R["MIN_LEAD_HOURS"] or not (book["fade_min_yes"] <= yb and ya <= book["fade_max_yes"]):
+        return None
+    if na > R["MAX_PRICE"] or na - nb > R["MAX_SPREAD"]:
+        return None
+    contracts = max(1, math.floor(R["STAKE_DOLLARS"] / na))
+    fee = taker_fee(contracts, na, C.FEE_RATE)
+    implied_no = 1 - (ya + yb) / 2  # what the market says NO is worth (mid price)
+    return {
+        "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
+        "series": m["series"], "city": book["series"][m["series"]], "ticker": m["ticker"],
+        "event_ticker": m["event_ticker"], "target_date": m["target_date"],
+        "bracket": m.get("yes_sub_title") or m["ticker"].split("-")[-1],
+        "strike_type": m["strike_type"], "floor": m["floor"], "cap": m["cap"],
+        "side": "no", "contracts": contracts, "price": round(na, 4), "fee": fee,
+        "cost": round(contracts * na + fee, 2), "model_p": round(implied_no, 4), "market_p": round(na, 4),
+        "edge": round(implied_no - na - fee / contracts, 4), "forecast": "", "sigma": "", "unit": "",
+        "lead_hours": round(hours, 1), "lead_days": int(hours // 24), "distance": "",
+        "spread": round(na - nb, 4), "volume": m["volume"], "status": "open",
+    }

@@ -49,6 +49,12 @@ td.num, th.num { text-align: right; white-space: nowrap; }
 .pill.open::before { content: "◷ "; color: var(--muted); }
 .controls { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
 select, button { font: inherit; font-size: 13px; padding: 4px 8px; border-radius: 6px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); }
+.books { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 8px; margin: 12px 0 14px; }
+.books button { text-align: left; padding: 10px 12px; border-radius: 10px; background: var(--surface); border: 1px solid var(--border); cursor: pointer; }
+.books button[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+.books .bn { font-weight: 600; font-size: 14px; display: block; }
+.books .bv { font-size: 13px; font-variant-numeric: tabular-nums; }
+.books .bm { font-size: 12px; color: var(--muted); display: block; }
 .tabs { display: flex; gap: 4px; flex-wrap: wrap; margin-bottom: 8px; }
 .tabs button[aria-pressed="true"] { background: var(--ink); color: var(--page); }
 svg text { fill: var(--muted); font-size: 11px; }
@@ -62,7 +68,8 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
 </head>
 <body>
 <main>
-  <h1>Kalshi weather paper trader</h1>
+  <h1>Kalshi paper trader</h1>
+  <div class="books" id="books" role="tablist" aria-label="Markets"></div>
   <p class="sub" id="sub">Loading…</p>
 
   <div class="tiles" id="tiles"></div>
@@ -87,14 +94,16 @@ footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
     </div>
   </div>
 
-  <h2>Weather forecast accuracy</h2>
-  <div class="card scroll" id="accuracy"></div>
+  <div id="accWrap">
+    <h2>Weather forecast accuracy</h2>
+    <div class="card scroll" id="accuracy"></div>
+  </div>
 
   <h2>Trades</h2>
   <div class="card">
     <div class="controls">
       <select id="fStatus" aria-label="Status"><option value="">All trades</option><option value="open">Open</option><option value="win">Wins</option><option value="loss">Losses</option></select>
-      <select id="fCity" aria-label="City"><option value="">All cities</option></select>
+      <select id="fCity" aria-label="City"><option value="">All markets</option></select>
     </div>
     <div class="scroll" id="trades"></div>
   </div>
@@ -116,14 +125,38 @@ function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block";
   const x = Math.min(e.clientX + 14, innerWidth - tip.offsetWidth - 8); tip.style.left = x + "px"; tip.style.top = (e.clientY + 14) + "px"; }
 function hideTip() { tip.style.display = "none"; }
 
-Promise.all([fetch("data/summary.json").then(r => r.json()), fetch("data/trades.json").then(r => r.json())])
-  .then(([s, trades]) => render(s, trades))
-  .catch(() => { $("sub").textContent = "No data yet. The first hourly run will create it."; });
+const getJSON = u => fetch(u, {cache: "no-store"}).then(r => { if (!r.ok) throw new Error(u); return r.json(); });
+let current = null;
+function store(k, v) { try { if (v === undefined) return localStorage.getItem(k); localStorage.setItem(k, v); } catch (e) { return null; } }
+
+getJSON("data/books.json").then(idx => {
+  const books = idx.books;
+  const saved = store("book");
+  const pick = books.find(b => b.id === saved) ? saved : books[0].id;
+  $("books").innerHTML = books.map(b => {
+    const pnl = b.bankroll - b.starting_bankroll;
+    return `<button role="tab" data-id="${b.id}" aria-selected="false"><span class="bn">${esc(b.short)}</span>` +
+      `<span class="bv">$${b.bankroll.toFixed(0)} <span class="${cls(pnl)}">${pnl ? money(pnl) : ""}</span></span>` +
+      `<span class="bm">${b.settled} settled · ${b.open} open</span></button>`;
+  }).join("");
+  $("books").querySelectorAll("button").forEach(btn => btn.onclick = () => load(btn.dataset.id));
+  load(pick);
+}).catch(() => { $("sub").textContent = "No data yet. The first hourly run will create it."; });
+
+function load(id) {
+  current = id; store("book", id);
+  $("books").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.id === id));
+  Promise.all([getJSON(`data/${id}/summary.json`), getJSON(`data/${id}/trades.json`)])
+    .then(([s, trades]) => { if (current === id) render(s, trades); })
+    .catch(() => { $("sub").textContent = "No data for this market yet. It fills in on the next hourly run."; });
+}
 
 function render(s, trades) {
   const t = s.totals || {n: 0};
-  $("sub").textContent = `Strategy ${s.strategy_version} · updated ${new Date(s.generated_at).toLocaleString()}`;
-  const start = 1000, pnl = s.bankroll - start;
+  $("sub").textContent = `${s.name} · strategy ${s.strategy_version} · its own $${s.starting_bankroll.toFixed(0)} paper bankroll · updated ${new Date(s.generated_at).toLocaleString()}`;
+  const start = s.starting_bankroll, pnl = s.bankroll - start;
+  unit = s.unit;
+  $("accWrap").style.display = s.kind === "weather" ? "" : "none";
   const tiles = [
     ["Paper bankroll", "$" + s.bankroll.toFixed(2), `<span class="${cls(pnl)}">${money(pnl)}</span> since start`],
     ["Settled trades", t.n, `${s.open_count} open ($${s.open_exposure.toFixed(2)} at risk)`],
@@ -147,7 +180,7 @@ function render(s, trades) {
     : `<div class="empty">Fills in after the first days settle. This tells us if the weather service runs hot or cold in each city.</div>`;
 
   const cities = [...new Set(trades.map(x => x.city))].sort();
-  $("fCity").innerHTML += cities.map(c => `<option>${esc(c)}</option>`).join("");
+  $("fCity").innerHTML = `<option value="">All markets</option>` + cities.map(c => `<option>${esc(c)}</option>`).join("");
   const draw = () => { shown = 25; drawTrades(trades); };
   $("fStatus").onchange = draw; $("fCity").onchange = draw; draw();
 
@@ -156,7 +189,16 @@ function render(s, trades) {
     ["Minimum edge after fees", (r.MIN_EDGE * 100) + "¢"], ["Price range", `${r.MIN_PRICE * 100}¢ to ${r.MAX_PRICE * 100}¢`],
     ["Max bid/ask spread", (r.MAX_SPREAD * 100) + "¢"], ["Stop trading before the high", r.MIN_LEAD_HOURS + " hours"],
     ["Max positions per city-day", r.MAX_POSITIONS_PER_EVENT], ["Paper stake per trade", "$" + r.STAKE_DOLLARS],
-    ["Forecast spread (sigma) by days ahead", Object.entries(s.sigma_by_lead_days || {}).map(([k, v]) => `${k}d: ${v}°F`).join(", ")]]);
+    ...modelRows(s), ["Kalshi series", (s.markets || []).join(", ")]]);
+}
+
+function modelRows(s) {
+  const m = s.model || {};
+  if (s.kind === "weather") return [["Model", "Normal curve around the NWS forecast"],
+    ["Forecast spread (sigma) by days ahead", Object.entries(m.sigma_by_lead_days || {}).map(([k, v]) => `${k}d: ${v}°F`).join(", ")]];
+  if (s.kind === "crypto") return [["Model", `Lognormal around the live ${esc(m.asset)} price (Coinbase), 30-day realized volatility`],
+    ["Fallback volatility", pct(m.fallback_vol) + " a year"]];
+  return [["Model", `Buy NO when YES trades between ${m.fade_min_yes * 100}¢ and ${m.fade_max_yes * 100}¢ (long shots tend to be overpriced)`]];
 }
 
 function table(head, rows, numCols = []) {
@@ -166,7 +208,7 @@ function table(head, rows, numCols = []) {
 
 function drawCurve(pts, start) {
   const el = $("curve");
-  if (!pts.length) { el.innerHTML = `<div class="empty">The line starts once the first trades settle (weather markets settle the morning after).</div>`; return; }
+  if (!pts.length) { el.innerHTML = `<div class="empty">The line starts once the first trades settle (weather settles the next morning; 5pm price markets settle that evening).</div>`; return; }
   const data = [{t: null, bankroll: start}, ...pts];
   const W = el.clientWidth || 700, H = 220, m = {l: 52, r: 12, t: 10, b: 24};
   const ys = data.map(d => d.bankroll), lo = Math.min(...ys, start), hi = Math.max(...ys, start), pad = Math.max(5, (hi - lo) * .1);
@@ -191,8 +233,11 @@ function drawCurve(pts, start) {
   hit.onmouseleave = () => { hideTip(); xh.setAttribute("visibility", "hidden"); dot.setAttribute("visibility", "hidden"); };
 }
 
-const DIMS = {cause: "Cause", city: "City", edge: "Edge at entry", price: "Entry price", bracket_distance: "Bracket vs forecast", days_ahead: "Days ahead", side: "Yes / No", bracket_type: "Bracket type", version: "Strategy version"};
-const CAUSES = {forecast_right: "Forecast was right", lucky: "Lucky (big forecast miss)", forecast_miss: "Big forecast miss", close_call: "Close call at bracket edge", market_smarter: "Market priced it better", unknown_actual: "Actual not reported"};
+let unit = "F";
+function fmtVal(v) { if (v === "" || v == null) return "–"; v = +v;
+  return unit === "$" ? "$" + v.toLocaleString(undefined, {maximumFractionDigits: v > 100 ? 0 : 2}) : unit === "F" ? v + "°F" : String(v); }
+const DIMS = {cause: "Cause", city: "Market", edge: "Edge at entry", price: "Entry price", bracket_distance: "Bracket vs forecast", days_ahead: "Time ahead", side: "Yes / No", bracket_type: "Bracket type", version: "Strategy version"};
+const CAUSES = {forecast_right: "Forecast was right", lucky: "Lucky (big forecast miss)", forecast_miss: "Big forecast miss", close_call: "Close call at bracket edge", market_smarter: "Market priced it better", unknown_actual: "Actual not reported", longshot_held: "Long shot missed (we won)", longshot_hit: "Long shot came in (we lost)"};
 let dim = "cause";
 function drawBreakdowns(bd) {
   $("tabs").innerHTML = Object.entries(DIMS).map(([k, l]) => `<button aria-pressed="${k === dim}" data-k="${k}">${l}</button>`).join("");
@@ -226,10 +271,10 @@ function drawTrades(trades) {
   const rows = trades.filter(t => (!city || t.city === city) &&
     (!st || (st === "open" ? t.status === "open" : t.status === "settled" && (st === "win") === (t.won === "1"))));
   if (!rows.length) { $("trades").innerHTML = `<div class="empty">No trades yet. The bot only buys when the forecast and the price disagree by at least the minimum edge.</div>`; return; }
-  $("trades").innerHTML = table(["Day", "City", "Bet", "Price", "Model", "Edge", "Forecast", "Result", "P&L", "Why"], rows.slice(0, shown).map(t => {
+  $("trades").innerHTML = table(["Day", "Market", "Bet", "Price", "Model", "Edge", "Forecast → actual", "Result", "P&L", "Why"], rows.slice(0, shown).map(t => {
     const res = t.status === "open" ? `<span class="pill open">open</span>` : t.won === "1" ? `<span class="pill win">won</span>` : `<span class="pill loss">lost</span>`;
     return [t.target_date, esc(t.city), `${t.side.toUpperCase()} ${esc(t.bracket)} ×${t.contracts}`, (t.price * 100).toFixed(0) + "¢",
-      pct(+t.model_p), (t.edge * 100).toFixed(1) + "¢", `${t.forecast_high}°F${t.actual_high ? " → " + t.actual_high + "°F" : ""}`, res,
+      pct(+t.model_p), (t.edge * 100).toFixed(1) + "¢", fmtVal(t.forecast) + (t.actual ? " → " + fmtVal(t.actual) : ""), res,
       t.pnl ? `<span class="${cls(+t.pnl)}">${money(+t.pnl)}</span>` : "–", `<div class="why">${esc(t.why || "")}</div>`];
   }), [3, 4, 5, 8]) + (rows.length > shown ? `<p><button id="more">Show more (${rows.length - shown} left)</button></p>` : "");
   const mb = $("more"); if (mb) mb.onclick = () => { shown += 50; drawTrades(trades); };

@@ -1,23 +1,25 @@
 # kalshi-analyzer
 
-A paper-trading bot for Kalshi's **daily high temperature** markets. Every hour it:
+A paper-trading bot for Kalshi. Every hour it reads real Kalshi prices, compares them with a simple model, **paper-buys** when the price looks wrong by at least 8 cents after fees, settles finished trades, explains each win or loss, and updates the stats. Everything is saved to this repo and shown on the Vercel dashboard.
 
-1. Pulls live prices for 7 cities (NYC, Philadelphia, Miami, Chicago, Austin, Denver, LA) from Kalshi's public API.
-2. Pulls the National Weather Service forecast high for each settlement station.
-3. Turns the forecast into a probability for every temperature bracket and **paper-buys** a side when the price is off by at least 8 cents after fees.
-4. Settles finished trades, writes a plain-English reason each one won or lost, and updates the stats.
-5. Saves everything to this repo (`data/`, `reports/`, `dashboard/data/`), and the Vercel dashboard shows it.
+Fake money on real prices. A learning project, **not financial advice**. No Kalshi account or API key needed.
 
-Fake money on real prices. A learning project, **not financial advice**. No Kalshi account or API key needed yet.
+## Books (each has its own $1,000 paper bankroll)
 
-## The rule (weather-v1)
+| Book | Kalshi markets | Model | Stops buying |
+|---|---|---|---|
+| `weather_high` | Daily high temp, 7 cities (KXHIGH*) | Normal around the NWS forecast high | 6h before ~4pm local |
+| `weather_low` | Daily low temp, same cities (KXLOWT*) | Normal around the NWS overnight low | 6h before ~6am local |
+| `bitcoin` | Bitcoin price at 5pm ET (KXBTCD, daily 5pm contracts only) | Lognormal around Coinbase BTC spot, 30-day realized volatility | 2h before 5pm ET |
+| `gold` | Gold price at 5pm ET (KXGOLDD) | Same, using Coinbase PAXG (gold-backed token) as the price | 2h before 5pm ET |
+| `trending` | Spotify #1 artist, Netflix #1, top free app, top YouTube video, Steam top seller | No forecast exists, so a different rule: buy NO on long shots priced 3-10c | 2h before close |
 
-- Model: the actual high is Normal(NWS forecast, sigma). Sigma is 2.0°F same day, 2.5°F one day ahead, 3.2°F two days ahead (starting guesses; the weekly report measures the real numbers).
-- Buy YES or NO when `model chance - (ask + fee per contract) >= 8¢`.
-- Skip if the price is under 5¢ or over 90¢, the spread is over 10¢, or it's within 6 hours of the afternoon high.
-- At most 2 trades per city-day, never re-buy the same market, $10 paper per trade, hold to settlement.
+Shared rules (per-book overrides in `config.py`): edge >= 8c after fees, price 5-90c (trending NO up to 97c), spread <= 10c, at most 2 trades per event, $10 per trade, hold to settlement.
 
-All settings live in `kalshi_analyzer/config.py`. **Change one thing at a time and bump `STRATEGY_VERSION`** so results stay comparable.
+All settings live in `kalshi_analyzer/config.py`. **Change one thing at a time and bump that book's `version`** so results stay comparable.
+
+### Restart a book
+GitHub, then **Actions**, then **Reset a book**, then **Run workflow**, then pick a book (or `all`). Its trades move to `data/<book>/archive/` and it starts again at $1,000. Price history is kept. From a laptop: `python -m kalshi_analyzer reset bitcoin`.
 
 ## How it learns: why each trade won or lost
 
@@ -30,8 +32,9 @@ Every settled trade gets a cause tag and a sentence:
 | `close_call` | Lost by 1°F or less at a bracket edge. Normal noise. |
 | `forecast_miss` | Forecast off by over 1.5 sigma. Repeats in one city mean a bias fix. |
 | `market_smarter` | Ordinary forecast error, but the market's price was closer. |
+| `longshot_held` / `longshot_hit` | Trending book: the long shot missed (we won) or came in (we lost). |
 
-The stats split wins and losses by cause, city, edge, entry price, bracket distance from the forecast, days ahead, and YES/NO. They also show **calibration** (does "60%" win 60% of the time?), **Brier score** for the model vs market prices, and **NWS forecast bias per city**. Weekly reports end with ranked suggestions for the next single rule change. Nothing changes on its own.
+The stats split wins and losses by cause, city, edge, entry price, bracket distance from the forecast (in sigmas), days ahead, and YES/NO. They also show **calibration** (does "60%" win 60% of the time?), **Brier score** for the model vs market prices, and **NWS forecast bias per city**. Weekly reports end with ranked suggestions for the next single rule change. Nothing changes on its own.
 
 ## Running it
 
@@ -50,7 +53,7 @@ python -m pytest -q                :: tests
 
 Don't run it on the laptop and on GitHub at the same time with the same repo, or you'll get git conflicts in `data/`.
 
-**Copy results into Obsidian:** double-click `tools\sync_obsidian.bat`. It pulls the latest results and writes `Live Status.md` plus a `Scorecards` folder into `D:\Obsidian_Vaults\Projects\Kalshi Trader`.
+**Copy results into Obsidian:** double-click `tools\sync_obsidian.bat`. It pulls the latest results and writes `Live Status.md` (all books) plus a `Scorecards/<book>` folder into `D:\Obsidian_Vaults\Projects\Kalshi Trader`.
 
 ## Dashboard on Vercel
 
@@ -63,9 +66,9 @@ To preview locally: `cd dashboard && python -m http.server` and open http://loca
 ## Files
 
 ```
-kalshi_analyzer/   config, Kalshi + NWS clients, model, strategy, settlement, explanations, stats, reports
-data/              trades.csv, forecasts.csv, actuals.csv, snapshots/<day>.csv (every price seen)
-reports/weekly/    YYYY-Www.md scorecards (Obsidian-ready)
-dashboard/         static site + data/summary.json, data/trades.json
-tools/             sync_obsidian.py / .bat
+kalshi_analyzer/          config, Kalshi/NWS/Coinbase clients, models, strategy, settlement, explanations, stats, reports
+data/<book>/              trades.csv, forecasts.csv (weather), actuals.csv, snapshots/<day>.csv, archive/ (after resets)
+reports/weekly/<book>/    YYYY-Www.md scorecards (Obsidian-ready)
+dashboard/                static site; data/books.json + data/<book>/summary.json, trades.json
+tools/                    sync_obsidian.py / .bat
 ```
