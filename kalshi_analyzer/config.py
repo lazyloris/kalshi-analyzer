@@ -12,7 +12,12 @@ NWS_API = "https://api.weather.gov"
 COINBASE_API = "https://api.exchange.coinbase.com"
 USER_AGENT = "kalshi-analyzer paper-trading research (github.com/lazyloris/kalshi-analyzer)"
 
-FEE_RATE = 0.07  # Kalshi taker fee: ceil(0.07 * contracts * p * (1-p)) to the cent
+FEE_RATE = 0.07
+
+# Rough hours from a market's close until Kalshi posts the result (so you know when to check back).
+# Weather waits for the NWS daily climate report the next morning; 5pm prices settle within the hour.
+# Estimates, refined once we see real settle times.
+SETTLE_DELAY_HOURS = {"weather": 8, "crypto": 1, "fade": 12}  # Kalshi taker fee: ceil(0.07 * contracts * p * (1-p)) to the cent
 
 # Settlement stations (NWS Daily Climate Report). Used to ask NWS for the point forecast.
 STATIONS = {

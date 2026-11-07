@@ -39,6 +39,21 @@ def event_markets(event_ticker, series):
     return [n for n in (kalshi.normalize(m, series) for m in data.get("markets", [])) if n]
 
 
+def mark(t, m, now):
+    """Keep timing up to date and value the open position at today's bid ("if sold now")."""
+    from .strategy import results_by
+    if m.get("close_time"):
+        t["closes_at"] = m["close_time"]
+        t["results_by"] = results_by(t["book"], m["close_time"])
+    if not t.get("expected_pnl"):
+        t["expected_pnl"] = round(float(t["contracts"]) * float(t["model_p"]) - float(t["cost"]), 2)
+    bid = m.get("yes_bid") if t["side"] == "yes" else m.get("no_bid")
+    if bid is not None:
+        t["mark_price"] = round(bid, 4)
+        t["mark_pnl"] = round(float(t["contracts"]) * bid - float(t["cost"]), 2)
+        t["marked_at"] = now.isoformat(timespec="minutes")
+
+
 def settle_trades(trades, actuals, now, log):
     known = {(a["series"], a["target_date"]): a for a in actuals}
     cache = {}
@@ -53,7 +68,10 @@ def settle_trades(trades, actuals, now, log):
             log(f"settle {t['ticker']}: {e}")
             continue
         mine = next((m for m in ms if m["ticker"] == t["ticker"]), None)
-        if not mine or mine["result"] not in ("yes", "no"):
+        if not mine:
+            continue
+        mark(t, mine, now)
+        if mine["result"] not in ("yes", "no"):
             continue
         value, approx = (None, True) if t.get("book") == "trending" else actual_from_event(ms)
         if value is not None and (t["series"], t["target_date"]) not in known:

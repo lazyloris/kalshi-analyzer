@@ -140,6 +140,8 @@ def test_full_run_offline(tmp_repo, monkeypatch):
     t_btc = ledger.read(C.paths("bitcoin")["trades"])
     assert any(t["ticker"] == "NY-B55" and t["side"] == "yes" for t in t_hi) and len(t_hi) <= 2
     assert [t["ticker"] for t in t_btc] == ["BTC-75000"]  # hourly 10am contract filtered out
+    assert t_btc[0]["closes_at"] == "2026-11-07T22:00:00Z" and t_btc[0]["results_by"] == "2026-11-07T23:00+00:00"
+    assert float(t_btc[0]["expected_pnl"]) > 0
     idx = json.loads((C.DASHBOARD_DATA / "books.json").read_text())
     assert [b["id"] for b in idx["books"]] == list(C.BOOKS)
     assert all(b["bankroll"] == 1000 for b in idx["books"])
@@ -152,6 +154,16 @@ def test_full_run_offline(tmp_repo, monkeypatch):
             m["result"] = ("yes" if m["ticker"] == "NY-B55" else "no") if series == "KXHIGHNY" else "yes"
             out.append(m)
         return out
+    # An hour later, still open: the bot values the position at the current bid.
+    monkeypatch.setattr(settle, "event_markets", lambda e, sr: [dict(m, yes_bid=0.30) for m in (btc if sr == "KXBTCD" else hi)])
+    app.run(now=NOW + dt.timedelta(hours=1), fetcher=FakeFetcher({}), do_settle=True)
+    b = ledger.read(C.paths("bitcoin")["trades"])[0]
+    assert b["status"] == "open" and float(b["mark_price"]) == 0.30
+    assert float(b["mark_pnl"]) == round(45 * 0.30 - float(b["cost"]), 2)
+    s = json.loads((C.paths("bitcoin")["dash"] / "summary.json").read_text())
+    assert s["upcoming"][0]["n"] == 1 and s["open_mark_pnl"] == float(b["mark_pnl"])
+    assert json.loads((C.DASHBOARD_DATA / "books.json").read_text())["books"][2]["next_results_by"] == "2026-11-07T23:00+00:00"
+
     monkeypatch.setattr(settle, "event_markets", fake_event)
     app.run(now=NOW + dt.timedelta(days=1, hours=12), fetcher=FakeFetcher({}), do_settle=True)
     t = next(t for t in ledger.read(C.paths("weather_high")["trades"]) if t["ticker"] == "NY-B55")

@@ -151,7 +151,9 @@ def write_outputs(book_id, trades, forecasts, actuals, now):
 def write_index(summaries, now):
     books = [{"id": s["book"], "name": s["name"], "short": s["short"], "bankroll": s["bankroll"],
               "starting_bankroll": s["starting_bankroll"], "settled": s["totals"].get("n", 0),
-              "open": s["open_count"], "version": s["strategy_version"]} for s in summaries]
+              "open": s["open_count"], "version": s["strategy_version"],
+              "next_results_by": next((u["results_by"] for u in s.get("upcoming", []) if u["results_by"] != "unknown"), "")}
+             for s in summaries]
     C.DASHBOARD_DATA.mkdir(parents=True, exist_ok=True)
     (C.DASHBOARD_DATA / "books.json").write_text(
         json.dumps({"generated_at": now.isoformat(timespec="minutes"), "books": books}, indent=1), encoding="utf-8")

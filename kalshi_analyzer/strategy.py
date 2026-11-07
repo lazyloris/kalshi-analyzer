@@ -17,6 +17,20 @@ from .model import (bracket_center, bracket_label, bracket_probability, lognorma
                     price_sigma, taker_fee)
 
 
+def results_by(book_id, close_time):
+    """When to check back: market close + typical settle delay for this kind of market (ISO, UTC)."""
+    if not close_time:
+        return ""
+    close = dt.datetime.fromisoformat(close_time.replace("Z", "+00:00"))
+    hours = C.SETTLE_DELAY_HOURS.get(C.BOOKS[book_id]["kind"], 6)
+    return (close + dt.timedelta(hours=hours)).isoformat(timespec="minutes")
+
+
+def timing(book_id, m, contracts, p, cost):
+    return {"closes_at": m.get("close_time") or "", "results_by": results_by(book_id, m.get("close_time")),
+            "expected_pnl": round(contracts * p - cost, 2)}
+
+
 def _f(v):
     return None if v in (None, "") else float(v)
 
@@ -99,6 +113,7 @@ def evaluate(book_id, m, ctx, now):
                 "lead_hours": round(lead_hours, 1), "lead_days": lead_days,
                 "distance": round(bracket_center(st, lo, hi) - mu, 2),
                 "spread": round(spread, 4), "volume": m["volume"], "status": "open",
+                **timing(book_id, m, contracts, p, contracts * ask + fee),
             }
     return snap, best
 
@@ -131,4 +146,5 @@ def fade(book_id, m, now, snap):
         "edge": round(implied_no - na - fee / contracts, 4), "forecast": "", "sigma": "", "unit": "",
         "lead_hours": round(hours, 1), "lead_days": int(hours // 24), "distance": "",
         "spread": round(na - nb, 4), "volume": m["volume"], "status": "open",
+        **timing(book_id, m, contracts, implied_no, contracts * na + fee),
     }
