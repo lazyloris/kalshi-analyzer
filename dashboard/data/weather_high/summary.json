@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T11:46+00:00",
+ "generated_at": "2026-11-07T17:45+00:00",
  "strategy_version": "weather-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -34,11 +34,11 @@
   "KXHIGHLAX"
  ],
  "bankroll": 1000.0,
- "open_exposure": 145.34,
+ "open_exposure": 257.04,
  "totals": {
   "n": 0
  },
- "open_count": 14,
+ "open_count": 25,
  "breakdowns": {
   "city": {},
   "side": {},

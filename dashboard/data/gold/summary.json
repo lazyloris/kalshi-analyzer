@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T11:46+00:00",
+ "generated_at": "2026-11-07T17:45+00:00",
  "strategy_version": "gold-v1",
  "rules": {
   "MIN_EDGE": 0.08,
