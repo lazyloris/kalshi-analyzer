@@ -82,9 +82,16 @@ BOOKS = {
         "version": "fade-v1", "bankroll": 1000.0, "unit": "",
         # No forecast exists for these, so this book tests a different rule: cheap long shots
         # (YES at 3-10c) tend to be overpriced, so buy NO on them.
-        "series": {"KXSPOTIFYARTIST": "Spotify artist #1", "KXNETFLIXRANKING": "Netflix #1",
-                   "KXAPPRANKFREE2": "Top free app", "KXYTDAILYTOPVIDEO": "Top YouTube video",
-                   "KXTOPSELLERS": "Steam top seller"},
+        # Many chart series only list markets on some days, so cast a wide net (daily + weekly).
+        "series": {"KXSPOTIFYARTIST": "Spotify artist #1", "KXSPOTIFYGLOBALD": "Spotify global daily",
+                   "KXSPOTIFY2D": "Spotify US #2", "KXSPOTIFY3D": "Spotify US #3", "KXSPOTIFY4D": "Spotify US #4",
+                   "KXSPOTIFYUKD": "Spotify UK daily", "KXSPOTIFYW": "Spotify US weekly",
+                   "KXNETFLIXRANKING": "Netflix #1", "KXNETFLIXSHOWRANKD": "Netflix daily top",
+                   "KXNETFLIXRANK": "Netflix weekly", "KXTOPSHOW": "Top show weekly",
+                   "KXAPPRANKFREE2": "Top free app", "KXAPPRANKFREESECOND": "Free app #2",
+                   "KXYTDAILYTOPVIDEO": "Top YouTube video", "KXYTVIEWSD": "YouTube daily views",
+                   "KXTOPSELLERS": "Steam top seller", "KXHOT100": "Billboard Hot 100 #1",
+                   "KXTOPALBUM": "Billboard 200 #1"},
         "fade_min_yes": 0.03, "fade_max_yes": 0.10,
         "rules": {"MAX_PRICE": 0.97, "MIN_LEAD_HOURS": 2, "MAX_SPREAD": 0.05},
     },
