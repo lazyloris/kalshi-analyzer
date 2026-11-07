@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T05:02+00:00",
+ "generated_at": "2026-11-07T11:46+00:00",
  "strategy_version": "gold-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -24,11 +24,11 @@
   "KXGOLDD"
  ],
  "bankroll": 1000.0,
- "open_exposure": 0,
+ "open_exposure": 20.45,
  "totals": {
   "n": 0
  },
- "open_count": 0,
+ "open_count": 2,
  "breakdowns": {
   "city": {},
   "side": {},
