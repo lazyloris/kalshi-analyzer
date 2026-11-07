@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T17:45+00:00",
+ "generated_at": "2026-11-07T18:11+00:00",
  "strategy_version": "weather-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -39,6 +39,67 @@
   "n": 0
  },
  "open_count": 25,
+ "open_mark_pnl": -59.6,
+ "open_marked": 25,
+ "open_expected_pnl": 243.5,
+ "upcoming": [
+  {
+   "results_by": "2026-11-08T14:00+00:00",
+   "closes_at": "2026-11-08T06:00:00Z",
+   "n": 6,
+   "at_risk": 62.42,
+   "expected_pnl": 62.5
+  },
+  {
+   "results_by": "2026-11-08T15:00+00:00",
+   "closes_at": "2026-11-08T07:00:00Z",
+   "n": 4,
+   "at_risk": 41.43,
+   "expected_pnl": 41.18
+  },
+  {
+   "results_by": "2026-11-08T16:00+00:00",
+   "closes_at": "2026-11-08T08:00:00Z",
+   "n": 2,
+   "at_risk": 20.76,
+   "expected_pnl": 41.0
+  },
+  {
+   "results_by": "2026-11-08T17:00+00:00",
+   "closes_at": "2026-11-08T09:00:00Z",
+   "n": 2,
+   "at_risk": 20.73,
+   "expected_pnl": 15.94
+  },
+  {
+   "results_by": "2026-11-09T14:00+00:00",
+   "closes_at": "2026-11-09T06:00:00Z",
+   "n": 5,
+   "at_risk": 51.83,
+   "expected_pnl": 45.1
+  },
+  {
+   "results_by": "2026-11-09T15:00+00:00",
+   "closes_at": "2026-11-09T07:00:00Z",
+   "n": 4,
+   "at_risk": 39.77,
+   "expected_pnl": 29.14
+  },
+  {
+   "results_by": "2026-11-09T16:00+00:00",
+   "closes_at": "2026-11-09T08:00:00Z",
+   "n": 1,
+   "at_risk": 10.06,
+   "expected_pnl": 6.17
+  },
+  {
+   "results_by": "2026-11-09T17:00+00:00",
+   "closes_at": "2026-11-09T09:00:00Z",
+   "n": 1,
+   "at_risk": 10.04,
+   "expected_pnl": 2.47
+  }
+ ],
  "breakdowns": {
   "city": {},
   "side": {},

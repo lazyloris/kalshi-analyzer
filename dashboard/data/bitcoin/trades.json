@@ -38,7 +38,13 @@
   "forecast_error": "",
   "cause": "",
   "why": "",
-  "closed_at": ""
+  "closed_at": "",
+  "closes_at": "2026-11-07T22:00:00Z",
+  "results_by": "2026-11-07T23:00+00:00",
+  "expected_pnl": 20.99,
+  "mark_price": 0.01,
+  "mark_pnl": -9.4,
+  "marked_at": "2026-11-07T18:11+00:00"
  },
  {
   "trade_id": "KXBTCD-26NOV0717-T75249.99-no",
@@ -79,6 +85,12 @@
   "forecast_error": "",
   "cause": "",
   "why": "",
-  "closed_at": ""
+  "closed_at": "",
+  "closes_at": "2026-11-07T22:00:00Z",
+  "results_by": "2026-11-07T23:00+00:00",
+  "expected_pnl": 10.91,
+  "mark_price": 0.04,
+  "mark_pnl": -7.85,
+  "marked_at": "2026-11-07T18:11+00:00"
  }
 ]

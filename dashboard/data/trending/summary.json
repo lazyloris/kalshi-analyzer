@@ -5,7 +5,7 @@
  "kind": "fade",
  "unit": "",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T17:45+00:00",
+ "generated_at": "2026-11-07T18:11+00:00",
  "strategy_version": "fade-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -22,10 +22,23 @@
  },
  "markets": [
   "KXSPOTIFYARTIST",
+  "KXSPOTIFYGLOBALD",
+  "KXSPOTIFY2D",
+  "KXSPOTIFY3D",
+  "KXSPOTIFY4D",
+  "KXSPOTIFYUKD",
+  "KXSPOTIFYW",
   "KXNETFLIXRANKING",
+  "KXNETFLIXSHOWRANKD",
+  "KXNETFLIXRANK",
+  "KXTOPSHOW",
   "KXAPPRANKFREE2",
+  "KXAPPRANKFREESECOND",
   "KXYTDAILYTOPVIDEO",
-  "KXTOPSELLERS"
+  "KXYTVIEWSD",
+  "KXTOPSELLERS",
+  "KXHOT100",
+  "KXTOPALBUM"
  ],
  "bankroll": 1000.0,
  "open_exposure": 0,
@@ -33,6 +46,10 @@
   "n": 0
  },
  "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
  "breakdowns": {
   "city": {},
   "side": {},

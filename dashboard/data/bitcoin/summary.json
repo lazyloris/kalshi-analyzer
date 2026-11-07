@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T17:45+00:00",
+ "generated_at": "2026-11-07T18:11+00:00",
  "strategy_version": "crypto-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -29,6 +29,18 @@
   "n": 0
  },
  "open_count": 2,
+ "open_mark_pnl": -17.25,
+ "open_marked": 2,
+ "open_expected_pnl": 31.9,
+ "upcoming": [
+  {
+   "results_by": "2026-11-07T23:00+00:00",
+   "closes_at": "2026-11-07T22:00:00Z",
+   "n": 2,
+   "at_risk": 21.14,
+   "expected_pnl": 31.9
+  }
+ ],
  "breakdowns": {
   "city": {},
   "side": {},
