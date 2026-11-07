@@ -21,9 +21,12 @@ def _bucket_price(p):
     return "5-25c" if p < 0.25 else "25-50c" if p < 0.50 else "50-75c" if p < 0.75 else "75-90c"
 
 
-def _bucket_dist(d):
-    d = abs(d)
-    return "0-1F from forecast" if d <= 1 else "1-3F" if d <= 3 else "3F+"
+def _bucket_dist(r):
+    try:
+        z = abs(float(r["distance"])) / float(r["sigma"])
+    except (TypeError, ValueError, ZeroDivisionError):
+        return "n/a"
+    return "within 0.5 sigma of forecast" if z <= 0.5 else "0.5-1.5 sigma" if z <= 1.5 else "1.5+ sigma"
 
 
 def summarize(rows):
@@ -51,8 +54,9 @@ def breakdowns(settled):
         "side": lambda r: r["side"].upper(),
         "edge": lambda r: _bucket_edge(float(r["edge"])),
         "price": lambda r: _bucket_price(float(r["price"])),
-        "days_ahead": lambda r: f"{r['lead_days']} day(s)",
-        "bracket_distance": lambda r: _bucket_dist(float(r["distance_f"])),
+        "days_ahead": lambda r: f"{r['lead_days']} day(s)" if r.get("unit") == "F" else (
+            "under 6h" if float(r["lead_hours"]) < 6 else "6-24h" if float(r["lead_hours"]) < 24 else "1 day+"),
+        "bracket_distance": _bucket_dist,
         "bracket_type": lambda r: r["strike_type"],
         "cause": lambda r: r.get("cause") or "unknown",
         "version": lambda r: r["strategy_version"],
@@ -80,25 +84,28 @@ def calibration(settled):
     return rows
 
 
-def forecast_accuracy(forecasts, actuals):
+def forecast_accuracy(forecasts, actuals, book):
     """NWS error (actual - forecast) per city and days ahead, using the last forecast of each day."""
-    act = {(a["series"], a["target_date"]): float(a["actual_high"]) for a in actuals}
+    if book["kind"] != "weather":
+        return []
+    act = {(a["series"], a["target_date"]): float(a["actual"]) for a in actuals}
     last = {}
     for f in forecasts:
-        if f["forecast_high"] in ("", None):
+        if f["forecast"] in ("", None):
             continue
-        last[(f["series"], f["target_date"], f["lead_days"])] = float(f["forecast_high"])
+        last[(f["series"], f["target_date"], f["lead_days"])] = float(f["forecast"])
     errs = defaultdict(list)
     for (s, d, lead), fc in last.items():
         if (s, d) in act:
             errs[(s, int(lead))].append(act[(s, d)] - fc)
     out = []
     for (s, lead), es in sorted(errs.items()):
-        out.append({"series": s, "city": C.CITIES.get(s, {}).get("city", s), "days_ahead": lead,
+        city = C.STATIONS.get(book["series"].get(s, ""), {}).get("city", s)
+        out.append({"series": s, "city": city, "days_ahead": lead,
                     "n": len(es), "bias": round(st.mean(es), 2),
                     "mae": round(st.mean(abs(e) for e in es), 2),
                     "stdev": round(st.pstdev(es), 2) if len(es) > 1 else None,
-                    "sigma_used": C.SIGMA_BY_LEAD_DAYS.get(lead)})
+                    "sigma_used": book["sigma_by_lead_days"].get(lead)})
     return out
 
 
@@ -111,7 +118,7 @@ def suggestions(settled, bd, acc):
         if a["n"] >= 7 and abs(a["bias"]) >= 1.0:
             s.append({"priority": 2, "text": f"NWS runs {'cold' if a['bias'] > 0 else 'warm'} in {a['city']} "
                       f"({a['days_ahead']} day(s) ahead, avg error {a['bias']:+.1f}F over {a['n']} days). "
-                      f"Try CITY_BIAS_F['{a['series']}'] = {a['bias']:+.1f}."})
+                      f"Try bias['{a['series']}'] = {a['bias']:+.1f} in this book's config."})
         if a["n"] >= 10 and a["stdev"] and a["sigma_used"] and abs(a["stdev"] - a["sigma_used"]) >= 0.5:
             s.append({"priority": 1, "text": f"Measured forecast spread in {a['city']} ({a['days_ahead']} day(s) ahead) "
                       f"is {a['stdev']}F but the model assumes {a['sigma_used']}F."})
@@ -127,26 +134,30 @@ def suggestions(settled, bd, acc):
     return sorted(s, key=lambda x: -x["priority"])
 
 
-def bankroll_curve(settled):
-    bank, pts = C.STARTING_BANKROLL, []
+def bankroll_curve(settled, start):
+    bank, pts = start, []
     for r in sorted(settled, key=lambda r: r["closed_at"]):
         bank += float(r["pnl"])
         pts.append({"t": r["closed_at"], "bankroll": round(bank, 2)})
     return pts
 
 
-def build(trades, forecasts, actuals, now):
+def build(book_id, trades, forecasts, actuals, now):
+    book = C.BOOKS[book_id]
     settled = [t for t in trades if t["status"] == "settled"]
     open_ = [t for t in trades if t["status"] == "open"]
     bd = breakdowns(settled)
-    acc = forecast_accuracy(forecasts, actuals)
+    acc = forecast_accuracy(forecasts, actuals, book)
     return {
+        "book": book_id, "name": book["name"], "short": book["short"], "kind": book["kind"],
+        "unit": book["unit"], "starting_bankroll": book["bankroll"],
         "generated_at": now.isoformat(timespec="minutes"),
-        "strategy_version": C.STRATEGY_VERSION,
-        "rules": {k: getattr(C, k) for k in ("MIN_EDGE", "MIN_PRICE", "MAX_PRICE", "MAX_SPREAD",
-                                             "MIN_LEAD_HOURS", "MAX_POSITIONS_PER_EVENT", "STAKE_DOLLARS")},
-        "sigma_by_lead_days": C.SIGMA_BY_LEAD_DAYS,
-        "bankroll": round(C.STARTING_BANKROLL + sum(float(t["pnl"]) for t in settled), 2),
+        "strategy_version": book["version"],
+        "rules": C.rules(book_id),
+        "model": {k: book[k] for k in ("sigma_by_lead_days", "bias", "fallback_vol", "asset",
+                                       "fade_min_yes", "fade_max_yes") if k in book},
+        "markets": list(book["series"]),
+        "bankroll": round(book["bankroll"] + sum(float(t["pnl"]) for t in settled), 2),
         "open_exposure": round(sum(float(t["cost"]) for t in open_), 2),
         "totals": summarize(settled),
         "open_count": len(open_),
@@ -154,7 +165,7 @@ def build(trades, forecasts, actuals, now):
         "calibration": calibration(settled),
         "forecast_accuracy": acc,
         "suggestions": suggestions(settled, bd, acc),
-        "bankroll_curve": bankroll_curve(settled),
+        "bankroll_curve": bankroll_curve(settled, book["bankroll"]),
     }
 
 

@@ -39,16 +39,24 @@ def target_date_from_event(event_ticker):
     return dt.date(2000 + int(code[:2]), MONTHS[code[2:5]], int(code[5:7]))
 
 
+def _target_date(m):
+    try:
+        return target_date_from_event(m["event_ticker"]).isoformat()
+    except (KeyError, ValueError, IndexError):
+        return (m.get("close_time") or "")[:10]
+
+
 def normalize(m, series):
     st = m.get("strike_type")
-    if st not in ("between", "greater", "less"):
+    if not m.get("ticker"):
         return None
     return {
         "ticker": m["ticker"],
         "event_ticker": m["event_ticker"],
         "series": series,
-        "target_date": target_date_from_event(m["event_ticker"]).isoformat(),
-        "strike_type": st,
+        "target_date": _target_date(m),
+        "strike_type": st or "custom",
+        "yes_sub_title": m.get("yes_sub_title") or "",
         "floor": m.get("floor_strike"),
         "cap": m.get("cap_strike"),
         "yes_bid": _price(m, "yes_bid"),

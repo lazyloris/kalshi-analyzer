@@ -13,16 +13,16 @@ def _table(groups, title):
     return "\n".join(lines) + "\n"
 
 
-def scorecard(trades, forecasts, actuals, now, week_start: dt.date, week_end: dt.date):
+def scorecard(book_id, trades, forecasts, actuals, now, week_start: dt.date, week_end: dt.date):
     in_week = [t for t in trades if t["status"] == "settled"
                and week_start.isoformat() <= t["target_date"] <= week_end.isoformat()]
-    s = analysis.build(in_week, forecasts, actuals, now)
-    all_s = analysis.build(trades, forecasts, actuals, now)
+    s = analysis.build(book_id, in_week, forecasts, actuals, now)
+    all_s = analysis.build(book_id, trades, forecasts, actuals, now)
     tot = s["totals"]
     out = [
-        "---", "project: Kalshi Trader", "tags: [scorecard, trading]",
+        "---", "project: Kalshi Trader", "tags: [scorecard, trading]", f"book: {s['name']}",
         f"week: {week_start} to {week_end}", f"strategy: {s['strategy_version']}", "---", "",
-        f"# Weekly scorecard {week_start} to {week_end}", "",
+        f"# {s['name']}: scorecard {week_start} to {week_end}", "",
         "Paper trading with real Kalshi prices and fake money. Not financial advice.", "",
         "## This week",
     ]
@@ -36,14 +36,14 @@ def scorecard(trades, forecasts, actuals, now, week_start: dt.date, week_end: dt
             f"- Average edge at entry: {tot['avg_edge']*100:.1f}c", "",
         ]
     at = all_s["totals"]
-    out += ["## All time", f"- Paper bankroll: **${all_s['bankroll']:.2f}** (started ${analysis.C.STARTING_BANKROLL:.0f})",
+    out += ["## All time", f"- Paper bankroll: **${all_s['bankroll']:.2f}** (started ${s['starting_bankroll']:.0f})",
             f"- Settled trades: {at.get('n', 0)}, open: {all_s['open_count']}", ""]
     if at.get("n"):
         out.append(f"- Win rate {at['win_rate']:.0%}, P&L ${at['pnl']:+.2f}, Brier model {at['brier_model']} vs market {at['brier_market']}\n")
 
     out += ["## Why trades won or lost", ""]
     for name, title in (("cause", "cause"), ("city", "city"), ("edge", "edge at entry"),
-                        ("price", "entry price"), ("bracket_distance", "bracket distance from forecast"),
+                        ("price", "entry price"), ("bracket_distance", "bracket distance from forecast (in sigmas)"),
                         ("days_ahead", "days ahead"), ("side", "side")):
         t = _table(all_s["breakdowns"].get(name, {}), title)
         if t:
