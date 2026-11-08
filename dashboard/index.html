@@ -203,9 +203,12 @@ function render(s, trades) {
 
 function modelRows(s) {
   const m = s.model || {};
+  if (s.strategy === "fade") return [["Rule", `Buy NO when YES trades between ${Math.round(m.fade_min_yes * 100)}¢ and ${Math.round(m.fade_max_yes * 100)}¢ (long shots tend to be overpriced)`],
+    ["Why this rule", s.kind === "weather" ? "The backtest found no forecast model that beats the weather market, so this book fades long shots while forecasts keep being logged to learn from. See the Backtest page." : ""]];
   if (s.kind === "weather") return [["Model", "Normal curve around the NWS forecast"],
     ["Forecast spread (sigma) by days ahead", Object.entries(m.sigma_by_lead_days || {}).map(([k, v]) => `${k}d: ${v}°F`).join(", ")]];
   if (s.kind === "crypto") return [["Model", `Lognormal around the live ${esc(m.asset)} price (Coinbase), 30-day realized volatility`],
+    ["Volatility used", m.vol_mult && m.vol_mult !== 1 ? `${m.vol_mult}× the measured volatility (backtest: halving it worked best)` : "as measured"],
     ["Fallback volatility", pct(m.fallback_vol) + " a year"]];
   return [["Model", `Buy NO when YES trades between ${m.fade_min_yes * 100}¢ and ${m.fade_max_yes * 100}¢ (long shots tend to be overpriced)`]];
 }

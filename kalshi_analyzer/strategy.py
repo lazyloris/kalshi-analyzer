@@ -89,6 +89,8 @@ def evaluate(book_id, m, ctx, now):
         return snap, None
     p_yes, mu, sigma, lead_hours, lead_days, label = res
     snap.update(forecast=round(mu, 2), sigma=round(sigma, 3), model_p=round(p_yes, 4))
+    if book.get("strategy") == "fade":  # model still logged for learning, but trades use the fade rule
+        return snap, fade(book_id, m, now, snap)
     if lead_hours < R["MIN_LEAD_HOURS"]:
         return snap, None
 
@@ -136,7 +138,8 @@ def fade(book_id, m, now, snap):
     """Trending book: buy NO when YES is a cheap long shot. 'Model' = the market price minus nothing;
     the stats measure whether long shots really win less often than their price says."""
     book, R = C.BOOKS[book_id], C.rules(book_id)
-    snap.update(forecast="", sigma="", model_p="")
+    for k in ("forecast", "sigma", "model_p"):
+        snap.setdefault(k, "")
     ya, yb, na, nb = m["yes_ask"], m["yes_bid"], m["no_ask"], m["no_bid"]
     close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
     if None in (ya, yb, na, nb) or close is None:
@@ -151,7 +154,8 @@ def fade(book_id, m, now, snap):
     implied_no = 1 - (ya + yb) / 2  # what the market says NO is worth (mid price)
     return {
         "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
-        "series": m["series"], "city": book["series"][m["series"]], "ticker": m["ticker"],
+        "series": m["series"], "city": C.STATIONS.get(book["series"][m["series"]], {}).get("city", book["series"][m["series"]]),
+        "ticker": m["ticker"],
         "event_ticker": m["event_ticker"], "target_date": m["target_date"],
         "bracket": m.get("yes_sub_title") or m["ticker"].split("-")[-1],
         "strike_type": m["strike_type"], "floor": m["floor"], "cap": m["cap"],

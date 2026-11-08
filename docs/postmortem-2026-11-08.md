@@ -33,16 +33,34 @@
    the same way, and the fix (narrower, calibrated sigma, plus respect for the market) is cheap
    to test.
 
-## What changed (v2)
+## What the backtest said (Mar 12 - Nov 7, 2026)
 
-- Sigma is now **measured**, not guessed: a rolling forecast error per city and days ahead, with a
-  floor so it never gets overconfident. The starting values before any data are 1.5 / 2.0 / 2.8°F.
-- Bias per city is learned the same way.
-- **Market blend:** the trade decision uses a mix of our model and the market price. The weight
-  comes from the backtest.
-- **Disagreement cap:** if the model and market disagree by more than a set amount, skip the trade.
-- Bitcoin volatility is scaled down, by a factor from the backtest.
-- All books were reset to $1,000. The old trades are archived in `data/<book>/archive/`, and the
-  dashboard's version column separates v1 from v2.
-- A backtester now replays months of real Kalshi prices against archived forecasts, so the next
-  rule change is tested on hundreds of events, not 14.
+Real hourly Kalshi prices, archived NWS-blend forecasts, and $10 per trade with fees. Full numbers
+are on the dashboard's Backtest page and in `docs/backtest-log.md`.
+
+- **Weather: no forecast model beat the market.** Every model version lost 17-27% per dollar
+  over about 1,700 events per book. That includes v1 (what we ran), calibrated sigma and bias, a
+  market blend, and a disagreement cap. The market's prices were well calibrated. Our v1 live loss
+  (-$105 on 14 trades) is exactly what the backtest predicts, so it was not bad luck.
+- **Weather long-shot fade** (buy NO when YES costs 3-10c) was about break-even: -0.3% on highs,
+  +0.6% on lows.
+- **Bitcoin: our volatility was too high.** v1 lost 30% per dollar. Halving the volatility was the
+  only setting profitable in both halves of the period: +5.2% per dollar on 711 trades. Kalshi's
+  Bitcoin long shots are overpriced (YES at 5-10c won 3.6% of the time), and the fade earned +1.7%.
+- One backtest bug was caught: Coinbase candles were keyed by start time, which leaked one hour
+  of future price and made Bitcoin look like +39%. It is fixed, and the numbers above are the
+  corrected ones.
+
+## What changed (v2, live)
+
+| Book | v1 | v2 |
+|---|---|---|
+| Weather highs / lows | Normal model, sigma 2.0/2.5F | **Long-shot fade.** Forecasts are still logged, and bias/sigma are learned per city for the next model attempt (starting sigma 1.5/2.0/2.8F). |
+| Bitcoin | 30-day realized vol | **Vol x0.5** |
+| Gold | 30-day realized vol | Vol x0.5. Copied from Bitcoin and **not backtested on gold**. |
+| Trending | Long-shot fade | Unchanged |
+
+New live options exist for later tests: `MARKET_BLEND` (trust the market price partly) and
+`MAX_GAP` (skip big disagreements). Both are off by default because they didn't help in the backtest.
+
+All books were reset to $1,000. The old trades are archived in `data/<book>/archive/`.

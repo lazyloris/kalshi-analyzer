@@ -4,7 +4,7 @@ import json
 
 import pytest
 
-from kalshi_analyzer import __main__ as app, config as C, kalshi, ledger, nws, settle, strategy
+from kalshi_analyzer import __main__ as app, analysis, config as C, kalshi, ledger, nws, settle, strategy
 from kalshi_analyzer.explain import explain
 from kalshi_analyzer.model import bracket_probability, lognormal_probability, taker_fee
 
@@ -67,24 +67,32 @@ def mk(ticker, st, floor, cap, yb, ya, day="2026-11-08", series="KXHIGHNY", clos
     return {"ticker": ticker, "event_ticker": event or f"{series}-{d:%y}{d.strftime('%b').upper()}{d:%d}", "series": series,
             "target_date": day, "strike_type": st, "floor": floor, "cap": cap, "yes_bid": yb, "yes_ask": ya,
             "no_bid": round(1 - ya, 2), "no_ask": round(1 - yb, 2), "volume": 500, "status": "open",
-            "result": "", "expiration_value": "", "close_time": close, "yes_sub_title": ""}
+            "result": "", "expiration_value": "",
+            "close_time": close or f"{d + dt.timedelta(days=1)}T05:00:00Z", "yes_sub_title": ""}
 
 
-def test_weather_buys_underpriced_yes():
+def _model_mode(monkeypatch, book):
+    monkeypatch.setitem(C.BOOKS, book, {k: v for k, v in C.BOOKS[book].items() if k != "strategy"})
+
+
+def test_weather_buys_underpriced_yes(monkeypatch):
+    _model_mode(monkeypatch, "weather_high")
     snap, cand = strategy.evaluate("weather_high", mk("T55", "between", 55, 56, 0.10, 0.12), {"forecasts": {"2026-11-08": 55.5}}, NOW)
     assert cand and cand["side"] == "yes" and cand["edge"] >= 0.08 and cand["book"] == "weather_high"
     _, cand = strategy.evaluate("weather_high", mk("T55", "between", 55, 56, 0.28, 0.30), {"forecasts": {"2026-11-08": 55.5}}, NOW)
     assert cand is None
 
 
-def test_weather_skips_wide_spread_and_late():
+def test_weather_skips_wide_spread_and_late(monkeypatch):
+    _model_mode(monkeypatch, "weather_high")
     ctx = {"forecasts": {"2026-11-08": 55.5}}
     assert strategy.evaluate("weather_high", mk("T", "between", 55, 56, 0.01, 0.15), ctx, NOW)[1] is None
     late = dt.datetime(2026, 11, 8, 18, 0, tzinfo=dt.timezone.utc)
     assert strategy.evaluate("weather_high", mk("T", "between", 55, 56, 0.10, 0.12), ctx, late)[1] is None
 
 
-def test_low_book_stops_before_sunrise():
+def test_low_book_stops_before_sunrise(monkeypatch):
+    _model_mode(monkeypatch, "weather_low")
     m = mk("L", "between", 40, 41, 0.10, 0.12, series="KXLOWTNYC")
     ctx = {"forecasts": {"2026-11-08": 40.5}}
     assert strategy.evaluate("weather_low", m, ctx, NOW)[1] is not None          # 8am the day before
@@ -99,6 +107,22 @@ def test_crypto_buys_cheap_near_money():
     assert snap["model_p"] > 0.6 and cand["side"] == "yes" and cand["city"] == "Bitcoin"
     late = dt.datetime(2026, 11, 7, 21, 0, tzinfo=dt.timezone.utc)
     assert strategy.evaluate("bitcoin", m, {"spot": 75500, "vol": 0.5}, late)[1] is None
+
+
+def test_weather_fade_mode_logs_forecast_but_fades():
+    ctx = {"forecasts": {"2026-11-08": 55.5}}
+    snap, cand = strategy.evaluate("weather_high", mk("G60", "greater", 60, None, 0.05, 0.07), ctx, NOW)
+    assert snap["forecast"] != "" and snap["model_p"] != ""
+    assert cand["side"] == "no" and cand["city"] == "New York" and cand["forecast"] == ""
+    assert strategy.evaluate("weather_high", mk("B55", "between", 55, 56, 0.10, 0.12), ctx, NOW)[1] is None
+
+
+def test_learned_calibration_shrinks_toward_default():
+    fc = [{"series": "KXHIGHNY", "target_date": f"2026-10-{d:02d}", "lead_days": 0, "forecast": 60} for d in range(1, 31)]
+    act = [{"series": "KXHIGHNY", "target_date": f"2026-10-{d:02d}", "actual": 62} for d in range(1, 31)]
+    cal = analysis.learned_calibration("KXHIGHNY", fc, act, C.BOOKS["weather_high"], NOW)
+    bias, sigma = cal[0]
+    assert 1.4 < bias < 2.0 and 1.0 <= sigma < 1.5 and 1 not in cal
 
 
 def test_fade_buys_no_on_longshot():
@@ -138,7 +162,7 @@ def test_full_run_offline(tmp_repo, monkeypatch):
     app.run(now=NOW, fetcher=FakeFetcher({"KXHIGHNY": hi, "KXBTCD": btc}), do_settle=False)
     t_hi = ledger.read(C.paths("weather_high")["trades"])
     t_btc = ledger.read(C.paths("bitcoin")["trades"])
-    assert any(t["ticker"] == "NY-B55" and t["side"] == "yes" for t in t_hi) and len(t_hi) <= 2
+    assert [(t["ticker"], t["side"]) for t in t_hi] == [("NY-G58", "no")]  # weather books fade long shots in v2
     assert [t["ticker"] for t in t_btc] == ["BTC-75000"]  # hourly 10am contract filtered out
     assert t_btc[0]["closes_at"] == "2026-11-07T22:00:00Z" and t_btc[0]["results_by"] == "2026-11-07T23:00+00:00"
     assert float(t_btc[0]["expected_pnl"]) > 0
@@ -166,8 +190,8 @@ def test_full_run_offline(tmp_repo, monkeypatch):
 
     monkeypatch.setattr(settle, "event_markets", fake_event)
     app.run(now=NOW + dt.timedelta(days=1, hours=12), fetcher=FakeFetcher({}), do_settle=True)
-    t = next(t for t in ledger.read(C.paths("weather_high")["trades"]) if t["ticker"] == "NY-B55")
-    assert t["status"] == "settled" and t["won"] == "1" and float(t["pnl"]) > 0 and t["cause"] == "forecast_right"
+    t = next(t for t in ledger.read(C.paths("weather_high")["trades"]) if t["ticker"] == "NY-G58")
+    assert t["status"] == "settled" and t["won"] == "1" and float(t["pnl"]) > 0 and t["cause"] == "longshot_held"
     b = ledger.read(C.paths("bitcoin")["trades"])[0]
     assert b["won"] == "1" and "Price at entry $75,500.00" in b["why"]
     s = json.loads((C.paths("weather_high")["dash"] / "summary.json").read_text())

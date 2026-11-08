@@ -45,28 +45,38 @@ DEFAULT_RULES = {
 BOOKS = {
     "weather_high": {
         "name": "Weather: daily highs", "short": "Highs", "kind": "weather", "extreme": "high",
-        "version": "weather-v1", "bankroll": 1000.0, "unit": "F",
+        "version": "weather-fade-v2", "bankroll": 1000.0, "unit": "F",
+        # v2 (2026-11-08): the backtest (Mar-Nov 2026, ~1,700 events) found no forecast model that beats
+        # the market; every version lost 17-25% per $ staked. Until we find an edge this book trades the
+        # long-shot fade (about break-even in the backtest) and keeps logging forecasts to learn from.
+        "strategy": "fade", "fade_min_yes": 0.03, "fade_max_yes": 0.10,
         "series": {"KXHIGHNY": "NY", "KXHIGHPHIL": "PHIL", "KXHIGHMIA": "MIA", "KXHIGHCHI": "CHI",
                    "KXHIGHAUS": "AUS", "KXHIGHDEN": "DEN", "KXHIGHLAX": "LAX"},
         # Normal(forecast + bias, sigma). Sigma (deg F) by days ahead: starting guesses, measured weekly.
-        "sigma_by_lead_days": {0: 2.0, 1: 2.5, 2: 3.2},
-        "bias": {},          # e.g. {"KXHIGHDEN": -1.0} once data shows NWS runs warm/cold
+        # Starting sigma before any measured misses; bias and sigma are then learned per city
+        # from this book's own forecast log (analysis.learned_calibration).
+        "sigma_by_lead_days": {0: 1.5, 1: 2.0, 2: 2.8},
+        "bias": {},          # manual extra bias on top of the learned one
         "peak_hour": 16,     # highs usually happen mid-afternoon local time
-        "rules": {},
+        "rules": {"MAX_PRICE": 0.97, "MAX_SPREAD": 0.05},
     },
     "weather_low": {
         "name": "Weather: daily lows", "short": "Lows", "kind": "weather", "extreme": "low",
-        "version": "weather-low-v1", "bankroll": 1000.0, "unit": "F",
+        "version": "weather-low-fade-v2", "bankroll": 1000.0, "unit": "F",
+        "strategy": "fade", "fade_min_yes": 0.03, "fade_max_yes": 0.10,  # see weather_high
         "series": {"KXLOWTNYC": "NY", "KXLOWTPHIL": "PHIL", "KXLOWTMIA": "MIA", "KXLOWTCHI": "CHI",
                    "KXLOWTAUS": "AUS", "KXLOWTDEN": "DEN", "KXLOWTLAX": "LAX"},
-        "sigma_by_lead_days": {0: 2.0, 1: 2.5, 2: 3.2},
+        "sigma_by_lead_days": {0: 1.5, 1: 2.0, 2: 2.8},
         "bias": {},
         "peak_hour": 6,      # lows usually happen around sunrise
-        "rules": {},
+        "rules": {"MAX_PRICE": 0.97, "MAX_SPREAD": 0.05},
     },
     "bitcoin": {
         "name": "Crypto: Bitcoin 5pm price", "short": "Bitcoin", "kind": "crypto", "asset": "BTC-USD",
-        "version": "crypto-v1", "bankroll": 1000.0, "unit": "$",
+        "version": "crypto-v2", "bankroll": 1000.0, "unit": "$",
+        # v2 (2026-11-08): backtest showed 30-day realized vol overstates the chance of big moves by 5pm.
+        # Halving it was the only setting profitable in both halves (+5% per $, 711 trades).
+        "vol_mult": 0.5,
         "series": {"KXBTCD": "BTC"},
         "event_suffix": "17",          # only the daily 5pm ET contracts, not every hourly one
         "fallback_vol": 0.50,          # yearly volatility if live estimate fails (guess)
@@ -74,7 +84,8 @@ BOOKS = {
     },
     "gold": {
         "name": "Commodity: gold 5pm price", "short": "Gold", "kind": "crypto", "asset": "PAXG-USD",
-        "version": "gold-v1", "bankroll": 1000.0, "unit": "$",
+        "version": "gold-v2", "bankroll": 1000.0, "unit": "$",
+        "vol_mult": 0.5,   # copied from the Bitcoin backtest; NOT backtested on gold yet
         # Price proxy: PAXG on Coinbase is a token backed 1:1 by gold. It can sit slightly above or
         # below spot gold, so watch the forecast-bias stats for a constant gap.
         "series": {"KXGOLDD": "GOLD"},

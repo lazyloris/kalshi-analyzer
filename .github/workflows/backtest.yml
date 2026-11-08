@@ -8,8 +8,6 @@ on:
         default: "240"
   schedule:
     - cron: "40 9 * * 1"   # Mondays, after the weekend's markets settle
-  push:
-    branches: [v2-backtest]  # temporary: lets the branch run before it's merged
 
 permissions:
   contents: write
