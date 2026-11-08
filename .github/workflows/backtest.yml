@@ -1,0 +1,54 @@
+name: Backtest
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "How many days back to test"
+        default: "240"
+  schedule:
+    - cron: "40 9 * * 1"   # Mondays, after the weekend's markets settle
+  push:
+    branches: [v2-backtest]  # temporary: lets the branch run before it's merged
+
+permissions:
+  contents: write
+
+concurrency:
+  group: backtest
+  cancel-in-progress: false
+
+jobs:
+  backtest:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore downloaded history
+        uses: actions/cache/restore@v4
+        with:
+          path: data/backtest_cache
+          key: backtest-cache-${{ github.run_id }}
+          restore-keys: backtest-cache-
+      - name: Download new history
+        run: python -m kalshi_analyzer.backtest fetch --days ${{ github.event.inputs.days || '240' }}
+      - name: Save downloaded history
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/backtest_cache
+          key: backtest-cache-${{ github.run_id }}
+      - name: Replay strategies
+        run: python -m kalshi_analyzer.backtest run
+      - name: Save results to the repo
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add dashboard/data/backtest.json reports/backtest.md
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "backtest $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
