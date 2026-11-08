@@ -8,8 +8,8 @@ Fake money on real prices. A learning project, **not financial advice**. No Kals
 
 | Book | Kalshi markets | Model | Stops buying |
 |---|---|---|---|
-| `weather_high` | Daily high temp, 7 cities (KXHIGH*) | v2: long-shot fade (NO when YES is 3-10c). The NWS forecast is still logged and bias/sigma learned per city, but the backtest found no model edge over the market | 2h before close |
-| `weather_low` | Daily low temp, same cities (KXLOWT*) | Same as highs | 2h before close |
+| `weather_high` | Daily high temp, 7 cities (KXHIGH*) | v2: long-shot fade (NO when YES is 3-10c). The NWS forecast is still logged and bias/sigma learned per city, but the backtest found no model edge over the market | 6h before close |
+| `weather_low` | Daily low temp, same cities (KXLOWT*) | Same as highs | 6h before close |
 | `bitcoin` | Bitcoin price at 5pm ET (KXBTCD, daily 5pm contracts only) | Lognormal around Coinbase BTC spot, 30-day realized volatility **x0.5** (backtest winner) | 2h before 5pm ET |
 | `gold` | Gold price at 5pm ET (KXGOLDD) | Same, using Coinbase PAXG (gold-backed token) as the price (vol x0.5 not yet backtested on gold) | 2h before 5pm ET |
 | `trending` | Spotify #1 artist, Netflix #1, top free app, top YouTube video, Steam top seller | No forecast exists, so a different rule: buy NO on long shots priced 3-10c | 2h before close |
