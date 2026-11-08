@@ -5,8 +5,8 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T20:30+00:00",
- "strategy_version": "gold-v1",
+ "generated_at": "2026-11-08T21:02+00:00",
+ "strategy_version": "gold-v2",
  "rules": {
   "MIN_EDGE": 0.08,
   "MIN_PRICE": 0.05,
@@ -16,31 +16,25 @@
   "MAX_POSITIONS_PER_EVENT": 2,
   "STAKE_DOLLARS": 10.0
  },
+ "strategy": "model",
  "model": {
   "fallback_vol": 0.18,
-  "asset": "PAXG-USD"
+  "asset": "PAXG-USD",
+  "vol_mult": 0.5
  },
  "markets": [
   "KXGOLDD"
  ],
  "bankroll": 1000.0,
- "open_exposure": 20.45,
+ "open_exposure": 0,
  "totals": {
   "n": 0
  },
- "open_count": 2,
- "open_mark_pnl": 1.48,
- "open_marked": 2,
- "open_expected_pnl": 5.66,
- "upcoming": [
-  {
-   "results_by": "2026-11-09T23:00+00:00",
-   "closes_at": "2026-11-09T22:00:00Z",
-   "n": 2,
-   "at_risk": 20.45,
-   "expected_pnl": 5.66
-  }
- ],
+ "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
  "breakdowns": {
   "city": {},
   "side": {},

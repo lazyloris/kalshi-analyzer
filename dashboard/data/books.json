@@ -1,38 +1,38 @@
 {
- "generated_at": "2026-11-08T20:30+00:00",
+ "generated_at": "2026-11-08T21:02+00:00",
  "books": [
   {
    "id": "weather_high",
    "name": "Weather: daily highs",
    "short": "Highs",
-   "bankroll": 894.66,
+   "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
-   "settled": 14,
-   "open": 26,
-   "version": "weather-v1",
-   "next_results_by": "2026-11-09T14:00+00:00"
+   "settled": 0,
+   "open": 0,
+   "version": "weather-fade-v2",
+   "next_results_by": ""
   },
   {
    "id": "weather_low",
    "name": "Weather: daily lows",
    "short": "Lows",
-   "bankroll": 982.88,
+   "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
-   "settled": 3,
-   "open": 23,
-   "version": "weather-low-v1",
-   "next_results_by": "2026-11-09T14:00+00:00"
+   "settled": 0,
+   "open": 0,
+   "version": "weather-low-fade-v2",
+   "next_results_by": ""
   },
   {
    "id": "bitcoin",
    "name": "Crypto: Bitcoin 5pm price",
    "short": "Bitcoin",
-   "bankroll": 978.86,
+   "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
-   "settled": 2,
-   "open": 2,
-   "version": "crypto-v1",
-   "next_results_by": "2026-11-08T23:00+00:00"
+   "settled": 0,
+   "open": 0,
+   "version": "crypto-v2",
+   "next_results_by": ""
   },
   {
    "id": "gold",
@@ -41,9 +41,9 @@
    "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
    "settled": 0,
-   "open": 2,
-   "version": "gold-v1",
-   "next_results_by": "2026-11-09T23:00+00:00"
+   "open": 0,
+   "version": "gold-v2",
+   "next_results_by": ""
   },
   {
    "id": "trending",

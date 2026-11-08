@@ -5,7 +5,7 @@
  "kind": "fade",
  "unit": "",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T20:30+00:00",
+ "generated_at": "2026-11-08T21:02+00:00",
  "strategy_version": "fade-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -16,6 +16,7 @@
   "MAX_POSITIONS_PER_EVENT": 2,
   "STAKE_DOLLARS": 10.0
  },
+ "strategy": "model",
  "model": {
   "fade_min_yes": 0.03,
   "fade_max_yes": 0.1
