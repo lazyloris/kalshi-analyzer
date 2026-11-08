@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T01:28+00:00",
+ "generated_at": "2026-11-08T09:03+00:00",
  "strategy_version": "weather-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -34,14 +34,14 @@
   "KXHIGHLAX"
  ],
  "bankroll": 1000.0,
- "open_exposure": 257.04,
+ "open_exposure": 266.66,
  "totals": {
   "n": 0
  },
- "open_count": 25,
- "open_mark_pnl": -124.77,
- "open_marked": 25,
- "open_expected_pnl": 243.5,
+ "open_count": 26,
+ "open_mark_pnl": -170.51,
+ "open_marked": 26,
+ "open_expected_pnl": 244.76,
  "upcoming": [
   {
    "results_by": "2026-11-08T14:00+00:00",
@@ -95,9 +95,9 @@
   {
    "results_by": "2026-11-09T17:00+00:00",
    "closes_at": "2026-11-09T09:00:00Z",
-   "n": 1,
-   "at_risk": 10.04,
-   "expected_pnl": 2.47
+   "n": 2,
+   "at_risk": 19.66,
+   "expected_pnl": 3.73
   }
  ],
  "breakdowns": {

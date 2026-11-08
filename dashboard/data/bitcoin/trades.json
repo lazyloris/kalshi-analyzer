@@ -42,9 +42,9 @@
   "closes_at": "2026-11-08T22:00:00Z",
   "results_by": "2026-11-08T23:00+00:00",
   "expected_pnl": "6.41",
-  "mark_price": 0.08,
-  "mark_pnl": -4.41,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.02,
+  "mark_pnl": -8.97,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXBTCD-26NOV0817-T76499.99-yes",
@@ -89,9 +89,9 @@
   "closes_at": "2026-11-08T22:00:00Z",
   "results_by": "2026-11-08T23:00+00:00",
   "expected_pnl": "4.81",
-  "mark_price": 0.16,
-  "mark_pnl": -1.16,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.12,
+  "mark_pnl": -3.48,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXBTCD-26NOV0717-T74999.99-no",
@@ -125,19 +125,19 @@
   "volume": "7770.21",
   "status": "settled",
   "result": "yes",
-  "actual": 75639.57,
+  "actual": "75639.57",
   "won": "0",
-  "payout": 0.0,
-  "pnl": -10.65,
-  "forecast_error": -167.42,
+  "payout": "0.0",
+  "pnl": "-10.65",
+  "forecast_error": "-167.42",
   "cause": "market_smarter",
   "why": "Lost NO on >$75,000. Model 25% vs price 8%. Price at entry $75,806.99, actual $75,639.57 (-$167.42, 0.1 sigma). It landed in >$75,000. The miss was ordinary but the market price was closer. The market may know more.",
   "closed_at": "2026-11-08T01:28+00:00",
   "closes_at": "2026-11-07T22:00:00Z",
   "results_by": "2026-11-07T23:00+00:00",
   "expected_pnl": "20.99",
-  "mark_price": 0.0,
-  "mark_pnl": -10.65,
+  "mark_price": "0.0",
+  "mark_pnl": "-10.65",
   "marked_at": "2026-11-08T01:28+00:00"
  },
  {
@@ -172,19 +172,19 @@
   "volume": "4924.22",
   "status": "settled",
   "result": "yes",
-  "actual": 75639.57,
+  "actual": "75639.57",
   "won": "0",
-  "payout": 0.0,
-  "pnl": -10.49,
-  "forecast_error": -167.42,
+  "payout": "0.0",
+  "pnl": "-10.49",
+  "forecast_error": "-167.42",
   "cause": "close_call",
   "why": "Lost NO on >$75,250. Model 32% vs price 15%. Price at entry $75,806.99, actual $75,639.57 (-$167.42, 0.1 sigma). It landed in >$75,250. Missed by $389.58 at the bracket edge: normal noise.",
   "closed_at": "2026-11-08T01:28+00:00",
   "closes_at": "2026-11-07T22:00:00Z",
   "results_by": "2026-11-07T23:00+00:00",
   "expected_pnl": "10.91",
-  "mark_price": 0.0,
-  "mark_pnl": -10.49,
+  "mark_price": "0.0",
+  "mark_pnl": "-10.49",
   "marked_at": "2026-11-08T01:28+00:00"
  }
 ]

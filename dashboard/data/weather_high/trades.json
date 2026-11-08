@@ -1,5 +1,43 @@
 [
  {
+  "book": "weather_high",
+  "strategy_version": "weather-v1",
+  "opened_at": "2026-11-08T09:03+00:00",
+  "series": "KXHIGHLAX",
+  "city": "Los Angeles",
+  "ticker": "KXHIGHLAX-26NOV08-B89.5",
+  "event_ticker": "KXHIGHLAX-26NOV08",
+  "target_date": "2026-11-08",
+  "bracket": "89-90F",
+  "strike_type": "between",
+  "floor": 89,
+  "cap": 90,
+  "side": "no",
+  "contracts": 12,
+  "price": 0.79,
+  "fee": 0.14,
+  "cost": 9.62,
+  "model_p": 0.9066,
+  "market_p": 0.79,
+  "edge": 0.1049,
+  "forecast": 86.0,
+  "sigma": 2.0,
+  "unit": "F",
+  "lead_hours": 14.9,
+  "lead_days": 0,
+  "distance": 3.5,
+  "spread": 0.03,
+  "volume": 7092.31,
+  "status": "open",
+  "closes_at": "2026-11-09T09:00:00Z",
+  "results_by": "2026-11-09T17:00+00:00",
+  "expected_pnl": 1.26,
+  "trade_id": "KXHIGHLAX-26NOV08-B89.5-no",
+  "mark_price": 0.76,
+  "mark_pnl": -0.5,
+  "marked_at": "2026-11-08T09:03+00:00"
+ },
+ {
   "trade_id": "KXHIGHNY-26NOV08-T61-no",
   "book": "weather_high",
   "strategy_version": "weather-v1",
@@ -42,9 +80,9 @@
   "closes_at": "2026-11-09T06:00:00Z",
   "results_by": "2026-11-09T14:00+00:00",
   "expected_pnl": "10.73",
-  "mark_price": 0.25,
-  "mark_pnl": -3.07,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.27,
+  "mark_pnl": -2.49,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHAUS-26NOV08-T64-no",
@@ -89,9 +127,9 @@
   "closes_at": "2026-11-09T07:00:00Z",
   "results_by": "2026-11-09T15:00+00:00",
   "expected_pnl": "5.81",
-  "mark_price": 0.64,
-  "mark_pnl": 1.06,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.36,
+  "mark_pnl": -3.7,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHMIA-26NOV08-B85.5-no",
@@ -136,9 +174,9 @@
   "closes_at": "2026-11-09T06:00:00Z",
   "results_by": "2026-11-09T14:00+00:00",
   "expected_pnl": "9.21",
-  "mark_price": 0.4,
-  "mark_pnl": 0.95,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.33,
+  "mark_pnl": -1.01,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHPHIL-26NOV08-B60.5-no",
@@ -185,7 +223,7 @@
   "expected_pnl": "6.68",
   "mark_price": 0.3,
   "mark_pnl": -3.39,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHDEN-26NOV08-B69.5-no",
@@ -230,9 +268,9 @@
   "closes_at": "2026-11-09T08:00:00Z",
   "results_by": "2026-11-09T16:00+00:00",
   "expected_pnl": "6.17",
-  "mark_price": 0.38,
-  "mark_pnl": -1.7,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.45,
+  "mark_pnl": -0.16,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHCHI-26NOV08-B61.5-no",
@@ -277,9 +315,9 @@
   "closes_at": "2026-11-09T07:00:00Z",
   "results_by": "2026-11-09T15:00+00:00",
   "expected_pnl": "3.18",
-  "mark_price": 0.53,
-  "mark_pnl": -1.24,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.45,
+  "mark_pnl": -2.52,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHCHI-26NOV08-B57.5-yes",
@@ -326,7 +364,7 @@
   "expected_pnl": "18.46",
   "mark_price": 0.08,
   "mark_pnl": -1.75,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHMIA-26NOV08-B83.5-yes",
@@ -371,9 +409,9 @@
   "closes_at": "2026-11-09T06:00:00Z",
   "results_by": "2026-11-09T14:00+00:00",
   "expected_pnl": "13.07",
-  "mark_price": 0.1,
-  "mark_pnl": -1.52,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.07,
+  "mark_pnl": -4.22,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHLAX-26NOV08-B87.5-no",
@@ -418,9 +456,9 @@
   "closes_at": "2026-11-09T09:00:00Z",
   "results_by": "2026-11-09T17:00+00:00",
   "expected_pnl": "2.47",
-  "mark_price": 0.4,
-  "mark_pnl": -2.84,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.56,
+  "mark_pnl": 0.04,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHAUS-26NOV08-B64.5-no",
@@ -465,9 +503,9 @@
   "closes_at": "2026-11-09T07:00:00Z",
   "results_by": "2026-11-09T15:00+00:00",
   "expected_pnl": "1.69",
-  "mark_price": 0.48,
-  "mark_pnl": -2.88,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.67,
+  "mark_pnl": -0.22,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHPHIL-26NOV08-B62.5-yes",
@@ -512,9 +550,9 @@
   "closes_at": "2026-11-09T06:00:00Z",
   "results_by": "2026-11-09T14:00+00:00",
   "expected_pnl": "5.41",
-  "mark_price": 0.15,
-  "mark_pnl": -2.65,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.1,
+  "mark_pnl": -5.25,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHCHI-26NOV07-B51.5-no",
@@ -561,7 +599,7 @@
   "expected_pnl": "14.02",
   "mark_price": 0.0,
   "mark_pnl": -10.3,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHMIA-26NOV07-B87.5-no",
@@ -608,7 +646,7 @@
   "expected_pnl": "12.54",
   "mark_price": 0.0,
   "mark_pnl": -10.39,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHDEN-26NOV07-B63.5-no",
@@ -653,9 +691,9 @@
   "closes_at": "2026-11-08T08:00:00Z",
   "results_by": "2026-11-08T16:00+00:00",
   "expected_pnl": "8.28",
-  "mark_price": 0.99,
-  "mark_pnl": 14.58,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.0,
+  "mark_pnl": -10.17,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHPHIL-26NOV07-B59.5-no",
@@ -702,7 +740,7 @@
   "expected_pnl": "9.21",
   "mark_price": 0.0,
   "mark_pnl": -10.25,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHNY-26NOV07-B61.5-no",
@@ -749,7 +787,7 @@
   "expected_pnl": "7.21",
   "mark_price": 0.0,
   "mark_pnl": -10.17,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHDEN-26NOV07-B61.5-yes",
@@ -796,7 +834,7 @@
   "expected_pnl": "32.72",
   "mark_price": 0.0,
   "mark_pnl": -10.59,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHLAX-26NOV07-B85.5-no",
@@ -843,7 +881,7 @@
   "expected_pnl": "3.75",
   "mark_price": 0.0,
   "mark_pnl": -10.15,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHAUS-26NOV07-T70-no",
@@ -888,9 +926,9 @@
   "closes_at": "2026-11-08T07:00:00Z",
   "results_by": "2026-11-08T15:00+00:00",
   "expected_pnl": "2.77",
-  "mark_price": 0.99,
-  "mark_pnl": 5.0,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "mark_price": 0.0,
+  "mark_pnl": -9.85,
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHPHIL-26NOV07-B57.5-yes",
@@ -937,7 +975,7 @@
   "expected_pnl": "22.11",
   "mark_price": 0.0,
   "mark_pnl": -10.65,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHLAX-26NOV07-T86-yes",
@@ -984,7 +1022,7 @@
   "expected_pnl": "12.19",
   "mark_price": 0.0,
   "mark_pnl": -10.58,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHAUS-26NOV07-B74.5-yes",
@@ -1031,7 +1069,7 @@
   "expected_pnl": "13.54",
   "mark_price": 0.0,
   "mark_pnl": -10.65,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHMIA-26NOV07-B85.5-yes",
@@ -1078,7 +1116,7 @@
   "expected_pnl": "6.81",
   "mark_price": 0.0,
   "mark_pnl": -10.49,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHCHI-26NOV07-B53.5-yes",
@@ -1125,7 +1163,7 @@
   "expected_pnl": "10.85",
   "mark_price": 0.0,
   "mark_pnl": -10.63,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  },
  {
   "trade_id": "KXHIGHNY-26NOV07-T61-yes",
@@ -1172,6 +1210,6 @@
   "expected_pnl": "4.62",
   "mark_price": 0.0,
   "mark_pnl": -10.47,
-  "marked_at": "2026-11-08T01:28+00:00"
+  "marked_at": "2026-11-08T09:03+00:00"
  }
 ]
