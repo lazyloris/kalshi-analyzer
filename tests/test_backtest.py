@@ -103,7 +103,7 @@ def test_scanner_analyze_offline(tmp_path, monkeypatch):
                           "value": "", "source": "live"}
             p = 0.6 if k == winner else 0.07  # market is right-ish; long shots slightly overpriced
             cands[t] = [[int(close.timestamp()) - h * 3600, round(p - 0.01, 2), round(p + 0.01, 2), 3] for h in range(30, 0, -1)]
-    D._save("scan_KXTEST", {"markets": markets, "candles": cands})
+    D._save("scan_KXTEST", {"markets": markets, "candles": cands, "events": {f"KXTEST-{e:02d}": True for e in range(30)}})
     D._save("scan_index", {"KXTEST": {"category": "Test", "title": "Test series", "vol24": 100, "open_markets": 5, "median_spread": 0.02}})
     r = SC.analyze(dt.datetime(2026, 11, 8, tzinfo=dt.timezone.utc))
     assert r["series_scanned"] == 1 and r["quotes"] == 30 * 5 * 3

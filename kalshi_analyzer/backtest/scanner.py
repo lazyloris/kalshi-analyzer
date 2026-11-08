@@ -123,9 +123,16 @@ def fetch(top=150, days=45):
         if len(events) > 10:
             step = len(events) / 10
             events = [events[int(k * step)] for k in range(10)]
+        flags = cached.setdefault("events", {})
         for ev in events:
             for m in sorted(by_event[ev], key=lambda m: m["ticker"])[:30]:
                 cached["markets"].setdefault(m["ticker"], m)
+        for ev in {m["event_ticker"] for m in cached["markets"].values()}:
+            if ev not in flags:  # needed so arbitrage only counts true one-winner events
+                try:
+                    flags[ev] = bool((get_json(f"{K}/events/{ev}", retries=3).get("event") or {}).get("mutually_exclusive"))
+                except Exception:
+                    pass
         _fill(s, cached, name)
         if i % 20 == 0:
             D.log(f"scanner: {i + 1}/{len(chosen)} series")
@@ -145,6 +152,7 @@ def quotes(snapshot):
         cached = D._load(f"scan_{s}", None)
         if not cached:
             continue
+        flags = cached.get("events", {})
         for t, m in cached["markets"].items():
             cs = cached["candles"].get(t)
             if not cs or not m.get("close_time"):
@@ -156,7 +164,8 @@ def quotes(snapshot):
                     out.append({"series": s, "category": info.get("category", "Other"), "event": m["event_ticker"],
                                 "ticker": t, "close": close, "h": h, "bid": q[0], "ask": q[1],
                                 "mid": (q[0] + q[1]) / 2, "won": m["result"] == "yes",
-                                "strike_type": m["strike_type"]})
+                                "strike_type": m["strike_type"], "exclusive": flags.get(m["event_ticker"]),
+                                "n_event": sum(1 for x in cached["markets"].values() if x["event_ticker"] == m["event_ticker"])})
     return out
 
 
@@ -233,14 +242,15 @@ def calibration_rows(qs):
 
 
 def arbitrage(qs):
-    """Events whose markets look like a one-winner ladder: exactly one YES, all quoted at the
-    same horizon. Profit after fees if you bought every YES (sum of asks < $1) or every NO."""
+    """Events Kalshi marks mutually exclusive (exactly one market can win), with EVERY market of
+    the event quoted at the same horizon. Profit after fees if you bought every YES (sum of asks
+    < $1) or every NO. Hourly candle quotes aren't simultaneous, so treat hits as leads to verify."""
     by = defaultdict(list)
     for q in qs:
         by[(q["event"], q["h"])].append(q)
     checked, found = 0, []
     for (ev, h), ms in by.items():
-        if len(ms) < 3 or sum(q["won"] for q in ms) != 1:
+        if len(ms) < 3 or not ms[0].get("exclusive") or len(ms) != ms[0].get("n_event") or len(ms) >= 30:  # 30 = capped sample
             continue
         checked += 1
         fee = sum(taker_fee(1, q["ask"], C.FEE_RATE) for q in ms)
