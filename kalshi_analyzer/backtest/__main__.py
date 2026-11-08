@@ -50,7 +50,7 @@ def load():
     kalshi = {s: D._load(f"kalshi_{s}", None) for b in WEATHER_BOOKS for s in C.BOOKS[b]["series"]}
     nbm = {c: D._load(f"nbm_{c}", {}) for c in C.STATIONS}
     btc = D._load("kalshi_KXBTCD", None)
-    prices = {int(k): v for k, v in D._load("coinbase_BTC-USD", {}).items()}
+    prices = {int(k): v for k, v in D._load("coinbase_close_BTC-USD", {}).items()}
     return kalshi, nbm, btc, prices
 
 

@@ -222,24 +222,25 @@ def nbm_forecasts(code, start, end):
 
 
 def coinbase_hourly(product, start, end):
-    """{hour_ts: close} from Coinbase hourly candles."""
-    cached = {int(k): v for k, v in _load(f"coinbase_{product}", {}).items()}
+    """{close_ts: close price} from Coinbase hourly candles. Keyed by the candle's END time
+    (start + 1h) so a lookup at time t never sees a price from after t."""
+    cached = {int(k): v for k, v in _load(f"coinbase_close_{product}", {}).items()}
     t = int(dt.datetime.combine(start, dt.time(), UTC).timestamp())
     stop = int(dt.datetime.combine(end + dt.timedelta(days=1), dt.time(), UTC).timestamp())
     step = 300 * 3600
     while t < stop:
         e = min(stop, t + step)
-        if all(h in cached for h in range(t, e, 3600)) and e < stop - 86400:
+        if all(h + 3600 in cached for h in range(t, e, 3600)) and e < stop - 86400:
             t = e
             continue
         rows = get_json(f"{C.COINBASE_API}/products/{product}/candles", {
             "granularity": 3600, "start": dt.datetime.fromtimestamp(t, UTC).isoformat(),
             "end": dt.datetime.fromtimestamp(e, UTC).isoformat()}, retries=5)
         for r in rows:
-            cached[int(r[0])] = float(r[4])
+            cached[int(r[0]) + 3600] = float(r[4])
         t = e
         time.sleep(0.35)
-    _save(f"coinbase_{product}", {str(k): v for k, v in cached.items()})
+    _save(f"coinbase_close_{product}", {str(k): v for k, v in cached.items()})
     return cached
 
 
