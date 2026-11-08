@@ -82,3 +82,31 @@ def test_crypto_events_and_strategies():
     assert len(evs) == 2 and evs[0]["vol"] > 0
     for sid, name, desc, pick in E.crypto_strategies():
         E.metrics(E.simulate(evs, pick))
+
+
+def test_scanner_analyze_offline(tmp_path, monkeypatch):
+    from kalshi_analyzer.backtest import scanner as SC
+    monkeypatch.setattr(D, "CACHE", tmp_path / "cache")
+    monkeypatch.setattr(SC, "OUT_JSON", tmp_path / "scan.json")
+    monkeypatch.setattr(SC, "OUT_MD", tmp_path / "scan.md")
+    rnd = random.Random(3)
+    markets, cands = {}, {}
+    base = dt.datetime(2026, 9, 20, 20, tzinfo=dt.timezone.utc)
+    for e in range(30):
+        close = base + dt.timedelta(days=e)
+        ev = f"KXTEST-{e:02d}"
+        winner = rnd.randrange(5)
+        for k in range(5):
+            t = f"{ev}-B{k}"
+            markets[t] = {"ticker": t, "event_ticker": ev, "strike_type": "between", "floor": k, "cap": k,
+                          "close_time": close.isoformat().replace("+00:00", "Z"), "result": "yes" if k == winner else "no",
+                          "value": "", "source": "live"}
+            p = 0.6 if k == winner else 0.07  # market is right-ish; long shots slightly overpriced
+            cands[t] = [[int(close.timestamp()) - h * 3600, round(p - 0.01, 2), round(p + 0.01, 2), 3] for h in range(30, 0, -1)]
+    D._save("scan_KXTEST", {"markets": markets, "candles": cands, "events": {f"KXTEST-{e:02d}": True for e in range(30)}})
+    D._save("scan_index", {"KXTEST": {"category": "Test", "title": "Test series", "vol24": 100, "open_markets": 5, "median_spread": 0.02}})
+    r = SC.analyze(dt.datetime(2026, 11, 8, tzinfo=dt.timezone.utc))
+    assert r["series_scanned"] == 1 and r["quotes"] == 30 * 5 * 3
+    assert r["series"][0]["fade"]["trades"] > 0 and r["series"][0]["fade"]["roi"] > 0
+    assert r["arbitrage"]["ladders_checked"] == 90
+    assert "Market scanner" in (tmp_path / "scan.md").read_text()
