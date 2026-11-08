@@ -330,7 +330,8 @@ def metrics(trades):
     if not n:
         return {"trades": 0, "wins": 0, "win_rate": None, "pnl": 0.0, "staked": 0.0, "roi": None,
                 "avg_price": None, "avg_claimed": None, "brier_model": None, "brier_market": None,
-                "max_drawdown": 0.0, "t_stat": None, "first_half": 0.0, "second_half": 0.0}
+                "max_drawdown": 0.0, "t_stat": None, "first_half": 0.0, "second_half": 0.0,
+                "roi_ci": None, "holdout": None}
     trades = sorted(trades, key=lambda t: t["ts"])
     pnl = [t["pnl"] for t in trades]
     staked = sum(t["cost"] for t in trades)
@@ -353,7 +354,44 @@ def metrics(trades):
         "max_drawdown": round(dd, 2),
         "t_stat": round(statistics.fmean(rets) / sd * math.sqrt(n), 2) if sd else None,
         "first_half": round(sum(pnl[:half]), 2), "second_half": round(sum(pnl[half:]), 2),
+        "roi_ci": roi_ci(trades),
+        "holdout": holdout(trades),
     }
+
+
+HOLDOUT_DAYS = 60
+
+
+def roi_ci(trades, n_boot=400, seed=7):
+    """90% bootstrap range for return per $ staked (resampling trades)."""
+    import random
+    if len(trades) < 10:
+        return None
+    rnd = random.Random(seed)
+    pnl = [t["pnl"] for t in trades]
+    cost = [t["cost"] for t in trades]
+    n, sims = len(trades), []
+    for _ in range(n_boot):
+        idx = [rnd.randrange(n) for _ in range(n)]
+        sims.append(sum(pnl[i] for i in idx) / sum(cost[i] for i in idx))
+    sims.sort()
+    return [round(sims[int(0.05 * n_boot)], 4), round(sims[int(0.95 * n_boot) - 1], 4)]
+
+
+def holdout(trades, days=HOLDOUT_DAYS):
+    """Result on the most recent `days` only: settings were chosen before looking at this part,
+    so it's the fairest guess of live performance. (From the 2026-11-08 run on, pick settings on
+    the earlier part and only read this at the end.)"""
+    if not trades:
+        return None
+    last = max(t["date"] for t in trades)
+    cut = (dt.date.fromisoformat(last) - dt.timedelta(days=days)).isoformat()
+    h = [t for t in trades if t["date"] > cut]
+    if not h:
+        return None
+    staked = sum(t["cost"] for t in h)
+    return {"from": cut, "trades": len(h), "pnl": round(sum(t["pnl"] for t in h), 2),
+            "roi": round(sum(t["pnl"] for t in h) / staked, 4) if staked else None}
 
 
 def curve(trades):

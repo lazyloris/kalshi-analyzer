@@ -8,6 +8,8 @@ on:
         default: "240"
   schedule:
     - cron: "40 9 * * 1"   # Mondays, after the weekend's markets settle
+  push:
+    branches: [scanner]  # temporary: lets the branch run before it's merged
 
 permissions:
   contents: write
@@ -33,6 +35,9 @@ jobs:
           restore-keys: backtest-cache-
       - name: Download new history
         run: python -m kalshi_analyzer.backtest fetch --days ${{ github.event.inputs.days || '240' }}
+      - name: Download market-scanner history
+        continue-on-error: true
+        run: python -m kalshi_analyzer.backtest scan-fetch
       - name: Save downloaded history
         if: always()
         uses: actions/cache/save@v4
@@ -41,11 +46,15 @@ jobs:
           key: backtest-cache-${{ github.run_id }}
       - name: Replay strategies
         run: python -m kalshi_analyzer.backtest run
+      - name: Market scanner
+        continue-on-error: true
+        run: python -m kalshi_analyzer.backtest scan-run
       - name: Save results to the repo
         run: |
           git config user.name "kalshi-paper-bot"
           git config user.email "kalshi-paper-bot@users.noreply.github.com"
           git add dashboard/data/backtest.json reports/backtest.md
+          git add dashboard/data/scanner.json reports/scanner.md 2>/dev/null || true
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git commit -m "backtest $(date -u +%Y-%m-%dT%H:%MZ)"
           for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done

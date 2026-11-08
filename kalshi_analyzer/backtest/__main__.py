@@ -1,8 +1,9 @@
-"""python -m kalshi_analyzer.backtest [fetch|run|all] [--days 240] [--offline]
+"""python -m kalshi_analyzer.backtest [fetch|run|all|scan] [--days 240]
 
 fetch  download/refresh historical data into data/backtest_cache
 run    replay every strategy, write dashboard/data/backtest.json and reports/backtest.md
 all    both (default)
+scan   market scanner across all Kalshi categories (see scanner.py)
 """
 import argparse
 import datetime as dt
@@ -153,9 +154,17 @@ def markdown(r):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m kalshi_analyzer.backtest")
-    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all"])
+    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run"])
     ap.add_argument("--days", type=int, default=240)
+    ap.add_argument("--top", type=int, default=150, help="scanner: how many of the most-traded series")
     a = ap.parse_args(argv)
+    if a.cmd.startswith("scan"):
+        from . import scanner
+        if a.cmd in ("scan", "scan-fetch"):
+            scanner.fetch(top=a.top, days=min(a.days, 60))
+        if a.cmd in ("scan", "scan-run"):
+            scanner.analyze()
+        return
     if a.cmd in ("fetch", "all"):
         fetch(a.days)
     if a.cmd in ("run", "all"):
