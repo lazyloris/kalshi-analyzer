@@ -30,3 +30,16 @@ money in **both halves** of the period with 30+ trades.
 **Decision (v2):** weather books switch to the long-shot fade while forecasts keep being logged. Bitcoin and gold use vol x0.5. All books reset.
 
 **Next ideas to test:** a fresher forecast source for weather (live NWS hourly plus same-day observations); Bitcoin vol x0.5 with the fade combined; a gold backtest; trending fade on settled history.
+
+---
+
+## 2026-11-08: market scanner, first run
+
+- **Data:** the 115 most-traded series across 10 categories (Sports 76, Commodities 6, Economics 6, Weather 6, Financials 5, Science 5, Mentions 4, Politics 3, Elections 2, Entertainment 2). Sampled 10 recent events each (about 45 days), giving 27,569 price snapshots at 24h, 6h and 1h before close.
+- **Arbitrage:** 0 real opportunities in 351 one-winner events. The first run showed 162, but those were false positives from ladders where several markets can win. Fixed by only using events Kalshi marks mutually exclusive.
+- **Sports:** very well calibrated, so it's hard to beat on price alone. The fade was -1.3%, favorites -2.9%, and the price-correction rule -19.5% on the holdout.
+- **Commodities (gold, oil):** the same pattern as Bitcoin. Mid-priced YES on price ranges wins less often than priced (25-35c contracts won about 17%), and favorites win more (94c+ won 100%). This points to markets overpricing big moves.
+- **Entry timing:** buying favorites 24h out lost 4.8%. In the last hour it made +1.8% (90% range -0..+4). That's borderline and needs care, because the last hour can overlap with games already underway.
+- **Price-correction rule (holdout):** failed in Sports. Too few trades elsewhere to judge.
+
+**Decision:** no live change. Next, test the Bitcoin-style model (lognormal with reduced volatility) on other price markets: gold, WTI and Brent oil, Ethereum, and S&P 500 / Nasdaq daily ranges, with full history.
