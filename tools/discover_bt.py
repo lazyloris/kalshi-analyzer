@@ -9,21 +9,21 @@ def get(u,p=None):
 K="https://api.elections.kalshi.com/trade-api/v2"
 def show(name,res,n=1500):
     print("=====",name,res[0]); print(json.dumps(res[1])[:n] if not isinstance(res[1],str) else res[1]); print()
-show("settled markets", get(f"{K}/markets",{"series_ticker":"KXHIGHNY","status":"settled","limit":3}))
-r=get(f"{K}/markets",{"series_ticker":"KXHIGHNY","status":"settled","limit":1000})
-if isinstance(r[1],dict):
-    ms=r[1]["markets"]; print("n settled page1",len(ms),"cursor",bool(r[1].get("cursor")), "oldest", min(m["close_time"] for m in ms) if ms else None)
-show("historical cutoff", get(f"{K}/historical/cutoff"))
-show("historical markets", get(f"{K}/historical/markets",{"series_ticker":"KXHIGHNY","limit":3}))
+r=get(f"{K}/historical/markets",{"series_ticker":"KXHIGHNY","limit":1000}); ms=r[1]["markets"]
+print("hist n",len(ms),"cursor",bool(r[1].get("cursor")),"oldest",min(m["close_time"] for m in ms))
+old=ms[-1]["ticker"]; ct=ms[-1]["close_time"]; print(old,ct)
+import datetime as dt
+e=int(dt.datetime.fromisoformat(ct.replace("Z","+00:00")).timestamp())
+show("hist candles", get(f"{K}/historical/markets/{old}/candlesticks",{"start_ts":e-3*86400,"end_ts":e,"period_interval":60}),600)
+show("hist candles v2", get(f"{K}/series/KXHIGHNY/markets/{old}/candlesticks",{"start_ts":e-3*86400,"end_ts":e,"period_interval":60}),600)
 now=int(time.time())
-tk="KXHIGHNY-26NOV07-B61.5"
-show("candles", get(f"{K}/series/KXHIGHNY/markets/{tk}/candlesticks",{"start_ts":now-4*86400,"end_ts":now,"period_interval":60}),2500)
-show("hist candles", get(f"{K}/historical/markets/KXHIGHNY-25JUN07-B85.5/candlesticks",{"start_ts":now-200*86400,"end_ts":now,"period_interval":60}),800)
-show("trades", get(f"{K}/markets/trades",{"ticker":tk,"limit":3}))
-show("series weather", get(f"{K}/series/KXHIGHNY"))
+show("batch candles", get(f"{K}/markets/candlesticks",{"market_tickers":"KXHIGHNY-26NOV07-B61.5,KXHIGHNY-26NOV07-B63.5","start_ts":now-3*86400,"end_ts":now,"period_interval":60}),800)
 O="https://previous-runs-api.open-meteo.com/v1/forecast"
-show("openmeteo prev", get(O,{"latitude":40.78,"longitude":-73.97,"daily":"temperature_2m_max,temperature_2m_min","hourly":"temperature_2m_previous_day1","start_date":"2026-10-01","end_date":"2026-10-03","temperature_unit":"fahrenheit","timezone":"America/New_York"}),1200)
-show("openmeteo hist forecast nbm", get("https://historical-forecast-api.open-meteo.com/v1/forecast",{"latitude":40.78,"longitude":-73.97,"daily":"temperature_2m_max,temperature_2m_min","start_date":"2025-06-01","end_date":"2025-06-03","temperature_unit":"fahrenheit","timezone":"America/New_York","models":"ncep_nbm_conus"}),800)
-show("iem nbm", get("https://mesonet.agron.iastate.edu/api/1/nws/afos/list.json",{"pil":"CLINYC","date":"2026-11-07"}),600)
-show("coinbase hourly", get("https://api.exchange.coinbase.com/products/BTC-USD/candles",{"granularity":3600,"start":"2026-06-01T00:00:00Z","end":"2026-06-02T00:00:00Z"}),300)
-show("btc settled", get(f"{K}/markets",{"series_ticker":"KXBTCD","status":"settled","limit":2}),1500)
+for model in ["ncep_nbm_conus","best_match","gfs_seamless"]:
+    res=get(O,{"latitude":40.78,"longitude":-73.97,"hourly":"temperature_2m,temperature_2m_previous_day1,temperature_2m_previous_day2","start_date":"2026-09-10","end_date":"2026-09-10","temperature_unit":"fahrenheit","timezone":"America/New_York","models":model})
+    if isinstance(res[1],dict) and "hourly" in res[1]:
+        h=res[1]["hourly"]; print(model, {k:(max(x for x in v if x is not None) if any(x is not None for x in v) else None) for k,v in h.items() if k!="time"})
+    else: show("prev "+model,res,400)
+res=get("https://historical-forecast-api.open-meteo.com/v1/forecast",{"latitude":40.78,"longitude":-73.97,"daily":"temperature_2m_max","start_date":"2026-09-10","end_date":"2026-09-10","temperature_unit":"fahrenheit","timezone":"America/New_York","models":"ncep_nbm_conus"}); print("hist nbm",res[1].get("daily") if isinstance(res[1],dict) else res)
+for m in ms[:12]:
+    if m["event_ticker"]==ms[0]["event_ticker"]: print(m["ticker"], m["expiration_value"], m["result"])
