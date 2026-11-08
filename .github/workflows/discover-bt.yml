@@ -1,0 +1,8 @@
+name: discover-bt
+on: {push: {branches: [discover-bt]}}
+jobs:
+  d:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: python tools/discover_bt.py
