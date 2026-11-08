@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T09:03+00:00",
+ "generated_at": "2026-11-08T16:00+00:00",
  "strategy_version": "weather-low-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -33,30 +33,25 @@
   "KXLOWTDEN",
   "KXLOWTLAX"
  ],
- "bankroll": 1000.0,
- "open_exposure": 143.92,
+ "bankroll": 982.88,
+ "open_exposure": 154.77,
  "totals": {
-  "n": 0
+  "n": 3,
+  "wins": 1,
+  "win_rate": 0.333,
+  "pnl": -17.12,
+  "roi": -0.55,
+  "fees": 1.51,
+  "avg_edge": 0.121,
+  "avg_model_p": 0.409,
+  "brier_model": 0.0438,
+  "brier_market": 0.0359
  },
- "open_count": 14,
- "open_mark_pnl": -77.33,
- "open_marked": 14,
- "open_expected_pnl": 111.26,
+ "open_count": 15,
+ "open_mark_pnl": -46.68,
+ "open_marked": 15,
+ "open_expected_pnl": 116.33,
  "upcoming": [
-  {
-   "results_by": "2026-11-08T16:00+00:00",
-   "closes_at": "2026-11-08T08:00:00Z",
-   "n": 2,
-   "at_risk": 20.5,
-   "expected_pnl": 19.88
-  },
-  {
-   "results_by": "2026-11-08T17:00+00:00",
-   "closes_at": "2026-11-08T09:00:00Z",
-   "n": 1,
-   "at_risk": 10.62,
-   "expected_pnl": 15.72
-  },
   {
    "results_by": "2026-11-09T14:00+00:00",
    "closes_at": "2026-11-09T06:00:00Z",
@@ -77,26 +72,384 @@
    "n": 2,
    "at_risk": 20.16,
    "expected_pnl": 3.94
+  },
+  {
+   "results_by": "2026-11-10T14:00+00:00",
+   "closes_at": "2026-11-10T06:00:00Z",
+   "n": 2,
+   "at_risk": 20.82,
+   "expected_pnl": 8.16
+  },
+  {
+   "results_by": "2026-11-10T15:00+00:00",
+   "closes_at": "2026-11-10T07:00:00Z",
+   "n": 2,
+   "at_risk": 21.15,
+   "expected_pnl": 32.51
   }
  ],
  "breakdowns": {
-  "city": {},
-  "side": {},
-  "edge": {},
-  "price": {},
-  "days_ahead": {},
-  "bracket_distance": {},
-  "bracket_type": {},
-  "cause": {},
-  "version": {}
+  "city": {
+   "Denver": {
+    "n": 2,
+    "wins": 1,
+    "win_rate": 0.5,
+    "pnl": -6.5,
+    "roi": -0.317,
+    "fees": 0.85,
+    "avg_edge": 0.134,
+    "avg_model_p": 0.534,
+    "brier_model": 0.0531,
+    "brier_market": 0.0521
+   },
+   "Los Angeles": {
+    "n": 1,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -10.62,
+    "roi": -1.0,
+    "fees": 0.66,
+    "avg_edge": 0.095,
+    "avg_model_p": 0.159,
+    "brier_model": 0.0252,
+    "brier_market": 0.0036
+   }
+  },
+  "side": {
+   "NO": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 4.13,
+    "roi": 0.418,
+    "fees": 0.21,
+    "avg_edge": 0.102,
+    "avg_model_p": 0.806,
+    "brier_model": 0.0374,
+    "brier_market": 0.0961
+   },
+   "YES": {
+    "n": 2,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -21.25,
+    "roi": -1.0,
+    "fees": 1.3,
+    "avg_edge": 0.131,
+    "avg_model_p": 0.21,
+    "brier_model": 0.0469,
+    "brier_market": 0.0058
+   }
+  },
+  "edge": {
+   "12-20c": {
+    "n": 1,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -10.63,
+    "roi": -1.0,
+    "fees": 0.64,
+    "avg_edge": 0.166,
+    "avg_model_p": 0.262,
+    "brier_model": 0.0687,
+    "brier_market": 0.0081
+   },
+   "8-12c": {
+    "n": 2,
+    "wins": 1,
+    "win_rate": 0.5,
+    "pnl": -6.49,
+    "roi": -0.317,
+    "fees": 0.87,
+    "avg_edge": 0.098,
+    "avg_model_p": 0.483,
+    "brier_model": 0.0313,
+    "brier_market": 0.0499
+   }
+  },
+  "price": {
+   "5-25c": {
+    "n": 2,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -21.25,
+    "roi": -1.0,
+    "fees": 1.3,
+    "avg_edge": 0.131,
+    "avg_model_p": 0.21,
+    "brier_model": 0.0469,
+    "brier_market": 0.0058
+   },
+   "50-75c": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 4.13,
+    "roi": 0.418,
+    "fees": 0.21,
+    "avg_edge": 0.102,
+    "avg_model_p": 0.806,
+    "brier_model": 0.0374,
+    "brier_market": 0.0961
+   }
+  },
+  "days_ahead": {
+   "1 day(s)": {
+    "n": 3,
+    "wins": 1,
+    "win_rate": 0.333,
+    "pnl": -17.12,
+    "roi": -0.55,
+    "fees": 1.51,
+    "avg_edge": 0.121,
+    "avg_model_p": 0.409,
+    "brier_model": 0.0438,
+    "brier_market": 0.0359
+   }
+  },
+  "bracket_distance": {
+   "0.5-1.5 sigma": {
+    "n": 3,
+    "wins": 1,
+    "win_rate": 0.333,
+    "pnl": -17.12,
+    "roi": -0.55,
+    "fees": 1.51,
+    "avg_edge": 0.121,
+    "avg_model_p": 0.409,
+    "brier_model": 0.0438,
+    "brier_market": 0.0359
+   }
+  },
+  "bracket_type": {
+   "between": {
+    "n": 2,
+    "wins": 1,
+    "win_rate": 0.5,
+    "pnl": -6.5,
+    "roi": -0.317,
+    "fees": 0.85,
+    "avg_edge": 0.134,
+    "avg_model_p": 0.534,
+    "brier_model": 0.0531,
+    "brier_market": 0.0521
+   },
+   "greater": {
+    "n": 1,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -10.62,
+    "roi": -1.0,
+    "fees": 0.66,
+    "avg_edge": 0.095,
+    "avg_model_p": 0.159,
+    "brier_model": 0.0252,
+    "brier_market": 0.0036
+   }
+  },
+  "cause": {
+   "close_call": {
+    "n": 1,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -10.63,
+    "roi": -1.0,
+    "fees": 0.64,
+    "avg_edge": 0.166,
+    "avg_model_p": 0.262,
+    "brier_model": 0.0687,
+    "brier_market": 0.0081
+   },
+   "forecast_miss": {
+    "n": 1,
+    "wins": 0,
+    "win_rate": 0.0,
+    "pnl": -10.62,
+    "roi": -1.0,
+    "fees": 0.66,
+    "avg_edge": 0.095,
+    "avg_model_p": 0.159,
+    "brier_model": 0.0252,
+    "brier_market": 0.0036
+   },
+   "forecast_right": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 4.13,
+    "roi": 0.418,
+    "fees": 0.21,
+    "avg_edge": 0.102,
+    "avg_model_p": 0.806,
+    "brier_model": 0.0374,
+    "brier_market": 0.0961
+   }
+  },
+  "version": {
+   "weather-low-v1": {
+    "n": 3,
+    "wins": 1,
+    "win_rate": 0.333,
+    "pnl": -17.12,
+    "roi": -0.55,
+    "fees": 1.51,
+    "avg_edge": 0.121,
+    "avg_model_p": 0.409,
+    "brier_model": 0.0438,
+    "brier_market": 0.0359
+   }
+  }
  },
- "calibration": [],
- "forecast_accuracy": [],
+ "calibration": [
+  {
+   "bucket": "10-20%",
+   "n": 1,
+   "predicted": 0.159,
+   "actual": 0.0
+  },
+  {
+   "bucket": "20-30%",
+   "n": 1,
+   "predicted": 0.262,
+   "actual": 0.0
+  },
+  {
+   "bucket": "80-90%",
+   "n": 1,
+   "predicted": 0.806,
+   "actual": 1.0
+  }
+ ],
+ "forecast_accuracy": [
+  {
+   "series": "KXLOWTAUS",
+   "city": "Austin",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": -1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTAUS",
+   "city": "Austin",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": -1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.5
+  },
+  {
+   "series": "KXLOWTCHI",
+   "city": "Chicago",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": -1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTCHI",
+   "city": "Chicago",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": 0.0,
+   "mae": 0.0,
+   "stdev": null,
+   "sigma_used": 2.5
+  },
+  {
+   "series": "KXLOWTDEN",
+   "city": "Denver",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": 1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTDEN",
+   "city": "Denver",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": 0.0,
+   "mae": 0.0,
+   "stdev": null,
+   "sigma_used": 2.5
+  },
+  {
+   "series": "KXLOWTLAX",
+   "city": "Los Angeles",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": -6.0,
+   "mae": 6.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTLAX",
+   "city": "Los Angeles",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": -4.0,
+   "mae": 4.0,
+   "stdev": null,
+   "sigma_used": 2.5
+  },
+  {
+   "series": "KXLOWTMIA",
+   "city": "Miami",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": 1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTNYC",
+   "city": "New York",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": -6.0,
+   "mae": 6.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  },
+  {
+   "series": "KXLOWTPHIL",
+   "city": "Philadelphia",
+   "days_ahead": 0,
+   "n": 1,
+   "bias": -3.0,
+   "mae": 3.0,
+   "stdev": null,
+   "sigma_used": 2.0
+  }
+ ],
  "suggestions": [
   {
    "priority": 0,
-   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+   "text": "Only 3 settled trades. Wait for 20+ before changing any rule."
   }
  ],
- "bankroll_curve": []
+ "bankroll_curve": [
+  {
+   "t": "2026-11-08T16:00+00:00",
+   "bankroll": 989.37
+  },
+  {
+   "t": "2026-11-08T16:00+00:00",
+   "bankroll": 993.5
+  },
+  {
+   "t": "2026-11-08T16:00+00:00",
+   "bankroll": 982.88
+  }
+ ]
 }
