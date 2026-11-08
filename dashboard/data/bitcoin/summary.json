@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T21:02+00:00",
+ "generated_at": "2026-11-08T21:03+00:00",
  "strategy_version": "crypto-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,15 +26,30 @@
   "KXBTCD"
  ],
  "bankroll": 1000.0,
- "open_exposure": 0,
+ "open_exposure": 39.22,
  "totals": {
   "n": 0
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 4,
+ "open_mark_pnl": -1.34,
+ "open_marked": 4,
+ "open_expected_pnl": 9.94,
+ "upcoming": [
+  {
+   "results_by": "2026-11-09T23:00+00:00",
+   "closes_at": "2026-11-09T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.81,
+   "expected_pnl": 4.9
+  },
+  {
+   "results_by": "2026-11-13T23:00+00:00",
+   "closes_at": "2026-11-13T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.41,
+   "expected_pnl": 5.04
+  }
+ ],
  "breakdowns": {
   "city": {},
   "side": {},
