@@ -8,6 +8,7 @@ on:
         default: "240"
   schedule:
     - cron: "40 9 * * 1"   # Mondays, after the weekend's markets settle
+    - cron: "40 9 * * 4"   # Thursdays too: keeps the download cache from expiring (7 days unused)
 
 permissions:
   contents: write
@@ -34,6 +35,11 @@ jobs:
       - name: Download new history
         if: github.event_name != 'push'
         run: python -m kalshi_analyzer.backtest fetch --days ${{ github.event.inputs.days || '240' }}
+      - name: Download other price markets (Ethereum, gold, oil, S&P...)
+        if: github.event_name != 'push'
+        continue-on-error: true
+        timeout-minutes: 150
+        run: python -m kalshi_analyzer.backtest assets-fetch --days ${{ github.event.inputs.days || '240' }}
       - name: Download market-scanner history
         continue-on-error: true
         run: python -m kalshi_analyzer.backtest scan-fetch

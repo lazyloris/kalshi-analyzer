@@ -4,6 +4,7 @@ fetch  download/refresh historical data into data/backtest_cache
 run    replay every strategy, write dashboard/data/backtest.json and reports/backtest.md
 all    both (default)
 scan   market scanner across all Kalshi categories (see scanner.py)
+assets-fetch  download Ethereum/gold/oil/S&P/... ladders (see assets.py); `run` includes them
 """
 import argparse
 import datetime as dt
@@ -95,6 +96,11 @@ def run(now=None):
                 "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]]},
                 "market_calibration": E.market_calibration(evs),
             }
+    try:
+        from . import assets
+        result["books"].update(assets.books(_strategy_result))
+    except Exception as e:  # never lose the weather/Bitcoin results over a new market
+        D.log(f"asset backtest failed: {e}")
     for b, r in result["books"].items():
         r["verdict"] = verdict(r["strategies"])
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
@@ -154,7 +160,7 @@ def markdown(r):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m kalshi_analyzer.backtest")
-    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run"])
+    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run", "assets-fetch"])
     ap.add_argument("--days", type=int, default=240)
     ap.add_argument("--top", type=int, default=150, help="scanner: how many of the most-traded series")
     a = ap.parse_args(argv)
@@ -164,6 +170,10 @@ def main(argv=None):
             scanner.fetch(top=a.top, days=min(a.days, 60))
         if a.cmd in ("scan", "scan-run"):
             scanner.analyze()
+        return
+    if a.cmd == "assets-fetch":
+        from . import assets
+        assets.fetch(a.days)
         return
     if a.cmd in ("fetch", "all"):
         fetch(a.days)
