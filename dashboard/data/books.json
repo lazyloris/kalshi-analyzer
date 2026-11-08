@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-08T16:00+00:00",
+ "generated_at": "2026-11-08T20:30+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 894.66,
    "starting_bankroll": 1000.0,
    "settled": 14,
-   "open": 23,
+   "open": 26,
    "version": "weather-v1",
    "next_results_by": "2026-11-09T14:00+00:00"
   },
@@ -19,7 +19,7 @@
    "bankroll": 982.88,
    "starting_bankroll": 1000.0,
    "settled": 3,
-   "open": 15,
+   "open": 23,
    "version": "weather-low-v1",
    "next_results_by": "2026-11-09T14:00+00:00"
   },

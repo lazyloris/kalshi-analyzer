@@ -44,7 +44,7 @@
   "expected_pnl": "6.41",
   "mark_price": 0.0,
   "mark_pnl": -10.49,
-  "marked_at": "2026-11-08T16:00+00:00"
+  "marked_at": "2026-11-08T20:30+00:00"
  },
  {
   "trade_id": "KXBTCD-26NOV0817-T76499.99-yes",
@@ -89,9 +89,9 @@
   "closes_at": "2026-11-08T22:00:00Z",
   "results_by": "2026-11-08T23:00+00:00",
   "expected_pnl": "4.81",
-  "mark_price": 0.1,
-  "mark_pnl": -4.64,
-  "marked_at": "2026-11-08T16:00+00:00"
+  "mark_price": 0.01,
+  "mark_pnl": -9.86,
+  "marked_at": "2026-11-08T20:30+00:00"
  },
  {
   "trade_id": "KXBTCD-26NOV0717-T74999.99-no",
