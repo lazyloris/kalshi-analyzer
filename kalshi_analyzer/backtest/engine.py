@@ -28,7 +28,10 @@ V1_SIGMA = {0: 2.0, 1: 2.5, 2: 3.2}
 
 
 def _f(v):
-    return None if v in (None, "") else float(v)
+    try:
+        return None if v in (None, "") else float(v)
+    except (TypeError, ValueError):  # e.g. expiration_value "No" on some markets
+        return None
 
 
 def quote(cs, ts, max_age_h=6):
