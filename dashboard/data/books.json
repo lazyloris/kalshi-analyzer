@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-07T21:54+00:00",
+ "generated_at": "2026-11-08T01:28+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -19,7 +19,7 @@
    "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
    "settled": 0,
-   "open": 13,
+   "open": 14,
    "version": "weather-low-v1",
    "next_results_by": "2026-11-08T16:00+00:00"
   },
@@ -27,12 +27,12 @@
    "id": "bitcoin",
    "name": "Crypto: Bitcoin 5pm price",
    "short": "Bitcoin",
-   "bankroll": 1000.0,
+   "bankroll": 978.86,
    "starting_bankroll": 1000.0,
-   "settled": 0,
-   "open": 4,
+   "settled": 2,
+   "open": 2,
    "version": "crypto-v1",
-   "next_results_by": "2026-11-07T23:00+00:00"
+   "next_results_by": "2026-11-08T23:00+00:00"
   },
   {
    "id": "gold",

@@ -5,7 +5,7 @@
  "kind": "fade",
  "unit": "",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T21:54+00:00",
+ "generated_at": "2026-11-08T01:28+00:00",
  "strategy_version": "fade-v1",
  "rules": {
   "MIN_EDGE": 0.08,

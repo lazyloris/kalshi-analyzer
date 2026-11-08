@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T21:54+00:00",
+ "generated_at": "2026-11-08T01:28+00:00",
  "strategy_version": "weather-low-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -34,14 +34,14 @@
   "KXLOWTLAX"
  ],
  "bankroll": 1000.0,
- "open_exposure": 133.41,
+ "open_exposure": 143.92,
  "totals": {
   "n": 0
  },
- "open_count": 13,
- "open_mark_pnl": -54.23,
- "open_marked": 13,
- "open_expected_pnl": 95.68,
+ "open_count": 14,
+ "open_mark_pnl": -56.12,
+ "open_marked": 14,
+ "open_expected_pnl": 111.26,
  "upcoming": [
   {
    "results_by": "2026-11-08T16:00+00:00",
@@ -67,9 +67,9 @@
   {
    "results_by": "2026-11-09T15:00+00:00",
    "closes_at": "2026-11-09T07:00:00Z",
-   "n": 2,
-   "at_risk": 20.78,
-   "expected_pnl": 12.47
+   "n": 3,
+   "at_risk": 31.29,
+   "expected_pnl": 28.05
   },
   {
    "results_by": "2026-11-09T17:00+00:00",

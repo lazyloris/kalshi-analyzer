@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-07T21:54+00:00",
+ "generated_at": "2026-11-08T01:28+00:00",
  "strategy_version": "weather-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -39,7 +39,7 @@
   "n": 0
  },
  "open_count": 25,
- "open_mark_pnl": -130.66,
+ "open_mark_pnl": -124.77,
  "open_marked": 25,
  "open_expected_pnl": 243.5,
  "upcoming": [

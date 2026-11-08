@@ -44,7 +44,7 @@
   "expected_pnl": "3.34",
   "mark_price": 0.29,
   "mark_pnl": -0.82,
-  "marked_at": "2026-11-07T21:54+00:00"
+  "marked_at": "2026-11-08T01:28+00:00"
  },
  {
   "trade_id": "KXGOLDD-26NOV0917-T4065-no",
@@ -91,6 +91,6 @@
   "expected_pnl": "2.32",
   "mark_price": 0.43,
   "mark_pnl": -0.17,
-  "marked_at": "2026-11-07T21:54+00:00"
+  "marked_at": "2026-11-08T01:28+00:00"
  }
 ]
