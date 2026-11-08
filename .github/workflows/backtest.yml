@@ -21,7 +21,7 @@ concurrency:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 240   # first run downloads ~8 months; later runs only fetch new days
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -34,6 +34,7 @@ jobs:
           key: backtest-cache-${{ github.run_id }}
           restore-keys: backtest-cache-
       - name: Download new history
+        if: github.event_name != 'push'
         run: python -m kalshi_analyzer.backtest fetch --days ${{ github.event.inputs.days || '240' }}
       - name: Download market-scanner history
         continue-on-error: true
@@ -45,6 +46,7 @@ jobs:
           path: data/backtest_cache
           key: backtest-cache-${{ github.run_id }}
       - name: Replay strategies
+        if: github.event_name != 'push'
         run: python -m kalshi_analyzer.backtest run
       - name: Market scanner
         continue-on-error: true
