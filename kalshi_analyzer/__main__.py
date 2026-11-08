@@ -78,6 +78,7 @@ def run_book(book_id, f, now, do_settle=True):
             today_by_series[series] = now.astimezone(ZoneInfo(stn["tz"])).date().isoformat()
             ex = f.extremes(key) or {}
             ctx["forecasts"] = ex.get(book["extreme"], {})
+            ctx["calib"] = analysis.learned_calibration(series, forecasts_all, actuals, book, now)
         elif book["kind"] == "crypto":
             ctx["spot"] = f.spot(book["asset"])
             ctx["vol"] = f.vol(book["asset"]) or book["fallback_vol"]

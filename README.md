@@ -8,15 +8,18 @@ Fake money on real prices. A learning project, **not financial advice**. No Kals
 
 | Book | Kalshi markets | Model | Stops buying |
 |---|---|---|---|
-| `weather_high` | Daily high temp, 7 cities (KXHIGH*) | Normal around the NWS forecast high | 6h before ~4pm local |
-| `weather_low` | Daily low temp, same cities (KXLOWT*) | Normal around the NWS overnight low | 6h before ~6am local |
-| `bitcoin` | Bitcoin price at 5pm ET (KXBTCD, daily 5pm contracts only) | Lognormal around Coinbase BTC spot, 30-day realized volatility | 2h before 5pm ET |
-| `gold` | Gold price at 5pm ET (KXGOLDD) | Same, using Coinbase PAXG (gold-backed token) as the price | 2h before 5pm ET |
+| `weather_high` | Daily high temp, 7 cities (KXHIGH*) | v2: long-shot fade (NO when YES is 3-10c). The NWS forecast is still logged and bias/sigma learned per city, but the backtest found no model edge over the market | 6h before close |
+| `weather_low` | Daily low temp, same cities (KXLOWT*) | Same as highs | 6h before close |
+| `bitcoin` | Bitcoin price at 5pm ET (KXBTCD, daily 5pm contracts only) | Lognormal around Coinbase BTC spot, 30-day realized volatility **x0.5** (backtest winner) | 2h before 5pm ET |
+| `gold` | Gold price at 5pm ET (KXGOLDD) | Same, using Coinbase PAXG (gold-backed token) as the price (vol x0.5 not yet backtested on gold) | 2h before 5pm ET |
 | `trending` | Spotify #1 artist, Netflix #1, top free app, top YouTube video, Steam top seller | No forecast exists, so a different rule: buy NO on long shots priced 3-10c | 2h before close |
 
 Shared rules (per-book overrides in `config.py`): edge >= 8c after fees, price 5-90c (trending NO up to 97c), spread <= 10c, at most 2 trades per event, $10 per trade, hold to settlement.
 
 All settings live in `kalshi_analyzer/config.py`. **Change one thing at a time and bump that book's `version`** so results stay comparable.
+
+### Backtest
+`python -m kalshi_analyzer.backtest` (or GitHub, then **Actions**, then **Backtest**, then **Run workflow**; it also runs every Monday) replays months of real Kalshi hourly prices and settlements against archived NWS-blend (NBM) forecasts and Coinbase prices, for several strategies per book. Results: the dashboard's **Backtest** page, `reports/backtest.md`, and `docs/backtest-log.md` (one entry per decision). Downloads are cached by GitHub Actions, so only new days are fetched. What went wrong with v1 is in `docs/postmortem-2026-11-08.md`.
 
 ### When to check back
 Every trade records when its market closes and when the result should land (close + Kalshi's usual settle delay: about 8h for weather, which waits for the next-morning NWS report; about 1h for 5pm price markets). Each hour the bot also values open trades at the current bid ("if sold now") next to the model's expected P&L. The dashboard shows a **When to check back** table and a "Results by" column. Delays are estimates in `SETTLE_DELAY_HOURS` in `config.py`.

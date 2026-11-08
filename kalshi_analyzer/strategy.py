@@ -4,7 +4,8 @@
        weather: actual temp ~ Normal(NWS forecast + city bias, sigma for days ahead)
        crypto:  price at 5pm ~ lognormal around the Coinbase spot price, 30-day realized volatility
   2. For each bracket, compute the model's chance it hits.
-  3. If model chance - (ask + fee per contract) >= MIN_EDGE on YES or NO, buy that side.
+  3. Blend our chance with the market's (MARKET_BLEND), skip if they disagree by more than MAX_GAP,
+     then if chance - (ask + fee per contract) >= MIN_EDGE on YES or NO, buy that side.
   4. Skip thin/odd markets (price outside 5-90c, spread > 10c, too close to the outcome).
   5. At most 2 positions per event, never re-buy the same market, flat paper stake.
 """
@@ -53,7 +54,11 @@ def model(book_id, m, ctx, now):
         fc = ctx.get("forecasts", {}).get(m["target_date"])
         if fc is None or sigma is None:
             return None
-        mu = fc + book["bias"].get(m["series"], 0.0)
+        bias = book["bias"].get(m["series"], 0.0)
+        learned = ctx.get("calib", {}).get(lead_days)
+        if learned:  # bias/sigma measured from this city's own past forecast misses
+            bias, sigma = bias + learned[0], learned[1]
+        mu = fc + bias
         return bracket_probability(st, lo, hi, mu, sigma), mu, sigma, lead_hours, lead_days, stn["city"]
     spot, vol = ctx.get("spot"), ctx.get("vol")
     close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
@@ -62,6 +67,7 @@ def model(book_id, m, ctx, now):
     hours = (close - now).total_seconds() / 3600
     if hours <= 0:
         return None
+    vol = vol * book.get("vol_mult", 1.0)
     p = lognormal_probability(st, lo, hi, spot, vol, hours)
     return p, spot, price_sigma(spot, vol, hours), hours, int(hours // 24), C.ASSET_NAMES.get(book["series"][m["series"]], m["series"])
 
@@ -83,11 +89,20 @@ def evaluate(book_id, m, ctx, now):
         return snap, None
     p_yes, mu, sigma, lead_hours, lead_days, label = res
     snap.update(forecast=round(mu, 2), sigma=round(sigma, 3), model_p=round(p_yes, 4))
+    if book.get("strategy") == "fade":  # model still logged for learning, but trades use the fade rule
+        return snap, fade(book_id, m, now, snap)
     if lead_hours < R["MIN_LEAD_HOURS"]:
         return snap, None
 
     best = None
     st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
+    p_model = p_yes
+    if m["yes_bid"] is not None and m["yes_ask"] is not None:
+        p_mkt = (m["yes_bid"] + m["yes_ask"]) / 2
+        # A model that disagrees hugely with the market is usually the one that's wrong.
+        if R.get("MAX_GAP") is not None and abs(p_yes - p_mkt) > R["MAX_GAP"]:
+            return snap, None
+        p_yes = (1 - R.get("MARKET_BLEND", 0.0)) * p_yes + R.get("MARKET_BLEND", 0.0) * p_mkt
     for side, p, ask, bid in (("yes", p_yes, m["yes_ask"], m["yes_bid"]),
                               ("no", 1 - p_yes, m["no_ask"], m["no_bid"])):
         if ask is None or bid is None or not (R["MIN_PRICE"] <= ask <= R["MAX_PRICE"]):
@@ -108,6 +123,7 @@ def evaluate(book_id, m, ctx, now):
                 "strike_type": st, "floor": m["floor"], "cap": m["cap"],
                 "side": side, "contracts": contracts, "price": round(ask, 4), "fee": fee,
                 "cost": round(contracts * ask + fee, 2), "model_p": round(p, 4),
+                "raw_model_p": round(p_model if side == "yes" else 1 - p_model, 4),
                 "market_p": round(ask, 4), "edge": round(edge, 4),
                 "forecast": round(mu, 2), "sigma": round(sigma, 3), "unit": book["unit"],
                 "lead_hours": round(lead_hours, 1), "lead_days": lead_days,
@@ -122,7 +138,8 @@ def fade(book_id, m, now, snap):
     """Trending book: buy NO when YES is a cheap long shot. 'Model' = the market price minus nothing;
     the stats measure whether long shots really win less often than their price says."""
     book, R = C.BOOKS[book_id], C.rules(book_id)
-    snap.update(forecast="", sigma="", model_p="")
+    for k in ("forecast", "sigma", "model_p"):
+        snap.setdefault(k, "")
     ya, yb, na, nb = m["yes_ask"], m["yes_bid"], m["no_ask"], m["no_bid"]
     close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
     if None in (ya, yb, na, nb) or close is None:
@@ -137,7 +154,8 @@ def fade(book_id, m, now, snap):
     implied_no = 1 - (ya + yb) / 2  # what the market says NO is worth (mid price)
     return {
         "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
-        "series": m["series"], "city": book["series"][m["series"]], "ticker": m["ticker"],
+        "series": m["series"], "city": C.STATIONS.get(book["series"][m["series"]], {}).get("city", book["series"][m["series"]]),
+        "ticker": m["ticker"],
         "event_ticker": m["event_ticker"], "target_date": m["target_date"],
         "bracket": m.get("yes_sub_title") or m["ticker"].split("-")[-1],
         "strike_type": m["strike_type"], "floor": m["floor"], "cap": m["cap"],

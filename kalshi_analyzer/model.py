@@ -76,3 +76,16 @@ def distance_to_edge(strike_type, floor, cap, actual):
     if strike_type in ("greater", "greater_or_equal"):
         return abs(actual - floor)
     return abs(actual - cap)
+
+
+def calibrate_errors(errors, default_sigma, prior_n=10, floor=1.0):
+    """Bias and sigma from past misses (actual - forecast), shrunk toward (0, default) when data is thin.
+    With n misses, the data gets weight n / (n + prior_n). Used live and by the backtester."""
+    n = len(errors)
+    if not n:
+        return 0.0, default_sigma, 0
+    mean = sum(errors) / n
+    bias = mean * n / (n + prior_n)
+    var = sum((x - bias) ** 2 for x in errors) / n
+    sigma = math.sqrt((n * var + prior_n * default_sigma ** 2) / (n + prior_n))
+    return bias, max(sigma, floor), n
