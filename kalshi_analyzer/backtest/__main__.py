@@ -26,6 +26,13 @@ def fetch(days):
     for b in WEATHER_BOOKS:
         for series in C.BOOKS[b]["series"]:
             D.kalshi_series(series, start)
+    try:
+        fetch_bitcoin(start, end)
+    except Exception as e:  # weather results still get written
+        D.log(f"Bitcoin download failed: {e}")
+
+
+def fetch_bitcoin(start, end):
     D.log("Coinbase BTC-USD hourly")
     prices = D.coinbase_hourly("BTC-USD", start - dt.timedelta(days=35), end)
     hours = sorted(prices)

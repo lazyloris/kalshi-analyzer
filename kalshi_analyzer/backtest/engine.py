@@ -15,7 +15,7 @@ from zoneinfo import ZoneInfo
 
 from .. import config as C
 from ..kalshi import target_date_from_event
-from ..model import bracket_probability, lognormal_probability, taker_fee
+from ..model import bracket_probability, calibrate_errors, lognormal_probability, taker_fee
 
 STAKE = 10.0
 # (name, day offset from target date, local hour, days ahead for sigma, NBM forecast age in days)
@@ -97,16 +97,8 @@ def calibrate(events, window_days=60, prior_n=10):
         key = (e["series"], e["entry"])
         cutoff = e["ts"] - window_days * 86400
         errs = [err for ts, err in hist[key] if cutoff <= ts <= e["ts"]]
-        n = len(errs)
-        default = DEFAULT_SIGMA[e["lead_days"]]
-        if n:
-            mean = statistics.fmean(errs)
-            bias = mean * n / (n + prior_n)
-            var = statistics.fmean([(x - bias) ** 2 for x in errs])
-            sigma = math.sqrt((n * var + prior_n * default ** 2) / (n + prior_n))
-        else:
-            bias, sigma = 0.0, default
-        e["bias"], e["sigma"], e["calib_n"] = bias, max(sigma, 1.0), n
+        bias, sigma, n = calibrate_errors(errs, DEFAULT_SIGMA[e["lead_days"]], prior_n)
+        e["bias"], e["sigma"], e["calib_n"] = bias, sigma, n
         if e["forecast"] is not None:
             # result is public the next morning after the target day
             settled = int(dt.datetime.fromisoformat(e["date"]).replace(tzinfo=dt.timezone.utc).timestamp()) + 36 * 3600

@@ -5,7 +5,7 @@ from pathlib import Path
 TRADE_FIELDS = [
     "trade_id", "book", "strategy_version", "opened_at", "series", "city", "ticker", "event_ticker",
     "target_date", "bracket", "strike_type", "floor", "cap", "side", "contracts", "price", "fee",
-    "cost", "model_p", "market_p", "edge", "forecast", "sigma", "unit", "lead_hours", "lead_days",
+    "cost", "model_p", "raw_model_p", "market_p", "edge", "forecast", "sigma", "unit", "lead_hours", "lead_days",
     "distance", "spread", "volume", "status", "result", "actual", "won", "payout", "pnl",
     "forecast_error", "cause", "why", "closed_at",
     "closes_at", "results_by", "expected_pnl", "mark_price", "mark_pnl", "marked_at",

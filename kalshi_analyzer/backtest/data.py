@@ -140,8 +140,8 @@ def kalshi_series(series, since, workers=4):
     return _fill_candles(series, cached, workers)
 
 
-def _fill_candles(series, cached, workers):
-    todo = [m for t, m in cached["markets"].items() if t not in cached["candles"]]
+def _fill_candles(series, cached, workers, keep=None):
+    todo = [m for t, m in cached["markets"].items() if t not in cached["candles"] and (keep is None or keep(m))]
     log(f"{series}: {len(cached['markets'])} settled markets, {len(todo)} need candles")
 
     def job(m):
@@ -164,18 +164,21 @@ def _fill_candles(series, cached, workers):
     return cached
 
 
-def kalshi_events(series, event_tickers, workers=6):
-    """Same as kalshi_series but for a list of event tickers (Bitcoin has too many hourly events)."""
+def kalshi_events(series, event_tickers, keep=None, workers=4):
+    """Same as kalshi_series but for a list of event tickers (Bitcoin has too many hourly events).
+    keep(market) -> bool limits which markets get candles (e.g. strikes near the price)."""
     cached = _load(f"kalshi_{series}", {"markets": {}, "candles": {}, "events": []})
     seen = set(cached.get("events", []))
     for ev in event_tickers:
         if ev in seen:
             continue
-        for r in settled_markets(event_ticker=ev):
+        rows = settled_markets(event_ticker=ev)
+        for r in rows:
             cached["markets"][r["ticker"]] = r
-        seen.add(ev)
+        if rows:
+            seen.add(ev)
     cached["events"] = sorted(seen)
-    return _fill_candles(series, cached, workers)
+    return _fill_candles(series, cached, workers, keep)
 
 
 def nbm_forecasts(code, start, end):

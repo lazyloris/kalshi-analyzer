@@ -1,0 +1,164 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kalshi Backtest</title>
+<style>
+:root {
+  color-scheme: light;
+  --page: #f9f9f7; --surface: #fcfcfb; --ink: #0b0b0b; --ink-2: #52514e; --muted: #898781;
+  --grid: #e1e0d9; --axis: #c3c2b7; --up: #006300; --down: #d03b3b; --border: #e1e0d9;
+  --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #008300; --s7: #6250d6;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+    --grid: #2c2c2a; --axis: #383835; --up: #0ca30c; --down: #e66767; --border: #2c2c2a;
+    --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9;
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #0d0d0d; --surface: #1a1a19; --ink: #f0efec; --ink-2: #c3c2b7; --muted: #898781;
+  --grid: #2c2c2a; --axis: #383835; --up: #0ca30c; --down: #e66767; --border: #2c2c2a;
+  --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #008300; --s7: #9085e9;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--page); color: var(--ink); font: 15px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+main { max-width: 1100px; margin: 0 auto; padding: 24px 16px 64px; }
+h1 { font-size: 22px; margin: 0 0 4px; } h2 { font-size: 16px; margin: 28px 0 10px; }
+a { color: var(--s1); }
+.sub { color: var(--ink-2); margin: 0 0 16px; font-size: 14px; }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+.scroll { overflow-x: auto; }
+.tabs { display: flex; gap: 6px; flex-wrap: wrap; margin: 12px 0 16px; }
+button { font: inherit; font-size: 14px; padding: 6px 12px; border-radius: 8px; border: 1px solid var(--border); background: var(--surface); color: var(--ink); cursor: pointer; }
+button[aria-selected="true"] { border-color: var(--ink); box-shadow: inset 0 0 0 1px var(--ink); }
+table { width: 100%; border-collapse: collapse; font-size: 13px; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid var(--grid); vertical-align: top; }
+th { color: var(--ink-2); font-weight: 500; white-space: nowrap; } td.num, th.num { text-align: right; white-space: nowrap; }
+.up { color: var(--up); } .down { color: var(--down); }
+.desc { color: var(--muted); font-size: 12px; }
+.sw { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 6px; vertical-align: -1px; }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 12px; color: var(--ink-2); margin-top: 8px; }
+.verdict { font-size: 15px; } .verdict b { font-weight: 600; }
+svg text { fill: var(--muted); font-size: 11px; }
+.tip { position: fixed; pointer-events: none; background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; font-size: 12px; box-shadow: 0 2px 8px rgba(0,0,0,.15); display: none; z-index: 5; }
+.grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; } @media (max-width: 760px) { .grid2 { grid-template-columns: 1fr; } }
+footer { color: var(--muted); font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+<main>
+  <p class="sub"><a href="./">← Live paper trader</a></p>
+  <h1>Backtest: which strategy would have made money?</h1>
+  <p class="sub" id="sub">Loading…</p>
+  <div class="tabs" id="tabs" role="tablist"></div>
+  <div class="card verdict" id="verdict"></div>
+
+  <h2>Cumulative P&amp;L by strategy ($10 a trade)</h2>
+  <div class="card"><div id="chart"></div><div class="legend" id="legend"></div></div>
+
+  <h2>Strategies</h2>
+  <div class="card scroll" id="table"></div>
+
+  <div class="grid2">
+    <div><h2>Tuning sweeps</h2><div class="card scroll" id="sweeps"></div></div>
+    <div><h2>Is the market itself well calibrated?</h2><div class="card scroll" id="mcal"></div></div>
+  </div>
+
+  <div id="errWrap"><h2>Forecast error (actual minus archived forecast)</h2><div class="card scroll" id="errors"></div></div>
+
+  <footer>Real Kalshi hourly prices and settlements. Forecasts are archived NWS-blend (NBM) runs 1-2 days old, a bit staler than what the live bot sees.
+    Bias and sigma are learned only from days before each trade. Past results don't guarantee future ones. Fake money, not financial advice.</footer>
+</main>
+<div class="tip" id="tip"></div>
+<script>
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;"}[c]));
+const money = v => (v >= 0 ? "+$" : "−$") + Math.abs(v).toFixed(2);
+const cls = v => v > 0 ? "up" : v < 0 ? "down" : "";
+const pct = v => v == null ? "–" : (v * 100).toFixed(0) + "%";
+const roi = v => v == null ? "–" : (v >= 0 ? "+" : "−") + Math.abs(v * 100).toFixed(1) + "%";
+const tip = $("tip");
+function showTip(e, html) { tip.innerHTML = html; tip.style.display = "block";
+  const x = Math.min(e.clientX + 12, innerWidth - tip.offsetWidth - 8); tip.style.left = x + "px"; tip.style.top = (e.clientY + 12) + "px"; }
+function hideTip() { tip.style.display = "none"; }
+let R = null, cur = null;
+
+fetch("data/backtest.json", {cache: "no-store"}).then(r => { if (!r.ok) throw 0; return r.json(); }).then(r => {
+  R = r;
+  const ids = Object.keys(r.books);
+  $("tabs").innerHTML = ids.map(id => `<button role="tab" data-id="${id}">${esc(r.books[id].name)}</button>`).join("");
+  $("tabs").querySelectorAll("button").forEach(b => b.onclick = () => show(b.dataset.id));
+  let saved = null; try { saved = localStorage.getItem("btbook"); } catch (e) {}
+  show(ids.includes(saved) ? saved : ids[0]);
+}).catch(() => { $("sub").textContent = "No backtest yet. It runs every Monday, or from the Actions tab (Backtest → Run workflow)."; });
+
+function show(id) {
+  cur = id; try { localStorage.setItem("btbook", id); } catch (e) {}
+  $("tabs").querySelectorAll("button").forEach(b => b.setAttribute("aria-selected", b.dataset.id === id));
+  const b = R.books[id];
+  $("sub").textContent = `${b.events} past events, ${b.first} to ${b.last} · run ${new Date(R.generated_at).toLocaleString()}`;
+  $("verdict").innerHTML = `<b>Verdict:</b> ${esc(b.verdict.text)}`;
+  // fixed color per strategy = its position in the catalogue (never by rank)
+  b.strategies.forEach((s, i) => s.color = `var(--s${(i % 7) + 1})`);
+  drawChart(b.strategies);
+  const rows = [...b.strategies].sort((a, c) => c.pnl - a.pnl);
+  $("table").innerHTML = `<table><thead><tr><th>Strategy</th><th class="num">Trades</th><th class="num">Won</th><th class="num">P&amp;L</th>
+    <th class="num">Return per $</th><th class="num">1st half</th><th class="num">2nd half</th><th class="num">Worst dip</th>
+    <th class="num">Claimed win %</th><th class="num">Avg price</th></tr></thead><tbody>` + rows.map(s => `<tr>
+    <td><span class="sw" style="background:${s.color}"></span>${esc(s.name)}<div class="desc">${esc(s.desc)}</div></td>
+    <td class="num">${s.trades}</td><td class="num">${pct(s.win_rate)}</td><td class="num ${cls(s.pnl)}">${money(s.pnl)}</td>
+    <td class="num ${cls(s.roi)}">${roi(s.roi)}</td><td class="num ${cls(s.first_half)}">${money(s.first_half)}</td>
+    <td class="num ${cls(s.second_half)}">${money(s.second_half)}</td><td class="num">${money(s.max_drawdown)}</td>
+    <td class="num">${pct(s.avg_claimed)}</td><td class="num">${s.avg_price == null ? "–" : Math.round(s.avg_price * 100) + "¢"}</td></tr>`).join("") +
+    `</tbody></table><p class="desc">"Claimed win %" is how often the model expected its trades to win; compare it with "Won". A big gap means the model is overconfident.</p>`;
+  const sw = b.sweeps || {};
+  let h = "";
+  const sweepTable = (title, label, list) => `<p class="desc" style="margin:0 0 6px">${title}</p><table><thead><tr><th>${label}</th><th class="num">Trades</th><th class="num">Won</th><th class="num">P&amp;L</th><th class="num">Return per $</th></tr></thead><tbody>` +
+    list.map(s => `<tr><td>${s._label}</td><td class="num">${s.trades}</td><td class="num">${pct(s.win_rate)}</td><td class="num ${cls(s.pnl)}">${money(s.pnl)}</td><td class="num ${cls(s.roi)}">${roi(s.roi)}</td></tr>`).join("") + `</tbody></table>`;
+  if (sw.sigma) h += sweepTable("v2 with the learned sigma scaled up or down", "Sigma ×", sw.sigma.map(s => ({...s, _label: s.mult})));
+  if (sw.blend) h += "<br>" + sweepTable("How much to trust the market price vs our model", "Market weight / min edge", sw.blend.map(s => ({...s, _label: `${s.blend * 100}% / ${Math.round(s.min_edge * 100)}¢`})));
+  if (sw.vol) h += sweepTable("Volatility scaled up or down", "Vol ×", sw.vol.map(s => ({...s, _label: s.mult})));
+  $("sweeps").innerHTML = h || `<p class="desc">No sweeps.</p>`;
+  $("mcal").innerHTML = `<table><thead><tr><th>Market price</th><th class="num">Markets</th><th class="num">Market said</th><th class="num">YES actually won</th></tr></thead><tbody>` +
+    (b.market_calibration || []).map(c => `<tr><td>${c.range}</td><td class="num">${c.n}</td><td class="num">${pct(c.market)}</td><td class="num">${pct(c.actual)}</td></tr>`).join("") +
+    `</tbody></table><p class="desc">If cheap brackets win less often than their price, fading long shots can work. If the columns match, the market is hard to beat.</p>`;
+  $("errWrap").style.display = b.forecast_errors ? "" : "none";
+  if (b.forecast_errors) $("errors").innerHTML = `<table><thead><tr><th>City</th><th>Entry</th><th class="num">Days</th><th class="num">Bias</th><th class="num">Typical miss (RMSE)</th></tr></thead><tbody>` +
+    b.forecast_errors.map(f => `<tr><td>${esc(f.city)}</td><td>${esc(f.entry)}</td><td class="num">${f.n}</td><td class="num">${f.bias >= 0 ? "+" : ""}${f.bias}°F</td><td class="num">${f.rmse}°F</td></tr>`).join("") + `</tbody></table>`;
+}
+
+function drawChart(strats) {
+  const el = $("chart"), list = strats.filter(s => s.curve.length);
+  $("legend").innerHTML = strats.map(s => `<span><span class="sw" style="background:${s.color}"></span>${esc(s.name)} <b class="${cls(s.pnl)}">${money(s.pnl)}</b></span>`).join("");
+  if (!list.length) { el.innerHTML = `<p class="desc">No trades.</p>`; return; }
+  const days = [...new Set(list.flatMap(s => s.curve.map(p => p[0])))].sort();
+  const series = list.map(s => { const m = new Map(s.curve); let last = 0; return {s, vals: days.map(d => (last = m.has(d) ? m.get(d) : last))}; });
+  const W = el.clientWidth || 700, H = 280, m = {l: 56, r: 12, t: 10, b: 24};
+  const all = series.flatMap(x => x.vals).concat([0]), lo = Math.min(...all), hi = Math.max(...all), pad = Math.max(5, (hi - lo) * .08);
+  const y = v => m.t + (H - m.t - m.b) * (1 - (v - (lo - pad)) / ((hi + pad) - (lo - pad)));
+  const x = i => m.l + (W - m.l - m.r) * (days.length === 1 ? 0 : i / (days.length - 1));
+  let svg = `<svg width="${W}" height="${H}" role="img" aria-label="Cumulative paper P&L by strategy">`;
+  [lo - pad, 0, hi + pad].forEach(v => svg += `<line x1="${m.l}" x2="${W - m.r}" y1="${y(v)}" y2="${y(v)}" stroke="${v === 0 ? "var(--axis)" : "var(--grid)"}"/><text x="${m.l - 6}" y="${y(v) + 4}" text-anchor="end">${v < 0 ? "−" : ""}$${Math.abs(Math.round(v))}</text>`);
+  series.forEach(({s, vals}) => svg += `<path d="${vals.map((v, i) => (i ? "L" : "M") + x(i).toFixed(1) + "," + y(v).toFixed(1)).join("")}" fill="none" stroke="${s.color}" stroke-width="2" stroke-linejoin="round"/>`);
+  svg += `<text x="${m.l}" y="${H - 6}">${days[0]}</text><text x="${W - m.r}" y="${H - 6}" text-anchor="end">${days[days.length - 1]}</text>`;
+  svg += `<line id="xh" y1="${m.t}" y2="${H - m.b}" stroke="var(--axis)" visibility="hidden"/>`;
+  svg += `<rect x="${m.l}" y="0" width="${W - m.l - m.r}" height="${H}" fill="transparent" id="hit"/></svg>`;
+  el.innerHTML = svg;
+  const hit = el.querySelector("#hit"), xh = el.querySelector("#xh");
+  hit.onmousemove = e => {
+    const r = hit.getBoundingClientRect(), i = Math.max(0, Math.min(days.length - 1, Math.round((e.clientX - r.left) / r.width * (days.length - 1))));
+    xh.setAttribute("x1", x(i)); xh.setAttribute("x2", x(i)); xh.setAttribute("visibility", "visible");
+    showTip(e, `<b>${days[i]}</b><br>` + [...series].sort((a, b) => b.vals[i] - a.vals[i]).map(({s, vals}) =>
+      `<span class="sw" style="background:${s.color}"></span>${esc(s.name)}: ${money(vals[i])}`).join("<br>"));
+  };
+  hit.onmouseleave = () => { hideTip(); xh.setAttribute("visibility", "hidden"); };
+}
+addEventListener("resize", () => { if (cur) drawChart(R.books[cur].strategies); });
+</script>
+</body>
+</html>

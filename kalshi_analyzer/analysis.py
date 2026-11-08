@@ -4,6 +4,7 @@ import statistics as st
 from collections import defaultdict
 
 from . import config as C
+from .model import calibrate_errors
 
 
 def _num(v):
@@ -82,6 +83,37 @@ def calibration(settled):
                      "predicted": round(st.mean(float(r["model_p"]) for r in rs), 3),
                      "actual": round(sum(r["won"] == "1" for r in rs) / len(rs), 3)})
     return rows
+
+
+def forecast_errors(forecasts, actuals):
+    """{(series, lead_days): [(target_date, actual - forecast)]} using the last forecast of each day."""
+    act = {(a["series"], a["target_date"]): float(a["actual"]) for a in actuals if a.get("actual") not in ("", None)}
+    last = {}
+    for f in forecasts:
+        if f["forecast"] in ("", None):
+            continue
+        last[(f["series"], f["target_date"], int(f["lead_days"]))] = float(f["forecast"])
+    errs = defaultdict(list)
+    for (s, d, lead), fc in last.items():
+        if (s, d) in act:
+            errs[(s, lead)].append((d, act[(s, d)] - fc))
+    return errs
+
+
+def learned_calibration(series, forecasts, actuals, book, now, window_days=60):
+    """{lead_days: (bias, sigma)} for one city from its own recent misses, shrunk toward the
+    config sigma when there are few. Empty if the book turns learning off."""
+    if not book.get("learn_calibration", True):
+        return {}
+    cutoff = (now.date() - dt.timedelta(days=window_days)).isoformat()
+    out = {}
+    errs = forecast_errors(forecasts, actuals)
+    for lead, default in book["sigma_by_lead_days"].items():
+        e = [x for d, x in errs.get((series, lead), []) if d >= cutoff]
+        if e:
+            bias, sigma, _ = calibrate_errors(e, default)
+            out[lead] = (bias, sigma)
+    return out
 
 
 def forecast_accuracy(forecasts, actuals, book):
