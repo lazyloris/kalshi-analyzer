@@ -314,3 +314,16 @@ def test_stop_loss_sells_at_the_bid_when_price_falls():
     assert t["exit"] == "sl" and t["pnl"] < 0
     t, = S.exits(base, tp=0.30)(e)
     assert t["exit"] == "tp" and 0 < t["pnl"] < 9.82
+
+
+def test_why_breakdown_and_report_render():
+    from kalshi_analyzer.backtest import __main__ as M, engine as E
+    evs = [_ev(i, 0.60, i % 3 > 0) for i in range(120)]
+    for e in evs:
+        e.update(spot=100.0, vol=0.5, hours=8, actual=101.0)
+    s = M._strategy_result("c_vol50", "Vol x0.5", "", "bitcoin", E.simulate(evs, E.market_favorite(0.5, 0.7)))
+    assert set(s["why"]) == {"q", "price", "gap"} and "2025-Q1" in s["why"]["q"]
+    x = {"name": "B", "events": 120, "first": "a", "last": "b", "strategies": [s], "vol_check": M.vol_check(evs)}
+    x["verdict"] = M.verdict(x["strategies"])
+    md = M.markdown({"generated_at": "2026-11-09T00:00", "stake": 10, "books": {"bitcoin": x}})
+    assert "Why: Vol x0.5" in md and "Volatility check" in md

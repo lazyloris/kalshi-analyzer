@@ -10,6 +10,7 @@ import argparse
 import time
 import datetime as dt
 import json
+import math
 
 from .. import config as C
 from . import data as D
@@ -23,6 +24,7 @@ OUT_MD = C.ROOT / "reports" / "backtest.md"
 WEATHER_BOOKS = ("weather_high", "weather_low")
 
 
+WHY_IDS = {"v2", "c_v1", "c_vol50", "s_tod", "s_combo_all", "s_spike_fade", "late_fav_80_90", "b_bucket95"}
 OOS_CUT = "2026-03-13"  # strategies were chosen on data from here on; earlier days are a fresh test
 
 
@@ -71,6 +73,42 @@ def load():
     return kalshi, nbm, btc, prices
 
 
+def _quarter(d):
+    return f"{d[:4]}-Q{(int(d[5:7]) - 1) // 3 + 1}"
+
+
+def _band(edges, v):
+    for lo, hi in zip(edges, edges[1:]):
+        if lo <= v < hi:
+            return f"{lo:.2f}-{hi:.2f}"
+    return "other"
+
+
+def why(trades):
+    """Where the money was made or lost: by quarter, price paid, side, and model-vs-market gap."""
+    for t in trades:
+        t["_q"] = _quarter(t["date"])
+        t["_price"] = _band((0, .1, .3, .5, .7, .9, 1.01), t["price"])
+        gap = abs(t["p_model"] - t["p_market"]) if t.get("p_model") is not None and t.get("p_market") is not None else None
+        t["_gap"] = "no model" if gap is None else _band((0, .05, .10, .20, .35, 1.01), gap)
+    out = {k: E.breakdown(trades, f"_{k}") for k in ("q", "price", "gap")}
+    for t in trades:
+        for k in ("_q", "_price", "_gap"):
+            t.pop(k, None)
+    return out
+
+
+def vol_check(evs):
+    """Per quarter: how big the moves really were vs the 30-day volatility we assumed.
+    ratio ~1 = vol estimate was right; ~0.5 = the market moved half as much as assumed."""
+    g = {}
+    for e in evs:
+        if e.get("actual") and e.get("spot") and e.get("vol"):
+            s = e["vol"] * (max(e["hours"], 0.01) / 8760) ** 0.5
+            g.setdefault(_quarter(e["date"]), []).append((math.log(e["actual"] / e["spot"]) / s) ** 2)
+    return {q: {"n": len(v), "ratio": round((sum(v) / len(v)) ** 0.5, 3)} for q, v in sorted(g.items())}
+
+
 def _strategy_result(sid, name, desc, book, trades):
     by_entry = E.breakdown(trades, "entry")
     old = [t for t in trades if t["date"] < OOS_CUT]
@@ -79,6 +117,7 @@ def _strategy_result(sid, name, desc, book, trades):
              "roi": round(sum(t["pnl"] for t in old) / staked, 4) if staked else None}
     return {"id": sid, "name": name, "desc": desc, "book": book, **E.metrics(trades), "older": older,
             "by_entry": by_entry, "by_city": E.breakdown(trades, "city"), "by_side": E.breakdown(trades, "side"),
+            "why": why(trades),
             "curve": E.curve(trades)}
 
 
@@ -128,6 +167,7 @@ def run(now=None):
                            **({"fat-tail": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in F.sweep()]}
                               if has_emp else {})},
                 "iv_coverage": round(has_iv / len(evs), 3),
+                "vol_check": vol_check(evs),
                 "market_calibration": E.market_calibration(evs),
             }
     late = [(f"{b}_late", f"{C.BOOKS[b]['name']}: late entries", E.weather_events(b, kalshi, nbm, E.LATE_ENTRIES))
@@ -205,6 +245,19 @@ def markdown(r):
                     setting = f"blend {s['blend']}, edge {s['min_edge']}"
                 L.append(f"| {setting} | {s['trades']} | {s['pnl']:+.2f} | "
                          f"{_roi(s['roi'])} |")
+        if x.get("vol_check"):
+            L += ["", "Volatility check: real moves vs the 30-day volatility assumed (1.0 = right, 0.5 = moved half as much)",
+                  "", "| Quarter | Events | Ratio |", "|---|---|---|"]
+            L += [f"| {q} | {v['n']} | {v['ratio']} |" for q, v in x["vol_check"].items()]
+        picks = [s for s in x["strategies"] if s["id"] in WHY_IDS or s["id"] == x["verdict"].get("id")]
+        for s in picks:
+            w = s.get("why") or {}
+            L += ["", f"Why: {s['name']}", "", "| Split | Group | Trades | P&L | Win % |", "|---|---|---|---|---|"]
+            for split, label in (("q", "Quarter"), ("price", "Price paid"), ("gap", "Model vs market gap")):
+                for k, v in (w.get(split) or {}).items():
+                    L.append(f"| {label} | {k} | {v['trades']} | {v['pnl']:+.0f} | {v['win_rate'] * 100:.0f}% |")
+            for k, v in (s.get("by_side") or {}).items():
+                L.append(f"| Side | {k} | {v['trades']} | {v['pnl']:+.0f} | {v['win_rate'] * 100:.0f}% |")
         if x.get("forecast_errors"):
             L += ["", "Forecast error (actual minus NBM forecast)", "", "| City | Entry | n | Bias | RMSE |", "|---|---|---|---|---|"]
             L += [f"| {f['city']} | {f['entry']} | {f['n']} | {f['bias']:+.2f} | {f['rmse']} |" for f in x["forecast_errors"]]
