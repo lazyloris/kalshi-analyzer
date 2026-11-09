@@ -42,6 +42,8 @@ def _get(url, params=None, label=None):
     if label and label not in _seen_keys:
         _seen_keys.add(label)
         sample = r[0] if isinstance(r, list) and r else r
+        if isinstance(sample, dict) and isinstance(sample.get("data"), list) and sample["data"]:
+            sample = sample["data"][0]
         log(f"{label} sample keys: {sorted(sample)[:40] if isinstance(sample, dict) else type(sample).__name__}")
     return r
 
@@ -63,36 +65,60 @@ def _f(v, default=0.0):
         return default
 
 
-def leaderboard(n=50):
-    out = []
-    for o in range(0, n, 50):
-        try:
-            rows = _rows(_get(f"{DATA}/v1/leaderboard", {"category": "OVERALL", "timePeriod": "ALL", "orderBy": "PNL",
-                                                          "limit": 50, "offset": o}, "leaderboard"))
-        except Exception as e:
-            log(f"leaderboard v1 failed: {e}")
-            rows = []
-        if not rows and o == 0:
-            rows = _rows(_get("https://lb-api.polymarket.com/profit", {"window": "all", "limit": n}, "lb-api"))
-        for r in rows:
-            w = r.get("proxyWallet") or r.get("address") or r.get("wallet")
-            if w:
-                out.append({"wallet": w.lower(), "name": r.get("userName") or r.get("name") or r.get("pseudonym") or "",
-                            "pnl": _f(r.get("pnl") or r.get("amount")), "vol": _f(r.get("vol") or r.get("volume"))})
-        if len(rows) < 50:
+def _camel(k):
+    head, *rest = k.split("_")
+    return head + "".join(x[:1].upper() + x[1:] for x in rest)
+
+
+def norm(row):
+    """v2 uses snake_case; the analysis below uses the v1 camelCase names."""
+    return {_camel(k): v for k, v in row.items()} if isinstance(row, dict) else row
+
+
+def _pages(url, params, label, max_rows):
+    """Follow v2 cursors until done or max_rows."""
+    out, cursor = [], None
+    while len(out) < max_rows:
+        q = dict(params, cursor=cursor) if cursor else params
+        r = _get(url, q, label)
+        out += [norm(x) for x in _rows(r)]
+        cursor = (r.get("pagination") or {}).get("next_cursor") if isinstance(r, dict) else None
+        if not cursor:
             break
-    seen, uniq = set(), []
-    for r in out:
-        if r["wallet"] not in seen:
-            seen.add(r["wallet"])
-            uniq.append(r)
-    return uniq[:n]
+    return out[:max_rows]
+
+
+def leaderboard(n=50):
+    try:
+        rows = _pages(f"{DATA}/v2/leaderboard", {"time_period": "all", "sort_by": "PNL", "limit": min(n, 1000)},
+                      "leaderboard_v2", n)
+    except Exception as e:
+        log(f"leaderboard v2 failed: {e}")
+        rows = []
+    out = []
+    for r in rows:
+        w = r.get("userId") or r.get("proxyWallet")
+        if w:
+            out.append({"wallet": w.lower(), "name": r.get("userName") or "", "pnl": _f(r.get("pnl")),
+                        "vol": _f(r.get("volume") or r.get("vol"))})
+    return out[:n]
 
 
 def find_wallet(name):
     try:
+        r = norm(_get(f"{DATA}/v1/leaderboard", {"userName": name, "timePeriod": "ALL"}, "lb_v1_user"))
+        rows = _rows(r) if not isinstance(r, list) else r
+        for x in rows:
+            x = norm(x)
+            if x.get("proxyWallet"):
+                return {"wallet": x["proxyWallet"].lower(), "name": x.get("userName") or name, "pnl": _f(x.get("pnl")),
+                        "vol": _f(x.get("vol"))}
+    except Exception as e:
+        log(f"v1 username lookup {name} failed: {e}")
+    try:
         r = _get(f"{GAMMA}/public-search", {"q": name, "search_profiles": "true", "limit_per_type": 5}, "search")
         for p in (r.get("profiles") or []) if isinstance(r, dict) else []:
+            p = norm(p)
             if (p.get("name") or p.get("pseudonym") or "").lower() == name.lower() and p.get("proxyWallet"):
                 return {"wallet": p["proxyWallet"].lower(), "name": p.get("name") or name, "pnl": None, "vol": None}
     except Exception as e:
@@ -101,32 +127,19 @@ def find_wallet(name):
 
 
 def trades(wallet, max_n=10000):
-    out = []
-    for o in range(0, max_n, 500):
-        try:
-            rows = _rows(_get(f"{DATA}/trades", {"user": wallet, "limit": 500, "offset": o, "takerOnly": "false"}, "trades"))
-        except Exception as e:
-            log(f"  trades {wallet[:10]} offset {o}: {e}")
-            break
-        out += rows
-        if len(rows) < 500:
-            break
-    return out
+    try:
+        return _pages(f"{DATA}/v2/trades", {"user": wallet, "limit": 1000, "taker_only": "false"}, "trades_v2", max_n)
+    except Exception as e:
+        log(f"  trades {wallet[:10]}: {e}")
+        return []
 
 
-def closed_positions(wallet, max_n=5000):
-    out = []
-    for o in range(0, max_n, 50):
-        try:
-            rows = _rows(_get(f"{DATA}/closed-positions", {"user": wallet, "limit": 50, "offset": o,
-                                                            "sortBy": "TIMESTAMP", "sortDirection": "DESC"}, "closed"))
-        except Exception as e:
-            log(f"  closed {wallet[:10]} offset {o}: {e}")
-            break
-        out += rows
-        if len(rows) < 50:
-            break
-    return out
+def closed_positions(wallet, max_n=20000):
+    try:
+        return _pages(f"{DATA}/v2/positions", {"user": wallet, "status": "CLOSED", "limit": 1000}, "closed_v2", max_n)
+    except Exception as e:
+        log(f"  closed {wallet[:10]}: {e}")
+        return []
 
 
 def is_sports(t):
@@ -175,8 +188,8 @@ def pnl_split(closed):
     out = {"pre2026": 0.0, "y2026": 0.0, "sports": 0.0, "other": 0.0, "n": len(closed), "win_rate": None}
     wins = 0
     for p in closed:
-        v = _f(p.get("realizedPnl") or p.get("cashPnl"))
-        ts = p.get("timestamp") or p.get("endDate")
+        v = _f(p.get("realizedPnl") or p.get("cashPnl") or p.get("totalPnl"))
+        ts = p.get("timestamp") or p.get("lastEventAt") or p.get("endDate")
         t = int(_f(ts)) if str(ts).replace(".", "").isdigit() else (
             int(dt.datetime.fromisoformat(str(ts).replace("Z", "+00:00")).timestamp()) if ts else CUT)
         out["pre2026" if t < CUT else "y2026"] += v
