@@ -1,0 +1,183 @@
+{
+ "Sports games": {
+  "markets": 240,
+  "rows": [
+   {
+    "drop": 0.15,
+    "rebound": 0.1,
+    "trades": 257,
+    "markets": 173,
+    "pnl": -306.61,
+    "roi": -0.1153,
+    "lock_rate": 0.432,
+    "pnl_locked": 896.7,
+    "pnl_stuck": -1203.3,
+    "t_markets": -1.58,
+    "first_half": -272.6,
+    "second_half": -34.1
+   },
+   {
+    "drop": 0.15,
+    "rebound": 0.05,
+    "trades": 271,
+    "markets": 173,
+    "pnl": -340.8,
+    "roi": -0.1216,
+    "lock_rate": 0.483,
+    "pnl_locked": 804.9,
+    "pnl_stuck": -1145.7,
+    "t_markets": -1.92,
+    "first_half": -283.4,
+    "second_half": -57.4
+   },
+   {
+    "drop": 0.15,
+    "rebound": 0.03,
+    "trades": 279,
+    "markets": 173,
+    "pnl": -450.47,
+    "roi": -0.156,
+    "lock_rate": 0.495,
+    "pnl_locked": 706.3,
+    "pnl_stuck": -1156.8,
+    "t_markets": -2.67,
+    "first_half": -366.8,
+    "second_half": -83.7
+   },
+   {
+    "drop": 0.05,
+    "rebound": 0.1,
+    "trades": 373,
+    "markets": 227,
+    "pnl": -477.32,
+    "roi": -0.1246,
+    "lock_rate": 0.475,
+    "pnl_locked": 1178.7,
+    "pnl_stuck": -1656.0,
+    "t_markets": -2.26,
+    "first_half": -352.3,
+    "second_half": -125.1
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.1,
+    "trades": 312,
+    "markets": 207,
+    "pnl": -581.74,
+    "roi": -0.1806,
+    "lock_rate": 0.42,
+    "pnl_locked": 930.3,
+    "pnl_stuck": -1512.0,
+    "t_markets": -2.92,
+    "first_half": -416.8,
+    "second_half": -165.0
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.05,
+    "trades": 342,
+    "markets": 207,
+    "pnl": -646.58,
+    "roi": -0.1833,
+    "lock_rate": 0.48,
+    "pnl_locked": 825.0,
+    "pnl_stuck": -1471.6,
+    "t_markets": -3.6,
+    "first_half": -403.2,
+    "second_half": -243.3
+   },
+   {
+    "drop": 0.05,
+    "rebound": 0.05,
+    "trades": 410,
+    "markets": 227,
+    "pnl": -713.33,
+    "roi": -0.1694,
+    "lock_rate": 0.529,
+    "pnl_locked": 941.5,
+    "pnl_stuck": -1654.8,
+    "t_markets": -4.19,
+    "first_half": -403.1,
+    "second_half": -310.2
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.03,
+    "trades": 352,
+    "markets": 207,
+    "pnl": -733.49,
+    "roi": -0.202,
+    "lock_rate": 0.497,
+    "pnl_locked": 742.8,
+    "pnl_stuck": -1476.3,
+    "t_markets": -4.28,
+    "first_half": -470.0,
+    "second_half": -263.5
+   },
+   {
+    "drop": 0.05,
+    "rebound": 0.03,
+    "trades": 434,
+    "markets": 227,
+    "pnl": -852.2,
+    "roi": -0.1911,
+    "lock_rate": 0.551,
+    "pnl_locked": 838.7,
+    "pnl_stuck": -1690.9,
+    "t_markets": -5.31,
+    "first_half": -486.5,
+    "second_half": -365.7
+   }
+  ]
+ },
+ "Bitcoin/Ethereum daily": {
+  "markets": 0,
+  "rows": [
+   {
+    "drop": 0.05,
+    "rebound": 0.03,
+    "trades": 0
+   },
+   {
+    "drop": 0.05,
+    "rebound": 0.05,
+    "trades": 0
+   },
+   {
+    "drop": 0.05,
+    "rebound": 0.1,
+    "trades": 0
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.03,
+    "trades": 0
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.05,
+    "trades": 0
+   },
+   {
+    "drop": 0.1,
+    "rebound": 0.1,
+    "trades": 0
+   },
+   {
+    "drop": 0.15,
+    "rebound": 0.03,
+    "trades": 0
+   },
+   {
+    "drop": 0.15,
+    "rebound": 0.05,
+    "trades": 0
+   },
+   {
+    "drop": 0.15,
+    "rebound": 0.1,
+    "trades": 0
+   }
+  ]
+ }
+}
