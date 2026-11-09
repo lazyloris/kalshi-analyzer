@@ -93,3 +93,15 @@ money in **both halves** of the period with 30+ trades.
 Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first half lost money and all the profit came from the last 8 months. Weekend-only BTC was +4.1% older (141 trades) and +6.7% overall (230). It's small, and it came out of about 25 variants, so treat it as unproven. The model's Brier score is worse than the market's in every book except BTC weekends.
 
 **Conclusion:** we found no reliable crypto edge. The tod paper books keep running as a free live check, but no live money should follow them. Next research: the weather spike fade (only 8 months of data) and a Polymarket price comparison.
+
+## 2026-11-09 — Older weather test (run 42642594204)
+
+**Setup:** Kalshi weather prices were pulled back about 600 days. Highs go back to 2025-03 (3,731 events). Lows only go back to 2025-12 (2,193 events), because the lows series is newer. Forecasts still only cover 2026-03 onward, so the forecast models have almost no older trades.
+
+**Result: the spike fade did not hold.**
+- Daily highs: -6.3% on 224 older trades. The full period is +2.3% on 484, and all of it came from the second half.
+- Daily lows: -35% on 32 older trades. That's a tiny sample, but it's negative.
+- Long-shot fade: about break-even everywhere (+0.5% older highs, -0.6% older lows).
+- Market favorite on older lows: +7.3% on 356 trades, but it's -2.9% over the full period, so that's noise.
+
+**Conclusion:** same story as crypto. Every edge we found on 2026-03 to 2026-11 disappears on the earlier data. Kalshi weather and crypto prices look efficient at hourly resolution after fees.

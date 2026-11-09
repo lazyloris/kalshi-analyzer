@@ -7,6 +7,7 @@ scan   market scanner across all Kalshi categories (see scanner.py)
 assets-fetch  download Ethereum/gold/oil/S&P/... ladders (see assets.py); `run` includes them
 """
 import argparse
+import time
 import datetime as dt
 import json
 
@@ -23,16 +24,18 @@ WEATHER_BOOKS = ("weather_high", "weather_low")
 OOS_CUT = "2026-03-13"  # strategies were chosen on data from here on; earlier days are a fresh test
 
 
-def fetch(days, crypto_days=None):
+def fetch(days, crypto_days=None, weather_days=None, budget_min=150):
     end = dt.date.today()
     start = end - dt.timedelta(days=days)
     crypto_start = end - dt.timedelta(days=crypto_days or days)
+    weather_start = end - dt.timedelta(days=weather_days or days)  # Kalshi prices only; NBM stays at `days`
+    deadline = time.time() + budget_min * 60
     for code in C.STATIONS:
         D.log(f"NBM forecasts {code}")
         D.nbm_forecasts(code, start - dt.timedelta(days=2), end)
     for b in WEATHER_BOOKS:
         for series in C.BOOKS[b]["series"]:
-            D.kalshi_series(series, start)
+            D.kalshi_series(series, weather_start, deadline=deadline)
     try:
         fetch_bitcoin(crypto_start, end)
     except Exception as e:  # weather results still get written
@@ -194,6 +197,8 @@ def main(argv=None):
     ap.add_argument("--days", type=int, default=240)
     ap.add_argument("--crypto-days", type=int, default=None,
                     help="fetch/assets-fetch: longer history for Bitcoin/Ethereum only")
+    ap.add_argument("--weather-days", type=int, default=None,
+                    help="fetch: longer Kalshi weather price history (no forecasts that far back)")
     ap.add_argument("--budget", type=int, default=100, help="assets-fetch: minutes before stopping (resumes next run)")
     ap.add_argument("--top", type=int, default=150, help="scanner: how many of the most-traded series")
     a = ap.parse_args(argv)
@@ -209,7 +214,7 @@ def main(argv=None):
         assets.fetch(a.days, budget_min=a.budget, crypto_days=a.crypto_days)
         return
     if a.cmd in ("fetch", "all"):
-        fetch(a.days, a.crypto_days)
+        fetch(a.days, a.crypto_days, a.weather_days)
     if a.cmd in ("run", "all"):
         run()
 

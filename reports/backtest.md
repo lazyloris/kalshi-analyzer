@@ -4,334 +4,295 @@ Flat $10 per trade at the ask plus Kalshi fees, held to settlement. Prices are r
 
 ## Weather: daily highs
 
-1672 events, 2026-03-13 to 2026-11-07.
+3731 events, 2025-03-18 to 2026-11-08.
 
-**Verdict:** Kalshi price-spike fade (no model): +259 on 260 trades (+9.8% per $ staked, t=1.1), profitable in both halves.
+**Verdict:** No strategy made money in both halves with 50+ trades. Least bad: Kalshi price-spike fade (no model) (+114 on 484 trades).
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Kalshi price-spike fade (no model) | 260 | 49% | +258.98 | +9.8% | +67 | +192 | – | – | 0.2092 |
-| Market favorite YES (no model) | 2201 | 53% | +68.10 | +0.3% | -51 | +119 | – | – | 0.2422 |
-| Long-shot fade (no model) | 2755 | 95% | -74.96 | -0.3% | -87 | +12 | – | – | 0.0471 |
-| Long-shot fade, limit order | 1653 | 92% | -348.13 | -2.2% | -216 | -132 | – | – | 0.0761 |
-| Market favorite, limit order | 1858 | 44% | -2105.02 | -11.5% | -1221 | -884 | – | – | 0.2411 |
-| Forecast bracket YES | 726 | 10% | -3493.55 | -45.7% | -1836 | -1658 | 33% | 0.145 | 0.088 |
-| v2 + disagreement cap | 3192 | 33% | -8419.21 | -25.8% | -4308 | -4111 | 54% | 0.2014 | 0.1573 |
-| v2 + 50% market blend | 3523 | 31% | -9136.90 | -25.2% | -4180 | -4957 | 46% | 0.1906 | 0.1645 |
-| v1 (what we ran live) | 4370 | 34% | -9361.31 | -20.9% | -4298 | -5063 | 62% | 0.263 | 0.1645 |
-| v2 calibrated | 3977 | 32% | -10325.89 | -25.3% | -4860 | -5466 | 58% | 0.2448 | 0.1669 |
+| Kalshi price-spike fade (no model) | 484 | 44% | +114.33 | +2.3% | -204 | +318 | – | – | 0.195 |
+| Long-shot fade (no model) | 4930 | 95% | +26.45 | +0.1% | +41 | -14 | – | – | 0.0436 |
+| Market favorite YES (no model) | 4569 | 50% | -180.22 | -0.4% | -134 | -46 | – | – | 0.2425 |
+| Long-shot fade, limit order | 2821 | 92% | -482.16 | -1.8% | -220 | -262 | – | – | 0.0734 |
+| Forecast bracket YES | 739 | 10% | -3397.55 | -43.7% | -1711 | -1686 | 33% | 0.1466 | 0.0915 |
+| Market favorite, limit order | 3719 | 39% | -6414.99 | -17.5% | -4312 | -2103 | – | – | 0.2359 |
+| v2 + disagreement cap | 3213 | 33% | -8369.79 | -25.4% | -4217 | -4153 | 54% | 0.2012 | 0.1572 |
+| v2 + 50% market blend | 3555 | 31% | -9247.46 | -25.3% | -4237 | -5011 | 46% | 0.1904 | 0.1646 |
+| v1 (what we ran live) | 4401 | 34% | -9383.88 | -20.8% | -4259 | -5125 | 63% | 0.2626 | 0.1645 |
+| v2 calibrated | 4011 | 32% | -10187.19 | -24.8% | -4702 | -5485 | 58% | 0.2445 | 0.1673 |
+
+Before 2026-03-13 (fresh test: strategies were picked on later data)
+
+| Strategy | Trades | P&L | Return/$ |
+|---|---|---|---|
+| v2 calibrated | 15 | +151.03 | +99.4% |
+| v2 + 50% market blend | 13 | +130.80 | +99.7% |
+| Forecast bracket YES | 4 | +104.20 | +249.3% |
+| Long-shot fade (no model) | 2168 | +98.19 | +0.5% |
+| v1 (what we ran live) | 12 | +38.08 | +31.2% |
+| v2 + disagreement cap | 12 | +37.79 | +31.2% |
+| Long-shot fade, limit order | 1166 | -135.59 | -1.2% |
+| Kalshi price-spike fade (no model) | 224 | -144.65 | -6.3% |
+| Market favorite YES (no model) | 2358 | -252.03 | -1.1% |
+| Market favorite, limit order | 1852 | -4313.16 | -23.5% |
 
 Sweep: sigma
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 3955 | -9754.23 | -24.1% |
-| 0.8 | 3812 | -9844.72 | -25.2% |
-| 1.0 | 3977 | -10325.89 | -25.3% |
-| 1.25 | 4236 | -8956.83 | -20.7% |
-| 1.5 | 4380 | -7728.72 | -17.3% |
+| 0.6 | 3990 | -9405.70 | -23.1% |
+| 0.8 | 3853 | -9815.15 | -24.8% |
+| 1.0 | 4011 | -10187.19 | -24.8% |
+| 1.25 | 4268 | -8855.22 | -20.3% |
+| 1.5 | 4416 | -7843.97 | -17.4% |
 
 Sweep: blend
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| blend 0.0, edge 0.03 | 4855 | -11895.85 | -23.9% |
-| blend 0.0, edge 0.05 | 4551 | -11334.67 | -24.3% |
-| blend 0.0, edge 0.08 | 3977 | -10325.89 | -25.3% |
-| blend 0.25, edge 0.03 | 4597 | -11400.67 | -24.2% |
-| blend 0.25, edge 0.05 | 4112 | -10476.98 | -24.8% |
-| blend 0.25, edge 0.08 | 3218 | -8791.93 | -26.6% |
-| blend 0.5, edge 0.03 | 3954 | -10244.14 | -25.2% |
-| blend 0.5, edge 0.05 | 3045 | -8204.67 | -26.2% |
-| blend 0.5, edge 0.08 | 1830 | -4619.88 | -24.5% |
-| blend 0.75, edge 0.03 | 1831 | -5418.17 | -28.7% |
-| blend 0.75, edge 0.05 | 782 | -1970.05 | -24.3% |
-| blend 0.75, edge 0.08 | 203 | -666.42 | -31.6% |
+| blend 0.0, edge 0.03 | 4891 | -11662.46 | -23.2% |
+| blend 0.0, edge 0.05 | 4584 | -11036.50 | -23.5% |
+| blend 0.0, edge 0.08 | 4011 | -10187.19 | -24.8% |
+| blend 0.25, edge 0.03 | 4633 | -11414.80 | -24.0% |
+| blend 0.25, edge 0.05 | 4151 | -10498.61 | -24.6% |
+| blend 0.25, edge 0.08 | 3247 | -8744.37 | -26.2% |
+| blend 0.5, edge 0.03 | 3992 | -10264.49 | -25.0% |
+| blend 0.5, edge 0.05 | 3077 | -8236.42 | -26.0% |
+| blend 0.5, edge 0.08 | 1853 | -4562.21 | -23.9% |
+| blend 0.75, edge 0.03 | 1847 | -5143.32 | -27.0% |
+| blend 0.75, edge 0.05 | 787 | -1928.43 | -23.7% |
+| blend 0.75, edge 0.08 | 211 | -668.88 | -30.5% |
 
 Forecast error (actual minus NBM forecast)
 
 | City | Entry | n | Bias | RMSE |
 |---|---|---|---|---|
-| Austin | day before 10am | 238 | +1.87 | 3.3 |
-| Austin | same day 8am | 240 | +1.57 | 2.94 |
-| Chicago | day before 10am | 238 | +1.45 | 3.44 |
-| Chicago | same day 8am | 236 | +1.27 | 2.86 |
-| Denver | day before 10am | 239 | +1.75 | 3.42 |
-| Denver | same day 8am | 236 | +1.68 | 2.98 |
-| Los Angeles | day before 10am | 237 | +2.30 | 3.89 |
-| Los Angeles | same day 8am | 239 | +2.31 | 3.63 |
-| Miami | same day 8am | 239 | +2.05 | 2.67 |
-| New York | same day 8am | 237 | -0.26 | 2.46 |
-| Philadelphia | same day 8am | 237 | +1.74 | 2.89 |
+| Austin | day before 10am | 240 | +1.84 | 3.29 |
+| Austin | same day 8am | 242 | +1.54 | 2.93 |
+| Chicago | day before 10am | 240 | +1.44 | 3.43 |
+| Chicago | same day 8am | 238 | +1.27 | 2.85 |
+| Denver | day before 10am | 241 | +1.74 | 3.41 |
+| Denver | same day 8am | 238 | +1.67 | 2.97 |
+| Los Angeles | day before 10am | 239 | +2.31 | 3.89 |
+| Los Angeles | same day 8am | 241 | +2.32 | 3.63 |
+| Miami | same day 8am | 241 | +2.05 | 2.66 |
+| New York | same day 8am | 238 | -0.26 | 2.46 |
+| Philadelphia | same day 8am | 238 | +1.74 | 2.88 |
 
 ## Weather: daily lows
 
-1678 events, 2026-03-13 to 2026-11-07.
+2193 events, 2025-12-13 to 2026-11-08.
 
-**Verdict:** Kalshi price-spike fade (no model): +372 on 120 trades (+30.5% per $ staked, t=2.12), profitable in both halves.
+**Verdict:** Long-shot fade (no model): +100 on 3196 trades (+0.3% per $ staked, t=0.92), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Kalshi price-spike fade (no model) | 120 | 58% | +371.72 | +30.5% | +121 | +250 | – | – | 0.2183 |
-| Long-shot fade (no model) | 2477 | 96% | +139.98 | +0.6% | +178 | -39 | – | – | 0.0338 |
-| Long-shot fade, limit order | 1258 | 93% | -106.19 | -0.9% | +67 | -173 | – | – | 0.0634 |
-| Market favorite YES (no model) | 1733 | 47% | -883.86 | -5.0% | -145 | -739 | – | – | 0.2378 |
-| Forecast bracket YES | 537 | 14% | -1657.51 | -29.5% | -945 | -713 | 34% | 0.1623 | 0.1218 |
-| Market favorite, limit order | 1448 | 36% | -2658.75 | -18.5% | -777 | -1881 | – | – | 0.2259 |
-| v2 + 50% market blend | 1828 | 29% | -3909.24 | -20.7% | -1162 | -2747 | 41% | 0.1565 | 0.1412 |
-| v2 calibrated | 2531 | 31% | -5637.22 | -21.7% | -1585 | -4052 | 52% | 0.2009 | 0.1499 |
-| v2 + disagreement cap | 2198 | 31% | -6196.67 | -27.5% | -2188 | -4009 | 50% | 0.1778 | 0.1424 |
-| v1 (what we ran live) | 3741 | 32% | -10462.59 | -27.2% | -4428 | -6035 | 57% | 0.2259 | 0.1472 |
+| Kalshi price-spike fade (no model) | 152 | 53% | +257.44 | +16.7% | -53 | +310 | – | – | 0.2106 |
+| Long-shot fade (no model) | 3196 | 96% | +99.61 | +0.3% | +78 | +21 | – | – | 0.0367 |
+| Long-shot fade, limit order | 1689 | 93% | -204.21 | -1.3% | -71 | -134 | – | – | 0.0667 |
+| Market favorite YES (no model) | 2094 | 47% | -614.23 | -2.9% | +458 | -1073 | – | – | 0.2394 |
+| Forecast bracket YES | 540 | 14% | -1717.56 | -30.3% | -1026 | -692 | 34% | 0.1609 | 0.1206 |
+| Market favorite, limit order | 1741 | 36% | -2965.32 | -17.2% | -795 | -2171 | – | – | 0.226 |
+| v2 + 50% market blend | 1842 | 29% | -3901.93 | -20.5% | -1126 | -2776 | 41% | 0.1562 | 0.1411 |
+| v2 calibrated | 2557 | 31% | -5643.92 | -21.5% | -1580 | -4064 | 52% | 0.1998 | 0.1494 |
+| v2 + disagreement cap | 2226 | 31% | -6118.05 | -26.8% | -2100 | -4018 | 50% | 0.1775 | 0.1426 |
+| v1 (what we ran live) | 3767 | 32% | -10461.69 | -27.0% | -4429 | -6032 | 57% | 0.2259 | 0.1473 |
+
+Before 2026-03-13 (fresh test: strategies were picked on later data)
+
+| Strategy | Trades | P&L | Return/$ |
+|---|---|---|---|
+| Market favorite YES (no model) | 356 | +264.39 | +7.3% |
+| Forecast bracket YES | 7 | +73.31 | +99.5% |
+| v2 + disagreement cap | 17 | +62.01 | +36.3% |
+| v2 + 50% market blend | 17 | -18.42 | -10.6% |
+| v2 calibrated | 18 | -28.84 | -15.7% |
+| v1 (what we ran live) | 17 | -30.72 | -17.7% |
+| Long-shot fade (no model) | 717 | -40.91 | -0.6% |
+| Long-shot fade, limit order | 431 | -98.02 | -2.4% |
+| Kalshi price-spike fade (no model) | 32 | -114.28 | -35.2% |
+| Market favorite, limit order | 290 | -306.98 | -10.7% |
 
 Sweep: sigma
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 3287 | -5361.25 | -16.0% |
-| 0.8 | 2607 | -5173.00 | -19.4% |
-| 1.0 | 2531 | -5637.22 | -21.7% |
-| 1.25 | 2965 | -6727.67 | -22.1% |
-| 1.5 | 3477 | -8617.05 | -24.2% |
+| 0.6 | 3313 | -5234.09 | -15.5% |
+| 0.8 | 2622 | -4958.61 | -18.4% |
+| 1.0 | 2557 | -5643.92 | -21.5% |
+| 1.25 | 2980 | -6754.74 | -22.1% |
+| 1.5 | 3497 | -8674.27 | -24.2% |
 
 Sweep: blend
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| blend 0.0, edge 0.03 | 3917 | -9279.63 | -23.1% |
-| blend 0.0, edge 0.05 | 3363 | -8055.65 | -23.3% |
-| blend 0.0, edge 0.08 | 2531 | -5637.22 | -21.7% |
-| blend 0.25, edge 0.03 | 3348 | -8020.12 | -23.3% |
-| blend 0.25, edge 0.05 | 2631 | -5728.27 | -21.2% |
-| blend 0.25, edge 0.08 | 1691 | -3568.07 | -20.5% |
-| blend 0.5, edge 0.03 | 2286 | -5149.98 | -21.9% |
-| blend 0.5, edge 0.05 | 1468 | -3053.40 | -20.1% |
-| blend 0.5, edge 0.08 | 708 | -606.66 | -8.3% |
-| blend 0.75, edge 0.03 | 605 | -616.35 | -9.8% |
-| blend 0.75, edge 0.05 | 242 | -526.67 | -20.9% |
-| blend 0.75, edge 0.08 | 53 | -353.47 | -64.0% |
+| blend 0.0, edge 0.03 | 3942 | -9193.31 | -22.7% |
+| blend 0.0, edge 0.05 | 3379 | -8079.76 | -23.3% |
+| blend 0.0, edge 0.08 | 2557 | -5643.92 | -21.5% |
+| blend 0.25, edge 0.03 | 3373 | -7957.47 | -22.9% |
+| blend 0.25, edge 0.05 | 2643 | -5745.31 | -21.1% |
+| blend 0.25, edge 0.08 | 1699 | -3555.26 | -20.3% |
+| blend 0.5, edge 0.03 | 2307 | -5047.08 | -21.2% |
+| blend 0.5, edge 0.05 | 1477 | -3104.01 | -20.3% |
+| blend 0.5, edge 0.08 | 713 | -504.92 | -6.8% |
+| blend 0.75, edge 0.03 | 613 | -577.71 | -9.1% |
+| blend 0.75, edge 0.05 | 241 | -516.07 | -20.6% |
+| blend 0.75, edge 0.08 | 53 | -353.82 | -64.0% |
 
 Forecast error (actual minus NBM forecast)
 
 | City | Entry | n | Bias | RMSE |
 |---|---|---|---|---|
-| Austin | day before 10am | 238 | -2.64 | 4.1 |
-| Austin | day before 8pm | 240 | -2.75 | 3.99 |
-| Chicago | day before 10am | 238 | -1.62 | 3.04 |
-| Chicago | day before 8pm | 240 | -1.39 | 2.68 |
-| Denver | day before 10am | 239 | -3.93 | 5.21 |
-| Denver | day before 8pm | 240 | -3.82 | 5.07 |
-| Los Angeles | day before 10am | 238 | +0.36 | 1.72 |
-| Los Angeles | day before 8pm | 240 | +0.49 | 1.61 |
-| Miami | day before 8pm | 238 | -1.00 | 2.4 |
-| New York | day before 8pm | 240 | -1.67 | 2.71 |
-| Philadelphia | day before 8pm | 240 | +0.42 | 2.22 |
+| Austin | day before 10am | 240 | -2.67 | 4.14 |
+| Austin | day before 8pm | 242 | -2.76 | 4.01 |
+| Chicago | day before 10am | 240 | -1.61 | 3.03 |
+| Chicago | day before 8pm | 242 | -1.38 | 2.67 |
+| Denver | day before 10am | 241 | -3.93 | 5.2 |
+| Denver | day before 8pm | 242 | -3.81 | 5.05 |
+| Los Angeles | day before 10am | 240 | +0.36 | 1.71 |
+| Los Angeles | day before 8pm | 242 | +0.48 | 1.61 |
+| Miami | day before 8pm | 240 | -0.98 | 2.39 |
+| New York | day before 8pm | 242 | -1.67 | 2.71 |
+| Philadelphia | day before 8pm | 242 | +0.42 | 2.21 |
 
 ## Crypto: Bitcoin 5pm price
 
-599 events, 2025-03-19 to 2026-11-08.
+239 events, 2026-03-14 to 2026-11-08.
 
-**Verdict:** Vol x0.5, weekends only: +150 on 230 trades (+6.7% per $ staked, t=2.15), profitable in both halves.
+**Verdict:** Time-of-day vol x0.5, against trend + skip spikes: +289 on 234 trades (+12.7% per $ staked, t=4.87), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Time-of-day vol x0.5 | 1521 | 80% | +305.72 | +2.1% | -138 | +444 | 92% | 0.1714 | 0.1587 |
-| Time-of-day vol x0.5, skip spikes | 952 | 82% | +272.57 | +2.9% | -150 | +423 | 92% | 0.1613 | 0.1525 |
-| Time-of-day vol x0.5, against trend + skip spikes | 503 | 82% | +195.64 | +4.0% | -113 | +309 | 92% | 0.1523 | 0.1457 |
-| Regime-scaled vol x0.5 | 1931 | 78% | +174.05 | +0.9% | -216 | +390 | 93% | 0.1882 | 0.1668 |
-| Vol x0.5, weekends only | 230 | 84% | +149.69 | +6.7% | +17 | +132 | 91% | 0.1219 | 0.1265 |
-| Vol x0.5, skip spiked markets | 1085 | 79% | +141.09 | +1.3% | -163 | +304 | 93% | 0.1805 | 0.1617 |
-| Vol x0.5, against the 24h trend | 819 | 79% | +108.88 | +1.4% | -169 | +278 | 93% | 0.1828 | 0.1635 |
-| Vol x0.5, against trend + skip spikes | 575 | 80% | +104.82 | +1.9% | -73 | +178 | 93% | 0.1734 | 0.1566 |
-| Vol x0.5 | 1752 | 78% | +75.81 | +0.4% | -288 | +364 | 93% | 0.1887 | 0.1666 |
-| Vol x0.5, calm market only | 1040 | 79% | +75.58 | +0.8% | -94 | +169 | 92% | 0.1779 | 0.1605 |
-| Long-shot fade (no model) | 1276 | 96% | +59.14 | +0.5% | -52 | +111 | – | – | 0.0356 |
-| Vol x0.5, skip news in window | 1728 | 78% | +56.41 | +0.3% | -287 | +343 | 93% | 0.1892 | 0.1668 |
-| Vol x0.5, news days only | 101 | 79% | +40.11 | +4.1% | -10 | +50 | 93% | 0.1772 | 0.166 |
-| Vol x0.5, skip news days | 1651 | 78% | +35.70 | +0.2% | -290 | +326 | 93% | 0.1894 | 0.1666 |
-| Vol x0.5, busy market only | 712 | 77% | +0.23 | +0.0% | -206 | +206 | 93% | 0.2045 | 0.1755 |
-| Vol x0.5, with the 24h trend | 933 | 78% | -33.07 | -0.4% | -110 | +76 | 93% | 0.1939 | 0.1693 |
-| Vol x0.5, weekdays only | 1522 | 77% | -73.88 | -0.5% | -316 | +243 | 93% | 0.1988 | 0.1726 |
-| Vol x0.75 | 780 | 72% | -503.01 | -6.6% | -313 | -190 | 85% | 0.1707 | 0.153 |
-| v1 + 50% market blend | 281 | 30% | -1131.81 | -39.1% | -642 | -489 | 41% | 0.1107 | 0.0982 |
-| Options vol x0.85, 5c gap | 806 | 56% | -1195.19 | -14.8% | -706 | -489 | 65% | 0.1218 | 0.1107 |
-| v1 (what we ran live) | 444 | 37% | -1383.14 | -30.5% | -929 | -454 | 53% | 0.127 | 0.0986 |
-| Options vol, 8c gap | 415 | 24% | -1412.59 | -32.8% | -1012 | -400 | 40% | 0.1097 | 0.0822 |
-| Vol x0.5, limit order | 944 | 60% | -1711.15 | -18.8% | -1109 | -602 | 93% | 0.3416 | 0.2537 |
-| Options vol, NO only | 590 | 31% | -1763.26 | -29.0% | -1340 | -424 | 45% | 0.1247 | 0.1031 |
-| Vol x0.5, limit order (strict fill) | 907 | 59% | -1830.36 | -20.9% | -1149 | -681 | 92% | 0.3553 | 0.2615 |
-| Vol x0.5 5c edge, limit order | 1038 | 60% | -1947.81 | -19.4% | -1204 | -743 | 91% | 0.3326 | 0.2495 |
-| Options vol, 5c gap | 680 | 31% | -2157.19 | -30.8% | -1286 | -872 | 44% | 0.1143 | 0.0934 |
-| Kalshi price-spike fade (no model) | 1236 | 30% | -3214.89 | -25.2% | -1654 | -1561 | – | – | 0.1513 |
-
-Before 2026-03-13 (fresh test: strategies were picked on later data)
-
-| Strategy | Trades | P&L | Return/$ |
-|---|---|---|---|
-| Vol x0.5, weekends only | 141 | +56.47 | +4.1% |
-| Vol x0.5, news days only | 28 | +6.46 | +2.4% |
-| Vol x0.5, against trend + skip spikes | 358 | -69.23 | -2.0% |
-| Long-shot fade (no model) | 493 | -70.03 | -1.5% |
-| Vol x0.5, calm market only | 601 | -75.32 | -1.3% |
-| Time-of-day vol x0.5, against trend + skip spikes | 268 | -95.70 | -3.7% |
-| Vol x0.5, with the 24h trend | 547 | -125.26 | -2.3% |
-| Time-of-day vol x0.5 | 775 | -132.17 | -1.8% |
-| Time-of-day vol x0.5, skip spikes | 486 | -147.94 | -3.1% |
-| Vol x0.5, against the 24h trend | 494 | -161.37 | -3.4% |
-| Regime-scaled vol x0.5 | 1128 | -163.05 | -1.5% |
-| Vol x0.5, skip spiked markets | 655 | -177.22 | -2.8% |
-| Vol x0.5, busy market only | 440 | -211.31 | -4.9% |
-| Vol x0.5 | 1041 | -286.63 | -2.8% |
-| Vol x0.5, skip news days | 1013 | -293.09 | -3.0% |
-| Vol x0.5, skip news in window | 1037 | -304.27 | -3.0% |
-| Vol x0.5, weekdays only | 900 | -343.10 | -3.9% |
-| Vol x0.75 | 480 | -377.77 | -8.1% |
-| v1 + 50% market blend | 98 | -383.34 | -38.8% |
-| Options vol x0.85, 5c gap | 397 | -679.38 | -17.1% |
-| v1 (what we ran live) | 201 | -707.84 | -34.9% |
-| Options vol, 8c gap | 183 | -759.45 | -40.2% |
-| Options vol, NO only | 245 | -884.51 | -35.3% |
-| Options vol, 5c gap | 307 | -1026.99 | -32.6% |
-| Vol x0.5, limit order | 567 | -1297.02 | -23.7% |
-| Vol x0.5, limit order (strict fill) | 548 | -1358.18 | -25.7% |
-| Vol x0.5 5c edge, limit order | 613 | -1413.22 | -23.9% |
-| Kalshi price-spike fade (no model) | 719 | -2011.15 | -27.1% |
+| Time-of-day vol x0.5 | 742 | 83% | +451.90 | +6.2% | +242 | +210 | 92% | 0.1448 | 0.1422 |
+| Time-of-day vol x0.5, skip spikes | 465 | 86% | +418.25 | +9.2% | +253 | +165 | 92% | 0.1216 | 0.1275 |
+| Vol x0.5 | 707 | 82% | +363.11 | +5.3% | +198 | +165 | 92% | 0.1539 | 0.1463 |
+| Vol x0.5, skip news in window | 687 | 82% | +361.35 | +5.4% | +214 | +148 | 92% | 0.1531 | 0.1459 |
+| Regime-scaled vol x0.5 | 799 | 81% | +337.77 | +4.3% | +250 | +87 | 92% | 0.1616 | 0.1502 |
+| Vol x0.5, skip news days | 634 | 82% | +329.46 | +5.3% | +195 | +135 | 92% | 0.1528 | 0.1452 |
+| Vol x0.5, skip spiked markets | 429 | 84% | +316.05 | +7.5% | +206 | +111 | 92% | 0.1353 | 0.1347 |
+| Time-of-day vol x0.5, against trend + skip spikes | 234 | 89% | +289.08 | +12.7% | +201 | +88 | 92% | 0.0932 | 0.1071 |
+| Vol x0.5, weekdays only | 618 | 81% | +269.89 | +4.5% | +91 | +179 | 92% | 0.1665 | 0.1546 |
+| Vol x0.5, against the 24h trend | 322 | 84% | +261.05 | +8.3% | +192 | +69 | 92% | 0.1305 | 0.1313 |
+| Vol x0.5, busy market only | 270 | 83% | +218.46 | +8.3% | +146 | +73 | 92% | 0.1464 | 0.1455 |
+| Vol x0.5, against trend + skip spikes | 216 | 85% | +171.79 | +8.2% | +152 | +20 | 93% | 0.1268 | 0.1271 |
+| Vol x0.5, calm market only | 437 | 81% | +144.65 | +3.4% | +25 | +119 | 92% | 0.1585 | 0.1468 |
+| Long-shot fade (no model) | 779 | 97% | +127.42 | +1.7% | +61 | +67 | – | – | 0.0256 |
+| Vol x0.5, with the 24h trend | 385 | 80% | +102.06 | +2.7% | +4 | +98 | 92% | 0.1734 | 0.1589 |
+| Vol x0.5, weekends only | 89 | 88% | +93.22 | +10.7% | +56 | +37 | 87% | 0.0663 | 0.0891 |
+| Vol x0.5, news days only | 73 | 81% | +33.65 | +4.7% | +5 | +29 | 93% | 0.1629 | 0.1562 |
+| Vol x0.75 | 298 | 70% | -128.84 | -4.4% | -1 | -128 | 79% | 0.1212 | 0.1164 |
+| Vol x0.5, limit order | 374 | 67% | -410.93 | -11.4% | -233 | -178 | 92% | 0.2788 | 0.22 |
+| Vol x0.5, limit order (strict fill) | 356 | 65% | -468.98 | -13.6% | -263 | -206 | 92% | 0.2926 | 0.2279 |
+| Options vol x0.85, 5c gap | 407 | 51% | -519.41 | -12.6% | -155 | -364 | 60% | 0.107 | 0.0984 |
+| Vol x0.5 5c edge, limit order | 422 | 66% | -531.39 | -13.0% | -286 | -246 | 90% | 0.2762 | 0.2205 |
+| Options vol, 8c gap | 232 | 18% | -653.14 | -26.9% | -260 | -394 | 34% | 0.1073 | 0.0802 |
+| v1 (what we ran live) | 243 | 28% | -675.30 | -26.9% | -229 | -446 | 43% | 0.1117 | 0.0865 |
+| v1 + 50% market blend | 183 | 22% | -748.47 | -39.3% | -434 | -315 | 31% | 0.0762 | 0.0677 |
+| Options vol, NO only | 345 | 27% | -878.75 | -24.6% | -664 | -214 | 40% | 0.1125 | 0.0914 |
+| Options vol, 5c gap | 373 | 26% | -1130.20 | -29.3% | -527 | -603 | 40% | 0.103 | 0.0826 |
+| Kalshi price-spike fade (no model) | 513 | 34% | -1194.03 | -22.6% | -659 | -535 | – | – | 0.1489 |
 
 Sweep: vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.4 | 1955 | +71.09 | +0.4% |
-| 0.5 | 1752 | +75.81 | +0.4% |
-| 0.6 | 1385 | -278.47 | -2.1% |
-| 0.75 | 780 | -503.01 | -6.6% |
-| 1.0 | 444 | -1383.14 | -30.5% |
-| 1.25 | 550 | -2453.82 | -42.6% |
+| 0.4 | 796 | +210.35 | +2.7% |
+| 0.5 | 707 | +363.11 | +5.3% |
+| 0.6 | 557 | +103.84 | +1.9% |
+| 0.75 | 298 | -128.84 | -4.4% |
+| 1.0 | 243 | -675.30 | -26.9% |
+| 1.25 | 338 | -1404.16 | -39.5% |
 
 Sweep: options vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 1578 | -233.59 | -1.5% |
-| 0.7 | 1271 | -717.30 | -5.7% |
-| 0.8 | 936 | -886.16 | -9.5% |
-| 0.9 | 738 | -1602.35 | -21.4% |
-| 1.0 | 680 | -2157.19 | -30.8% |
-| 1.1 | 750 | -2879.65 | -36.8% |
+| 0.6 | 692 | +40.59 | +0.6% |
+| 0.7 | 598 | -156.88 | -2.7% |
+| 0.8 | 464 | -202.79 | -4.4% |
+| 0.9 | 380 | -774.15 | -20.0% |
+| 1.0 | 373 | -1130.20 | -29.3% |
+| 1.1 | 408 | -1234.49 | -28.9% |
 
 Sweep: time-of-day vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.4 | 1944 | +88.51 | +0.5% |
-| 0.5 | 1521 | +305.72 | +2.1% |
-| 0.6 | 1006 | +273.26 | +2.8% |
-| 0.75 | 408 | -8.10 | -0.2% |
-| 1.0 | 328 | -1111.63 | -32.9% |
+| 0.4 | 880 | +272.83 | +3.2% |
+| 0.5 | 742 | +451.90 | +6.2% |
+| 0.6 | 501 | +397.13 | +8.1% |
+| 0.75 | 173 | +109.70 | +6.5% |
+| 1.0 | 151 | -370.20 | -23.7% |
 
 ## Ethereum
 
-594 events, 2025-03-24 to 2026-11-08.
+235 events, 2026-03-19 to 2026-11-08.
 
-**Verdict:** Market favorite (no model): +127 on 114 trades (+11.1% per $ staked, t=1.43), profitable in both halves.
+**Verdict:** Time-of-day vol x0.5, against trend + skip spikes: +174 on 163 trades (+11.0% per $ staked, t=3.54), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Time-of-day vol x0.5, skip spikes | 783 | 82% | +149.25 | +2.0% | -58 | +207 | 92% | 0.1536 | 0.1443 |
-| Time-of-day vol x0.5, against trend + skip spikes | 430 | 84% | +148.01 | +3.5% | -29 | +177 | 93% | 0.1428 | 0.1369 |
-| Market favorite (no model) | 114 | 68% | +126.64 | +11.1% | +91 | +36 | – | – | 0.2027 |
-| Vol x0.5, weekends only | 149 | 83% | +71.91 | +5.0% | +1 | +70 | 92% | 0.1315 | 0.1263 |
-| Time-of-day vol x0.5 | 1226 | 81% | +42.72 | +0.4% | -159 | +202 | 92% | 0.1632 | 0.1496 |
-| Vol x0.5, skip spiked markets | 915 | 80% | +36.49 | +0.4% | -211 | +247 | 93% | 0.1743 | 0.1582 |
-| Vol x0.5, against trend + skip spikes | 495 | 80% | +12.81 | +0.3% | -146 | +159 | 93% | 0.1763 | 0.1595 |
-| Long-shot fade (no model) | 597 | 95% | -26.51 | -0.5% | -93 | +66 | – | – | 0.0452 |
-| Vol x0.5, news days only | 81 | 74% | -53.01 | -6.7% | -22 | -31 | 92% | 0.2085 | 0.1774 |
-| Vol x0.5, against the 24h trend | 693 | 78% | -83.69 | -1.2% | -266 | +182 | 92% | 0.1855 | 0.1652 |
-| Vol x0.75 | 394 | 76% | -92.34 | -2.4% | -179 | +87 | 88% | 0.1684 | 0.1532 |
-| Vol x0.5, calm market only | 754 | 78% | -101.14 | -1.4% | -227 | +126 | 92% | 0.1804 | 0.1617 |
-| Vol x0.5, 5c edge | 1689 | 79% | -118.64 | -0.7% | -388 | +270 | 91% | 0.1773 | 0.1595 |
-| Vol x0.5, busy market only | 660 | 77% | -147.83 | -2.3% | -156 | +8 | 93% | 0.1956 | 0.1694 |
-| Vol x0.5, with the 24h trend | 721 | 78% | -165.28 | -2.4% | -129 | -37 | 92% | 0.1895 | 0.1654 |
-| Regime-scaled vol x0.5 | 1578 | 79% | -184.73 | -1.2% | -323 | +138 | 93% | 0.1822 | 0.1609 |
-| Vol x0.5, skip news days | 1333 | 78% | -195.96 | -1.5% | -329 | +133 | 92% | 0.1863 | 0.1646 |
-| Full vol + 50% market blend | 97 | 23% | -223.31 | -22.1% | -341 | +117 | 34% | 0.1203 | 0.1089 |
-| Vol x0.5, NO only | 893 | 78% | -229.95 | -2.6% | -238 | +8 | 92% | 0.1859 | 0.1638 |
-| Vol x0.5, skip news in window | 1391 | 78% | -244.13 | -1.8% | -382 | +138 | 92% | 0.188 | 0.1656 |
-| Vol x0.5 (Bitcoin's winner) | 1414 | 78% | -248.97 | -1.8% | -407 | +158 | 92% | 0.1875 | 0.1653 |
-| Vol x0.5, weekdays only | 1265 | 77% | -320.88 | -2.6% | -381 | +60 | 93% | 0.1941 | 0.1699 |
-| Options vol x0.85, 5c gap | 429 | 56% | -427.67 | -9.9% | -571 | +144 | 66% | 0.1357 | 0.1209 |
-| Options vol, NO only | 216 | 27% | -525.43 | -23.5% | -595 | +70 | 42% | 0.1231 | 0.0982 |
-| Options vol, 8c gap | 199 | 17% | -581.15 | -28.0% | -715 | +134 | 36% | 0.1287 | 0.0927 |
-| Full vol (v1 rule) | 216 | 28% | -872.28 | -39.2% | -714 | -158 | 46% | 0.1198 | 0.0887 |
-| Options vol, 5c gap | 388 | 22% | -1488.01 | -37.0% | -1224 | -264 | 39% | 0.1177 | 0.0907 |
-| Vol x0.5, limit order | 713 | 57% | -1704.34 | -24.8% | -1094 | -610 | 92% | 0.3593 | 0.2694 |
-| Vol x0.5, limit order (strict fill) | 692 | 56% | -1756.42 | -26.3% | -1120 | -636 | 92% | 0.37 | 0.2764 |
-| Vol x0.5 5c edge, limit order | 833 | 58% | -1892.10 | -23.5% | -1221 | -671 | 91% | 0.3442 | 0.2626 |
-| Kalshi price-spike fade (no model) | 1049 | 30% | -2292.35 | -21.2% | -924 | -1368 | – | – | 0.1704 |
-
-Before 2026-03-13 (fresh test: strategies were picked on later data)
-
-| Strategy | Trades | P&L | Return/$ |
-|---|---|---|---|
-| Market favorite (no model) | 64 | +89.35 | +13.9% |
-| Time-of-day vol x0.5, against trend + skip spikes | 259 | -8.24 | -0.3% |
-| Vol x0.5, weekends only | 102 | -11.15 | -1.1% |
-| Vol x0.5, news days only | 25 | -13.39 | -5.5% |
-| Time-of-day vol x0.5, skip spikes | 469 | -55.12 | -1.2% |
-| Long-shot fade (no model) | 307 | -88.63 | -3.0% |
-| Time-of-day vol x0.5 | 747 | -127.98 | -1.8% |
-| Vol x0.5, with the 24h trend | 472 | -129.90 | -2.8% |
-| Vol x0.5, against trend + skip spikes | 311 | -143.61 | -4.7% |
-| Vol x0.75 | 255 | -161.63 | -6.5% |
-| Vol x0.5, skip spiked markets | 575 | -185.90 | -3.3% |
-| Vol x0.5, busy market only | 452 | -186.03 | -4.2% |
-| Full vol + 50% market blend | 33 | -208.07 | -61.7% |
-| Vol x0.5, calm market only | 453 | -242.35 | -5.5% |
-| Vol x0.5, against the 24h trend | 433 | -298.48 | -7.1% |
-| Vol x0.5, NO only | 614 | -322.81 | -5.4% |
-| Regime-scaled vol x0.5 | 1015 | -354.69 | -3.6% |
-| Vol x0.5, 5c edge | 1087 | -373.06 | -3.5% |
-| Vol x0.5, skip news days | 880 | -414.99 | -4.8% |
-| Vol x0.5, weekdays only | 803 | -417.23 | -5.3% |
-| Vol x0.5 (Bitcoin's winner) | 905 | -428.38 | -4.9% |
-| Vol x0.5, skip news in window | 901 | -441.44 | -5.0% |
-| Options vol, NO only | 101 | -521.70 | -50.6% |
-| Options vol, 8c gap | 79 | -568.57 | -69.8% |
-| Options vol x0.85, 5c gap | 245 | -594.43 | -24.5% |
-| Full vol (v1 rule) | 105 | -682.19 | -63.4% |
-| Options vol, 5c gap | 170 | -1092.46 | -62.5% |
-| Vol x0.5, limit order | 450 | -1324.38 | -30.5% |
-| Vol x0.5, limit order (strict fill) | 436 | -1358.44 | -32.3% |
-| Kalshi price-spike fade (no model) | 684 | -1370.22 | -19.4% |
-| Vol x0.5 5c edge, limit order | 526 | -1456.81 | -28.7% |
+| Vol x0.5, 5c edge | 585 | 82% | +241.18 | +4.2% | +67 | +174 | 90% | 0.1465 | 0.1411 |
+| Vol x0.5, skip news days | 441 | 83% | +224.32 | +5.2% | +75 | +149 | 92% | 0.1437 | 0.1389 |
+| Vol x0.5, against the 24h trend | 253 | 86% | +223.25 | +9.0% | +117 | +106 | 92% | 0.1202 | 0.124 |
+| Vol x0.5, skip spiked markets | 331 | 84% | +223.13 | +6.9% | +95 | +129 | 92% | 0.136 | 0.1352 |
+| Time-of-day vol x0.5, skip spikes | 301 | 86% | +206.84 | +7.0% | +106 | +101 | 92% | 0.1236 | 0.1264 |
+| Vol x0.5, skip news in window | 478 | 82% | +202.60 | +4.3% | +78 | +124 | 92% | 0.1506 | 0.1439 |
+| Options vol x0.85, 5c gap | 178 | 45% | +193.66 | +10.6% | +66 | +128 | 52% | 0.1174 | 0.11 |
+| Regime-scaled vol x0.5 | 548 | 81% | +181.97 | +3.4% | +45 | +136 | 92% | 0.157 | 0.1473 |
+| Time-of-day vol x0.5 | 461 | 83% | +179.66 | +4.0% | +67 | +113 | 92% | 0.1397 | 0.135 |
+| Vol x0.5 (Bitcoin's winner) | 494 | 82% | +176.85 | +3.7% | +56 | +121 | 92% | 0.153 | 0.145 |
+| Time-of-day vol x0.5, against trend + skip spikes | 163 | 90% | +174.20 | +11.0% | +104 | +70 | 93% | 0.0956 | 0.1067 |
+| Vol x0.5, against trend + skip spikes | 179 | 87% | +170.24 | +9.8% | +95 | +75 | 93% | 0.1181 | 0.1213 |
+| Vol x0.5, calm market only | 294 | 82% | +133.78 | +4.7% | +46 | +88 | 91% | 0.1476 | 0.1429 |
+| Vol x0.5, NO only | 267 | 83% | +113.89 | +4.4% | +46 | +68 | 91% | 0.1374 | 0.1338 |
+| Vol x0.5, weekends only | 45 | 89% | +89.62 | +20.3% | +28 | +61 | 88% | 0.0701 | 0.0917 |
+| Vol x0.5, weekdays only | 449 | 81% | +87.23 | +2.0% | +16 | +72 | 92% | 0.1614 | 0.1503 |
+| Vol x0.75 | 134 | 75% | +71.72 | +5.4% | +22 | +50 | 84% | 0.153 | 0.1476 |
+| Long-shot fade (no model) | 285 | 98% | +59.81 | +2.2% | +33 | +27 | – | – | 0.0254 |
+| Vol x0.5, busy market only | 200 | 82% | +43.07 | +2.2% | -1 | +44 | 93% | 0.1611 | 0.1479 |
+| Options vol, NO only | 111 | 20% | +38.27 | +3.3% | -103 | +141 | 32% | 0.1345 | 0.1146 |
+| Market favorite (no model) | 50 | 68% | +37.29 | +7.5% | +20 | +17 | – | – | 0.1987 |
+| Options vol, 8c gap | 117 | 14% | +19.07 | +1.6% | +16 | +3 | 30% | 0.1274 | 0.1024 |
+| Full vol + 50% market blend | 62 | 19% | +5.85 | +0.9% | +86 | -80 | 26% | 0.1112 | 0.1065 |
+| Vol x0.5, with the 24h trend | 241 | 77% | -46.40 | -2.0% | -71 | +24 | 91% | 0.1875 | 0.167 |
+| Vol x0.5, news days only | 53 | 72% | -47.47 | -9.2% | -32 | -15 | 92% | 0.2311 | 0.1953 |
+| Full vol (v1 rule) | 110 | 28% | -179.63 | -15.8% | -135 | -45 | 41% | 0.109 | 0.0919 |
+| Options vol, 5c gap | 213 | 19% | -343.03 | -15.4% | -293 | -50 | 32% | 0.1146 | 0.0963 |
+| Vol x0.5, limit order | 254 | 65% | -368.21 | -15.0% | -141 | -227 | 91% | 0.2829 | 0.2263 |
+| Vol x0.5, limit order (strict fill) | 247 | 64% | -386.23 | -16.2% | -154 | -233 | 91% | 0.2907 | 0.2315 |
+| Vol x0.5 5c edge, limit order | 297 | 65% | -430.60 | -15.0% | -207 | -224 | 89% | 0.2704 | 0.2192 |
+| Kalshi price-spike fade (no model) | 355 | 32% | -877.85 | -24.1% | -361 | -517 | – | – | 0.173 |
 
 Sweep: vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.3 | 2005 | -124.66 | -0.6% |
-| 0.4 | 1771 | -318.19 | -1.8% |
-| 0.5 | 1414 | -248.97 | -1.8% |
-| 0.6 | 951 | -290.21 | -3.1% |
-| 0.75 | 394 | -92.34 | -2.4% |
-| 1.0 | 216 | -872.28 | -39.2% |
+| 0.3 | 717 | +229.05 | +3.3% |
+| 0.4 | 623 | +237.92 | +3.9% |
+| 0.5 | 494 | +176.85 | +3.7% |
+| 0.6 | 318 | +95.34 | +3.1% |
+| 0.75 | 134 | +71.72 | +5.4% |
+| 1.0 | 110 | -179.63 | -15.8% |
 
 Sweep: time-of-day vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.4 | 1681 | -54.04 | -0.3% |
-| 0.5 | 1226 | +42.72 | +0.4% |
-| 0.6 | 689 | -148.94 | -2.2% |
-| 0.75 | 231 | -301.26 | -13.2% |
-| 1.0 | 243 | -982.81 | -38.8% |
+| 0.4 | 618 | +208.20 | +3.5% |
+| 0.5 | 461 | +179.66 | +4.0% |
+| 0.6 | 258 | -36.87 | -1.5% |
+| 0.75 | 90 | -95.95 | -10.7% |
+| 1.0 | 102 | -479.33 | -45.1% |
 
 Sweep: options vol
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 1336 | -423.21 | -3.2% |
-| 0.7 | 866 | -402.93 | -4.7% |
-| 0.8 | 519 | -451.06 | -8.8% |
-| 0.9 | 371 | -673.10 | -17.8% |
-| 1.0 | 388 | -1488.01 | -37.0% |
-| 1.1 | 525 | -2862.73 | -52.1% |
+| 0.6 | 445 | -23.49 | -0.5% |
+| 0.7 | 278 | -75.08 | -2.7% |
+| 0.8 | 185 | +9.60 | +0.5% |
+| 0.9 | 175 | +30.19 | +1.7% |
+| 1.0 | 213 | -343.03 | -15.4% |
+| 1.1 | 295 | -1193.08 | -38.5% |
