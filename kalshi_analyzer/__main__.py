@@ -33,8 +33,10 @@ class Fetcher:
     """Caches outside data for one run so books sharing a city or asset don't refetch it."""
 
     def __init__(self, markets=kalshi.open_markets, extremes=nws.daily_extremes,
-                 spot=crypto.spot, vol=crypto.realized_vol):
+                 spot=crypto.spot, vol=crypto.realized_vol, hourly=crypto.hourly_closes,
+                 mid_before=kalshi.mid_hours_ago):
         self._markets, self._extremes, self._spot, self._vol = markets, extremes, spot, vol
+        self._hourly, self._mid_before = hourly, mid_before
         self.cache = {}
 
     def _get(self, key, fn, *a):
@@ -58,6 +60,12 @@ class Fetcher:
 
     def vol(self, product):
         return self._get(("vol", product), self._vol, product)
+
+    def hourly(self, product):
+        return self._get(("hourly", product), self._hourly, product)
+
+    def mid_before(self, series, ticker, hours=3):
+        return self._get(("mid", series, ticker, hours), self._mid_before, series, ticker, hours)
 
 
 def run_book(book_id, f, now, do_settle=True):
@@ -87,6 +95,11 @@ def run_book(book_id, f, now, do_settle=True):
             continue
         if book.get("event_suffix"):
             markets = [m for m in markets if m["event_ticker"].endswith(book["event_suffix"])]
+        if book["kind"] == "crypto" and markets:
+            if book.get("vol_model") == "tod":
+                ctx["hourly"] = f.hourly(book["asset"])
+            if book.get("skip_spike"):
+                ctx["mid_before"] = f.mid_before
         seen_days = set()
         for m in markets:
             snap, cand = strategy.evaluate(book_id, m, ctx, now)

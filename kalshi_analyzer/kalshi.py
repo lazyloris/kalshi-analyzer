@@ -90,3 +90,16 @@ def open_markets(series):
 def market(ticker, series):
     data = get_json(f"{KALSHI_API}/markets/{ticker}")
     return normalize(data["market"], series)
+
+
+def mid_hours_ago(series, ticker, hours=3, now=None):
+    """Kalshi's YES mid price about `hours` ago from hourly candlesticks, or None."""
+    now = int((now or dt.datetime.now(dt.timezone.utc)).timestamp())
+    data = get_json(f"{KALSHI_API}/series/{series}/markets/{ticker}/candlesticks",
+                    {"start_ts": now - (hours + 2) * 3600, "end_ts": now - hours * 3600 + 1800, "period_interval": 60})
+    best = None
+    for c in data.get("candlesticks") or []:
+        bid, ask = _price(c.get("yes_bid") or {}, "close"), _price(c.get("yes_ask") or {}, "close")
+        if bid is not None and ask is not None and 0 < bid <= ask < 1 and int(c["end_period_ts"]) <= now - hours * 3600 + 1800:
+            best = (bid + ask) / 2
+    return best

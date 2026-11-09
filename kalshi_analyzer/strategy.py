@@ -67,6 +67,12 @@ def model(book_id, m, ctx, now):
     hours = (close - now).total_seconds() / 3600
     if hours <= 0:
         return None
+    if book.get("vol_model") == "tod":  # volatility for the actual hours held (nights/weekends are calmer)
+        from .backtest.signals import live_tod_vol
+        prices = ctx.get("hourly")
+        vol = live_tod_vol(prices, int(now.timestamp()), int(close.timestamp())) if prices else None
+        if vol is None:
+            return None
     vol = vol * book.get("vol_mult", 1.0)
     p = lognormal_probability(st, lo, hi, spot, vol, hours)
     return p, spot, price_sigma(spot, vol, hours), hours, int(hours // 24), C.ASSET_NAMES.get(book["series"][m["series"]], m["series"])
@@ -131,6 +137,12 @@ def evaluate(book_id, m, ctx, now):
                 "spread": round(spread, 4), "volume": m["volume"], "status": "open",
                 **timing(book_id, m, contracts, p, contracts * ask + fee),
             }
+    if best and book.get("skip_spike") and ctx.get("mid_before"):
+        # Leave markets whose price just jumped: in the backtest those moves were real information.
+        before = ctx["mid_before"](m["series"], m["ticker"])
+        if before is not None and m["yes_bid"] is not None and m["yes_ask"] is not None \
+                and abs((m["yes_bid"] + m["yes_ask"]) / 2 - before) >= book["skip_spike"]:
+            return snap, None
     return snap, best
 
 

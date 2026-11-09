@@ -95,18 +95,35 @@ def enrich(events, prices=None, tod=False):
         k0 = bisect.bisect_right(hours, e["ts"] - 24 * HOUR) - 1
         if k >= 0 and k0 >= 0 and e["ts"] - hours[k] <= 3 * HOUR:
             e["ret24"] = math.log(prices[hours[k]] / prices[hours[k0]])
-        if tod and len(window) >= 24 * 27:
-            by, n = {}, {}
-            for t in window:
-                bk = _bucket(t)
-                by[bk] = by.get(bk, 0.0) + rets[t] ** 2
-                n[bk] = n.get(bk, 0) + 1
-            shrink = 5
-            var = lambda bk: (by.get(bk, 0.0) + shrink * v30) / (n.get(bk, 0) + shrink)
-            left = max(1, round((close - e["ts"]) / HOUR))
-            total = sum(var(_bucket(e["ts"] + h * HOUR + HOUR)) for h in range(left))
-            e["tod_vol"] = math.sqrt(total * 8760 / left)
+        if tod:
+            e["tod_vol"] = _tod_vol(rets, window, v30, e["ts"], close)
     return events
+
+
+def _tod_vol(rets, window, v30, ts, close, shrink=5):
+    """Yearly-equivalent volatility for the hours from ts to close, using each hour's own
+    (weekday/weekend, ET hour) variance from the window, shrunk toward the 30-day average."""
+    if len(window) < 24 * 27:
+        return None
+    by, n = {}, {}
+    for t in window:
+        bk = _bucket(t)
+        by[bk] = by.get(bk, 0.0) + rets[t] ** 2
+        n[bk] = n.get(bk, 0) + 1
+    var = lambda bk: (by.get(bk, 0.0) + shrink * v30) / (n.get(bk, 0) + shrink)
+    left = max(1, round((close - ts) / HOUR))
+    total = sum(var(_bucket(ts + h * HOUR + HOUR)) for h in range(left))
+    return math.sqrt(total * 8760 / left)
+
+
+def live_tod_vol(prices, ts, close):
+    """Same as the backtest, for the live paper books: prices = {hour_end_ts: price}, last 30 days."""
+    rets = _hourly_returns(prices)
+    window = [t for t in sorted(rets) if ts - 30 * 86400 <= t <= ts]
+    if not window:
+        return None
+    v30 = sum(rets[t] ** 2 for t in window) / len(window)
+    return _tod_vol(rets, window, v30, ts, close)
 
 
 # ---------------------------------------------------------------- probabilities

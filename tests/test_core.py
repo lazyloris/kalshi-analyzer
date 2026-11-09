@@ -149,7 +149,8 @@ def test_actual_from_above_ladder():
 class FakeFetcher(app.Fetcher):
     def __init__(self, markets):
         super().__init__(markets=lambda s: markets.get(s, []), extremes=lambda la, lo: {"high": {"2026-11-08": 55.5}, "low": {}},
-                         spot=lambda p: 75500.0, vol=lambda p: 0.5)
+                         spot=lambda p: 75500.0, vol=lambda p: 0.5,
+                         hourly=lambda p: None, mid_before=lambda s, t, h: None)
 
 
 def test_full_run_offline(tmp_repo, monkeypatch):
@@ -215,3 +216,25 @@ def test_migrates_weather_v1_files(tmp_repo):
     rows = ledger.read(C.paths("weather_high")["trades"])
     assert rows[0]["forecast"] == "51.0" and rows[0]["distance"] == "0.5"
     assert not (C.DATA_DIR / "trades.csv").exists()
+
+
+def test_hourly_vol_book_models_and_skips_spikes():
+    import math
+    from kalshi_analyzer import strategy
+    from kalshi_analyzer.backtest import signals as S
+    now = dt.datetime(2026, 11, 7, 14, tzinfo=dt.timezone.utc)
+    ts = int(now.timestamp())
+    prices = {ts - h * 3600: 75500 * math.exp(0.004 * math.sin(h * 1.7)) for h in range(0, 32 * 24)}
+    m = mk("BTC-76500", "greater", 76500, None, 0.20, 0.22, day="2026-11-07", series="KXBTCD",
+           close="2026-11-07T22:00:00Z", event="KXBTCD-26NOV0717")
+    ctx = {"spot": 75500.0, "vol": 0.5, "hourly": prices}
+    res = strategy.model("bitcoin_tod", m, ctx, now)
+    assert res is not None and 0 < res[0] < 0.5
+    assert S.live_tod_vol(prices, ts, ts + 8 * 3600) > 0
+    assert strategy.model("bitcoin_tod", m, {"spot": 75500.0, "vol": 0.5}, now) is None  # no hourly prices: no trade
+    _, cand = strategy.evaluate("bitcoin_tod", m, ctx, now)
+    assert cand is not None and cand["side"] == "no"
+    _, spiked = strategy.evaluate("bitcoin_tod", m, {**ctx, "mid_before": lambda s, t: 0.40}, now)
+    assert spiked is None  # a market that just jumped 15c+ is skipped
+    _, calm = strategy.evaluate("bitcoin_tod", m, {**ctx, "mid_before": lambda s, t: 0.22}, now)
+    assert calm is not None
