@@ -126,16 +126,17 @@ def run(now=None):
     return result
 
 
-def verdict(strats, min_trades=30):
-    """Best strategy that made money in BOTH halves of the period with enough trades, if any."""
+def verdict(strats, min_trades=50):
+    """Most reliable strategy (highest t-stat, so small lucky samples don't win) that made money in
+    BOTH halves of the period with enough trades, if any."""
     ok = [s for s in strats if s["trades"] >= min_trades and s["first_half"] > 0 and s["second_half"] > 0]
     if not ok:
         best = max(strats, key=lambda s: s["pnl"])
         return {"id": None, "text": f"No strategy made money in both halves with {min_trades}+ trades. "
                                     f"Least bad: {best['name']} ({best['pnl']:+.0f} on {best['trades']} trades)."}
-    best = max(ok, key=lambda s: s["roi"])
+    best = max(ok, key=lambda s: s["t_stat"] or 0)
     return {"id": best["id"], "text": f"{best['name']}: {best['pnl']:+.0f} on {best['trades']} trades "
-                                      f"({best['roi'] * 100:+.1f}% per $ staked), profitable in both halves."}
+                                      f"({best['roi'] * 100:+.1f}% per $ staked, t={best['t_stat']}), profitable in both halves."}
 
 
 def _roi(v):

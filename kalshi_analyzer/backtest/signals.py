@@ -263,6 +263,18 @@ def crypto_strategies(base_id="c_vol50", tod=True):
         ("s_skip_spiked", "Vol x0.5, skip spiked markets", "Leave markets that just jumped 15c+ alone",
          skip_spiked(base)),
     ]
+    tod_base = E.edge_picker(lambda e, m: p_tod(e, m, 0.5))
+    out += [
+        ("s_combo_trend", "Vol x0.5, against trend + skip spikes", "The two filters that helped both Bitcoin and Ethereum",
+         skip_spiked(by_trend(base, False))),
+    ]
+    if tod:
+        out += [
+            ("s_combo_tod", "Time-of-day vol x0.5, skip spikes", "Hour-by-hour volatility, leave markets that just jumped",
+             skip_spiked(tod_base)),
+            ("s_combo_all", "Time-of-day vol x0.5, against trend + skip spikes", "All three helpful signals together",
+             skip_spiked(by_trend(tod_base, False))),
+        ]
     if tod:
         out.append(("s_tod", "Time-of-day vol x0.5", "Volatility by hour and weekday/weekend, summed over the hours held",
                     E.edge_picker(lambda e, m: p_tod(e, m, 0.5))))
