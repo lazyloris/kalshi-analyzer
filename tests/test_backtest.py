@@ -110,3 +110,40 @@ def test_scanner_analyze_offline(tmp_path, monkeypatch):
     assert r["series"][0]["fade"]["trades"] > 0 and r["series"][0]["fade"]["roi"] > 0
     assert r["arbitrage"]["ladders_checked"] == 90
     assert "Market scanner" in (tmp_path / "scan.md").read_text()
+
+
+def test_asset_events_learn_basis_and_trade(tmp_path, monkeypatch):
+    from kalshi_analyzer.backtest import assets as A
+    monkeypatch.setattr(D, "CACHE", tmp_path / "cache")
+    monkeypatch.setattr(BT, "OUT_JSON", tmp_path / "bt.json")
+    monkeypatch.setattr(BT, "OUT_MD", tmp_path / "bt.md")
+    rnd = random.Random(5)
+    first = dt.datetime(2026, 8, 1, 21, tzinfo=dt.timezone.utc)
+    prices, px = {}, 2000.0
+    t0 = int(first.timestamp()) - 40 * 86400
+    for h in range(0, 110 * 24):
+        px *= 1 + rnd.gauss(0, 0.003)
+        prices[t0 + h * 3600] = px
+    hours = sorted(prices)
+    ms, cs = {}, {}
+    for d in range(60):
+        close = int((first + dt.timedelta(days=d)).timestamp())
+        settle = A.price_at(prices, hours, close, 7200)[1] * 1.004  # Kalshi source 0.4% above ours
+        spot = A.price_at(prices, hours, close - 8 * 3600, 7200)[1]
+        ev = f"KXGOLDD-{d:02d}"
+        for k in range(-4, 5):
+            strike = round(spot * (1 + 0.005 * k), 2)
+            t = f"{ev}-T{strike}"
+            ms[t] = {"ticker": t, "event_ticker": ev, "strike_type": "greater", "floor": strike, "cap": None,
+                     "close_time": dt.datetime.fromtimestamp(close, dt.timezone.utc).isoformat().replace("+00:00", "Z"),
+                     "result": "yes" if settle > strike else "no", "value": f"{settle:.2f}", "source": "live"}
+            p = max(0.03, min(0.97, 0.5 - 0.12 * k))
+            cs[t] = [[close - h * 3600, round(p - 0.01, 2), round(p + 0.01, 2), 3] for h in range(30, 0, -1)]
+    D._save("kalshi_KXGOLDD", {"markets": ms, "candles": cs})
+    D._save("yahoo_close_GC=F", {str(k): v for k, v in prices.items()})
+    evs = A.asset_events("gold", *A.load("gold"))
+    assert evs and abs(evs[-1]["basis"] - 1.004) < 1e-3
+    assert {e["entry"] for e in evs} == {"8h before", "4h before", "1h before"}
+    r = BT.run(dt.datetime(2026, 11, 8, tzinfo=dt.timezone.utc))
+    g = r["books"]["asset_gold"]
+    assert g["events"] > 40 and g["verdict"]["text"] and g["sweeps"]["vol"]
