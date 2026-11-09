@@ -134,12 +134,19 @@ def trades(wallet, max_n=10000):
         return []
 
 
-def closed_positions(wallet, max_n=20000):
-    try:
-        return _pages(f"{DATA}/v2/positions", {"user": wallet, "status": "CLOSED", "limit": 1000}, "closed_v2", max_n)
-    except Exception as e:
-        log(f"  closed {wallet[:10]}: {e}")
-        return []
+def closed_positions(wallet, max_n=10000):
+    """Settled positions: CLOSED (sold or redeemed) plus REDEEMABLE_LOST (held to a loss, never
+    cleared). Without the second, losses are missing and every wallet looks like it always wins."""
+    out = []
+    for st in ("CLOSED", "REDEEMABLE_LOST", "REDEEMABLE"):
+        try:
+            rows = _pages(f"{DATA}/v2/positions", {"user": wallet, "status": st, "limit": 1000, "sort_by": "TIMESTAMP",
+                                                    "sort_direction": "DESC"}, f"pos_{st}", max_n)
+            out += [dict(r, _status=st) for r in rows]
+            log(f"  {st}: {len(rows)}")
+        except Exception as e:
+            log(f"  {st} {wallet[:10]}: {e}")
+    return out
 
 
 def is_sports(t):
@@ -188,7 +195,7 @@ def pnl_split(closed):
     out = {"pre2026": 0.0, "y2026": 0.0, "sports": 0.0, "other": 0.0, "n": len(closed), "win_rate": None}
     wins = 0
     for p in closed:
-        v = _f(p.get("realizedPnl") or p.get("cashPnl") or p.get("totalPnl"))
+        v = _f(p.get("totalPnl") if p.get("totalPnl") is not None else p.get("realizedPnl"))
         ts = p.get("timestamp") or p.get("lastEventAt") or p.get("endDate")
         t = int(_f(ts)) if str(ts).replace(".", "").isdigit() else (
             int(dt.datetime.fromisoformat(str(ts).replace("Z", "+00:00")).timestamp()) if ts else CUT)
@@ -241,6 +248,8 @@ def price_after(asset, ts, delays=(60, 600, 3600)):
 def copy_test(tr, sample=150, slip=0.01):
     """Recent BUYs: wallet's own return vs a copier entering 1/10/60 min later (+1c slippage), held
     to resolution. Fees assumed 0 (most Polymarket markets); slippage covers the spread."""
+    for t in tr:
+        t.setdefault("asset", t.get("tokenId"))
     buys = sorted((t for t in tr if (t.get("side") or "").upper() == "BUY" and t.get("asset")),
                   key=lambda t: -int(_f(t.get("timestamp"))))
     rows = []
@@ -336,18 +345,19 @@ def markdown(r):
               f"Of {p['wallets']} wallets, the half that earned most before 2026 averaged {p['top_half_2026']:+,.0f} in 2026; "
               f"the other half averaged {p['bottom_half_2026']:+,.0f}. {_pct(p['positive_2026_share'])} made money in 2026.", ""]
     L += ["## How they trade", "",
-          "| Wallet | All-time P&L | Trades seen | Sports | Sells | Buys both sides | Both sides cost | Locked-in share | Buys >=90c | Buys <10c |",
-          "|---|---|---|---|---|---|---|---|---|---|"]
+          "| Wallet | All-time P&L | Trades seen | Dates | Sports | Sells | Buys both sides | Both sides cost | Locked-in share | Buys >=90c | Buys <10c |",
+          "|---|---|---|---|---|---|---|---|---|---|---|"]
     for w in r["wallets"]:
         s = w.get("style") or {}
         mix = s.get("buy_price_mix") or {}
         L.append(f"| {w['name'] or w['wallet'][:10]} | {format(w['pnl'], '+,.0f') if w.get('pnl') is not None else '–'} | "
-                 f"{s.get('trades', 0)} | {_pct(s.get('sports_share'))} | {_pct(s.get('sell_share'))} | "
+                 f"{s.get('trades', 0)} | {(s.get('from') or '')[5:]} to {(s.get('to') or '')[5:]} | {_pct(s.get('sports_share'))} | {_pct(s.get('sell_share'))} | "
                  f"{_pct(s.get('both_sides_share'))} | {s.get('both_sides_avg_cost') or '–'} | "
                  f"{_pct(s.get('both_sides_locked_share'))} | {_pct(mix.get('>=90c'))} | {_pct(mix.get('<10c'))} |")
     L += ["", "Both sides cost = average price of side A + side B in markets where they bought both. Under $1.00 "
               "means the pair pays out more than it cost whichever side wins (a locked-in profit).", "",
-          "## Realized P&L split (closed positions)", "",
+          "## P&L split (settled positions, includes losses held to the end)", "",
+          "Totals can differ from the leaderboard: the API caps how many positions we can read.", "",
           "| Wallet | Positions | Win rate | Before 2026 | 2026 | Sports | Other |", "|---|---|---|---|---|---|---|"]
     for w in r["wallets"]:
         q = w.get("pnl_split") or {}
