@@ -142,3 +142,14 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 **Caveats:** returns are per buy and not weighted by dollars. Position totals from the API were capped and inconsistent, so they were dropped. No fees assumed.
 
 **Next:** the swisstony-style swing pairing (buy one side after a drop, the other side after the opposite swing, aiming for under $1 combined) can be tested on Kalshi 1-minute data for live sports.
+
+## 2026-11-09 — Swing pairing test v2 (run 42716975260, branch minute-lag)
+
+**Setup:** same rules as v1. Major leagues come first, capped at 400 markets per series. That gives 5,220 sports markets: NBA, MLB, NHL, NCAAF, MLS, NCAAMB, NFL and La Liga. It also adds 4,688 Bitcoin and Ethereum daily markets from the minute-lag data.
+
+**Result: it loses everywhere.**
+- Sports: -13% to -14.5% in all 9 settings, with t from -14 to -28. 56-72% of trades locked, and the locks made +$18k to +$30k. Trades that never locked lost $31k to $46k.
+- Crypto: -11% to -15%. 66-82% locked, with the same pattern.
+- Both halves are negative.
+
+**Conclusion:** "buy the dip, lock the other side on the rebound" loses as a taker. The dips that never come back cost more than the locks earn. This is the same adverse selection as before. swisstony-style profits, if real, would need maker fills (earning the spread), which candles can't test. Swing pairing is closed.
