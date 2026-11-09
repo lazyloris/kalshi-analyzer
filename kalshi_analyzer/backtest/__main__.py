@@ -242,7 +242,8 @@ def run(now=None):
                 "name": name, "events": len({e["event"] for e in evs}), "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, n, desc, bid, E.simulate(evs, pick))
                                for sid, n, desc, pick in E.late_strategies() + B.strategies()
-                               + S.exit_strategies(E.market_favorite(0.80, 0.90), "Late fav 80-90c")],
+                               + S.exit_strategies(E.market_favorite(0.80, 0.90), "Late fav 80-90c")
+                               + S.volume_strategies()],
                 "market_calibration": E.market_calibration(evs),
             }
     try:

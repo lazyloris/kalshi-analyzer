@@ -346,3 +346,16 @@ def test_consensus_needs_k_strategies():
     t = {"ts": 1, "ticker": "A", "side": "yes", "pnl": 1, "cost": 10, "date": "2025-01-01"}
     assert len(M.consensus({"a": [t], "b": [t], "c": [t]}, 3)) == 1
     assert M.consensus({"a": [t], "b": [t]}, 3) == []
+
+
+def test_volume_move_follows_heavy_flow():
+    from kalshi_analyzer.backtest import signals as S
+    ts = 1_735_732_800
+    cs = [[ts - h * 3600, 0.38, 0.40, 10] for h in range(30, 3, -1)]
+    cs += [[ts - h * 3600, 0.50, 0.52, 100] for h in (2, 1, 0)]
+    m = {"ticker": "A", "bid": 0.50, "ask": 0.52, "won_yes": True, "cs": cs}
+    e = {"ts": ts, "date": "2025-01-01", "series": "S", "city": "C", "entry": "x", "markets": [m]}
+    t, = S.volume_move(True)(e)
+    assert t["side"] == "yes"
+    t, = S.volume_move(False)(e)
+    assert t["side"] == "no"
