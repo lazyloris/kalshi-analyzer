@@ -105,3 +105,17 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 - Market favorite on older lows: +7.3% on 356 trades, but it's -2.9% over the full period, so that's noise.
 
 **Conclusion:** same story as crypto. Every edge we found on 2026-03 to 2026-11 disappears on the earlier data. Kalshi weather and crypto prices look efficient at hourly resolution after fees.
+
+## 2026-11-09 — Polymarket top-wallet study (wallet-study branch)
+
+**Setup:** Top 30 all-time wallets by P&L, plus swisstony. Read-only public data (Data API v2, CLOB). For each wallet we read the latest 10,000 trades. The copy test buys 150 of their recent resolved buys at the price 1, 10 and 60 minutes later, with a 1c worse fill, held to resolution.
+
+**Findings:**
+- **Two kinds of top wallets.** Most of the list are a few huge one-off bets (e.g. Theo4 and Fredi9999 on the 2024 election), which can't be repeated. The rest are high-frequency sports traders: swisstony made 10,000 trades in about two days (2026-08-25 to 08-26), so it's almost certainly a bot.
+- **Both-sides buying is real but mixed.** swisstony bought both sides in 43% of its markets. 42% of those pairs cost under $1 (locked profit), but the average pair cost $1.03. RN1 averaged $0.97 with 53% locked.
+- **Copying the sports bots loses.** Held to the end, swisstony's own buys were -5%; copying them was -8.7% at 1 or 10 minutes and -14% at 60 minutes. RN1: 0% for them, -15% to -34% for copiers. Their profit comes from pairing sides and trading speed, not from the individual bets.
+- **Copying big one-off bettors looks great** (+60% to +140%), but 150 buys there are often 1 to 3 markets, so the real sample is tiny. That's luck or conviction, not a repeatable edge.
+
+**Caveats:** returns are per buy and not weighted by dollars. Position totals from the API were capped and inconsistent, so they were dropped. No fees assumed.
+
+**Next:** the swisstony-style swing pairing (buy one side after a drop, the other side after the opposite swing, aiming for under $1 combined) can be tested on Kalshi 1-minute data for live sports.
