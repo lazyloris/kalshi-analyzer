@@ -290,3 +290,15 @@ def test_market_prior_ignores_a_useless_model():
     pick = B.market_prior(lambda e, m: rnd.random(), min_obs=100)
     E.simulate(evs, pick)
     assert pick.state["w"] <= 0.1
+
+
+def test_fat_tail_odds_come_from_past_moves_only():
+    from kalshi_analyzer.backtest import fattail as F
+    t0 = 1_700_000_000 - 1_700_000_000 % 3600
+    prices = {t0 + i * 3600: 100.0 * (1.01 if i % 2 else 1.0) for i in range(24 * 100)}
+    e = {"ts": t0 + 24 * 95 * 3600, "hours": 1, "spot": 100.0}
+    prices[e["ts"] + 3600] = 1e9  # a future price must not leak in
+    assert F.attach([e], prices) == 1
+    assert max(e["emp"]) < 0.02
+    m = {"strike_type": "greater", "floor": "100.5", "cap": None}
+    assert abs(F.p_emp(e, m) - 0.5) < 0.02  # half of past 1h moves were +1%

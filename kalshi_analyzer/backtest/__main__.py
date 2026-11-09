@@ -16,6 +16,7 @@ from . import data as D
 from . import engine as E
 from . import signals as S
 from . import bayes as B
+from . import fattail as F
 
 OUT_JSON = C.DASHBOARD_DATA / "backtest.json"
 OUT_MD = C.ROOT / "reports" / "backtest.md"
@@ -110,6 +111,7 @@ def run(now=None):
         iv = {int(k): v for k, v in D._load("dvol_BTC", {}).items()}
         has_iv = E.attach_ivol(evs, iv) if evs and iv else 0
         S.enrich(evs, prices, tod=True)
+        has_emp = F.attach(evs, prices) if evs else 0
         if evs:
             result["books"]["bitcoin"] = {
                 "name": C.BOOKS["bitcoin"]["name"], "events": len({e["event"] for e in evs}),
@@ -117,11 +119,14 @@ def run(now=None):
                 "strategies": [_strategy_result(sid, name, desc, "bitcoin", E.simulate(evs, pick))
                                for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])
                                + S.crypto_strategies()
-                               + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")],
+                               + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")
+                               + (F.strategies() if has_emp else [])],
                 "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]],
                            **({"options vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]}
                               if has_iv else {}),
-                           "time-of-day vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()]},
+                           "time-of-day vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()],
+                           **({"fat-tail": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in F.sweep()]}
+                              if has_emp else {})},
                 "iv_coverage": round(has_iv / len(evs), 3),
                 "market_calibration": E.market_calibration(evs),
             }
