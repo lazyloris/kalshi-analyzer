@@ -43,9 +43,9 @@
   "closes_at": "2026-11-09T22:00:00Z",
   "results_by": "2026-11-09T23:00+00:00",
   "expected_pnl": "4.39",
-  "mark_price": 0.26,
-  "mark_pnl": -5.71,
-  "marked_at": "2026-11-09T00:56+00:00"
+  "mark_price": 0.37,
+  "mark_pnl": -3.95,
+  "marked_at": "2026-11-09T08:01+00:00"
  },
  {
   "trade_id": "KXGOLDD-26NOV0917-T4085-no",
@@ -91,8 +91,8 @@
   "closes_at": "2026-11-09T22:00:00Z",
   "results_by": "2026-11-09T23:00+00:00",
   "expected_pnl": "3.79",
-  "mark_price": 0.33,
-  "mark_pnl": -4.98,
-  "marked_at": "2026-11-09T00:56+00:00"
+  "mark_price": 0.43,
+  "mark_pnl": -3.58,
+  "marked_at": "2026-11-09T08:01+00:00"
  }
 ]
