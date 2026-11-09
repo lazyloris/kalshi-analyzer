@@ -140,7 +140,8 @@ def kalshi_series(series, since, workers=4):
     return _fill_candles(series, cached, workers)
 
 
-def _fill_candles(series, cached, workers, keep=None):
+def _fill_candles(series, cached, workers, keep=None, deadline=None):
+    """deadline (time.time() value): stop early and save what we have; the next run continues."""
     todo = [m for t, m in cached["markets"].items() if t not in cached["candles"] and (keep is None or keep(m))]
     log(f"{series}: {len(cached['markets'])} settled markets, {len(todo)} need candles")
 
@@ -153,18 +154,21 @@ def _fill_candles(series, cached, workers, keep=None):
 
     done = 0
     with ThreadPoolExecutor(workers) as ex:
-        for t, cs in ex.map(job, todo):
-            if cs is not None:
-                cached["candles"][t] = cs
-            done += 1
-            if done % 500 == 0:
-                log(f"  {series}: {done}/{len(todo)}")
-                _save(f"kalshi_{series}", cached)
+        for i in range(0, len(todo), 500):
+            if deadline and time.time() > deadline:
+                log(f"  {series}: time budget used up at {done}/{len(todo)}; next run continues")
+                break
+            for t, cs in ex.map(job, todo[i:i + 500]):
+                if cs is not None:
+                    cached["candles"][t] = cs
+                done += 1
+            log(f"  {series}: {done}/{len(todo)}")
+            _save(f"kalshi_{series}", cached)
     _save(f"kalshi_{series}", cached)
     return cached
 
 
-def kalshi_events(series, event_tickers, keep=None, workers=4):
+def kalshi_events(series, event_tickers, keep=None, workers=4, deadline=None):
     """Same as kalshi_series but for a list of event tickers (Bitcoin has too many hourly events).
     keep(market) -> bool limits which markets get candles (e.g. strikes near the price)."""
     cached = _load(f"kalshi_{series}", {"markets": {}, "candles": {}, "events": []})
@@ -178,7 +182,7 @@ def kalshi_events(series, event_tickers, keep=None, workers=4):
         if rows:
             seen.add(ev)
     cached["events"] = sorted(seen)
-    return _fill_candles(series, cached, workers, keep)
+    return _fill_candles(series, cached, workers, keep, deadline)
 
 
 def nbm_forecasts(code, start, end):
@@ -244,11 +248,11 @@ def coinbase_hourly(product, start, end):
     return cached
 
 
-def btc_event_tickers(start, end, suffix="17"):
+def btc_event_tickers(start, end, suffix="17", series="KXBTCD"):
     out, d = [], start
     months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
     while d <= end:
-        out.append(f"KXBTCD-{d:%y}{months[d.month - 1]}{d:%d}{suffix}")
+        out.append(f"{series}-{d:%y}{months[d.month - 1]}{d:%d}{suffix}")
         d += dt.timedelta(days=1)
     return out
 
