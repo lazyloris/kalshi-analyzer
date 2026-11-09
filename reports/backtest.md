@@ -6,7 +6,7 @@ Flat $10 per trade at the ask plus Kalshi fees, held to settlement. Prices are r
 
 1672 events, 2026-03-13 to 2026-11-07.
 
-**Verdict:** Kalshi price-spike fade (no model): +259 on 260 trades (+9.8% per $ staked), profitable in both halves.
+**Verdict:** Kalshi price-spike fade (no model): +259 on 260 trades (+9.8% per $ staked, t=1.1), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
@@ -68,7 +68,7 @@ Forecast error (actual minus NBM forecast)
 
 1678 events, 2026-03-13 to 2026-11-07.
 
-**Verdict:** Kalshi price-spike fade (no model): +372 on 120 trades (+30.5% per $ staked), profitable in both halves.
+**Verdict:** Kalshi price-spike fade (no model): +372 on 120 trades (+30.5% per $ staked, t=2.12), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
@@ -130,19 +130,22 @@ Forecast error (actual minus NBM forecast)
 
 239 events, 2026-03-14 to 2026-11-08.
 
-**Verdict:** Vol x0.5, weekends only: +93 on 89 trades (+10.7% per $ staked), profitable in both halves.
+**Verdict:** Time-of-day vol x0.5, against trend + skip spikes: +289 on 234 trades (+12.7% per $ staked, t=4.87), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
 | Time-of-day vol x0.5 | 742 | 83% | +451.90 | +6.2% | +242 | +210 | 92% | 0.1448 | 0.1422 |
+| Time-of-day vol x0.5, skip spikes | 465 | 86% | +418.25 | +9.2% | +253 | +165 | 92% | 0.1216 | 0.1275 |
 | Vol x0.5 | 707 | 82% | +363.11 | +5.3% | +198 | +165 | 92% | 0.1539 | 0.1463 |
 | Vol x0.5, skip news in window | 687 | 82% | +361.35 | +5.4% | +214 | +148 | 92% | 0.1531 | 0.1459 |
 | Regime-scaled vol x0.5 | 799 | 81% | +337.77 | +4.3% | +250 | +87 | 92% | 0.1616 | 0.1502 |
 | Vol x0.5, skip news days | 634 | 82% | +329.46 | +5.3% | +195 | +135 | 92% | 0.1528 | 0.1452 |
 | Vol x0.5, skip spiked markets | 429 | 84% | +316.05 | +7.5% | +206 | +111 | 92% | 0.1353 | 0.1347 |
+| Time-of-day vol x0.5, against trend + skip spikes | 234 | 89% | +289.08 | +12.7% | +201 | +88 | 92% | 0.0932 | 0.1071 |
 | Vol x0.5, weekdays only | 618 | 81% | +269.89 | +4.5% | +91 | +179 | 92% | 0.1665 | 0.1546 |
 | Vol x0.5, against the 24h trend | 322 | 84% | +261.05 | +8.3% | +192 | +69 | 92% | 0.1305 | 0.1313 |
 | Vol x0.5, busy market only | 270 | 83% | +218.46 | +8.3% | +146 | +73 | 92% | 0.1464 | 0.1455 |
+| Vol x0.5, against trend + skip spikes | 216 | 85% | +171.79 | +8.2% | +152 | +20 | 93% | 0.1268 | 0.1271 |
 | Vol x0.5, calm market only | 437 | 81% | +144.65 | +3.4% | +25 | +119 | 92% | 0.1585 | 0.1468 |
 | Long-shot fade (no model) | 779 | 97% | +127.42 | +1.7% | +61 | +67 | – | – | 0.0256 |
 | Vol x0.5, with the 24h trend | 385 | 80% | +102.06 | +2.7% | +4 | +98 | 92% | 0.1734 | 0.1589 |
@@ -196,7 +199,7 @@ Sweep: time-of-day vol
 
 235 events, 2026-03-19 to 2026-11-08.
 
-**Verdict:** Vol x0.5, weekends only: +90 on 45 trades (+20.3% per $ staked), profitable in both halves.
+**Verdict:** Time-of-day vol x0.5, against trend + skip spikes: +174 on 163 trades (+11.0% per $ staked, t=3.54), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
@@ -204,11 +207,14 @@ Sweep: time-of-day vol
 | Vol x0.5, skip news days | 441 | 83% | +224.32 | +5.2% | +75 | +149 | 92% | 0.1437 | 0.1389 |
 | Vol x0.5, against the 24h trend | 253 | 86% | +223.25 | +9.0% | +117 | +106 | 92% | 0.1202 | 0.124 |
 | Vol x0.5, skip spiked markets | 331 | 84% | +223.13 | +6.9% | +95 | +129 | 92% | 0.136 | 0.1352 |
+| Time-of-day vol x0.5, skip spikes | 301 | 86% | +206.84 | +7.0% | +106 | +101 | 92% | 0.1236 | 0.1264 |
 | Vol x0.5, skip news in window | 478 | 82% | +202.60 | +4.3% | +78 | +124 | 92% | 0.1506 | 0.1439 |
 | Options vol x0.85, 5c gap | 178 | 45% | +193.66 | +10.6% | +66 | +128 | 52% | 0.1174 | 0.11 |
 | Regime-scaled vol x0.5 | 548 | 81% | +181.97 | +3.4% | +45 | +136 | 92% | 0.157 | 0.1473 |
 | Time-of-day vol x0.5 | 461 | 83% | +179.66 | +4.0% | +67 | +113 | 92% | 0.1397 | 0.135 |
 | Vol x0.5 (Bitcoin's winner) | 494 | 82% | +176.85 | +3.7% | +56 | +121 | 92% | 0.153 | 0.145 |
+| Time-of-day vol x0.5, against trend + skip spikes | 163 | 90% | +174.20 | +11.0% | +104 | +70 | 93% | 0.0956 | 0.1067 |
+| Vol x0.5, against trend + skip spikes | 179 | 87% | +170.24 | +9.8% | +95 | +75 | 93% | 0.1181 | 0.1213 |
 | Vol x0.5, calm market only | 294 | 82% | +133.78 | +4.7% | +46 | +88 | 91% | 0.1476 | 0.1429 |
 | Vol x0.5, NO only | 267 | 83% | +113.89 | +4.4% | +46 | +68 | 91% | 0.1374 | 0.1338 |
 | Vol x0.5, weekends only | 45 | 89% | +89.62 | +20.3% | +28 | +61 | 88% | 0.0701 | 0.0917 |
