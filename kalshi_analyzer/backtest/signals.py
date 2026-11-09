@@ -20,7 +20,8 @@ import datetime as dt
 import math
 from zoneinfo import ZoneInfo
 
-from ..model import lognormal_probability
+from .. import config as C
+from ..model import lognormal_probability, taker_fee
 from . import engine as E
 
 ET = ZoneInfo("America/New_York")
@@ -245,6 +246,40 @@ def maker(base, improve=0.01, through=False, stop_before_h=0):
     return pick
 
 
+def exits(base, tp=None, sl=None):
+    """Sell early: take profit when our side's bid is tp above what we paid, stop loss when it is sl
+    below. Checked on each later hourly quote; selling pays the bid plus the taker fee again."""
+    def pick(e):
+        by_t = {m["ticker"]: m for m in e["markets"]}
+        out = []
+        for t in base(e):
+            m = by_t[t["ticker"]]
+            yes = t["side"] == "yes"
+            end = _ts(m["close_time"])
+            for c in m.get("cs") or []:
+                if not (e["ts"] < c[0] < end) or c[1] is None or c[2] is None:
+                    continue
+                bid = c[1] if yes else 1 - c[2]
+                if (tp is not None and bid >= t["price"] + tp) or (sl is not None and bid <= t["price"] - sl):
+                    n = t["contracts"]
+                    fee = taker_fee(n, bid, C.FEE_RATE)
+                    t = {**t, "pnl": round(n * bid - fee - t["cost"], 4), "won": n * bid - fee > t["cost"],
+                         "exit": "tp" if bid > t["price"] else "sl"}
+                    break
+            out.append(t)
+        return out
+    return pick
+
+
+def exit_strategies(base, label):
+    return [
+        (f"x_tp15_sl15_{label}", f"{label}, take profit 15c / stop 15c", "Sell early at +15c or -15c", exits(base, 0.15, 0.15)),
+        (f"x_tp10_{label}", f"{label}, take profit 10c", "Sell once up 10c, else hold", exits(base, tp=0.10)),
+        (f"x_sl10_{label}", f"{label}, stop loss 10c", "Sell once down 10c, else hold", exits(base, sl=0.10)),
+        (f"x_sl25_{label}", f"{label}, stop loss 25c", "Sell once down 25c, else hold", exits(base, sl=0.25)),
+    ]
+
+
 # ---------------------------------------------------------------- catalogues
 
 def crypto_strategies(base_id="c_vol50", tod=True):
@@ -295,6 +330,7 @@ def crypto_strategies(base_id="c_vol50", tod=True):
     if tod:
         out.append(("s_tod", "Time-of-day vol x0.5", "Volatility by hour and weekday/weekend, summed over the hours held",
                     E.edge_picker(lambda e, m: p_tod(e, m, 0.5))))
+    out += exit_strategies(base, "Vol x0.5")
     return out
 
 
@@ -309,7 +345,7 @@ def weather_strategies():
         ("s_fav_maker", "Market favorite, limit order", "Favorite YES at 35-75c, posting 1c above the bid",
          maker(E.market_favorite())),
         ("s_spike_fade", "Kalshi price-spike fade (no model)", "Bet against a 15c+ move in the last 3 hours", spike_fade()),
-    ]
+    ] + exit_strategies(E.market_favorite(), "Favorite")
 
 
 def has_any(events, key):

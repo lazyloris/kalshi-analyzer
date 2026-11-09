@@ -302,3 +302,15 @@ def test_fat_tail_odds_come_from_past_moves_only():
     assert max(e["emp"]) < 0.02
     m = {"strike_type": "greater", "floor": "100.5", "cap": None}
     assert abs(F.p_emp(e, m) - 0.5) < 0.02  # half of past 1h moves were +1%
+
+
+def test_stop_loss_sells_at_the_bid_when_price_falls():
+    from kalshi_analyzer.backtest import signals as S
+    m = {"ticker": "A", "bid": 0.48, "ask": 0.50, "won_yes": True, "close_time": "2025-01-01T22:00:00Z",
+         "cs": [[1735740000, 0.30, 0.32, 0], [1735743600, 0.90, 0.92, 0]]}  # 14:00Z drop, 15:00Z recover
+    e = {"ts": 1735736400, "date": "2025-01-01", "markets": [m]}
+    base = lambda ev: [{"ticker": "A", "side": "yes", "price": 0.50, "contracts": 20, "cost": 10.18, "won": True, "pnl": 9.82}]
+    t, = S.exits(base, sl=0.15)(e)
+    assert t["exit"] == "sl" and t["pnl"] < 0
+    t, = S.exits(base, tp=0.30)(e)
+    assert t["exit"] == "tp" and 0 < t["pnl"] < 9.82
