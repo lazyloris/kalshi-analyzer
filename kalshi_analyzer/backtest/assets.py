@@ -26,6 +26,7 @@ from collections import defaultdict
 from . import data as D
 from . import engine as E
 from . import signals as S
+from . import bayes as B
 
 UTC = dt.timezone.utc
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
@@ -303,7 +304,8 @@ def books(strategy_result):
             "series": sorted(data), "basis": round(statistics.median(e["basis"] for e in evs), 4),
             "strategies": [strategy_result(sid, name, desc, bid, E.simulate(evs, pick))
                            for sid, name, desc, pick in strategies() + (E.iv_strategies() if has_iv else [])
-                           + S.crypto_strategies(tod=tod)],
+                           + S.crypto_strategies(tod=tod)
+                           + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")],
             "sweeps": sw, "iv_coverage": round(has_iv / len(evs), 3),
             "market_calibration": E.market_calibration(evs),
         }

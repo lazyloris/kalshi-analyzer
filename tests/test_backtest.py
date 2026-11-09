@@ -256,3 +256,37 @@ def test_late_strategies_buy_the_favorite_in_band():
     picks = {sid: pick(e) for sid, _, _, pick in E.late_strategies()}
     assert [t["ticker"] for t in picks["late_fav_80_90"]] == ["A"]
     assert picks["late_fav_50_80"] == [] and picks["late_fav_90_97"] == []
+
+
+def test_beta_cdf_matches_known_values():
+    from kalshi_analyzer.backtest.bayes import beta_cdf
+    assert abs(beta_cdf(0.5, 1, 1) - 0.5) < 1e-9
+    assert abs(beta_cdf(0.3, 2, 2) - (3 * 0.09 - 2 * 0.027)) < 1e-9
+    assert abs(beta_cdf(0.9, 50, 5) - (1 - beta_cdf(0.1, 5, 50))) < 1e-9
+
+
+def _ev(i, ask, won):
+    import datetime as dt
+    d = (dt.date(2025, 1, 1) + dt.timedelta(days=i)).isoformat()
+    ts = int(dt.datetime.fromisoformat(d + "T12:00:00+00:00").timestamp())
+    return {"book": "x", "kind": "weather", "series": "S", "event": f"E{i}", "date": d, "entry": "a", "ts": ts,
+            "city": "C", "markets": [{"ticker": f"T{i}", "bid": ask - 0.02, "ask": ask, "won_yes": won}]}
+
+
+def test_bucket_posterior_learns_underpriced_level_without_lookahead():
+    from kalshi_analyzer.backtest import bayes as B, engine as E
+    evs = [_ev(i, 0.60, True) for i in range(80)]  # 60c YES that always wins
+    trades = E.simulate(evs, B.bucket_posterior(0.95))
+    assert trades and all(t["side"] == "yes" for t in trades)
+    first = min(t["date"] for t in trades)
+    assert first >= evs[31]["date"]  # needs 30 settled (outcomes known 2 days later)
+
+
+def test_market_prior_ignores_a_useless_model():
+    from kalshi_analyzer.backtest import bayes as B, engine as E
+    import random
+    rnd = random.Random(1)
+    evs = [_ev(i, 0.52, rnd.random() < 0.5) for i in range(400)]
+    pick = B.market_prior(lambda e, m: rnd.random(), min_obs=100)
+    E.simulate(evs, pick)
+    assert pick.state["w"] <= 0.1

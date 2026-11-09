@@ -15,6 +15,7 @@ from .. import config as C
 from . import data as D
 from . import engine as E
 from . import signals as S
+from . import bayes as B
 
 OUT_JSON = C.DASHBOARD_DATA / "backtest.json"
 OUT_MD = C.ROOT / "reports" / "backtest.md"
@@ -90,7 +91,8 @@ def run(now=None):
             continue
         S.enrich(evs)
         strategies = [_strategy_result(sid, name, desc, b, E.simulate(evs, pick))
-                      for sid, name, desc, pick in E.weather_strategies() + S.weather_strategies()]
+                      for sid, name, desc, pick in E.weather_strategies() + S.weather_strategies()
+                      + B.strategies(lambda e, m: E.p_weather(e, m), "forecast")]
         sw = E.weather_sweeps()
         result["books"][b] = {
             "name": C.BOOKS[b]["name"], "events": len({e["event"] for e in evs}),
@@ -114,7 +116,8 @@ def run(now=None):
                 "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, name, desc, "bitcoin", E.simulate(evs, pick))
                                for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])
-                               + S.crypto_strategies()],
+                               + S.crypto_strategies()
+                               + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")],
                 "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]],
                            **({"options vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]}
                               if has_iv else {}),
@@ -131,7 +134,7 @@ def run(now=None):
             result["books"][bid] = {
                 "name": name, "events": len({e["event"] for e in evs}), "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, n, desc, bid, E.simulate(evs, pick))
-                               for sid, n, desc, pick in E.late_strategies()],
+                               for sid, n, desc, pick in E.late_strategies() + B.strategies()],
                 "market_calibration": E.market_calibration(evs),
             }
     try:
