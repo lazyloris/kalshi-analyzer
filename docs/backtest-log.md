@@ -105,3 +105,26 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 - Market favorite on older lows: +7.3% on 356 trades, but it's -2.9% over the full period, so that's noise.
 
 **Conclusion:** same story as crypto. Every edge we found on 2026-03 to 2026-11 disappears on the earlier data. Kalshi weather and crypto prices look efficient at hourly resolution after fees.
+
+## 2026-11-09 — Minute-level lag test v2 (run 42697790490, branch minute-lag)
+
+**Setup:** 1-minute Kalshi quotes and 1-minute Coinbase prices over the last 6 hours before 5pm ET, about 400 days, for Bitcoin (KXBTCD) and Ethereum (KXETHD). Strikes within 2% of the price. Signal: the coin moved X% in 5 minutes and Kalshi is below a lognormal fair value by the edge, in the direction of the move. Taker fees are included. Fill delay is 0, 1 or 2 minutes (the order fills at that later quote). There are 72 settings per coin. We report both a per-trade t-stat and a per-day t-stat.
+
+**Result:**
+- **BTC: holding to settlement after a 0.2% move, 5c edge, vol x0.5:**
+  - No delay: +2.2% on 5,907 trades. t = 3.4 per trade, 2.5 per day.
+  - 1-2 minute delay: +1.8%. t = 2.3 per day.
+  - Both halves and the older year are positive.
+  - Every vol x0.5 row is positive, and every vol x0.75 or x1.0 row loses.
+- **ETH:** the same setting is +2.0% on 2,027 trades, but the per-day t is only 0.5, and +1.2% with a 2-minute delay. Positive but not significant.
+- **15-minute exit (pure lag capture):** loses in every setting on both coins.
+
+**Conclusion:** this is the first crypto signal that survives the older year and a fill delay, but only on Bitcoin. With 144 settings tried, a per-day t of 2.3 is borderline. It also depends entirely on vol x0.5, which failed at hourly resolution on the older year. Treat it as a candidate for a small paper book, not as proven.
+
+## 2026-11-09 — Swing pairing test v1 (branch minute-lag)
+
+**Setup:** buy the side that dropped D cents in 5 minutes. If it swings back X cents, buy the other side so the pair costs under $1; otherwise hold to settlement. 1-minute quotes over the last 4 hours of trading, sports *GAME series, 90 days.
+
+**Result:** every setting lost, -11.5% to -20%. Locks made +700 to +1,200, but positions that never locked lost more. Coverage was bad: 240 markets, mostly eSoccer (KXESOCCERGAME has 45k markets and filled the download cap). The crypto group had 0 markets because the minute caches weren't restored.
+
+**Fix:** v2 takes major leagues first, caps each series at 400 markets, and restores the crypto minute data.

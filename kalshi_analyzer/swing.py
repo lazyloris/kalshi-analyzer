@@ -60,14 +60,22 @@ def minute_candles(series, m, start, end):
     return []
 
 
-def fetch_sports(days, max_markets=4000):
+MAJOR = ("KXNFLGAME", "KXNBAGAME", "KXMLBGAME", "KXNHLGAME", "KXNCAAFGAME", "KXNCAAMBGAME", "KXEPLGAME",
+         "KXUCLGAME", "KXLALIGAGAME", "KXSERIEAGAME", "KXBUNDESLIGAGAME", "KXMLSGAME", "KXATPGAME", "KXWTAGAME",
+         "KXWNBAGAME", "KXLIGUE1GAME")
+
+
+def fetch_sports(days, per_series=400, max_markets=5000):
+    """Major leagues first, at most `per_series` markets each (eSoccer alone has 45k)."""
     cache = D._load("swing_sports", {"markets": {}})
     since = dt.date.today() - dt.timedelta(days=days)
+    available = game_series()
+    order = [x for x in MAJOR if x in available] + [x for x in available if x not in MAJOR]
     todo = []
-    for s in game_series():
+    for s in order:
         ms = D.settled_markets(series=s, since=since)
         D.log(f"{s}: {len(ms)} settled markets")
-        todo += [(s, m) for m in ms if m["ticker"] not in cache["markets"]]
+        todo += [(s, m) for m in ms[:per_series] if m["ticker"] not in cache["markets"]]
     for i, (s, m) in enumerate(todo[:max_markets]):
         end = last_trade_ts(m)
         if not end:
@@ -83,7 +91,13 @@ def fetch_sports(days, max_markets=4000):
 
 
 def crypto_markets():
+    from . import minute_lag
     out = {}
+    for asset in ("BTC", "ETH"):
+        try:
+            minute_lag.fetch(120, asset)  # uses the cached download when present
+        except Exception as e:
+            D.log(f"crypto minute data {asset}: {e}")
     for name in ("minute_lag", "minute_lag_ETH"):
         c = D._load(name, {"events": {}})
         for ev, e in c["events"].items():

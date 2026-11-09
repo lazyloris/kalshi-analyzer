@@ -27,9 +27,13 @@ jobs:
         with:
           path: data/backtest_cache
           key: swing-${{ github.run_id }}
-          restore-keys: |
-            swing-
-            minute-lag-
+          restore-keys: swing-
+      - name: Restore crypto minute data from the lag test
+        uses: actions/cache/restore@v4
+        with:
+          path: data/backtest_cache/minute_lag*.json.gz
+          key: minute-lag-none
+          restore-keys: minute-lag-
       - name: Download and replay
         run: python -m kalshi_analyzer.swing --days ${{ github.event.inputs.days || '90' }}
       - name: Save minute data
