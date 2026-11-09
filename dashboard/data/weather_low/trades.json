@@ -43,9 +43,9 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.86,
-  "mark_pnl": -1.03,
-  "marked_at": "2026-11-09T08:01+00:00"
+  "mark_price": 0.88,
+  "mark_pnl": -0.83,
+  "marked_at": "2026-11-09T10:35+00:00"
  },
  {
   "trade_id": "KXLOWTMIA-26NOV09-B69.5-no",
@@ -91,9 +91,9 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.13",
-  "mark_price": 0.94,
-  "mark_pnl": -0.33,
-  "marked_at": "2026-11-09T08:01+00:00"
+  "mark_price": 0.93,
+  "mark_pnl": -0.43,
+  "marked_at": "2026-11-09T10:35+00:00"
  },
  {
   "trade_id": "KXLOWTDEN-26NOV09-B36.5-no",
@@ -139,9 +139,9 @@
   "closes_at": "2026-11-10T08:00:00Z",
   "results_by": "2026-11-10T16:00+00:00",
   "expected_pnl": "-0.18",
-  "mark_price": 0.89,
-  "mark_pnl": -0.83,
-  "marked_at": "2026-11-09T08:01+00:00"
+  "mark_price": 0.91,
+  "mark_pnl": -0.63,
+  "marked_at": "2026-11-09T10:35+00:00"
  },
  {
   "trade_id": "KXLOWTNYC-26NOV09-T49-no",
@@ -187,8 +187,8 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.24",
-  "mark_price": 0.78,
-  "mark_pnl": -1.64,
-  "marked_at": "2026-11-09T08:01+00:00"
+  "mark_price": 0.84,
+  "mark_pnl": -1.04,
+  "marked_at": "2026-11-09T10:35+00:00"
  }
 ]

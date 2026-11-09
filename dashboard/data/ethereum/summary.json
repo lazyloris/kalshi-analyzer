@@ -1,0 +1,73 @@
+{
+ "book": "ethereum",
+ "name": "Crypto: Ethereum 5pm price",
+ "short": "Ethereum",
+ "kind": "crypto",
+ "unit": "$",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-09T10:35+00:00",
+ "strategy_version": "eth-v1",
+ "rules": {
+  "MIN_EDGE": 0.08,
+  "MIN_PRICE": 0.05,
+  "MAX_PRICE": 0.9,
+  "MAX_SPREAD": 0.1,
+  "MIN_LEAD_HOURS": 2,
+  "MAX_POSITIONS_PER_EVENT": 2,
+  "STAKE_DOLLARS": 10.0
+ },
+ "strategy": "model",
+ "model": {
+  "fallback_vol": 0.65,
+  "asset": "ETH-USD",
+  "vol_mult": 0.5
+ },
+ "markets": [
+  "KXETHD"
+ ],
+ "bankroll": 1000.0,
+ "open_exposure": 38.7,
+ "totals": {
+  "n": 0
+ },
+ "open_count": 4,
+ "open_mark_pnl": -1.39,
+ "open_marked": 4,
+ "open_expected_pnl": 8.98,
+ "upcoming": [
+  {
+   "results_by": "2026-11-09T23:00+00:00",
+   "closes_at": "2026-11-09T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.57,
+   "expected_pnl": 5.15
+  },
+  {
+   "results_by": "2026-11-13T23:00+00:00",
+   "closes_at": "2026-11-13T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.13,
+   "expected_pnl": 3.83
+  }
+ ],
+ "breakdowns": {
+  "city": {},
+  "side": {},
+  "edge": {},
+  "price": {},
+  "days_ahead": {},
+  "bracket_distance": {},
+  "bracket_type": {},
+  "cause": {},
+  "version": {}
+ },
+ "calibration": [],
+ "forecast_accuracy": [],
+ "suggestions": [
+  {
+   "priority": 0,
+   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+  }
+ ],
+ "bankroll_curve": []
+}
