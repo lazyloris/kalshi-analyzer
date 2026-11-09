@@ -4,157 +4,127 @@ Flat $10 per trade at the ask plus Kalshi fees, held to settlement. Prices are r
 
 ## Weather: daily highs
 
-3731 events, 2025-03-18 to 2026-11-08.
+1679 events, 2026-03-13 to 2026-11-08.
 
-**Verdict:** No strategy made money in both halves with 50+ trades. Least bad: Kalshi price-spike fade (no model) (+114 on 484 trades).
+**Verdict:** Kalshi price-spike fade (no model): +259 on 260 trades (+9.8% per $ staked, t=1.1), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Kalshi price-spike fade (no model) | 484 | 44% | +114.33 | +2.3% | -204 | +318 | – | – | 0.195 |
-| Long-shot fade (no model) | 4930 | 95% | +26.45 | +0.1% | +41 | -14 | – | – | 0.0436 |
-| Market favorite YES (no model) | 4569 | 50% | -180.22 | -0.4% | -134 | -46 | – | – | 0.2425 |
-| Long-shot fade, limit order | 2821 | 92% | -482.16 | -1.8% | -220 | -262 | – | – | 0.0734 |
-| Forecast bracket YES | 739 | 10% | -3397.55 | -43.7% | -1711 | -1686 | 33% | 0.1466 | 0.0915 |
-| Market favorite, limit order | 3719 | 39% | -6414.99 | -17.5% | -4312 | -2103 | – | – | 0.2359 |
-| v2 + disagreement cap | 3213 | 33% | -8369.79 | -25.4% | -4217 | -4153 | 54% | 0.2012 | 0.1572 |
-| v2 + 50% market blend | 3555 | 31% | -9247.46 | -25.3% | -4237 | -5011 | 46% | 0.1904 | 0.1646 |
-| v1 (what we ran live) | 4401 | 34% | -9383.88 | -20.8% | -4259 | -5125 | 63% | 0.2626 | 0.1645 |
-| v2 calibrated | 4011 | 32% | -10187.19 | -24.8% | -4702 | -5485 | 58% | 0.2445 | 0.1673 |
-
-Before 2026-03-13 (fresh test: strategies were picked on later data)
-
-| Strategy | Trades | P&L | Return/$ |
-|---|---|---|---|
-| v2 calibrated | 15 | +151.03 | +99.4% |
-| v2 + 50% market blend | 13 | +130.80 | +99.7% |
-| Forecast bracket YES | 4 | +104.20 | +249.3% |
-| Long-shot fade (no model) | 2168 | +98.19 | +0.5% |
-| v1 (what we ran live) | 12 | +38.08 | +31.2% |
-| v2 + disagreement cap | 12 | +37.79 | +31.2% |
-| Long-shot fade, limit order | 1166 | -135.59 | -1.2% |
-| Kalshi price-spike fade (no model) | 224 | -144.65 | -6.3% |
-| Market favorite YES (no model) | 2358 | -252.03 | -1.1% |
-| Market favorite, limit order | 1852 | -4313.16 | -23.5% |
+| Kalshi price-spike fade (no model) | 260 | 49% | +258.98 | +9.8% | +67 | +192 | – | – | 0.2092 |
+| Market favorite YES (no model) | 2211 | 53% | +71.81 | +0.3% | -47 | +118 | – | – | 0.2422 |
+| Long-shot fade (no model) | 2762 | 95% | -71.74 | -0.3% | -105 | +33 | – | – | 0.047 |
+| Long-shot fade, limit order | 1655 | 92% | -346.57 | -2.2% | -216 | -131 | – | – | 0.076 |
+| Market favorite, limit order | 1867 | 44% | -2101.83 | -11.4% | -1226 | -876 | – | – | 0.2412 |
+| Forecast bracket YES | 731 | 10% | -3501.21 | -45.5% | -1857 | -1644 | 33% | 0.1453 | 0.0884 |
+| v2 + disagreement cap | 3203 | 33% | -8460.37 | -25.8% | -4292 | -4169 | 54% | 0.2014 | 0.1572 |
+| v2 + 50% market blend | 3539 | 31% | -9190.90 | -25.3% | -4231 | -4960 | 46% | 0.1906 | 0.1645 |
+| v1 (what we ran live) | 4389 | 34% | -9421.96 | -20.9% | -4338 | -5084 | 63% | 0.263 | 0.1644 |
+| v2 calibrated | 3995 | 32% | -10355.64 | -25.3% | -4952 | -5403 | 58% | 0.245 | 0.167 |
 
 Sweep: sigma
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 3990 | -9405.70 | -23.1% |
-| 0.8 | 3853 | -9815.15 | -24.8% |
-| 1.0 | 4011 | -10187.19 | -24.8% |
-| 1.25 | 4268 | -8855.22 | -20.3% |
-| 1.5 | 4416 | -7843.97 | -17.4% |
+| 0.6 | 3973 | -9722.92 | -23.9% |
+| 0.8 | 3830 | -9874.47 | -25.1% |
+| 1.0 | 3995 | -10355.64 | -25.3% |
+| 1.25 | 4252 | -9010.07 | -20.7% |
+| 1.5 | 4398 | -7802.42 | -17.4% |
 
 Sweep: blend
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| blend 0.0, edge 0.03 | 4891 | -11662.46 | -23.2% |
-| blend 0.0, edge 0.05 | 4584 | -11036.50 | -23.5% |
-| blend 0.0, edge 0.08 | 4011 | -10187.19 | -24.8% |
-| blend 0.25, edge 0.03 | 4633 | -11414.80 | -24.0% |
-| blend 0.25, edge 0.05 | 4151 | -10498.61 | -24.6% |
-| blend 0.25, edge 0.08 | 3247 | -8744.37 | -26.2% |
-| blend 0.5, edge 0.03 | 3992 | -10264.49 | -25.0% |
-| blend 0.5, edge 0.05 | 3077 | -8236.42 | -26.0% |
-| blend 0.5, edge 0.08 | 1853 | -4562.21 | -23.9% |
-| blend 0.75, edge 0.03 | 1847 | -5143.32 | -27.0% |
-| blend 0.75, edge 0.05 | 787 | -1928.43 | -23.7% |
-| blend 0.75, edge 0.08 | 211 | -668.88 | -30.5% |
+| blend 0.0, edge 0.03 | 4874 | -11935.47 | -23.9% |
+| blend 0.0, edge 0.05 | 4569 | -11364.42 | -24.2% |
+| blend 0.0, edge 0.08 | 3995 | -10355.64 | -25.3% |
+| blend 0.25, edge 0.03 | 4615 | -11430.42 | -24.1% |
+| blend 0.25, edge 0.05 | 4130 | -10506.73 | -24.8% |
+| blend 0.25, edge 0.08 | 3234 | -8845.93 | -26.6% |
+| blend 0.5, edge 0.03 | 3972 | -10273.89 | -25.2% |
+| blend 0.5, edge 0.05 | 3061 | -8258.67 | -26.2% |
+| blend 0.5, edge 0.08 | 1844 | -4652.67 | -24.5% |
+| blend 0.75, edge 0.03 | 1844 | -5473.73 | -28.8% |
+| blend 0.75, edge 0.05 | 788 | -1952.79 | -23.9% |
+| blend 0.75, edge 0.08 | 207 | -650.07 | -30.2% |
 
 Forecast error (actual minus NBM forecast)
 
 | City | Entry | n | Bias | RMSE |
 |---|---|---|---|---|
-| Austin | day before 10am | 240 | +1.84 | 3.29 |
-| Austin | same day 8am | 242 | +1.54 | 2.93 |
-| Chicago | day before 10am | 240 | +1.44 | 3.43 |
-| Chicago | same day 8am | 238 | +1.27 | 2.85 |
-| Denver | day before 10am | 241 | +1.74 | 3.41 |
-| Denver | same day 8am | 238 | +1.67 | 2.97 |
-| Los Angeles | day before 10am | 239 | +2.31 | 3.89 |
-| Los Angeles | same day 8am | 241 | +2.32 | 3.63 |
-| Miami | same day 8am | 241 | +2.05 | 2.66 |
+| Austin | day before 10am | 239 | +1.85 | 3.3 |
+| Austin | same day 8am | 241 | +1.55 | 2.94 |
+| Chicago | day before 10am | 239 | +1.45 | 3.44 |
+| Chicago | same day 8am | 237 | +1.27 | 2.86 |
+| Denver | day before 10am | 240 | +1.75 | 3.42 |
+| Denver | same day 8am | 237 | +1.68 | 2.97 |
+| Los Angeles | day before 10am | 238 | +2.30 | 3.89 |
+| Los Angeles | same day 8am | 240 | +2.31 | 3.63 |
+| Miami | same day 8am | 240 | +2.05 | 2.67 |
 | New York | same day 8am | 238 | -0.26 | 2.46 |
 | Philadelphia | same day 8am | 238 | +1.74 | 2.88 |
 
 ## Weather: daily lows
 
-2193 events, 2025-12-13 to 2026-11-08.
+1685 events, 2026-03-13 to 2026-11-08.
 
-**Verdict:** Long-shot fade (no model): +100 on 3196 trades (+0.3% per $ staked, t=0.92), profitable in both halves.
+**Verdict:** Kalshi price-spike fade (no model): +372 on 120 trades (+30.5% per $ staked, t=2.12), profitable in both halves.
 
 | Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |
 |---|---|---|---|---|---|---|---|---|---|
-| Kalshi price-spike fade (no model) | 152 | 53% | +257.44 | +16.7% | -53 | +310 | – | – | 0.2106 |
-| Long-shot fade (no model) | 3196 | 96% | +99.61 | +0.3% | +78 | +21 | – | – | 0.0367 |
-| Long-shot fade, limit order | 1689 | 93% | -204.21 | -1.3% | -71 | -134 | – | – | 0.0667 |
-| Market favorite YES (no model) | 2094 | 47% | -614.23 | -2.9% | +458 | -1073 | – | – | 0.2394 |
-| Forecast bracket YES | 540 | 14% | -1717.56 | -30.3% | -1026 | -692 | 34% | 0.1609 | 0.1206 |
-| Market favorite, limit order | 1741 | 36% | -2965.32 | -17.2% | -795 | -2171 | – | – | 0.226 |
-| v2 + 50% market blend | 1842 | 29% | -3901.93 | -20.5% | -1126 | -2776 | 41% | 0.1562 | 0.1411 |
-| v2 calibrated | 2557 | 31% | -5643.92 | -21.5% | -1580 | -4064 | 52% | 0.1998 | 0.1494 |
-| v2 + disagreement cap | 2226 | 31% | -6118.05 | -26.8% | -2100 | -4018 | 50% | 0.1775 | 0.1426 |
-| v1 (what we ran live) | 3767 | 32% | -10461.69 | -27.0% | -4429 | -6032 | 57% | 0.2259 | 0.1473 |
-
-Before 2026-03-13 (fresh test: strategies were picked on later data)
-
-| Strategy | Trades | P&L | Return/$ |
-|---|---|---|---|
-| Market favorite YES (no model) | 356 | +264.39 | +7.3% |
-| Forecast bracket YES | 7 | +73.31 | +99.5% |
-| v2 + disagreement cap | 17 | +62.01 | +36.3% |
-| v2 + 50% market blend | 17 | -18.42 | -10.6% |
-| v2 calibrated | 18 | -28.84 | -15.7% |
-| v1 (what we ran live) | 17 | -30.72 | -17.7% |
-| Long-shot fade (no model) | 717 | -40.91 | -0.6% |
-| Long-shot fade, limit order | 431 | -98.02 | -2.4% |
-| Kalshi price-spike fade (no model) | 32 | -114.28 | -35.2% |
-| Market favorite, limit order | 290 | -306.98 | -10.7% |
+| Kalshi price-spike fade (no model) | 120 | 58% | +371.72 | +30.5% | +121 | +250 | – | – | 0.2183 |
+| Long-shot fade (no model) | 2479 | 96% | +140.52 | +0.6% | +179 | -38 | – | – | 0.0337 |
+| Long-shot fade, limit order | 1258 | 93% | -106.19 | -0.9% | +67 | -173 | – | – | 0.0634 |
+| Market favorite YES (no model) | 1738 | 47% | -878.62 | -5.0% | -127 | -752 | – | – | 0.2379 |
+| Forecast bracket YES | 538 | 14% | -1636.91 | -29.0% | -955 | -682 | 34% | 0.1626 | 0.1226 |
+| Market favorite, limit order | 1451 | 36% | -2658.34 | -18.5% | -787 | -1871 | – | – | 0.2261 |
+| v2 + 50% market blend | 1832 | 29% | -3923.53 | -20.7% | -1183 | -2741 | 41% | 0.1567 | 0.1413 |
+| v2 calibrated | 2540 | 31% | -5606.99 | -21.5% | -1600 | -4007 | 52% | 0.201 | 0.1502 |
+| v2 + disagreement cap | 2206 | 31% | -6183.28 | -27.3% | -2029 | -4154 | 50% | 0.178 | 0.1427 |
+| v1 (what we ran live) | 3750 | 32% | -10430.97 | -27.1% | -4437 | -5994 | 57% | 0.2259 | 0.1474 |
 
 Sweep: sigma
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| 0.6 | 3313 | -5234.09 | -15.5% |
-| 0.8 | 2622 | -4958.61 | -18.4% |
-| 1.0 | 2557 | -5643.92 | -21.5% |
-| 1.25 | 2980 | -6754.74 | -22.1% |
-| 1.5 | 3497 | -8674.27 | -24.2% |
+| 0.6 | 3294 | -5351.45 | -16.0% |
+| 0.8 | 2614 | -5175.87 | -19.3% |
+| 1.0 | 2540 | -5606.99 | -21.5% |
+| 1.25 | 2974 | -6727.78 | -22.0% |
+| 1.5 | 3487 | -8610.94 | -24.1% |
 
 Sweep: blend
 
 | Setting | Trades | P&L | Return/$ |
 |---|---|---|---|
-| blend 0.0, edge 0.03 | 3942 | -9193.31 | -22.7% |
-| blend 0.0, edge 0.05 | 3379 | -8079.76 | -23.3% |
-| blend 0.0, edge 0.08 | 2557 | -5643.92 | -21.5% |
-| blend 0.25, edge 0.03 | 3373 | -7957.47 | -22.9% |
-| blend 0.25, edge 0.05 | 2643 | -5745.31 | -21.1% |
-| blend 0.25, edge 0.08 | 1699 | -3555.26 | -20.3% |
-| blend 0.5, edge 0.03 | 2307 | -5047.08 | -21.2% |
-| blend 0.5, edge 0.05 | 1477 | -3104.01 | -20.3% |
-| blend 0.5, edge 0.08 | 713 | -504.92 | -6.8% |
-| blend 0.75, edge 0.03 | 613 | -577.71 | -9.1% |
-| blend 0.75, edge 0.05 | 241 | -516.07 | -20.6% |
-| blend 0.75, edge 0.08 | 53 | -353.82 | -64.0% |
+| blend 0.0, edge 0.03 | 3929 | -9268.47 | -23.0% |
+| blend 0.0, edge 0.05 | 3374 | -8034.75 | -23.2% |
+| blend 0.0, edge 0.08 | 2540 | -5606.99 | -21.5% |
+| blend 0.25, edge 0.03 | 3359 | -7999.22 | -23.2% |
+| blend 0.25, edge 0.05 | 2639 | -5687.59 | -20.9% |
+| blend 0.25, edge 0.08 | 1695 | -3582.36 | -20.5% |
+| blend 0.5, edge 0.03 | 2292 | -5185.41 | -21.9% |
+| blend 0.5, edge 0.05 | 1472 | -3067.69 | -20.2% |
+| blend 0.5, edge 0.08 | 710 | -600.31 | -8.2% |
+| blend 0.75, edge 0.03 | 607 | -610.00 | -9.7% |
+| blend 0.75, edge 0.05 | 242 | -526.67 | -20.9% |
+| blend 0.75, edge 0.08 | 53 | -353.47 | -64.0% |
 
 Forecast error (actual minus NBM forecast)
 
 | City | Entry | n | Bias | RMSE |
 |---|---|---|---|---|
-| Austin | day before 10am | 240 | -2.67 | 4.14 |
-| Austin | day before 8pm | 242 | -2.76 | 4.01 |
-| Chicago | day before 10am | 240 | -1.61 | 3.03 |
-| Chicago | day before 8pm | 242 | -1.38 | 2.67 |
-| Denver | day before 10am | 241 | -3.93 | 5.2 |
-| Denver | day before 8pm | 242 | -3.81 | 5.05 |
-| Los Angeles | day before 10am | 240 | +0.36 | 1.71 |
-| Los Angeles | day before 8pm | 242 | +0.48 | 1.61 |
-| Miami | day before 8pm | 240 | -0.98 | 2.39 |
-| New York | day before 8pm | 242 | -1.67 | 2.71 |
-| Philadelphia | day before 8pm | 242 | +0.42 | 2.21 |
+| Austin | day before 10am | 239 | -2.63 | 4.09 |
+| Austin | day before 8pm | 241 | -2.73 | 3.98 |
+| Chicago | day before 10am | 239 | -1.61 | 3.04 |
+| Chicago | day before 8pm | 241 | -1.38 | 2.67 |
+| Denver | day before 10am | 240 | -3.92 | 5.2 |
+| Denver | day before 8pm | 241 | -3.81 | 5.06 |
+| Los Angeles | day before 10am | 239 | +0.37 | 1.72 |
+| Los Angeles | day before 8pm | 241 | +0.49 | 1.61 |
+| Miami | day before 8pm | 239 | -0.99 | 2.39 |
+| New York | day before 8pm | 241 | -1.67 | 2.7 |
+| Philadelphia | day before 8pm | 241 | +0.42 | 2.21 |
 
 ## Crypto: Bitcoin 5pm price
 
