@@ -25,6 +25,7 @@ from collections import defaultdict
 
 from . import data as D
 from . import engine as E
+from . import signals as S
 
 UTC = dt.timezone.utc
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
@@ -237,7 +238,8 @@ def asset_events(aid, data_by_series, prices):
                 q = E.quote(cands.get(m["ticker"], []), ts)
                 if q is None:
                     continue
-                mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes"})
+                mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes",
+                           "cs": cands.get(m["ticker"], [])})
             if mk:
                 out.append({"book": f"asset_{aid}", "kind": "crypto", "series": s, "code": aid, "city": s,
                             "event": ev, "date": dt.datetime.fromtimestamp(close, UTC).date().isoformat(),
@@ -288,7 +290,11 @@ def books(strategy_result):
         bid = f"asset_{aid}"
         iv = {int(k): v for k, v in D._load(iv_file(aid), {}).items()} if iv_file(aid) else {}
         has_iv = E.attach_ivol(evs, iv) if iv else 0
+        tod = a["src"][0] == "coinbase"  # 24/7 markets only
+        S.enrich(evs, prices, tod=tod)
         sw = {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in sweeps()["vol"]]}
+        if tod and S.has_any(evs, "tod_vol"):
+            sw["time-of-day vol"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()]
         if has_iv:
             sw["options vol"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]
         out[bid] = {
@@ -296,7 +302,8 @@ def books(strategy_result):
             "first": evs[0]["date"], "last": evs[-1]["date"],
             "series": sorted(data), "basis": round(statistics.median(e["basis"] for e in evs), 4),
             "strategies": [strategy_result(sid, name, desc, bid, E.simulate(evs, pick))
-                           for sid, name, desc, pick in strategies() + (E.iv_strategies() if has_iv else [])],
+                           for sid, name, desc, pick in strategies() + (E.iv_strategies() if has_iv else [])
+                           + S.crypto_strategies(tod=tod)],
             "sweeps": sw, "iv_coverage": round(has_iv / len(evs), 3),
             "market_calibration": E.market_calibration(evs),
         }

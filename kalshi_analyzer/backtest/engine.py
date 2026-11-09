@@ -84,7 +84,8 @@ def weather_events(book_id, kalshi_by_series, nbm_by_code):
                     q = quote(data["candles"].get(m["ticker"], []), ts)
                     if q is None:
                         continue
-                    mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes"})
+                    mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes",
+                               "cs": data["candles"].get(m["ticker"], [])})
                 if mk:
                     out.append({"book": book_id, "kind": "weather", "series": series, "code": code,
                                 "city": stn["city"], "event": ev, "date": day.isoformat(), "entry": name,
@@ -138,7 +139,8 @@ def crypto_events(series, data, prices, entries=((8, "8h before"), (4, "4h befor
                 q = quote(data["candles"].get(m["ticker"], []), ts)
                 if q is None:
                     continue
-                mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes"})
+                mk.append({**m, "bid": q[0], "ask": q[1], "vol24": q[2], "won_yes": m["result"] == "yes",
+                               "cs": data["candles"].get(m["ticker"], [])})
             if mk:
                 out.append({"book": "bitcoin", "kind": "crypto", "series": series, "code": "BTC", "city": "Bitcoin",
                             "event": ev, "date": dt.datetime.fromtimestamp(close, dt.timezone.utc).date().isoformat(),
