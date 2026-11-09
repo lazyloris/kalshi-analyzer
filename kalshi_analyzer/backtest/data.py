@@ -131,13 +131,13 @@ def candles(series, m, hours_before=60):
     return []
 
 
-def kalshi_series(series, since, workers=4):
+def kalshi_series(series, since, workers=4, deadline=None):
     """Settled markets + candles for one series, using and updating the cache."""
     cached = _load(f"kalshi_{series}", {"markets": {}, "candles": {}})
     rows = settled_markets(series=series, since=since)
     for r in rows:
         cached["markets"][r["ticker"]] = r
-    return _fill_candles(series, cached, workers)
+    return _fill_candles(series, cached, workers, deadline=deadline)
 
 
 def _fill_candles(series, cached, workers, keep=None, deadline=None):
