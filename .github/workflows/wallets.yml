@@ -1,0 +1,42 @@
+name: Polymarket wallet study
+
+on:
+  workflow_dispatch:
+    inputs:
+      top:
+        description: "How many leaderboard wallets"
+        default: "30"
+      deep:
+        description: "How many get the copy test (slow)"
+        default: "15"
+      names:
+        description: "Extra usernames, comma-separated"
+        default: "swisstony"
+  push:
+    branches: [wallet-study]
+    paths: [kalshi_analyzer/wallets.py, .github/workflows/wallets.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  study:
+    runs-on: ubuntu-latest
+    timeout-minutes: 180
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Study top wallets (read only)
+        run: python -m kalshi_analyzer.wallets --top ${{ github.event.inputs.top || '30' }} --deep ${{ github.event.inputs.deep || '15' }} --names "${{ github.event.inputs.names || 'swisstony' }}"
+      - name: Save results to the repo
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add dashboard/data/wallets.json reports/wallets.md 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "wallet study $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
