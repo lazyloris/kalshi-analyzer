@@ -20,9 +20,13 @@ OUT_MD = C.ROOT / "reports" / "backtest.md"
 WEATHER_BOOKS = ("weather_high", "weather_low")
 
 
-def fetch(days):
+OOS_CUT = "2026-03-13"  # strategies were chosen on data from here on; earlier days are a fresh test
+
+
+def fetch(days, crypto_days=None):
     end = dt.date.today()
     start = end - dt.timedelta(days=days)
+    crypto_start = end - dt.timedelta(days=crypto_days or days)
     for code in C.STATIONS:
         D.log(f"NBM forecasts {code}")
         D.nbm_forecasts(code, start - dt.timedelta(days=2), end)
@@ -30,7 +34,7 @@ def fetch(days):
         for series in C.BOOKS[b]["series"]:
             D.kalshi_series(series, start)
     try:
-        fetch_bitcoin(start, end)
+        fetch_bitcoin(crypto_start, end)
     except Exception as e:  # weather results still get written
         D.log(f"Bitcoin download failed: {e}")
 
@@ -64,7 +68,11 @@ def load():
 
 def _strategy_result(sid, name, desc, book, trades):
     by_entry = E.breakdown(trades, "entry")
-    return {"id": sid, "name": name, "desc": desc, "book": book, **E.metrics(trades),
+    old = [t for t in trades if t["date"] < OOS_CUT]
+    staked = sum(t["cost"] for t in old)
+    older = {"trades": len(old), "pnl": round(sum(t["pnl"] for t in old), 2),
+             "roi": round(sum(t["pnl"] for t in old) / staked, 4) if staked else None}
+    return {"id": sid, "name": name, "desc": desc, "book": book, **E.metrics(trades), "older": older,
             "by_entry": by_entry, "by_city": E.breakdown(trades, "city"), "by_side": E.breakdown(trades, "side"),
             "curve": E.curve(trades)}
 
@@ -159,6 +167,12 @@ def markdown(r):
                      f"{_roi(s['roi'])} | {s['first_half']:+.0f} | {s['second_half']:+.0f} | "
                      f"{pct(s['avg_claimed'])} | {s['brier_model'] if s['brier_model'] is not None else '–'} | "
                      f"{s['brier_market'] if s['brier_market'] is not None else '–'} |")
+        if any(s.get("older", {}).get("trades") for s in x["strategies"]):
+            L += ["", f"Before {OOS_CUT} (fresh test: strategies were picked on later data)", "",
+                  "| Strategy | Trades | P&L | Return/$ |", "|---|---|---|---|"]
+            for s in sorted(x["strategies"], key=lambda s: -(s["older"]["pnl"])):
+                o = s["older"]
+                L.append(f"| {s['name']} | {o['trades']} | {o['pnl']:+.2f} | {_roi(o['roi'])} |")
         for name, rows in x.get("sweeps", {}).items():
             L += ["", f"Sweep: {name}", "", "| Setting | Trades | P&L | Return/$ |", "|---|---|---|---|"]
             for s in rows:
@@ -178,6 +192,8 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m kalshi_analyzer.backtest")
     ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run", "assets-fetch"])
     ap.add_argument("--days", type=int, default=240)
+    ap.add_argument("--crypto-days", type=int, default=None,
+                    help="fetch/assets-fetch: longer history for Bitcoin/Ethereum only")
     ap.add_argument("--budget", type=int, default=100, help="assets-fetch: minutes before stopping (resumes next run)")
     ap.add_argument("--top", type=int, default=150, help="scanner: how many of the most-traded series")
     a = ap.parse_args(argv)
@@ -190,10 +206,10 @@ def main(argv=None):
         return
     if a.cmd == "assets-fetch":
         from . import assets
-        assets.fetch(a.days, budget_min=a.budget)
+        assets.fetch(a.days, budget_min=a.budget, crypto_days=a.crypto_days)
         return
     if a.cmd in ("fetch", "all"):
-        fetch(a.days)
+        fetch(a.days, a.crypto_days)
     if a.cmd in ("run", "all"):
         run()
 
