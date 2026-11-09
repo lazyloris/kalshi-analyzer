@@ -111,6 +111,30 @@ BOOKS = {
         "fade_min_yes": 0.03, "fade_max_yes": 0.10,
         "rules": {"MAX_PRICE": 0.97, "MIN_LEAD_HOURS": 2, "MAX_SPREAD": 0.05},
     },
+    # 2026-11-09 (PR #11 backtest): Ethereum confirmed the Bitcoin pattern, and two signals helped both:
+    # volatility by hour of day/weekend, and skipping markets that just moved 15c+. These books test
+    # them live next to the plain vol x0.5 books. About 25 variants were tried, so expect some shrinkage.
+    "ethereum": {
+        "name": "Crypto: Ethereum 5pm price", "short": "Ethereum", "kind": "crypto", "asset": "ETH-USD",
+        "version": "eth-v1", "bankroll": 1000.0, "unit": "$",
+        "vol_mult": 0.5,  # backtest: +3.7% per $ on 494 trades (+4.2% with a 5c edge)
+        "series": {"KXETHD": "ETH"}, "event_suffix": "17", "fallback_vol": 0.65,
+        "rules": {"MIN_LEAD_HOURS": 2},
+    },
+    "bitcoin_tod": {
+        "name": "Crypto: Bitcoin 5pm, hour-by-hour vol", "short": "BTC hourly-vol", "kind": "crypto", "asset": "BTC-USD",
+        "version": "btc-tod-v1", "bankroll": 1000.0, "unit": "$",
+        "vol_mult": 0.5, "vol_model": "tod", "skip_spike": 0.15,  # backtest: +9.2% per $ on 465 trades
+        "series": {"KXBTCD": "BTC"}, "event_suffix": "17", "fallback_vol": 0.50,
+        "rules": {"MIN_LEAD_HOURS": 2},
+    },
+    "ethereum_tod": {
+        "name": "Crypto: Ethereum 5pm, hour-by-hour vol", "short": "ETH hourly-vol", "kind": "crypto", "asset": "ETH-USD",
+        "version": "eth-tod-v1", "bankroll": 1000.0, "unit": "$",
+        "vol_mult": 0.5, "vol_model": "tod", "skip_spike": 0.15,  # backtest: +7.0% per $ on 301 trades
+        "series": {"KXETHD": "ETH"}, "event_suffix": "17", "fallback_vol": 0.65,
+        "rules": {"MIN_LEAD_HOURS": 2},
+    },
 }
 ASSET_NAMES = {"BTC": "Bitcoin", "ETH": "Ethereum", "GOLD": "Gold"}
 
