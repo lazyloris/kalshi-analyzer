@@ -147,3 +147,15 @@ def test_asset_events_learn_basis_and_trade(tmp_path, monkeypatch):
     r = BT.run(dt.datetime(2026, 11, 8, tzinfo=dt.timezone.utc))
     g = r["books"]["asset_gold"]
     assert g["events"] > 40 and g["verdict"]["text"] and g["sweeps"]["vol"]
+
+
+def test_one_close_per_day_drops_hourly_events():
+    from kalshi_analyzer.backtest import assets as A
+    ms = {}
+    for d in range(3):
+        for h in range(24):
+            t = dt.datetime(2026, 10, 1 + d, h, tzinfo=dt.timezone.utc)
+            ms[f"E{d}{h}"] = {"close_time": t.isoformat().replace("+00:00", "Z")}
+    kept = A.one_close_per_day(ms, 17)
+    assert len(kept) == 3  # 17:00 ET = 21:00 UTC in October
+    assert len(A.one_close_per_day({"a": ms["E00"]})) == 1

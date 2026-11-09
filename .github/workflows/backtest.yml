@@ -20,7 +20,7 @@ concurrency:
 jobs:
   backtest:
     runs-on: ubuntu-latest
-    timeout-minutes: 240   # first run downloads ~8 months; later runs only fetch new days
+    timeout-minutes: 330   # first run downloads ~8 months; later runs only fetch new days
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -38,9 +38,10 @@ jobs:
       - name: Download other price markets (Ethereum, gold, oil, S&P...)
         if: github.event_name != 'push'
         continue-on-error: true
-        timeout-minutes: 150
-        run: python -m kalshi_analyzer.backtest assets-fetch --days ${{ github.event.inputs.days || '240' }}
+        timeout-minutes: 130   # backstop; the script stops itself after --budget minutes and saves
+        run: python -m kalshi_analyzer.backtest assets-fetch --budget 100 --days ${{ github.event.inputs.days || '240' }}
       - name: Download market-scanner history
+        if: ${{ !cancelled() }}
         continue-on-error: true
         run: python -m kalshi_analyzer.backtest scan-fetch
       - name: Save downloaded history
@@ -50,12 +51,14 @@ jobs:
           path: data/backtest_cache
           key: backtest-cache-${{ github.run_id }}
       - name: Replay strategies
-        if: github.event_name != 'push'
+        if: ${{ !cancelled() && github.event_name != 'push' }}
         run: python -m kalshi_analyzer.backtest run
       - name: Market scanner
+        if: ${{ !cancelled() }}
         continue-on-error: true
         run: python -m kalshi_analyzer.backtest scan-run
       - name: Save results to the repo
+        if: ${{ !cancelled() }}
         run: |
           git config user.name "kalshi-paper-bot"
           git config user.email "kalshi-paper-bot@users.noreply.github.com"

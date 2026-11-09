@@ -19,6 +19,7 @@ import math
 import statistics
 import time
 import urllib.parse
+from zoneinfo import ZoneInfo
 import urllib.request
 from collections import defaultdict
 
@@ -29,16 +30,22 @@ UTC = dt.timezone.utc
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
 BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0 Safari/537.36"
 
-# id: name, Kalshi series (missing ones are skipped), price source, strike band for candles
+# id: name, Kalshi series (missing ones are skipped), price source, strike band for candles.
+# Some series have an event EVERY HOUR (KXETHD: ~1M markets), so we keep one close per day:
+# daily_events = event tickers built like Bitcoin's 5pm ones; close_hour = ET hour to keep
+# (default: the most common close hour in the series).
+ET = ZoneInfo("America/New_York")
 ASSETS = {
-    "eth": {"name": "Ethereum", "series": ["KXETHD", "KXETH"], "src": ("coinbase", "ETH-USD"), "band": 0.06},
+    "eth": {"name": "Ethereum", "series": ["KXETHD"], "src": ("coinbase", "ETH-USD"), "band": 0.06,
+            "daily_events": "17"},
     "gold": {"name": "Gold", "series": ["KXGOLDD"], "src": ("yahoo", "GC=F"), "band": 0.03},
     "silver": {"name": "Silver", "series": ["KXSILVERD"], "src": ("yahoo", "SI=F"), "band": 0.05},
     "wti": {"name": "WTI oil", "series": ["KXWTI"], "src": ("yahoo", "CL=F"), "band": 0.05},
     "brent": {"name": "Brent oil", "series": ["KXBRENTD"], "src": ("yahoo", "BZ=F"), "band": 0.05},
     "natgas": {"name": "Natural gas", "series": ["KXNATGASD"], "src": ("yahoo", "NG=F"), "band": 0.08},
-    "spx": {"name": "S&P 500", "series": ["KXINX", "KXINXU"], "src": ("yahoo", "^GSPC"), "band": 0.03},
-    "ndx": {"name": "Nasdaq 100", "series": ["KXNASDAQ100", "KXNASDAQ100U"], "src": ("yahoo", "^NDX"), "band": 0.035},
+    "spx": {"name": "S&P 500", "series": ["KXINX", "KXINXU"], "src": ("yahoo", "^GSPC"), "band": 0.03, "close_hour": 16},
+    "ndx": {"name": "Nasdaq 100", "series": ["KXNASDAQ100", "KXNASDAQ100U"], "src": ("yahoo", "^NDX"), "band": 0.035,
+            "close_hour": 16},
 }
 ENTRIES = ((8, "8h before"), (4, "4h before"), (1, "1h before"))
 SPOT_MAX_AGE = 20 * 3600     # overnight gap is fine; we count time from the price we had
@@ -91,7 +98,24 @@ def prices_for(aid, start, end):
     return yahoo_hourly(sym, start, end)
 
 
-def fetch(days=240, only=None):
+def _close_hour(m):
+    return dt.datetime.fromtimestamp(D._ts(m["close_time"]), ET).hour
+
+
+def one_close_per_day(markets, hour=None):
+    """Drop intraday events: keep markets closing at `hour` ET (default: the most common hour)."""
+    if not markets:
+        return markets
+    if hour is None:
+        counts = defaultdict(int)
+        for m in markets.values():
+            counts[_close_hour(m)] += 1
+        hour = max(counts, key=counts.get)
+    return {t: m for t, m in markets.items() if _close_hour(m) == hour}
+
+
+def fetch(days=240, only=None, budget_min=100):
+    deadline = time.time() + budget_min * 60
     end = dt.date.today()
     start = end - dt.timedelta(days=days)
     for aid, a in ASSETS.items():
@@ -112,7 +136,14 @@ def fetch(days=240, only=None):
             return k is not None and spot is not None and abs(k / spot[1] - 1) <= band
 
         for s in a["series"]:
+            if time.time() > deadline:
+                D.log(f"time budget used up; {s} waits for the next run")
+                continue
             try:
+                if a.get("daily_events"):
+                    D.kalshi_events(s, D.btc_event_tickers(start, end - dt.timedelta(days=1), a["daily_events"], s),
+                                    keep=near, deadline=deadline)
+                    continue
                 cached = D._load(f"kalshi_{s}", {"markets": {}, "candles": {}})
                 rows = D.settled_markets(series=s, since=start)
                 for r in rows:
@@ -120,7 +151,10 @@ def fetch(days=240, only=None):
                 if not cached["markets"]:
                     D.log(f"{s}: no settled markets (series may not exist)")
                     continue
-                D._fill_candles(s, cached, 4, keep=near)
+                before = len(cached["markets"])
+                cached["markets"] = one_close_per_day(cached["markets"], a.get("close_hour"))
+                D.log(f"{s}: kept {len(cached['markets'])} of {before} markets (one close per day)")
+                D._fill_candles(s, cached, 4, keep=near, deadline=deadline)
             except Exception as e:
                 D.log(f"{s}: failed: {e}")
 
@@ -150,7 +184,8 @@ def asset_events(aid, data_by_series, prices):
     hours = sorted(prices)
     by_event = defaultdict(list)
     for s, data in data_by_series.items():
-        for m in (data or {}).get("markets", {}).values():
+        daily = one_close_per_day((data or {}).get("markets", {}), a.get("close_hour") or (17 if a.get("daily_events") else None))
+        for m in daily.values():
             by_event[(s, m["event_ticker"])].append((m, data["candles"]))
     # settlement basis history: (close_ts, actual / our price at close)
     basis_hist = []

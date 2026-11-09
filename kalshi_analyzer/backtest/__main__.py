@@ -162,6 +162,7 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m kalshi_analyzer.backtest")
     ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run", "assets-fetch"])
     ap.add_argument("--days", type=int, default=240)
+    ap.add_argument("--budget", type=int, default=100, help="assets-fetch: minutes before stopping (resumes next run)")
     ap.add_argument("--top", type=int, default=150, help="scanner: how many of the most-traded series")
     a = ap.parse_args(argv)
     if a.cmd.startswith("scan"):
@@ -173,7 +174,7 @@ def main(argv=None):
         return
     if a.cmd == "assets-fetch":
         from . import assets
-        assets.fetch(a.days)
+        assets.fetch(a.days, budget_min=a.budget)
         return
     if a.cmd in ("fetch", "all"):
         fetch(a.days)
