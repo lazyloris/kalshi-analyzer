@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-08T21:03+00:00",
+ "generated_at": "2026-11-09T00:56+00:00",
  "strategy_version": "weather-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -42,7 +42,7 @@
   "n": 0
  },
  "open_count": 8,
- "open_mark_pnl": -1.11,
+ "open_mark_pnl": -0.51,
  "open_marked": 8,
  "open_expected_pnl": -0.71,
  "upcoming": [
