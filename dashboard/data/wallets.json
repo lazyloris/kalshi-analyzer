@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-09T19:09+00:00",
+ "generated_at": "2026-11-09T19:30+00:00",
  "wallets": [
   {
    "wallet": "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
@@ -25,14 +25,26 @@
     }
    },
    "pnl_split": {
-    "pre2026": 22053933.75,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 22053933.75,
-    "n": 22,
-    "win_rate": 0.82
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 1.4796,
+    "copy_1m_roi": 1.3919,
+    "drift_1m": 0.0018,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 1.4072,
+    "drift_10m": 0.001,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 1.3355,
+    "drift_60m": 0.0038,
+    "copy_60m_n": 145
+   }
   },
   {
    "wallet": "0x204f72f35326db932158cba6adff0b9a1da95e14",
@@ -59,13 +71,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -146524.65,
-    "sports": -141601.29,
-    "other": -4923.37,
-    "n": 10000,
-    "win_rate": 0.53
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": -0.0506,
+    "copy_1m_roi": -0.0869,
+    "drift_1m": 0.0007,
+    "copy_1m_n": 150,
+    "copy_10m_roi": -0.0874,
+    "drift_10m": -0.0032,
+    "copy_10m_n": 150,
+    "copy_60m_roi": -0.1444,
+    "drift_60m": -0.0098,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x1f2dd6d473f3e824cd2f8a89d9c69fb96f6ad0cf",
@@ -91,47 +115,71 @@
     }
    },
    "pnl_split": {
-    "pre2026": 16619506.63,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 16619506.63,
-    "n": 66,
-    "win_rate": 0.61
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.8506,
+    "copy_1m_roi": 0.7928,
+    "drift_1m": 0.0075,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.7902,
+    "drift_10m": 0.0082,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.7847,
+    "drift_60m": 0.0099,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x2005d16a84ceefa912d4e380cd32e7ff827875ea",
    "name": "RN1",
-   "pnl": 13463994.488286,
-   "vol": 1501119146.1072445,
+   "pnl": 13464381.573461,
+   "vol": 1501283460.4774532,
    "style": {
     "trades": 10000,
-    "markets": 1295,
+    "markets": 1289,
     "from": "2026-11-08",
     "to": "2026-11-09",
     "sports_share": 0.92,
     "sell_share": 0.0,
-    "median_usd": 34.42,
-    "both_sides_share": 0.486,
-    "both_sides_avg_cost": 0.9661,
-    "both_sides_locked_share": 0.537,
+    "median_usd": 34.21,
+    "both_sides_share": 0.49,
+    "both_sides_avg_cost": 0.9669,
+    "both_sides_locked_share": 0.534,
     "buy_price_mix": {
-     "<10c": 0.09,
+     "<10c": 0.089,
      "10-50c": 0.399,
-     "50-90c": 0.445,
+     "50-90c": 0.446,
      ">=90c": 0.067
     }
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -3336188.92,
-    "sports": -2876391.33,
-    "other": -459797.59,
-    "n": 30000,
-    "win_rate": 0.21
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.0004,
+    "copy_1m_roi": -0.153,
+    "drift_1m": 0.0102,
+    "copy_1m_n": 150,
+    "copy_10m_roi": -0.1807,
+    "drift_10m": 0.0047,
+    "copy_10m_n": 150,
+    "copy_60m_roi": -0.3441,
+    "drift_60m": -0.0453,
+    "copy_60m_n": 93
+   }
   },
   {
    "wallet": "0x6a72f61820b26b1fe4d956e17b6dc2a1ea3033ee",
@@ -157,14 +205,26 @@
     }
    },
    "pnl_split": {
-    "pre2026": 16129378.08,
-    "y2026": -6238066.55,
-    "sports": 9862550.89,
-    "other": 28760.63,
-    "n": 4111,
-    "win_rate": 0.52
+    "pre2026": 0.0,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.074,
+    "copy_1m_roi": 0.0496,
+    "drift_1m": 0.0053,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.1368,
+    "drift_10m": -0.02,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 2.0068,
+    "drift_60m": -0.3579,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x96cfcb0c30942cfcd1cdf76c7d408794d66b1acb",
@@ -191,13 +251,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 9110689.71,
-    "sports": 141475.14,
-    "other": 8969214.57,
-    "n": 5,
-    "win_rate": 1.0
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 1.0,
+    "copy_1m_roi": 1.0227,
+    "drift_1m": -0.0154,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.4081,
+    "drift_10m": 0.2002,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.6529,
+    "drift_60m": 0.095,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0xed64a7bf029040aa331abc87902434d815ef217d",
@@ -224,19 +296,31 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 8998446.9,
+    "y2026": 0.0,
     "sports": 0.0,
-    "other": 8998446.9,
-    "n": 2,
-    "win_rate": 1.0
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 2.0199,
+    "copy_1m_roi": 1.9171,
+    "drift_1m": 0.0017,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 1.9546,
+    "drift_10m": 0.0192,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.6617,
+    "drift_60m": 0.2793,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
    "name": "BreakTheBank",
    "pnl": 8979002.491152,
-   "vol": 404483488.7262079,
+   "vol": 404529198.22787094,
    "style": {
     "trades": 10000,
     "markets": 187,
@@ -249,7 +333,7 @@
     "both_sides_avg_cost": 1.0914,
     "both_sides_locked_share": 0.75,
     "buy_price_mix": {
-     "<10c": 0.424,
+     "<10c": 0.423,
      "10-50c": 0.439,
      "50-90c": 0.13,
      ">=90c": 0.007
@@ -257,13 +341,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -52918069.88,
-    "sports": -35310371.18,
-    "other": -17607698.7,
-    "n": 2650,
-    "win_rate": 0.26
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": -0.3182,
+    "copy_1m_roi": -0.3378,
+    "drift_1m": 0.0054,
+    "copy_1m_n": 150,
+    "copy_10m_roi": -0.3759,
+    "drift_10m": 0.0271,
+    "copy_10m_n": 150,
+    "copy_60m_roi": -0.5944,
+    "drift_60m": 0.247,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0xbc11a64ab34a03a043fbe80598fa065ee87eeec6",
@@ -290,13 +386,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 8801837.99,
+    "y2026": 0.0,
     "sports": 0.0,
-    "other": 8801837.99,
-    "n": 6,
-    "win_rate": 0.83
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.8476,
+    "copy_1m_roi": 0.7987,
+    "drift_1m": 0.005,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.4396,
+    "drift_10m": 0.1532,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.6003,
+    "drift_60m": 0.0736,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x78b9ac44a6d7d7a076c14e0ad518b301b63c6b76",
@@ -322,14 +430,26 @@
     }
    },
    "pnl_split": {
-    "pre2026": 8709972.99,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 8709972.99,
-    "n": 8,
-    "win_rate": 0.88
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.8953,
+    "copy_1m_roi": 0.8546,
+    "drift_1m": -0.0008,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.8446,
+    "drift_10m": 0.003,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.8615,
+    "drift_60m": 0.0047,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x664ce9fb97ae1bbd538d7381b2f4e92dab16f49c",
@@ -356,13 +476,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 8025530.65,
+    "y2026": 0.0,
     "sports": 0.0,
-    "other": 8025530.65,
-    "n": 5,
-    "win_rate": 0.6
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.6215,
+    "copy_1m_roi": 0.6034,
+    "drift_1m": -0.0031,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.5678,
+    "drift_10m": 0.0111,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.586,
+    "drift_60m": 0.0038,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0xd235973291b2b75ff4070e9c0b01728c520b0f29",
@@ -388,14 +520,26 @@
     }
    },
    "pnl_split": {
-    "pre2026": 4166508.01,
+    "pre2026": 0.0,
     "y2026": 0.0,
-    "sports": -7281515.16,
-    "other": 11448023.17,
-    "n": 9,
-    "win_rate": 0.78
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": -1.0,
+    "copy_1m_roi": -1.0,
+    "drift_1m": -0.0162,
+    "copy_1m_n": 150,
+    "copy_10m_roi": -1.0,
+    "drift_10m": -0.2105,
+    "copy_10m_n": 150,
+    "copy_60m_roi": -1.0,
+    "drift_60m": -0.3985,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x863134d00841b2e200492805a01e1e2f5defaa53",
@@ -421,14 +565,26 @@
     }
    },
    "pnl_split": {
-    "pre2026": 7532409.67,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 7532409.67,
-    "n": 8,
-    "win_rate": 1.0
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.6694,
+    "copy_1m_roi": 0.6407,
+    "drift_1m": 0.0005,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.6424,
+    "drift_10m": -0.0001,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.644,
+    "drift_60m": -0.0007,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x3f87d51f27ba6e19ec52aaeebb68559a839c742c",
@@ -455,13 +611,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 7512274.94,
-    "sports": 2595771.69,
-    "other": 4916503.25,
-    "n": 2,
-    "win_rate": 1.0
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.9997,
+    "copy_1m_roi": 0.9725,
+    "drift_1m": -0.0031,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 2.6364,
+    "drift_10m": -0.2351,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 2.5088,
+    "drift_60m": -0.2251,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x09b428f7c2b469786286214aa5c90dd9015f7320",
@@ -488,13 +656,25 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 6064449.02,
-    "sports": 11263120.36,
-    "other": -5198671.33,
-    "n": 19,
-    "win_rate": 0.53
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    },
-   "copy": {}
+   "copy": {
+    "n": 150,
+    "own_roi": 0.7531,
+    "copy_1m_roi": 0.7199,
+    "drift_1m": 0.0013,
+    "copy_1m_n": 150,
+    "copy_10m_roi": 0.768,
+    "drift_10m": -0.0149,
+    "copy_10m_n": 150,
+    "copy_60m_roi": 0.288,
+    "drift_60m": 0.1917,
+    "copy_60m_n": 150
+   }
   },
   {
    "wallet": "0x5e4c3b5b81171e2ca4ab776ac0d6bba787f9dba2",
@@ -521,11 +701,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 5173052.17,
-    "sports": 268694.36,
-    "other": 4904357.81,
-    "n": 12,
-    "win_rate": 0.5
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -552,12 +732,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 6083643.1,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 6083643.1,
-    "n": 21,
-    "win_rate": 0.81
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -584,12 +764,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 5942685.45,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 5942685.45,
-    "n": 1,
-    "win_rate": 1.0
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -616,12 +796,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": -968374.16,
-    "y2026": 6801674.36,
-    "sports": 2680157.52,
-    "other": 3153142.68,
-    "n": 232,
-    "win_rate": 0.56
+    "pre2026": 0.0,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -649,11 +829,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 4552132.46,
-    "sports": 5310620.12,
-    "other": -758487.66,
-    "n": 19,
-    "win_rate": 0.58
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -680,19 +860,19 @@
     }
    },
    "pnl_split": {
-    "pre2026": 5642135.74,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 5642135.74,
-    "n": 7,
-    "win_rate": 1.0
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
    "wallet": "0x2c335066fe58fe9237c3d3dc7b275c2a034a0563",
    "name": "0x2c335066FE58fe9237c3d3Dc7b275C2a034a0563-1759935795465",
-   "pnl": 5593543.039545,
-   "vol": 1390807154.637955,
+   "pnl": 5593443.740255,
+   "vol": 1390941498.480717,
    "style": {
     "trades": 10000,
     "markets": 710,
@@ -713,11 +893,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -7018078.97,
-    "sports": -6356130.76,
-    "other": -661948.21,
-    "n": 11534,
-    "win_rate": 0.46
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -744,12 +924,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 5147998.54,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 5147998.54,
-    "n": 7,
-    "win_rate": 0.86
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -776,12 +956,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 7793221.77,
-    "y2026": -5545020.01,
-    "sports": 3943522.58,
-    "other": -1695320.81,
-    "n": 6817,
-    "win_rate": 0.51
+    "pre2026": 0.0,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -808,12 +988,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 4804855.61,
+    "pre2026": 0.0,
     "y2026": 0.0,
     "sports": 0.0,
-    "other": 4804855.61,
-    "n": 6,
-    "win_rate": 0.67
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -840,12 +1020,12 @@
     }
    },
    "pnl_split": {
-    "pre2026": 3245313.88,
-    "y2026": 1542637.59,
-    "sports": 4741051.27,
-    "other": 46900.2,
-    "n": 600,
-    "win_rate": 0.47
+    "pre2026": 0.0,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -873,11 +1053,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -22270262.65,
-    "sports": -22235341.24,
-    "other": -34921.41,
-    "n": 7624,
-    "win_rate": 0.39
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -905,11 +1085,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 3535241.08,
-    "sports": 1945271.49,
-    "other": 1589969.59,
-    "n": 18,
-    "win_rate": 0.56
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -937,11 +1117,11 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": -206413.73,
-    "sports": 89562.23,
-    "other": -295975.96,
-    "n": 10006,
-    "win_rate": 0.52
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   },
   {
@@ -969,18 +1149,13 @@
    },
    "pnl_split": {
     "pre2026": 0.0,
-    "y2026": 5836426.39,
-    "sports": 1436542.87,
-    "other": 4399883.52,
-    "n": 2978,
-    "win_rate": 0.62
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 0.0,
+    "n": 0,
+    "win_rate": null
    }
   }
  ],
- "persistence": {
-  "wallets": 30,
-  "top_half_2026": -914877.5,
-  "bottom_half_2026": -533404.64,
-  "positive_2026_share": 0.4
- }
+ "persistence": null
 }
