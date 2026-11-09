@@ -211,20 +211,17 @@ _res_cache = {}
 
 
 def resolution(cond):
-    """{outcomeIndex: 1.0/0.0} once resolved, else None."""
+    """{token_id: 1.0 won / 0.0 lost} from the CLOB market record, or None if not resolved."""
     if cond in _res_cache:
         return _res_cache[cond]
     res = None
     try:
-        rows = _rows(_get(f"{GAMMA}/markets", {"condition_ids": cond}, "gamma_market"))
-        if rows:
-            m = rows[0]
-            prices = m.get("outcomePrices")
-            prices = json.loads(prices) if isinstance(prices, str) else prices
-            if m.get("closed") and prices and all(_f(p) in (0.0, 1.0) for p in prices):
-                res = {i: _f(p) for i, p in enumerate(prices)}
+        m = _get(f"{CLOB}/markets/{cond}", None, "clob_market")
+        toks = m.get("tokens") or [] if isinstance(m, dict) else []
+        if toks and any(t.get("winner") for t in toks):
+            res = {str(t.get("token_id")): 1.0 if t.get("winner") else 0.0 for t in toks}
     except Exception as e:
-        log(f"  resolution {cond[:10]}: {e}")
+        log(f"  resolution {str(cond)[:10]}: {e}")
     _res_cache[cond] = res
     return res
 
@@ -252,23 +249,28 @@ def copy_test(tr, sample=150, slip=0.01):
         t.setdefault("asset", t.get("tokenId"))
     buys = sorted((t for t in tr if (t.get("side") or "").upper() == "BUY" and t.get("asset")),
                   key=lambda t: -int(_f(t.get("timestamp"))))
-    rows = []
+    rows, stats = [], defaultdict(int)
     for t in buys:
-        if len(rows) >= sample:
+        if len(rows) >= sample or stats["tried"] >= sample * 6:
             break
+        stats["tried"] += 1
         res = resolution(t.get("conditionId"))
         if res is None:
+            stats["unresolved"] += 1
             continue
-        won = res.get(int(_f(t.get("outcomeIndex"), -1)))
+        won = res.get(str(t["asset"]))
         if won is None:
+            stats["no_token"] += 1
             continue
         p0, ts = _f(t.get("price")), int(_f(t.get("timestamp")))
         if not 0.01 <= p0 <= 0.99:
             continue
         later = price_after(t["asset"], ts)
         if not later:
+            stats["no_prices"] += 1
             continue
         rows.append({"p0": p0, "won": won, "sports": is_sports(t), **{f"p{d}": v for d, v in later.items()}})
+    log(f"  copy test: {len(rows)} usable of {len(buys)} buys; skipped {dict(stats)}")
     if not rows:
         return {}
 
@@ -299,7 +301,7 @@ def run(top=30, names=("swisstony",), deep=15, copy_sample=150):
     for i, w in enumerate(wallets):
         log(f"[{i + 1}/{len(wallets)}] {w['name'] or w['wallet'][:10]}")
         tr = trades(w["wallet"])
-        closed = closed_positions(w["wallet"])
+        closed = []  # position endpoints are capped and inconsistent; skipped
         row = {**w, "style": style(tr), "pnl_split": pnl_split(closed)}
         if i < deep or w["name"].lower() in {n.lower() for n in names}:
             row["copy"] = copy_test(tr, copy_sample)
@@ -339,7 +341,7 @@ def markdown(r):
     L = [f"# Polymarket top wallets ({r['generated_at'][:10]})", "",
          "Read-only study of public trades. Recent trades only (the API returns up to ~10,000 per wallet). "
          "Copy returns assume a 1c worse fill and no fees, held to resolution.", ""]
-    p = r.get("persistence")
+    p = None  # position totals from the API are capped and inconsistent; not reported
     if p:
         L += ["## Does skill persist?", "",
               f"Of {p['wallets']} wallets, the half that earned most before 2026 averaged {p['top_half_2026']:+,.0f} in 2026; "
@@ -356,13 +358,7 @@ def markdown(r):
                  f"{_pct(s.get('both_sides_locked_share'))} | {_pct(mix.get('>=90c'))} | {_pct(mix.get('<10c'))} |")
     L += ["", "Both sides cost = average price of side A + side B in markets where they bought both. Under $1.00 "
               "means the pair pays out more than it cost whichever side wins (a locked-in profit).", "",
-          "## P&L split (settled positions, includes losses held to the end)", "",
-          "Totals can differ from the leaderboard: the API caps how many positions we can read.", "",
-          "| Wallet | Positions | Win rate | Before 2026 | 2026 | Sports | Other |", "|---|---|---|---|---|---|---|"]
-    for w in r["wallets"]:
-        q = w.get("pnl_split") or {}
-        L.append(f"| {w['name'] or w['wallet'][:10]} | {q.get('n', 0)} | {_pct(q.get('win_rate'))} | {q.get('pre2026', 0):+,.0f} | "
-                 f"{q.get('y2026', 0):+,.0f} | {q.get('sports', 0):+,.0f} | {q.get('other', 0):+,.0f} |")
+          ]
     L += ["", "## Copying them", "",
           "| Wallet | Buys tested | Their return | Copy 1 min later | Copy 10 min | Copy 60 min | Price drift 1m / 10m / 60m |",
           "|---|---|---|---|---|---|---|"]
