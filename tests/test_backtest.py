@@ -159,3 +159,25 @@ def test_one_close_per_day_drops_hourly_events():
     kept = A.one_close_per_day(ms, 17)
     assert len(kept) == 3  # 17:00 ET = 21:00 UTC in October
     assert len(A.one_close_per_day({"a": ms["E00"]})) == 1
+
+
+def test_implied_vol_strategies_use_only_past_values():
+    close = dt.datetime(2026, 10, 20, 21, 0, tzinfo=dt.timezone.utc)
+    ts = int(close.timestamp())
+    prices = {ts - h * 3600: 70000 * (1 + 0.001 * ((h % 7) - 3)) for h in range(0, 40 * 24)}
+    ms, cs = {}, {}
+    for k in range(-3, 4):
+        strike = 70000 + 500 * k - 0.01
+        t = f"KXBTCD-26OCT2017-T{strike}"
+        ms[t] = {"ticker": t, "event_ticker": "KXBTCD-26OCT2017", "strike_type": "greater", "floor": strike, "cap": None,
+                 "close_time": close.isoformat().replace("+00:00", "Z"), "result": "yes" if k <= 0 else "no",
+                 "value": "70100", "source": "live"}
+        p = max(0.03, min(0.97, 0.5 - 0.15 * k))
+        cs[t] = [[ts - h * 3600, p - 0.01, p + 0.01, 3] for h in range(20, 0, -1)]
+    evs = E.crypto_events("KXBTCD", {"markets": ms, "candles": cs}, prices)
+    iv = {ts - 9 * 3600: 40.0, ts - 5 * 3600: 80.0}  # 80 only becomes known after the 8h entry
+    assert E.attach_ivol(evs, iv) == 2
+    by = {e["entry"]: e["ivol"] for e in evs}
+    assert by["8h before"] == 0.40 and by["4h before"] == 0.80
+    for sid, name, desc, pick in E.iv_strategies():
+        E.metrics(E.simulate(evs, pick))

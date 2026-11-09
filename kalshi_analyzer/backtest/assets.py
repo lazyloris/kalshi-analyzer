@@ -37,20 +37,26 @@ BROWSER_UA = "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Ge
 ET = ZoneInfo("America/New_York")
 ASSETS = {
     "eth": {"name": "Ethereum", "series": ["KXETHD"], "src": ("coinbase", "ETH-USD"), "band": 0.06,
-            "daily_events": "17"},
-    "gold": {"name": "Gold", "series": ["KXGOLDD"], "src": ("yahoo", "GC=F"), "band": 0.03},
-    "silver": {"name": "Silver", "series": ["KXSILVERD"], "src": ("yahoo", "SI=F"), "band": 0.05},
-    "wti": {"name": "WTI oil", "series": ["KXWTI"], "src": ("yahoo", "CL=F"), "band": 0.05},
-    "brent": {"name": "Brent oil", "series": ["KXBRENTD"], "src": ("yahoo", "BZ=F"), "band": 0.05},
+            "daily_events": "17", "iv": ("deribit", "ETH")},
+    "gold": {"name": "Gold", "series": ["KXGOLDD"], "src": ("yahoo", "GC=F"), "band": 0.03, "iv": ("yahoo", "^GVZ")},
+    "silver": {"name": "Silver", "series": ["KXSILVERD"], "src": ("yahoo", "SI=F"), "band": 0.05, "iv": ("yahoo", "^VXSLV")},
+    "wti": {"name": "WTI oil", "series": ["KXWTI"], "src": ("yahoo", "CL=F"), "band": 0.05, "iv": ("yahoo", "^OVX")},
+    "brent": {"name": "Brent oil", "series": ["KXBRENTD"], "src": ("yahoo", "BZ=F"), "band": 0.05, "iv": ("yahoo", "^OVX")},
     "natgas": {"name": "Natural gas", "series": ["KXNATGASD"], "src": ("yahoo", "NG=F"), "band": 0.08},
-    "spx": {"name": "S&P 500", "series": ["KXINX", "KXINXU"], "src": ("yahoo", "^GSPC"), "band": 0.03, "close_hour": 16},
+    "spx": {"name": "S&P 500", "series": ["KXINX", "KXINXU"], "src": ("yahoo", "^GSPC"), "band": 0.03, "close_hour": 16,
+            "iv": ("yahoo", "^VIX")},
     "ndx": {"name": "Nasdaq 100", "series": ["KXNASDAQ100", "KXNASDAQ100U"], "src": ("yahoo", "^NDX"), "band": 0.035,
-            "close_hour": 16},
+            "close_hour": 16, "iv": ("yahoo", "^VXN")},
 }
 ENTRIES = ((8, "8h before"), (4, "4h before"), (1, "1h before"))
 SPOT_MAX_AGE = 20 * 3600     # overnight gap is fine; we count time from the price we had
 HIST_MAX_AGE = 4 * 86400     # weekends/holidays for the daily-return history
 BASIS_N, BASIS_MIN = 15, 5
+
+
+def iv_file(aid):
+    kind, sym = ASSETS[aid].get("iv") or (None, None)
+    return {"deribit": f"dvol_{sym}", "yahoo": f"yahoo_close_{sym}"}.get(kind)
 
 
 def price_file(aid):
@@ -129,6 +135,14 @@ def fetch(days=240, only=None, budget_min=100):
         except Exception as e:
             D.log(f"{a['name']}: price download failed, skipping: {e}")
             continue
+
+        if a.get("iv"):
+            kind, sym = a["iv"]
+            try:
+                D.log(f"{a['name']}: options-implied volatility {sym}")
+                (D.deribit_dvol if kind == "deribit" else yahoo_hourly)(sym, start - dt.timedelta(days=2), end)
+            except Exception as e:
+                D.log(f"{a['name']}: implied vol download failed: {e}")
 
         def near(m, band=a["band"]):  # only strikes near the price 8h before close get candles
             k = E._f(m["floor"]) or E._f(m["cap"])
@@ -272,13 +286,18 @@ def books(strategy_result):
             D.log(f"{a['name']}: no usable events")
             continue
         bid = f"asset_{aid}"
+        iv = {int(k): v for k, v in D._load(iv_file(aid), {}).items()} if iv_file(aid) else {}
+        has_iv = E.attach_ivol(evs, iv) if iv else 0
+        sw = {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in sweeps()["vol"]]}
+        if has_iv:
+            sw["options vol"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]
         out[bid] = {
             "name": a["name"], "events": len({e["event"] for e in evs}),
             "first": evs[0]["date"], "last": evs[-1]["date"],
             "series": sorted(data), "basis": round(statistics.median(e["basis"] for e in evs), 4),
             "strategies": [strategy_result(sid, name, desc, bid, E.simulate(evs, pick))
-                           for sid, name, desc, pick in strategies()],
-            "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in sweeps()["vol"]]},
+                           for sid, name, desc, pick in strategies() + (E.iv_strategies() if has_iv else [])],
+            "sweeps": sw, "iv_coverage": round(has_iv / len(evs), 3),
             "market_calibration": E.market_calibration(evs),
         }
     return out

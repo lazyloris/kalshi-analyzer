@@ -46,6 +46,11 @@ def fetch_bitcoin(start, end):
         return k is not None and spot is not None and abs(k / spot - 1) <= 0.04
 
     D.kalshi_events("KXBTCD", D.btc_event_tickers(start, end - dt.timedelta(days=1)), keep=near_spot)
+    try:
+        D.log("Deribit DVOL BTC (options-implied volatility)")
+        D.deribit_dvol("BTC", start - dt.timedelta(days=2), end)
+    except Exception as e:
+        D.log(f"DVOL download failed: {e}")
 
 
 def load():
@@ -87,13 +92,18 @@ def run(now=None):
         }
     if btc and prices:
         evs = E.crypto_events("KXBTCD", btc, prices)
+        iv = {int(k): v for k, v in D._load("dvol_BTC", {}).items()}
+        has_iv = E.attach_ivol(evs, iv) if evs and iv else 0
         if evs:
             result["books"]["bitcoin"] = {
                 "name": C.BOOKS["bitcoin"]["name"], "events": len({e["event"] for e in evs}),
                 "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, name, desc, "bitcoin", E.simulate(evs, pick))
-                               for sid, name, desc, pick in E.crypto_strategies()],
-                "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]]},
+                               for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])],
+                "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]],
+                           **({"options vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]}
+                              if has_iv else {})},
+                "iv_coverage": round(has_iv / len(evs), 3),
                 "market_calibration": E.market_calibration(evs),
             }
     try:

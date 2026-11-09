@@ -248,6 +248,29 @@ def coinbase_hourly(product, start, end):
     return cached
 
 
+DERIBIT = "https://www.deribit.com/api/v2/public/get_volatility_index_data"
+
+
+def deribit_dvol(currency, start, end):
+    """{close_ts: DVOL} hourly: Deribit's 30-day implied volatility index (%), from its option prices.
+    Public API, no key. Keyed by the hour's END so a lookup never sees a later value."""
+    name = f"dvol_{currency}"
+    cached = {int(k): v for k, v in _load(name, {}).items()}
+    t = int(dt.datetime.combine(start, dt.time(), UTC).timestamp()) * 1000
+    stop = int(dt.datetime.combine(end + dt.timedelta(days=1), dt.time(), UTC).timestamp()) * 1000
+    step = 40 * 86400 * 1000  # 960 hourly points per call
+    while t < stop:
+        e = min(stop, t + step)
+        data = get_json(DERIBIT, {"currency": currency, "start_timestamp": t, "end_timestamp": e,
+                                  "resolution": 3600}, retries=5)
+        for row in (data.get("result") or {}).get("data") or []:
+            cached[int(row[0]) // 1000 + 3600] = float(row[4])
+        t = e
+        time.sleep(0.3)
+    _save(name, {str(k): v for k, v in cached.items()})
+    return cached
+
+
 def btc_event_tickers(start, end, suffix="17", series="KXBTCD"):
     out, d = [], start
     months = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"]
