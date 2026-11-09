@@ -123,6 +123,7 @@ function show(id) {
   if (sw.sigma) h += sweepTable("v2 with the learned sigma scaled up or down", "Sigma ×", sw.sigma.map(s => ({...s, _label: s.mult})));
   if (sw.blend) h += "<br>" + sweepTable("How much to trust the market price vs our model", "Market weight / min edge", sw.blend.map(s => ({...s, _label: `${s.blend * 100}% / ${Math.round(s.min_edge * 100)}¢`})));
   if (sw.vol) h += sweepTable("Volatility scaled up or down", "Vol ×", sw.vol.map(s => ({...s, _label: s.mult})));
+  if (sw["options vol"]) h += "<br>" + sweepTable("Options-implied volatility scaled up or down (5¢ gap)", "Options vol ×", sw["options vol"].map(s => ({...s, _label: s.mult})));
   $("sweeps").innerHTML = h || `<p class="desc">No sweeps.</p>`;
   $("mcal").innerHTML = `<table><thead><tr><th>Market price</th><th class="num">Markets</th><th class="num">Market said</th><th class="num">YES actually won</th></tr></thead><tbody>` +
     (b.market_calibration || []).map(c => `<tr><td>${c.range}</td><td class="num">${c.n}</td><td class="num">${pct(c.market)}</td><td class="num">${pct(c.actual)}</td></tr>`).join("") +

@@ -43,3 +43,16 @@ money in **both halves** of the period with 30+ trades.
 - **Price-correction rule (holdout):** failed in Sports. Too few trades elsewhere to judge.
 
 **Decision:** no live change. Next, test the Bitcoin-style model (lognormal with reduced volatility) on other price markets: gold, WTI and Brent oil, Ethereum, and S&P 500 / Nasdaq daily ranges, with full history.
+
+---
+
+## 2026-11-09: other price markets (run 42569514706, main)
+
+- **Data:** Mar 13 to Nov 8, 2026. Bitcoin and weather were re-run on the same history. Ethereum (KXETHD, 5pm events only, Coinbase prices) had 235 events.
+- **Yahoo blocked us:** gold, silver, WTI, Brent, natural gas, S&P 500 and Nasdaq all got HTTP 429 (Too Many Requests) from Yahoo on GitHub's servers, so they have no results yet. The options-implied indexes on Yahoo (VIX, OVX, GVZ) are affected too. A data source that allows automated access is needed.
+- **Ethereum confirms the Bitcoin pattern:** vol x0.5 with a 5c edge made +$241 on 585 trades (+4.2%/$), and vol x0.5 made +3.7% on 494. Both were profitable in both halves. Full vol (v1) lost 15.8%. The vol sweep is positive from 0.3 to 0.75 and negative at 1.0.
+- **Bitcoin (re-run):** vol x0.5 made +$363 on 707 trades (+5.3%), in both halves. Unchanged.
+- **Weather:** still no strategy made money in both halves.
+- The verdict line picked "Market favorite" (+7.5% on only 50 trades). The more trustworthy result is vol x0.5 with its 10x larger sample.
+
+**Decision:** no live change yet. Next: an Ethereum paper book with vol x0.5 + 5c edge alongside Bitcoin, a replacement price source for commodities and indexes, and the options-implied check (PR #10).

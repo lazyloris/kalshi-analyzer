@@ -170,6 +170,51 @@ def p_crypto(e, m, vol_mult=1.0):
     return lognormal_probability(m["strike_type"], _f(m["floor"]), _f(m["cap"]), e["spot"], e["vol"] * vol_mult, e["hours"])
 
 
+def p_iv(e, m, mult=1.0):
+    """Same lognormal, but with the OPTIONS market's implied volatility at entry time."""
+    if not e.get("ivol"):
+        return None
+    return lognormal_probability(m["strike_type"], _f(m["floor"]), _f(m["cap"]), e["spot"], e["ivol"] * mult, e["hours"])
+
+
+def attach_ivol(events, iv, max_age=26 * 3600):
+    """iv = {close_ts: implied vol in % (e.g. DVOL 45 or VIX 18)}. Sets e["ivol"] (fraction) from
+    the last value at or before entry; never a later one."""
+    hours = sorted(iv)
+    n = 0
+    for e in events:
+        v = _price_at_age(iv, hours, e["ts"], max_age) if hours else None
+        e["ivol"] = v / 100 if v else None
+        n += bool(v)
+    return n
+
+
+def _price_at_age(prices, hours, ts, max_age):
+    import bisect
+    i = bisect.bisect_right(hours, ts) - 1
+    if i < 0 or ts - hours[i] > max_age:
+        return None
+    return prices[hours[i]]
+
+
+def iv_strategies():
+    """Trade only when Kalshi's price disagrees with what the options market implies."""
+    p = lambda k: (lambda e, m: p_iv(e, m, k))
+    return [
+        ("iv_5", "Options vol, 5c gap", "Chance from options-implied volatility; trade when Kalshi is off by 5c+ after fees",
+         edge_picker(p(1.0), min_edge=0.05)),
+        ("iv_8", "Options vol, 8c gap", "Same, bigger gap required", edge_picker(p(1.0), min_edge=0.08)),
+        ("iv_no", "Options vol, NO only", "Only bet against moves Kalshi overprices vs options, 5c gap",
+         edge_picker(p(1.0), min_edge=0.05, sides=("no",))),
+        ("iv_85", "Options vol x0.85, 5c gap", "Options usually overstate the real move a bit (risk premium); shrink 15%",
+         edge_picker(p(0.85), min_edge=0.05)),
+    ]
+
+
+def iv_sweeps():
+    return [(k, edge_picker(lambda e, m, k=k: p_iv(e, m, k), min_edge=0.05)) for k in (0.6, 0.7, 0.8, 0.9, 1.0, 1.1)]
+
+
 def mid(m):
     return (m["bid"] + m["ask"]) / 2
 
