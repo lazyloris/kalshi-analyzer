@@ -121,13 +121,13 @@ def one_close_per_day(markets, hour=None):
     return {t: m for t, m in markets.items() if _close_hour(m) == hour}
 
 
-def fetch(days=240, only=None, budget_min=100):
+def fetch(days=240, only=None, budget_min=100, crypto_days=None):
     deadline = time.time() + budget_min * 60
     end = dt.date.today()
-    start = end - dt.timedelta(days=days)
     for aid, a in ASSETS.items():
         if only and aid not in only:
             continue
+        start = end - dt.timedelta(days=crypto_days if crypto_days and a["src"][0] == "coinbase" else days)
         try:
             D.log(f"{a['name']}: prices")
             prices = prices_for(aid, start - dt.timedelta(days=40), end)

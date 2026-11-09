@@ -76,3 +76,20 @@ money in **both halves** of the period with 30+ trades.
 - The verdict now picks the highest t-stat strategy with 50+ trades that was profitable in both halves.
 
 **Decision (proposed):** paper-trade "time-of-day vol x0.5 + skip spikes" on Bitcoin and Ethereum alongside the current vol x0.5 book, and compare weekly.
+
+## 2026-11-09 — Older-data test (run 42602772002)
+
+**Setup:** Bitcoin and Ethereum history pulled back to 2025-03 (about 600 days; Kalshi KXBTCD/KXETHD history starts around 2025-03-19). We picked strategies on 2026-03-13 onward, then scored them on the year before, which they had never seen.
+
+**Result: the crypto edge did not hold.** On the older data:
+- BTC time-of-day vol: -1.8% (775 trades).
+- BTC tod + skip spikes: -3.1% (486).
+- BTC combo_all: -3.7% (268).
+- ETH tod: -1.8% (747).
+- ETH combo_tod: -1.2% (469).
+- ETH combo_all: -0.3% (259).
+- Plain vol x0.5: -2.8% (BTC) and -4.9% (ETH).
+
+Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first half lost money and all the profit came from the last 8 months. Weekend-only BTC was +4.1% older (141 trades) and +6.7% overall (230). It's small, and it came out of about 25 variants, so treat it as unproven. The model's Brier score is worse than the market's in every book except BTC weekends.
+
+**Conclusion:** we found no reliable crypto edge. The tod paper books keep running as a free live check, but no live money should follow them. Next research: the weather spike fade (only 8 months of data) and a Polymarket price comparison.
