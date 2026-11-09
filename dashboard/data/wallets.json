@@ -1,0 +1,986 @@
+{
+ "generated_at": "2026-11-09T19:03+00:00",
+ "wallets": [
+  {
+   "wallet": "0x56687bf447db6ffa42ffe2204a05edaa20f55839",
+   "name": "Theo4",
+   "pnl": 22053933.752321,
+   "vol": 43013258.515682,
+   "style": {
+    "trades": 10000,
+    "markets": 14,
+    "from": "2024-10-15",
+    "to": "2024-11-13",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 41.74,
+    "both_sides_share": 0.5,
+    "both_sides_avg_cost": 1.0254,
+    "both_sides_locked_share": 0.0,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.397,
+     "50-90c": 0.602,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 22053933.75,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 22053933.75,
+    "n": 22,
+    "win_rate": 0.82
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x204f72f35326db932158cba6adff0b9a1da95e14",
+   "name": "swisstony",
+   "pnl": 18482390.760618,
+   "vol": 1850584673.0642128,
+   "style": {
+    "trades": 10000,
+    "markets": 1093,
+    "from": "2026-08-25",
+    "to": "2026-08-26",
+    "sports_share": 0.755,
+    "sell_share": 0.0,
+    "median_usd": 13.33,
+    "both_sides_share": 0.432,
+    "both_sides_avg_cost": 1.0296,
+    "both_sides_locked_share": 0.415,
+    "buy_price_mix": {
+     "<10c": 0.052,
+     "10-50c": 0.437,
+     "50-90c": 0.417,
+     ">=90c": 0.094
+    }
+   },
+   "pnl_split": {
+    "pre2026": 29965274.83,
+    "y2026": 182942135.5,
+    "sports": 146830494.5,
+    "other": 66076915.82,
+    "n": 20000,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x1f2dd6d473f3e824cd2f8a89d9c69fb96f6ad0cf",
+   "name": "Fredi9999",
+   "pnl": 16619506.631731,
+   "vol": 76611316.90515405,
+   "style": {
+    "trades": 10000,
+    "markets": 26,
+    "from": "2024-10-07",
+    "to": "2024-10-24",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 41.58,
+    "both_sides_share": 0.346,
+    "both_sides_avg_cost": 0.9983,
+    "both_sides_locked_share": 0.333,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.387,
+     "50-90c": 0.612,
+     ">=90c": 0.001
+    }
+   },
+   "pnl_split": {
+    "pre2026": 16619506.63,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 16619506.63,
+    "n": 66,
+    "win_rate": 0.61
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x2005d16a84ceefa912d4e380cd32e7ff827875ea",
+   "name": "RN1",
+   "pnl": 13463994.488286,
+   "vol": 1501119146.1072445,
+   "style": {
+    "trades": 10000,
+    "markets": 1292,
+    "from": "2026-11-08",
+    "to": "2026-11-09",
+    "sports_share": 0.919,
+    "sell_share": 0.0,
+    "median_usd": 34.38,
+    "both_sides_share": 0.492,
+    "both_sides_avg_cost": 0.9656,
+    "both_sides_locked_share": 0.541,
+    "buy_price_mix": {
+     "<10c": 0.091,
+     "10-50c": 0.399,
+     "50-90c": 0.444,
+     ">=90c": 0.067
+    }
+   },
+   "pnl_split": {
+    "pre2026": 11359428.24,
+    "y2026": 168903516.87,
+    "sports": 159365590.69,
+    "other": 20897354.42,
+    "n": 20000,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x6a72f61820b26b1fe4d956e17b6dc2a1ea3033ee",
+   "name": "kch123",
+   "pnl": 11351406.79785,
+   "vol": 293444002.74575657,
+   "style": {
+    "trades": 10000,
+    "markets": 106,
+    "from": "2026-04-25",
+    "to": "2026-06-29",
+    "sports_share": 0.999,
+    "sell_share": 0.0,
+    "median_usd": 10.94,
+    "both_sides_share": 0.462,
+    "both_sides_avg_cost": 1.1707,
+    "both_sides_locked_share": 0.204,
+    "buy_price_mix": {
+     "<10c": 0.001,
+     "10-50c": 0.188,
+     "50-90c": 0.755,
+     ">=90c": 0.057
+    }
+   },
+   "pnl_split": {
+    "pre2026": 16129378.08,
+    "y2026": -3317876.04,
+    "sports": 12782736.21,
+    "other": 28765.83,
+    "n": 4033,
+    "win_rate": 0.53
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x96cfcb0c30942cfcd1cdf76c7d408794d66b1acb",
+   "name": "mintblade",
+   "pnl": 9110689.708961,
+   "vol": 17759922.232853003,
+   "style": {
+    "trades": 727,
+    "markets": 5,
+    "from": "2026-06-03",
+    "to": "2026-06-16",
+    "sports_share": 0.008,
+    "sell_share": 0.0,
+    "median_usd": 30.0,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.186,
+     "50-90c": 0.813,
+     ">=90c": 0.001
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 9110689.71,
+    "sports": 141475.14,
+    "other": 8969214.57,
+    "n": 5,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0xed64a7bf029040aa331abc87902434d815ef217d",
+   "name": "fishalive",
+   "pnl": 8998446.902484,
+   "vol": 13281460.374667995,
+   "style": {
+    "trades": 1681,
+    "markets": 2,
+    "from": "2026-06-15",
+    "to": "2026-06-15",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 8.87,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.211,
+     "10-50c": 0.789,
+     "50-90c": 0.0,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 8998446.9,
+    "sports": 0.0,
+    "other": 8998446.9,
+    "n": 2,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0xf0318c32136c2db7fec88b84869aee6a1106c80c",
+   "name": "BreakTheBank",
+   "pnl": 8979002.491152,
+   "vol": 404483488.7262079,
+   "style": {
+    "trades": 10000,
+    "markets": 187,
+    "from": "2026-11-02",
+    "to": "2026-11-09",
+    "sports_share": 0.483,
+    "sell_share": 0.084,
+    "median_usd": 1.86,
+    "both_sides_share": 0.025,
+    "both_sides_avg_cost": 1.0914,
+    "both_sides_locked_share": 0.75,
+    "buy_price_mix": {
+     "<10c": 0.425,
+     "10-50c": 0.439,
+     "50-90c": 0.129,
+     ">=90c": 0.007
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 70467798.42,
+    "sports": 46870031.46,
+    "other": 23597766.95,
+    "n": 782,
+    "win_rate": 0.88
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0xbc11a64ab34a03a043fbe80598fa065ee87eeec6",
+   "name": "frostrizz",
+   "pnl": 8801837.986588,
+   "vol": 23091318.155748047,
+   "style": {
+    "trades": 2009,
+    "markets": 5,
+    "from": "2026-06-18",
+    "to": "2026-06-20",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 22.79,
+    "both_sides_share": 0.2,
+    "both_sides_avg_cost": 1.0268,
+    "both_sides_locked_share": 0.0,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.001,
+     "50-90c": 0.999,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 8801837.99,
+    "sports": 0.0,
+    "other": 8801837.99,
+    "n": 6,
+    "win_rate": 0.83
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x78b9ac44a6d7d7a076c14e0ad518b301b63c6b76",
+   "name": "Len9311238",
+   "pnl": 8709972.98807,
+   "vol": 16402744.764627,
+   "style": {
+    "trades": 5756,
+    "markets": 7,
+    "from": "2024-10-22",
+    "to": "2024-11-06",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 27.35,
+    "both_sides_share": 0.143,
+    "both_sides_avg_cost": 1.0802,
+    "both_sides_locked_share": 0.0,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.166,
+     "50-90c": 0.834,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 8709972.99,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 8709972.99,
+    "n": 8,
+    "win_rate": 0.88
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x664ce9fb97ae1bbd538d7381b2f4e92dab16f49c",
+   "name": "sparklingwater123",
+   "pnl": 8350187.803676,
+   "vol": 19001698.927902043,
+   "style": {
+    "trades": 1027,
+    "markets": 4,
+    "from": "2026-06-25",
+    "to": "2026-06-25",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 31.75,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.271,
+     "50-90c": 0.729,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 8674844.96,
+    "sports": 0.0,
+    "other": 8674844.96,
+    "n": 3,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0xd235973291b2b75ff4070e9c0b01728c520b0f29",
+   "name": "zxgngl",
+   "pnl": 7807265.589241,
+   "vol": 40551790.62184699,
+   "style": {
+    "trades": 10000,
+    "markets": 7,
+    "from": "2024-10-23",
+    "to": "2024-11-16",
+    "sports_share": 0.158,
+    "sell_share": 0.0,
+    "median_usd": 52.29,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.158,
+     "50-90c": 0.842,
+     ">=90c": 0.001
+    }
+   },
+   "pnl_split": {
+    "pre2026": 11448023.17,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 11448023.17,
+    "n": 7,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x863134d00841b2e200492805a01e1e2f5defaa53",
+   "name": "RepTrump",
+   "pnl": 7532409.671579,
+   "vol": 13983231.103425004,
+   "style": {
+    "trades": 6826,
+    "markets": 8,
+    "from": "2024-10-17",
+    "to": "2024-10-24",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 11.39,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.096,
+     "50-90c": 0.904,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 7532409.67,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 7532409.67,
+    "n": 8,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x3f87d51f27ba6e19ec52aaeebb68559a839c742c",
+   "name": "GRIMDRIP",
+   "pnl": 7512274.937627,
+   "vol": 13603969.275332002,
+   "style": {
+    "trades": 670,
+    "markets": 2,
+    "from": "2026-06-18",
+    "to": "2026-06-18",
+    "sports_share": 0.03,
+    "sell_share": 0.0,
+    "median_usd": 20.0,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.069,
+     "50-90c": 0.931,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 7512274.94,
+    "sports": 2595771.69,
+    "other": 4916503.25,
+    "n": 2,
+    "win_rate": 1.0
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x09b428f7c2b469786286214aa5c90dd9015f7320",
+   "name": "DEEDDIT",
+   "pnl": 7469950.825705,
+   "vol": 72132442.51951006,
+   "style": {
+    "trades": 8594,
+    "markets": 17,
+    "from": "2026-07-01",
+    "to": "2026-07-14",
+    "sports_share": 0.297,
+    "sell_share": 0.0,
+    "median_usd": 22.64,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.309,
+     "50-90c": 0.691,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 8875452.63,
+    "sports": 11263120.36,
+    "other": -2387667.73,
+    "n": 15,
+    "win_rate": 0.67
+   },
+   "copy": {}
+  },
+  {
+   "wallet": "0x5e4c3b5b81171e2ca4ab776ac0d6bba787f9dba2",
+   "name": "endlessFate",
+   "pnl": 7249616.010656,
+   "vol": 26282164.74285599,
+   "style": {
+    "trades": 474,
+    "markets": 9,
+    "from": "2026-06-12",
+    "to": "2026-06-18",
+    "sports_share": 0.137,
+    "sell_share": 0.0,
+    "median_usd": 200.58,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.156,
+     "50-90c": 0.844,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 9326179.85,
+    "sports": 2677499.46,
+    "other": 6648680.39,
+    "n": 6,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0x8119010a6e589062aa03583bb3f39ca632d9f887",
+   "name": "PrincessCaro",
+   "pnl": 6083643.099592,
+   "vol": 23520809.952867012,
+   "style": {
+    "trades": 6827,
+    "markets": 14,
+    "from": "2024-10-02",
+    "to": "2024-10-18",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 85.62,
+    "both_sides_share": 0.5,
+    "both_sides_avg_cost": 1.0069,
+    "both_sides_locked_share": 0.286,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.394,
+     "50-90c": 0.606,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 6083643.1,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 6083643.1,
+    "n": 21,
+    "win_rate": 0.81
+   }
+  },
+  {
+   "wallet": "0xe9ad918c7678cd38b12603a762e638a5d1ee7091",
+   "name": "walletmobile",
+   "pnl": 5942685.453396,
+   "vol": 32196692.075936034,
+   "style": {
+    "trades": 5025,
+    "markets": 1,
+    "from": "2024-11-05",
+    "to": "2024-11-06",
+    "sports_share": 0.0,
+    "sell_share": 0.058,
+    "median_usd": 9.55,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.0,
+     "50-90c": 1.0,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 5942685.45,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 5942685.45,
+    "n": 1,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0xc2e7800b5af46e6093872b177b7a5e7f0563be51",
+   "name": "beachboy4",
+   "pnl": 5833300.201145,
+   "vol": 239125773.26813298,
+   "style": {
+    "trades": 7966,
+    "markets": 231,
+    "from": "2025-11-30",
+    "to": "2026-09-09",
+    "sports_share": 0.76,
+    "sell_share": 0.001,
+    "median_usd": 36.32,
+    "both_sides_share": 0.017,
+    "both_sides_avg_cost": 1.0267,
+    "both_sides_locked_share": 0.0,
+    "buy_price_mix": {
+     "<10c": 0.002,
+     "10-50c": 0.268,
+     "50-90c": 0.729,
+     ">=90c": 0.001
+    }
+   },
+   "pnl_split": {
+    "pre2026": -968374.16,
+    "y2026": 6801674.36,
+    "sports": 2680157.52,
+    "other": 3153142.68,
+    "n": 232,
+    "win_rate": 0.56
+   }
+  },
+  {
+   "wallet": "0x94f199fb7789f1aef7fff6b758d6b375100f4c7a",
+   "name": "KeyTransporter",
+   "pnl": 5711459.802523,
+   "vol": 20086062.154324997,
+   "style": {
+    "trades": 3217,
+    "markets": 14,
+    "from": "2026-01-29",
+    "to": "2026-02-22",
+    "sports_share": 0.673,
+    "sell_share": 0.0,
+    "median_usd": 29.67,
+    "both_sides_share": 0.071,
+    "both_sides_avg_cost": 1.0217,
+    "both_sides_locked_share": 0.0,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.407,
+     "50-90c": 0.593,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 6870787.14,
+    "sports": 6525662.87,
+    "other": 345124.27,
+    "n": 11,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0x885783760858e1bd5dd09a3c3f916cfa251ac270",
+   "name": "BetTom42",
+   "pnl": 5642135.735356,
+   "vol": 11212839.523402996,
+   "style": {
+    "trades": 6480,
+    "markets": 7,
+    "from": "2024-10-28",
+    "to": "2024-11-06",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 26.15,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.323,
+     "50-90c": 0.677,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 5642135.73,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 5642135.73,
+    "n": 7,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0x2c335066fe58fe9237c3d3dc7b275c2a034a0563",
+   "name": "0x2c335066FE58fe9237c3d3Dc7b275C2a034a0563-1759935795465",
+   "pnl": 5593543.039545,
+   "vol": 1390807154.637955,
+   "style": {
+    "trades": 10000,
+    "markets": 709,
+    "from": "2026-11-03",
+    "to": "2026-11-09",
+    "sports_share": 0.721,
+    "sell_share": 0.0,
+    "median_usd": 36.72,
+    "both_sides_share": 0.227,
+    "both_sides_avg_cost": 0.9603,
+    "both_sides_locked_share": 0.528,
+    "buy_price_mix": {
+     "<10c": 0.079,
+     "10-50c": 0.44,
+     "50-90c": 0.321,
+     ">=90c": 0.159
+    }
+   },
+   "pnl_split": {
+    "pre2026": 2170851.84,
+    "y2026": 10808629.2,
+    "sports": 13386586.08,
+    "other": -407105.04,
+    "n": 17180,
+    "win_rate": 0.55
+   }
+  },
+  {
+   "wallet": "0x23786fdad0073692157c6d7dc81f281843a35fcb",
+   "name": "mikatrade77",
+   "pnl": 5147998.544603,
+   "vol": 10884765.388774998,
+   "style": {
+    "trades": 10000,
+    "markets": 7,
+    "from": "2024-10-29",
+    "to": "2024-11-06",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 27.74,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.191,
+     "50-90c": 0.809,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 5147998.54,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 5147998.54,
+    "n": 7,
+    "win_rate": 0.86
+   }
+  },
+  {
+   "wallet": "0xe90bec87d9ef430f27f9dcfe72c34b76967d5da2",
+   "name": "gmanas",
+   "pnl": 4901231.747174,
+   "vol": 529047703.70599174,
+   "style": {
+    "trades": 10000,
+    "markets": 342,
+    "from": "2026-02-22",
+    "to": "2026-03-02",
+    "sports_share": 0.822,
+    "sell_share": 0.0,
+    "median_usd": 20.44,
+    "both_sides_share": 0.316,
+    "both_sides_avg_cost": 1.0569,
+    "both_sides_locked_share": 0.417,
+    "buy_price_mix": {
+     "<10c": 0.05,
+     "10-50c": 0.235,
+     "50-90c": 0.383,
+     ">=90c": 0.331
+    }
+   },
+   "pnl_split": {
+    "pre2026": 7793221.77,
+    "y2026": -238960.1,
+    "sports": 8806209.29,
+    "other": -1251947.62,
+    "n": 6459,
+    "win_rate": 0.53
+   }
+  },
+  {
+   "wallet": "0xd0c042c08f755ff940249f62745e82d356345565",
+   "name": "alexmulti",
+   "pnl": 4804855.613376,
+   "vol": 9949068.653841998,
+   "style": {
+    "trades": 2528,
+    "markets": 6,
+    "from": "2024-10-31",
+    "to": "2024-11-01",
+    "sports_share": 0.0,
+    "sell_share": 0.0,
+    "median_usd": 31.7,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.174,
+     "50-90c": 0.826,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 4804855.61,
+    "y2026": 0.0,
+    "sports": 0.0,
+    "other": 4804855.61,
+    "n": 6,
+    "win_rate": 0.67
+   }
+  },
+  {
+   "wallet": "0x006cc834cc092684f1b56626e23bedb3835c16ea",
+   "name": "0x006cc834Cc092684F1B56626E23BEdB3835c16ea-1729683673397",
+   "pnl": 4711276.915635999,
+   "vol": 64340008.648626,
+   "style": {
+    "trades": 6408,
+    "markets": 508,
+    "from": "2024-11-02",
+    "to": "2026-11-09",
+    "sports_share": 0.664,
+    "sell_share": 0.341,
+    "median_usd": 20.49,
+    "both_sides_share": 0.159,
+    "both_sides_avg_cost": 1.0007,
+    "both_sides_locked_share": 0.442,
+    "buy_price_mix": {
+     "<10c": 0.004,
+     "10-50c": 0.435,
+     "50-90c": 0.394,
+     ">=90c": 0.166
+    }
+   },
+   "pnl_split": {
+    "pre2026": 3245313.88,
+    "y2026": 1542637.59,
+    "sports": 4741051.27,
+    "other": 46900.2,
+    "n": 600,
+    "win_rate": 0.47
+   }
+  },
+  {
+   "wallet": "0xdc876e6873772d38716fda7f2452a78d426d7ab6",
+   "name": "432614799197",
+   "pnl": 4526176.046975,
+   "vol": 185491941.63208297,
+   "style": {
+    "trades": 10000,
+    "markets": 465,
+    "from": "2026-03-05",
+    "to": "2026-03-09",
+    "sports_share": 0.99,
+    "sell_share": 0.0,
+    "median_usd": 16.79,
+    "both_sides_share": 0.323,
+    "both_sides_avg_cost": 0.9695,
+    "both_sides_locked_share": 0.7,
+    "buy_price_mix": {
+     "<10c": 0.022,
+     "10-50c": 0.538,
+     "50-90c": 0.439,
+     ">=90c": 0.001
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 31322611.98,
+    "sports": 31040712.6,
+    "other": 281899.37,
+    "n": 4476,
+    "win_rate": 0.67
+   }
+  },
+  {
+   "wallet": "0x9319a045cdd0c2180e5eb7ad44374383db9a6410",
+   "name": "sainttroplay",
+   "pnl": 4420552.662704,
+   "vol": 12348296.010426,
+   "style": {
+    "trades": 548,
+    "markets": 14,
+    "from": "2026-08-15",
+    "to": "2026-09-05",
+    "sports_share": 0.872,
+    "sell_share": 0.0,
+    "median_usd": 39.74,
+    "both_sides_share": 0.0,
+    "both_sides_avg_cost": null,
+    "both_sides_locked_share": null,
+    "buy_price_mix": {
+     "<10c": 0.0,
+     "10-50c": 0.786,
+     "50-90c": 0.214,
+     ">=90c": 0.0
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 5305864.24,
+    "sports": 3715894.66,
+    "other": 1589969.59,
+    "n": 10,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0x507e52ef684ca2dd91f90a9d26d149dd3288beae",
+   "name": "GamblingIsAllYouNeed",
+   "pnl": 4395477.552393,
+   "vol": 440534708.20661336,
+   "style": {
+    "trades": 10000,
+    "markets": 204,
+    "from": "2026-06-16",
+    "to": "2026-07-15",
+    "sports_share": 0.142,
+    "sell_share": 0.054,
+    "median_usd": 10.11,
+    "both_sides_share": 0.292,
+    "both_sides_avg_cost": 0.9743,
+    "both_sides_locked_share": 0.729,
+    "buy_price_mix": {
+     "<10c": 0.004,
+     "10-50c": 0.421,
+     "50-90c": 0.503,
+     ">=90c": 0.071
+    }
+   },
+   "pnl_split": {
+    "pre2026": 13639375.76,
+    "y2026": 44636654.04,
+    "sports": 53021991.28,
+    "other": 5254038.52,
+    "n": 20000,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "wallet": "0xfea31bc088000ff909be1dfd8d0e3f2c7ef2d227",
+   "name": "ndb1",
+   "pnl": 4380422.239558,
+   "vol": 153833910.25953376,
+   "style": {
+    "trades": 10000,
+    "markets": 88,
+    "from": "2026-10-31",
+    "to": "2026-11-09",
+    "sports_share": 0.024,
+    "sell_share": 0.136,
+    "median_usd": 72.38,
+    "both_sides_share": 0.033,
+    "both_sides_avg_cost": 1.1237,
+    "both_sides_locked_share": 0.5,
+    "buy_price_mix": {
+     "<10c": 0.004,
+     "10-50c": 0.031,
+     "50-90c": 0.022,
+     ">=90c": 0.943
+    }
+   },
+   "pnl_split": {
+    "pre2026": 0.0,
+    "y2026": 5836426.39,
+    "sports": 1436542.87,
+    "other": 4399883.52,
+    "n": 2978,
+    "win_rate": 0.62
+   }
+  }
+ ],
+ "persistence": {
+  "wallets": 30,
+  "top_half_2026": 26195031.35,
+  "bottom_half_2026": 13350410.42,
+  "positive_2026_share": 0.6
+ }
+}
