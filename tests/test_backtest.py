@@ -245,3 +245,14 @@ def test_spike_fade_bets_against_recent_jump():
     e = {"date": "x", "ts": 3 * 3600 + 60, "series": "S", "city": "c", "entry": "e", "markets": [m]}
     t = S.spike_fade()(e)
     assert len(t) == 1 and t[0]["side"] == "no" and t[0]["won"]
+
+
+def test_late_strategies_buy_the_favorite_in_band():
+    from kalshi_analyzer.backtest import engine as E
+    e = {"book": "x", "kind": "weather", "series": "S", "event": "EV", "date": "2025-06-01", "entry": "same day 4pm", "ts": 0,
+         "city": "C", "markets": [
+             {"ticker": "A", "bid": 0.84, "ask": 0.86, "won_yes": True},
+             {"ticker": "B", "bid": 0.10, "ask": 0.12, "won_yes": False}]}
+    picks = {sid: pick(e) for sid, _, _, pick in E.late_strategies()}
+    assert [t["ticker"] for t in picks["late_fav_80_90"]] == ["A"]
+    assert picks["late_fav_50_80"] == [] and picks["late_fav_90_97"] == []

@@ -122,6 +122,18 @@ def run(now=None):
                 "iv_coverage": round(has_iv / len(evs), 3),
                 "market_calibration": E.market_calibration(evs),
             }
+    late = [(f"{b}_late", f"{C.BOOKS[b]['name']}: late entries", E.weather_events(b, kalshi, nbm, E.LATE_ENTRIES))
+            for b in WEATHER_BOOKS]
+    if btc and prices:
+        late.append(("bitcoin_late", "Bitcoin: last 1-3 hours", E.crypto_events("KXBTCD", btc, prices, E.CRYPTO_LATE)))
+    for bid, name, evs in late:
+        if evs:
+            result["books"][bid] = {
+                "name": name, "events": len({e["event"] for e in evs}), "first": evs[0]["date"], "last": evs[-1]["date"],
+                "strategies": [_strategy_result(sid, n, desc, bid, E.simulate(evs, pick))
+                               for sid, n, desc, pick in E.late_strategies()],
+                "market_calibration": E.market_calibration(evs),
+            }
     try:
         from . import assets
         result["books"].update(assets.books(_strategy_result))
