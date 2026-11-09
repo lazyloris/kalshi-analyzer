@@ -24,7 +24,7 @@ OUT_MD = C.ROOT / "reports" / "backtest.md"
 WEATHER_BOOKS = ("weather_high", "weather_low")
 
 
-WHY_IDS = {"v2", "c_v1", "c_vol50", "s_tod", "s_combo_all", "s_spike_fade", "late_fav_80_90", "b_bucket95"}
+WHY_IDS = {"m_rolling", "v2", "c_v1", "c_vol50", "s_tod", "s_combo_all", "s_spike_fade", "late_fav_80_90", "b_bucket95"}
 OOS_CUT = "2026-03-13"  # strategies were chosen on data from here on; earlier days are a fresh test
 
 
@@ -109,7 +109,69 @@ def vol_check(evs):
     return {q: {"n": len(v), "ratio": round((sum(v) / len(v)) ** 0.5, 3)} for q, v in sorted(g.items())}
 
 
+TRADES = {}  # book -> {sid: trades}, for the combined strategies
+
+
+def _tstat(ts):
+    if len(ts) < 2:
+        return None
+    rets = [t["pnl"] / t["cost"] for t in ts]
+    m = sum(rets) / len(rets)
+    sd = (sum((r - m) ** 2 for r in rets) / (len(rets) - 1)) ** 0.5
+    return m / sd * len(rets) ** 0.5 if sd else None
+
+
+def rolling_pick(by_sid, lookback_days=180, min_trades=30, lag_days=2):
+    """Each quarter, trade only the strategy with the best t-stat over the previous `lookback_days`
+    (trades that had settled, so nothing from the future). Sits out if none made money."""
+    allt = [t for ts in by_sid.values() for t in ts]
+    if not allt:
+        return [], []
+    qs = sorted({_quarter(t["date"]) for t in allt})
+    out, picks = [], []
+    for q in qs:
+        y, n = int(q[:4]), int(q[-1])
+        start = dt.date(y, 3 * n - 2, 1)
+        lo = (start - dt.timedelta(days=lookback_days)).isoformat()
+        hi = (start - dt.timedelta(days=lag_days)).isoformat()
+        best, best_t = None, 0.0
+        for sid, ts in by_sid.items():
+            past = [t for t in ts if lo <= t["date"] < hi]
+            tt = _tstat(past)
+            if len(past) >= min_trades and sum(t["pnl"] for t in past) > 0 and tt and tt > best_t:
+                best, best_t = sid, tt
+        picks.append({"quarter": q, "pick": best, "t": round(best_t, 2) if best else None})
+        if best:
+            out += [t for t in by_sid[best] if _quarter(t["date"]) == q]
+    return out, picks
+
+
+def consensus(by_sid, k=3):
+    """Trades that k+ different strategies made (same entry, market and side)."""
+    seen = {}
+    for sid, ts in by_sid.items():
+        for t in ts:
+            key = (t["ts"], t["ticker"], t["side"])
+            seen.setdefault(key, [t, set()])[1].add(sid)
+    return sorted((t for t, sids in seen.values() if len(sids) >= k), key=lambda t: t["ts"])
+
+
+def add_combined(book, r):
+    by_sid = {sid: ts for sid, ts in TRADES.get(book, {}).items() if not sid.startswith("m_")}
+    if not by_sid:
+        return
+    trades, picks = rolling_pick(by_sid)
+    r["strategies"].append(_strategy_result("m_rolling", "Combined: rolling best (past 6 months)",
+                                            "Each quarter, trade the strategy that did best over the previous 6 months",
+                                            book, trades))
+    r["rolling_picks"] = picks
+    for k in (3, 5):
+        r["strategies"].append(_strategy_result(f"m_consensus{k}", f"Combined: {k}+ strategies agree",
+                                                f"Only trades that at least {k} strategies made", book, consensus(by_sid, k)))
+
+
 def _strategy_result(sid, name, desc, book, trades):
+    TRADES.setdefault(book, {})[sid] = trades
     by_entry = E.breakdown(trades, "entry")
     old = [t for t in trades if t["date"] < OOS_CUT]
     staked = sum(t["cost"] for t in old)
@@ -189,6 +251,7 @@ def run(now=None):
     except Exception as e:  # never lose the weather/Bitcoin results over a new market
         D.log(f"asset backtest failed: {e}")
     for b, r in result["books"].items():
+        add_combined(b, r)
         r["verdict"] = verdict(r["strategies"])
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(result, indent=1))
@@ -245,6 +308,11 @@ def markdown(r):
                     setting = f"blend {s['blend']}, edge {s['min_edge']}"
                 L.append(f"| {setting} | {s['trades']} | {s['pnl']:+.2f} | "
                          f"{_roi(s['roi'])} |")
+        if x.get("rolling_picks"):
+            L += ["", "Rolling best: which strategy it picked each quarter", "", "| Quarter | Picked | Past t |", "|---|---|---|"]
+            names = {s["id"]: s["name"] for s in x["strategies"]}
+            L += [f"| {p['quarter']} | {names.get(p['pick'], 'sat out') if p['pick'] else 'sat out'} | {p['t'] or '–'} |"
+                  for p in x["rolling_picks"]]
         if x.get("vol_check"):
             L += ["", "Volatility check: real moves vs the 30-day volatility assumed (1.0 = right, 0.5 = moved half as much)",
                   "", "| Quarter | Events | Ratio |", "|---|---|---|"]

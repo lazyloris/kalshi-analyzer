@@ -327,3 +327,22 @@ def test_why_breakdown_and_report_render():
     x["verdict"] = M.verdict(x["strategies"])
     md = M.markdown({"generated_at": "2026-11-09T00:00", "stake": 10, "books": {"bitcoin": x}})
     assert "Why: Vol x0.5" in md and "Volatility check" in md
+
+
+def test_rolling_pick_only_uses_the_past():
+    from kalshi_analyzer.backtest import __main__ as M
+    def tr(d, pnl, tk="A"):
+        return {"date": d, "ts": hash(d) % 10**6, "ticker": tk, "side": "yes", "pnl": pnl, "cost": 10.0}
+    good_then_bad = [tr(f"2025-0{m}-{d:02d}", 3 + (d % 3)) for m in (1, 2, 3) for d in range(1, 15)] + \
+                    [tr(f"2025-0{m}-{d:02d}", -5) for m in (4, 5, 6) for d in range(1, 15)]
+    trades, picks = M.rolling_pick({"s1": good_then_bad})
+    q = {p["quarter"]: p["pick"] for p in picks}
+    assert q["2025-Q1"] is None and q["2025-Q2"] == "s1"  # Q1 had no past; Q2 picks on Q1 only
+    assert all(M._quarter(t["date"]) == "2025-Q2" for t in trades)
+
+
+def test_consensus_needs_k_strategies():
+    from kalshi_analyzer.backtest import __main__ as M
+    t = {"ts": 1, "ticker": "A", "side": "yes", "pnl": 1, "cost": 10, "date": "2025-01-01"}
+    assert len(M.consensus({"a": [t], "b": [t], "c": [t]}, 3)) == 1
+    assert M.consensus({"a": [t], "b": [t]}, 3) == []
