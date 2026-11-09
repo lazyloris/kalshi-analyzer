@@ -38,6 +38,17 @@ jobs:
           path: data/backtest_cache
           key: backtest-cache-${{ github.run_id }}
           restore-keys: backtest-cache-
+      - name: Fill gaps from the permanent copy (GitHub release "backtest-data")
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data/backtest_cache
+          if gh release download backtest-data -p backtest_cache.tar -D /tmp; then
+            tar -xf /tmp/backtest_cache.tar --skip-old-files -C data   # keep newer cached files
+            rm /tmp/backtest_cache.tar
+          fi
+          du -sh data/backtest_cache || true
       - name: Download new history
         if: github.event_name != 'push'
         run: python -m kalshi_analyzer.backtest fetch --days ${{ github.event.inputs.days || '240' }} --crypto-days ${{ github.event.inputs.crypto_days || '600' }} --weather-days ${{ github.event.inputs.weather_days || '600' }}
@@ -56,6 +67,16 @@ jobs:
         with:
           path: data/backtest_cache
           key: backtest-cache-${{ github.run_id }}
+      - name: Save permanent copy (GitHub release "backtest-data")
+        if: ${{ !cancelled() && github.event_name != 'push' }}
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tar -cf /tmp/backtest_cache.tar -C data backtest_cache
+          ls -lh /tmp/backtest_cache.tar
+          gh release view backtest-data >/dev/null 2>&1 || gh release create backtest-data --title "Backtest data (downloaded history)" --notes "Raw Kalshi, Coinbase and forecast history used by the backtest. Updated by the Backtest workflow; not a software release." --latest=false
+          gh release upload backtest-data /tmp/backtest_cache.tar --clobber
       - name: Replay strategies
         if: ${{ !cancelled() && github.event_name != 'push' }}
         run: python -m kalshi_analyzer.backtest run
