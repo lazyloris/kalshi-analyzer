@@ -56,3 +56,23 @@ money in **both halves** of the period with 30+ trades.
 - The verdict line picked "Market favorite" (+7.5% on only 50 trades). The more trustworthy result is vol x0.5 with its 10x larger sample.
 
 **Decision:** no live change yet. Next: an Ethereum paper book with vol x0.5 + 5c edge alongside Bitcoin, a replacement price source for commodities and indexes, and the options-implied check (PR #10).
+
+---
+
+## 2026-11-09: options check and extra signals (runs 42591766920 main, 42597467743 branch more-signals)
+
+- **Options-implied volatility (Deribit DVOL) lost.** Bitcoin lost 29%/$ at 1.0x, and the sweep was only positive at 0.6x. Options price bigger moves than Kalshi does. Ethereum x0.85 showed +10.6% on 178 trades, but its neighbouring settings were around zero, so it's treated as noise.
+- **Limit orders lost badly** (Bitcoin -11%, Ethereum -15%, weather fade -2%, weather favorite -12 to -19%). Fills only happen when the price moves against us (adverse selection). Keep paying the ask.
+- **News days (CPI, jobs, Fed):** skipping them changed almost nothing.
+- **Kalshi price-spike fade:** a big loser on crypto (-23%; crypto spikes carry real information), but positive on weather (highs +9.8% on 260 trades, t=1.1; lows +30.5% on 120, t=2.1). Small samples, to watch.
+- **Helped on both Bitcoin and Ethereum:**
+  - Time-of-day/weekend volatility: BTC +6.2% on 742 trades (t=3.5); its sweep is smooth from 0.5 to 0.75.
+  - Skipping markets that just moved 15c+: BTC +7.5%, ETH +6.9%.
+  - Trading against the last 24h move (BTC +8.3%, ETH +9.0%). Going with the trend was weak.
+- **Combined:**
+  - Time-of-day vol x0.5 + skip spikes: BTC +9.2% on 465 trades (t=4.5, last 60 days +4.4%); ETH +7.0% on 301 (t=2.7, last 60 days +8.8%).
+  - Adding "against trend": BTC +12.7% on 234 (t=4.9); ETH +11.0% on 163 (t=3.5).
+- **Caveat:** about 25 variants were tried on the same data, so part of this gain is selection luck. The only real test is live paper trading.
+- The verdict now picks the highest t-stat strategy with 50+ trades that was profitable in both halves.
+
+**Decision (proposed):** paper-trade "time-of-day vol x0.5 + skip spikes" on Bitcoin and Ethereum alongside the current vol x0.5 book, and compare weekly.
