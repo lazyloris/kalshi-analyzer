@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-09T10:35+00:00",
+ "generated_at": "2026-11-09T18:51+00:00",
  "strategy_version": "weather-low-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -37,14 +37,14 @@
   "KXLOWTLAX"
  ],
  "bankroll": 1000.0,
- "open_exposure": 38.53,
+ "open_exposure": 48.16,
  "totals": {
   "n": 0
  },
- "open_count": 4,
- "open_mark_pnl": -2.93,
- "open_marked": 4,
- "open_expected_pnl": -0.63,
+ "open_count": 5,
+ "open_mark_pnl": -2.16,
+ "open_marked": 5,
+ "open_expected_pnl": -0.86,
  "upcoming": [
   {
    "results_by": "2026-11-10T14:00+00:00",
@@ -59,6 +59,13 @@
    "n": 1,
    "at_risk": 9.73,
    "expected_pnl": -0.18
+  },
+  {
+   "results_by": "2026-11-11T14:00+00:00",
+   "closes_at": "2026-11-11T06:00:00Z",
+   "n": 1,
+   "at_risk": 9.63,
+   "expected_pnl": -0.23
   }
  ],
  "breakdowns": {
@@ -78,111 +85,141 @@
    "series": "KXLOWTAUS",
    "city": "Austin",
    "days_ahead": 0,
-   "n": 1,
-   "bias": -1.0,
-   "mae": 1.0,
-   "stdev": null,
+   "n": 2,
+   "bias": 1.5,
+   "mae": 2.5,
+   "stdev": 2.5,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTAUS",
    "city": "Austin",
    "days_ahead": 1,
-   "n": 1,
-   "bias": -1.0,
-   "mae": 1.0,
-   "stdev": null,
+   "n": 2,
+   "bias": 1.5,
+   "mae": 2.5,
+   "stdev": 2.5,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTCHI",
    "city": "Chicago",
    "days_ahead": 0,
-   "n": 1,
-   "bias": -1.0,
-   "mae": 1.0,
-   "stdev": null,
+   "n": 2,
+   "bias": -0.5,
+   "mae": 0.5,
+   "stdev": 0.5,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTCHI",
    "city": "Chicago",
    "days_ahead": 1,
-   "n": 1,
+   "n": 2,
    "bias": 0.0,
    "mae": 0.0,
-   "stdev": null,
+   "stdev": 0.0,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTDEN",
    "city": "Denver",
    "days_ahead": 0,
-   "n": 1,
-   "bias": 1.0,
-   "mae": 1.0,
-   "stdev": null,
+   "n": 2,
+   "bias": 0.5,
+   "mae": 0.5,
+   "stdev": 0.5,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTDEN",
    "city": "Denver",
    "days_ahead": 1,
-   "n": 1,
+   "n": 2,
    "bias": 0.0,
    "mae": 0.0,
-   "stdev": null,
+   "stdev": 0.0,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTLAX",
    "city": "Los Angeles",
    "days_ahead": 0,
-   "n": 1,
-   "bias": -6.0,
-   "mae": 6.0,
-   "stdev": null,
+   "n": 2,
+   "bias": -1.0,
+   "mae": 5.0,
+   "stdev": 5.0,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTLAX",
    "city": "Los Angeles",
    "days_ahead": 1,
-   "n": 1,
-   "bias": -4.0,
+   "n": 2,
+   "bias": 0.0,
    "mae": 4.0,
-   "stdev": null,
+   "stdev": 4.0,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTMIA",
    "city": "Miami",
    "days_ahead": 0,
-   "n": 1,
-   "bias": 1.0,
-   "mae": 1.0,
-   "stdev": null,
+   "n": 2,
+   "bias": 1.5,
+   "mae": 1.5,
+   "stdev": 0.5,
    "sigma_used": 1.5
+  },
+  {
+   "series": "KXLOWTMIA",
+   "city": "Miami",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": 2.0,
+   "mae": 2.0,
+   "stdev": null,
+   "sigma_used": 2.0
   },
   {
    "series": "KXLOWTNYC",
    "city": "New York",
    "days_ahead": 0,
-   "n": 1,
-   "bias": -6.0,
-   "mae": 6.0,
-   "stdev": null,
+   "n": 2,
+   "bias": -2.5,
+   "mae": 3.5,
+   "stdev": 3.5,
    "sigma_used": 1.5
+  },
+  {
+   "series": "KXLOWTNYC",
+   "city": "New York",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": 1.0,
+   "mae": 1.0,
+   "stdev": null,
+   "sigma_used": 2.0
   },
   {
    "series": "KXLOWTPHIL",
    "city": "Philadelphia",
    "days_ahead": 0,
-   "n": 1,
-   "bias": -3.0,
-   "mae": 3.0,
-   "stdev": null,
+   "n": 2,
+   "bias": -0.5,
+   "mae": 2.5,
+   "stdev": 2.5,
    "sigma_used": 1.5
+  },
+  {
+   "series": "KXLOWTPHIL",
+   "city": "Philadelphia",
+   "days_ahead": 1,
+   "n": 1,
+   "bias": 2.0,
+   "mae": 2.0,
+   "stdev": null,
+   "sigma_used": 2.0
   }
  ],
  "suggestions": [

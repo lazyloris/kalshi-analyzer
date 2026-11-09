@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-09T10:35+00:00",
+ "generated_at": "2026-11-09T18:51+00:00",
  "strategy_version": "eth-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -31,7 +31,7 @@
   "n": 0
  },
  "open_count": 4,
- "open_mark_pnl": -1.39,
+ "open_mark_pnl": -0.39,
  "open_marked": 4,
  "open_expected_pnl": 8.98,
  "upcoming": [

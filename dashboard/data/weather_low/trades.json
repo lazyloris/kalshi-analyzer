@@ -1,5 +1,43 @@
 [
  {
+  "book": "weather_low",
+  "strategy_version": "weather-low-fade-v2",
+  "opened_at": "2026-11-09T18:51+00:00",
+  "series": "KXLOWTPHIL",
+  "city": "Philadelphia",
+  "ticker": "KXLOWTPHIL-26NOV10-B40.5",
+  "event_ticker": "KXLOWTPHIL-26NOV10",
+  "target_date": "2026-11-10",
+  "bracket": "40\u00b0 to 41\u00b0",
+  "strike_type": "between",
+  "floor": 40,
+  "cap": 41,
+  "side": "no",
+  "contracts": 10,
+  "price": 0.96,
+  "fee": 0.03,
+  "cost": 9.63,
+  "model_p": 0.94,
+  "market_p": 0.96,
+  "edge": -0.023,
+  "forecast": "",
+  "sigma": "",
+  "unit": "",
+  "lead_hours": 35.1,
+  "lead_days": 1,
+  "distance": "",
+  "spread": 0.04,
+  "volume": 0,
+  "status": "open",
+  "closes_at": "2026-11-11T06:00:00Z",
+  "results_by": "2026-11-11T14:00+00:00",
+  "expected_pnl": -0.23,
+  "trade_id": "KXLOWTPHIL-26NOV10-B40.5-no",
+  "mark_price": 0.92,
+  "mark_pnl": -0.43,
+  "marked_at": "2026-11-09T18:51+00:00"
+ },
+ {
   "trade_id": "KXLOWTPHIL-26NOV09-B44.5-no",
   "book": "weather_low",
   "strategy_version": "weather-low-fade-v2",
@@ -43,9 +81,9 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.88,
-  "mark_pnl": -0.83,
-  "marked_at": "2026-11-09T10:35+00:00"
+  "mark_price": 0.93,
+  "mark_pnl": -0.33,
+  "marked_at": "2026-11-09T18:51+00:00"
  },
  {
   "trade_id": "KXLOWTMIA-26NOV09-B69.5-no",
@@ -91,9 +129,9 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.13",
-  "mark_price": 0.93,
-  "mark_pnl": -0.43,
-  "marked_at": "2026-11-09T10:35+00:00"
+  "mark_price": 0.99,
+  "mark_pnl": 0.17,
+  "marked_at": "2026-11-09T18:51+00:00"
  },
  {
   "trade_id": "KXLOWTDEN-26NOV09-B36.5-no",
@@ -139,9 +177,9 @@
   "closes_at": "2026-11-10T08:00:00Z",
   "results_by": "2026-11-10T16:00+00:00",
   "expected_pnl": "-0.18",
-  "mark_price": 0.91,
-  "mark_pnl": -0.63,
-  "marked_at": "2026-11-09T10:35+00:00"
+  "mark_price": 0.94,
+  "mark_pnl": -0.33,
+  "marked_at": "2026-11-09T18:51+00:00"
  },
  {
   "trade_id": "KXLOWTNYC-26NOV09-T49-no",
@@ -187,8 +225,8 @@
   "closes_at": "2026-11-10T06:00:00Z",
   "results_by": "2026-11-10T14:00+00:00",
   "expected_pnl": "-0.24",
-  "mark_price": 0.84,
-  "mark_pnl": -1.04,
-  "marked_at": "2026-11-09T10:35+00:00"
+  "mark_price": 0.82,
+  "mark_pnl": -1.24,
+  "marked_at": "2026-11-09T18:51+00:00"
  }
 ]
