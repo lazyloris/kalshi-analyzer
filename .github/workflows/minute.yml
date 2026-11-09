@@ -25,7 +25,7 @@ jobs:
       - name: Restore minute data
         uses: actions/cache/restore@v4
         with:
-          path: data/backtest_cache/minute_lag.json.gz
+          path: data/backtest_cache/minute_lag*.json.gz
           key: minute-lag-${{ github.run_id }}
           restore-keys: minute-lag-
       - name: Download and replay
@@ -34,7 +34,7 @@ jobs:
         if: always()
         uses: actions/cache/save@v4
         with:
-          path: data/backtest_cache/minute_lag.json.gz
+          path: data/backtest_cache/minute_lag*.json.gz
           key: minute-lag-${{ github.run_id }}
       - name: Save results to the repo
         if: ${{ !cancelled() }}

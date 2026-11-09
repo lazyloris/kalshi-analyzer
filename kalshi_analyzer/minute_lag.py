@@ -24,14 +24,15 @@ from .model import lognormal_probability, taker_fee
 OUT_MD = C.ROOT / "reports" / "minute_lag.md"
 OUT_JSON = C.ROOT / "dashboard" / "data" / "minute_lag.json"
 CACHE = "minute_lag"
+ASSETS = {"BTC": ("KXBTCD", "BTC-USD"), "ETH": ("KXETHD", "ETH-USD")}
 
 
-def coinbase_minutes(start_ts, end_ts):
+def coinbase_minutes(start_ts, end_ts, product="BTC-USD"):
     out = {}
     t = start_ts
     while t < end_ts:
         e = min(end_ts, t + 300 * 60)
-        rows = get_json(f"{C.COINBASE_API}/products/BTC-USD/candles", {
+        rows = get_json(f"{C.COINBASE_API}/products/{product}/candles", {
             "granularity": 60, "start": dt.datetime.fromtimestamp(t, dt.timezone.utc).isoformat(),
             "end": dt.datetime.fromtimestamp(e, dt.timezone.utc).isoformat()}, retries=5)
         for r in rows:
@@ -41,9 +42,9 @@ def coinbase_minutes(start_ts, end_ts):
     return out
 
 
-def kalshi_minutes(m, start_ts, end_ts):
+def kalshi_minutes(m, start_ts, end_ts, series="KXBTCD"):
     params = {"start_ts": start_ts, "end_ts": end_ts, "period_interval": 1}
-    urls = [f"{D.K}/series/KXBTCD/markets/{m['ticker']}/candlesticks",
+    urls = [f"{D.K}/series/{series}/markets/{m['ticker']}/candlesticks",
             f"{D.K}/historical/markets/{m['ticker']}/candlesticks"]
     if m["source"] == "historical":
         urls.reverse()
@@ -55,10 +56,12 @@ def kalshi_minutes(m, start_ts, end_ts):
     return []
 
 
-def fetch(days):
-    cache = D._load(CACHE, {"events": {}})
+def fetch(days, asset="BTC"):
+    series, product = ASSETS[asset]
+    name = CACHE if asset == "BTC" else f"{CACHE}_{asset}"
+    cache = D._load(name, {"events": {}})
     today = dt.date.today()
-    for ev in D.btc_event_tickers(today - dt.timedelta(days=days), today - dt.timedelta(days=1)):
+    for ev in D.btc_event_tickers(today - dt.timedelta(days=days), today - dt.timedelta(days=1), series=series):
         if ev in cache["events"]:
             continue
         ms = D.settled_markets(event_ticker=ev)
@@ -67,7 +70,7 @@ def fetch(days):
         close = max(D._ts(m["close_time"]) for m in ms)
         start = close - 6 * 3600
         try:
-            px = coinbase_minutes(start - 6 * 3600, close)  # 6h extra for volatility
+            px = coinbase_minutes(start - 6 * 3600, close, product)  # 6h extra for volatility
         except Exception as e:
             D.log(f"{ev}: coinbase {e}")
             continue
@@ -80,12 +83,12 @@ def fetch(days):
         for m in ms:
             strike = _num(m["floor"]) or _num(m["cap"])
             if strike and abs(strike / spot - 1) <= 0.02 and m["strike_type"] in ("greater", "greater_or_equal", "less"):
-                cs = kalshi_minutes(m, start, close)
+                cs = kalshi_minutes(m, start, close, series)
                 if cs:
                     keep.append({**m, "cs": cs})
         cache["events"][ev] = {"close": close, "px": {str(t): v for t, v in px.items()}, "markets": keep}
         D.log(f"{ev}: {len(keep)} markets")
-        D._save(CACHE, cache)
+        D._save(name, cache)
     return cache
 
 
@@ -96,7 +99,8 @@ def _num(v):
         return None
 
 
-def simulate(cache, move=0.003, edge=0.05, mult=1.0, hold="settle", stake=10.0):
+def simulate(cache, move=0.003, edge=0.05, mult=1.0, hold="settle", stake=10.0, delay=0):
+    """delay = minutes between seeing the signal and the order filling (at that later quote)."""
     trades = []
     for ev, e in sorted(cache["events"].items()):
         px = {int(t): v for t, v in e["px"].items()}
@@ -138,6 +142,11 @@ def simulate(cache, move=0.003, edge=0.05, mult=1.0, hold="settle", stake=10.0):
                 up_for_side = (side == "yes") == (m["strike_type"] != "less")
                 if (r > 0) != up_for_side:
                     continue
+                if delay:
+                    nxt = cs[i + delay] if i + delay < len(cs) else None
+                    if not nxt or nxt[0] - t > delay * 60 + 120 or nxt[1] is None or nxt[2] is None:
+                        continue
+                    bid, ask = nxt[1], nxt[2]
                 price = ask if side == "yes" else 1 - bid
                 n = max(1, math.floor(stake / price))
                 cost = n * price + taker_fee(n, price, C.FEE_RATE)
@@ -170,36 +179,59 @@ def summary(trades):
     return {"trades": len(trades), "pnl": round(pnl, 2), "roi": round(pnl / staked, 4),
             "t": round(statistics.fmean(rets) / sd * math.sqrt(len(rets)), 2) if sd else None,
             "first_half": round(sum(t["pnl"] for t in s[:half]), 1), "second_half": round(sum(t["pnl"] for t in s[half:]), 1),
-            "older": round(sum(t["pnl"] for t in s if t["date"] < "2026-03-13"), 1)}
+            "older": round(sum(t["pnl"] for t in s if t["date"] < "2026-03-13"), 1),
+            "events": len({t["event"] for t in trades}), "t_events": _t_events(trades)}
+
+
+def _t_events(trades):
+    """t-stat over whole events: trades in one event move together, so this is the honest one."""
+    g = {}
+    for t in trades:
+        g.setdefault(t["event"], [0.0, 0.0])
+        g[t["event"]][0] += t["pnl"]
+        g[t["event"]][1] += t["cost"]
+    rs = [p / c for p, c in g.values() if c]
+    if len(rs) < 3:
+        return None
+    sd = statistics.pstdev(rs)
+    return round(statistics.fmean(rs) / sd * math.sqrt(len(rs)), 2) if sd else None
 
 
 def run(days):
-    cache = fetch(days)
-    rows = []
-    for move in (0.002, 0.003, 0.005):
-        for edge in (0.03, 0.05, 0.08):
-            for mult in (0.5, 1.0):
-                for hold in ("settle", "15m"):
-                    rows.append({"move": move, "edge": edge, "mult": mult, "hold": hold,
-                                 **summary(simulate(cache, move, edge, mult, hold))})
-    rows.sort(key=lambda r: -(r.get("pnl") or -1e9))
-    n_ev = len(cache["events"])
-    L = [f"# Minute-level Bitcoin lag test ({dt.date.today()})", "",
-         f"{n_ev} daily events, strikes within 2% of the price, last 6 hours before 5pm ET. "
-         "Buy when BTC moved X% in 5 minutes and the Kalshi ask is below fair value by the edge. "
-         "Taker fees included. 'older' = P&L before 2026-03-13.", "",
-         "| BTC move | Edge | Vol x | Exit | Trades | P&L | Return/$ | t | 1st half | 2nd half | Older |",
-         "|---|---|---|---|---|---|---|---|---|---|---|"]
-    for r in rows:
-        L.append(f"| {r['move'] * 100:.1f}% | {r['edge'] * 100:.0f}c | {r['mult']} | {r['hold']} | {r['trades']} | "
-                 f"{r.get('pnl', 0):+.1f} | {(r.get('roi') or 0) * 100:+.1f}% | {r.get('t') or '–'} | "
-                 f"{r.get('first_half', 0):+.0f} | {r.get('second_half', 0):+.0f} | {r.get('older', 0):+.0f} |")
-    L += ["", "18 settings were tried, so the best row is flattered by selection. Look for rows that are "
-              "positive in both halves AND in the older period.", ""]
+    L = [f"# Minute-level crypto test ({dt.date.today()})", "",
+         "Strikes within 2% of the price, last 6 hours before 5pm ET. Signal: the coin moved X% in 5 minutes "
+         "and the Kalshi price is below fair value (lognormal, last-6h minute volatility x mult) by the edge, "
+         "in the direction of the move. Taker fees included. Delay = minutes before the order fills (at "
+         "that later quote). t (events) treats each day as one sample. 'Older' = P&L before 2026-03-13.", ""]
+    out = {}
+    for asset in ASSETS:
+        cache = fetch(days, asset)
+        rows = []
+        for move in (0.002, 0.003):
+            for edge in (0.03, 0.05, 0.08):
+                for mult in (0.5, 0.75, 1.0):
+                    for delay in (0, 1, 2):
+                        rows.append({"move": move, "edge": edge, "mult": mult, "delay": delay,
+                                     **summary(simulate(cache, move, edge, mult, "settle", delay=delay))})
+                    rows.append({"move": move, "edge": edge, "mult": mult, "delay": "15m exit",
+                                 **summary(simulate(cache, move, edge, mult, "15m"))})
+        rows.sort(key=lambda r: -(r.get("pnl") or -1e9))
+        out[asset] = {"events": len(cache["events"]), "rows": rows}
+        L += [f"## {asset} ({len(cache['events'])} days)", "",
+              "| Move | Edge | Vol x | Delay | Trades | Days | P&L | Return/$ | t (trades) | t (events) | 1st half | 2nd half | Older |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|---|"]
+        for r in rows:
+            L.append(f"| {r['move'] * 100:.1f}% | {r['edge'] * 100:.0f}c | {r['mult']} | {r['delay']} | {r['trades']} | "
+                     f"{r.get('events', 0)} | {r.get('pnl', 0):+.1f} | {(r.get('roi') or 0) * 100:+.1f}% | {r.get('t') or '–'} | "
+                     f"{r.get('t_events') or '–'} | {r.get('first_half', 0):+.0f} | {r.get('second_half', 0):+.0f} | "
+                     f"{r.get('older', 0):+.0f} |")
+        L.append("")
+    L += ["72 settings per coin were tried, so the best row is flattered. Trust a setting only if it is "
+          "positive with a 1-2 minute delay, in both halves, in the older period, and on BOTH coins.", ""]
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text("\n".join(L))
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
-    OUT_JSON.write_text(json.dumps({"events": n_ev, "rows": rows}, indent=1))
+    OUT_JSON.write_text(json.dumps(out, indent=1))
     D.log(f"wrote {OUT_MD}")
 
 
