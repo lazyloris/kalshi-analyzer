@@ -181,3 +181,67 @@ def test_implied_vol_strategies_use_only_past_values():
     assert by["8h before"] == 0.40 and by["4h before"] == 0.80
     for sid, name, desc, pick in E.iv_strategies():
         E.metrics(E.simulate(evs, pick))
+
+
+def _btc_events(hours_of_prices=40 * 24):
+    close = dt.datetime(2026, 10, 20, 21, 0, tzinfo=dt.timezone.utc)
+    ts = int(close.timestamp())
+    prices = {ts - h * 3600: 70000 * (1 + 0.002 * ((h % 7) - 3)) for h in range(0, hours_of_prices)}
+    ms, cs = {}, {}
+    for k in range(-3, 4):
+        strike = 70000 + 500 * k - 0.01
+        t = f"KXBTCD-26OCT2017-T{strike}"
+        ms[t] = {"ticker": t, "event_ticker": "KXBTCD-26OCT2017", "strike_type": "greater", "floor": strike, "cap": None,
+                 "close_time": close.isoformat().replace("+00:00", "Z"), "result": "yes" if k <= 0 else "no",
+                 "value": "70100", "source": "live"}
+        p = max(0.03, min(0.97, 0.5 - 0.15 * k))
+        cs[t] = [[ts - h * 3600, p - 0.02, p + 0.02, 3] for h in range(20, 0, -1)]
+    return E.crypto_events("KXBTCD", {"markets": ms, "candles": cs}, prices), prices, ts
+
+
+def test_signals_enrich_and_strategies_run():
+    from kalshi_analyzer.backtest import signals as S
+    evs, prices, ts = _btc_events()
+    S.enrich(evs, prices, tod=True)
+    e = evs[0]
+    assert e["close"] == ts and e["tod_vol"] > 0 and e["regime"] > 0 and "ret24" in e
+    assert e["news_in_window"] is None  # Oct 20 2026: no CPI/jobs/Fed release
+    for sid, name, desc, pick in S.crypto_strategies() + S.weather_strategies():
+        E.metrics(E.simulate(evs, pick))
+
+
+def test_news_calendar_flags_cpi_day():
+    from kalshi_analyzer.backtest import signals as S
+    close = int(dt.datetime(2026, 10, 14, 17, tzinfo=S.ET).timestamp())
+    m = {"close_time": dt.datetime.fromtimestamp(close, dt.timezone.utc).isoformat()}
+    early = {"ts": close - 10 * 3600, "markets": [m]}  # 7am, before the 8:30 CPI release
+    late = {"ts": close - 4 * 3600, "markets": [m]}
+    S.enrich([early, late])
+    assert early["news_in_window"] == "cpi" and late["news_in_window"] is None
+    assert early["news_day"] == late["news_day"] == "cpi"
+
+
+def test_maker_fills_only_when_a_later_quote_reaches_our_price():
+    from kalshi_analyzer.backtest import signals as S
+    close = 10 * 3600
+    m = {"ticker": "T", "strike_type": "greater", "floor": 1, "cap": None, "close_time":
+         dt.datetime.fromtimestamp(close, dt.timezone.utc).isoformat(), "bid": 0.40, "ask": 0.45, "won_yes": True,
+         "cs": [[3600, 0.40, 0.45, 1], [7200, 0.38, 0.40, 1]]}
+    e = {"date": "x", "ts": 3600, "series": "S", "city": "c", "entry": "e", "markets": [m]}
+    base = lambda ev: [E._trade(ev, m, "yes", 0.6)]
+    got = S.maker(base)(e)
+    assert len(got) == 1 and got[0]["price"] == 0.41 and got[0]["order"] == "maker"
+    assert got[0]["pnl"] > base(e)[0]["pnl"]  # cheaper than paying the 45c ask
+    m["cs"] = [[3600, 0.40, 0.45, 1], [7200, 0.41, 0.44, 1]]  # never comes down to 41c
+    assert S.maker(base)(e) == []
+    m["cs"] = [[3600, 0.40, 0.45, 1], [7200, 0.39, 0.41, 1]]
+    assert len(S.maker(base)(e)) == 1 and S.maker(base, through=True)(e) == []
+
+
+def test_spike_fade_bets_against_recent_jump():
+    from kalshi_analyzer.backtest import signals as S
+    m = {"ticker": "T", "strike_type": "greater", "floor": 1, "cap": None, "close_time": "2026-10-20T21:00:00Z",
+         "bid": 0.60, "ask": 0.62, "won_yes": False, "cs": [[0, 0.30, 0.32, 1], [3 * 3600, 0.60, 0.62, 1]]}
+    e = {"date": "x", "ts": 3 * 3600 + 60, "series": "S", "city": "c", "entry": "e", "markets": [m]}
+    t = S.spike_fade()(e)
+    assert len(t) == 1 and t[0]["side"] == "no" and t[0]["won"]

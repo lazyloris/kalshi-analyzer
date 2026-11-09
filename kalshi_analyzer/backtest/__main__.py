@@ -13,6 +13,7 @@ import json
 from .. import config as C
 from . import data as D
 from . import engine as E
+from . import signals as S
 
 OUT_JSON = C.DASHBOARD_DATA / "backtest.json"
 OUT_MD = C.ROOT / "reports" / "backtest.md"
@@ -76,8 +77,9 @@ def run(now=None):
         evs = E.calibrate(E.weather_events(b, kalshi, nbm))
         if not evs:
             continue
+        S.enrich(evs)
         strategies = [_strategy_result(sid, name, desc, b, E.simulate(evs, pick))
-                      for sid, name, desc, pick in E.weather_strategies()]
+                      for sid, name, desc, pick in E.weather_strategies() + S.weather_strategies()]
         sw = E.weather_sweeps()
         result["books"][b] = {
             "name": C.BOOKS[b]["name"], "events": len({e["event"] for e in evs}),
@@ -94,15 +96,18 @@ def run(now=None):
         evs = E.crypto_events("KXBTCD", btc, prices)
         iv = {int(k): v for k, v in D._load("dvol_BTC", {}).items()}
         has_iv = E.attach_ivol(evs, iv) if evs and iv else 0
+        S.enrich(evs, prices, tod=True)
         if evs:
             result["books"]["bitcoin"] = {
                 "name": C.BOOKS["bitcoin"]["name"], "events": len({e["event"] for e in evs}),
                 "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, name, desc, "bitcoin", E.simulate(evs, pick))
-                               for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])],
+                               for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])
+                               + S.crypto_strategies()],
                 "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]],
                            **({"options vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]}
-                              if has_iv else {})},
+                              if has_iv else {}),
+                           "time-of-day vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()]},
                 "iv_coverage": round(has_iv / len(evs), 3),
                 "market_calibration": E.market_calibration(evs),
             }
@@ -121,16 +126,17 @@ def run(now=None):
     return result
 
 
-def verdict(strats, min_trades=30):
-    """Best strategy that made money in BOTH halves of the period with enough trades, if any."""
+def verdict(strats, min_trades=50):
+    """Most reliable strategy (highest t-stat, so small lucky samples don't win) that made money in
+    BOTH halves of the period with enough trades, if any."""
     ok = [s for s in strats if s["trades"] >= min_trades and s["first_half"] > 0 and s["second_half"] > 0]
     if not ok:
         best = max(strats, key=lambda s: s["pnl"])
         return {"id": None, "text": f"No strategy made money in both halves with {min_trades}+ trades. "
                                     f"Least bad: {best['name']} ({best['pnl']:+.0f} on {best['trades']} trades)."}
-    best = max(ok, key=lambda s: s["roi"])
+    best = max(ok, key=lambda s: s["t_stat"] or 0)
     return {"id": best["id"], "text": f"{best['name']}: {best['pnl']:+.0f} on {best['trades']} trades "
-                                      f"({best['roi'] * 100:+.1f}% per $ staked), profitable in both halves."}
+                                      f"({best['roi'] * 100:+.1f}% per $ staked, t={best['t_stat']}), profitable in both halves."}
 
 
 def _roi(v):
