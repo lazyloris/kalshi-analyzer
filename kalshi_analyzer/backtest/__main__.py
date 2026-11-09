@@ -183,6 +183,30 @@ def _strategy_result(sid, name, desc, book, trades):
             "curve": E.curve(trades)}
 
 
+LIVE_MAP = {  # live paper book -> (backtest book, strategy id it copies)
+    "bitcoin": ("bitcoin", "c_vol50"), "bitcoin_tod": ("bitcoin", "s_combo_tod"),
+    "ethereum": ("asset_eth", "a_vol50"), "ethereum_tod": ("asset_eth", "s_combo_tod"),
+    "weather_high": ("weather_high", "fade"), "weather_low": ("weather_low", "fade"),
+}
+
+
+def live_vs_backtest(books):
+    """Settled live paper trades per book next to what the backtest says that rule should earn."""
+    import csv
+    out = []
+    for live, (bb, sid) in LIVE_MAP.items():
+        f = C.DATA_DIR / live / "trades.csv"
+        rows = list(csv.DictReader(f.open())) if f.exists() else []
+        done = [r for r in rows if r.get("status") == "settled" and r.get("pnl") not in (None, "")]
+        cost = sum(float(r["cost"]) for r in done)
+        pnl = sum(float(r["pnl"]) for r in done)
+        bt = next((x for x in books.get(bb, {}).get("strategies", []) if x["id"] == sid), None)
+        out.append({"book": live, "open": len(rows) - len(done), "settled": len(done), "pnl": round(pnl, 2),
+                    "roi": round(pnl / cost, 4) if cost else None, "backtest": sid,
+                    "backtest_roi": bt["roi"] if bt else None})
+    return out
+
+
 def run(now=None):
     now = now or dt.datetime.now(dt.timezone.utc)
     kalshi, nbm, btc, prices = load()
@@ -254,6 +278,7 @@ def run(now=None):
     for b, r in result["books"].items():
         add_combined(b, r)
         r["verdict"] = verdict(r["strategies"])
+    result["live"] = live_vs_backtest(result["books"])
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(result, indent=1))
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
@@ -284,6 +309,12 @@ def markdown(r):
          f"Flat ${r['stake']:.0f} per trade at the ask plus Kalshi fees, held to settlement. "
          "Prices are real hourly Kalshi quotes. Forecasts are archived NWS-blend (NBM) runs 1-2 days old. "
          "Bias/sigma learned only from earlier days.", ""]
+    if r.get("live"):
+        L += ["## Live paper books vs backtest", "", "| Book | Settled | Open | Live P&L | Live return/$ | Backtest rule | Backtest return/$ |",
+              "|---|---|---|---|---|---|---|"]
+        L += [f"| {x['book']} | {x['settled']} | {x['open']} | {x['pnl']:+.2f} | {_roi(x['roi'])} | {x['backtest']} | "
+              f"{_roi(x['backtest_roi'])} |" for x in r["live"]]
+        L += ["", "Live numbers need ~100 settled trades before they mean much.", ""]
     for b, x in r["books"].items():
         L += [f"## {x['name']}", "", f"{x['events']} events, {x['first']} to {x['last']}.", "",
               f"**Verdict:** {x['verdict']['text']}", "",
