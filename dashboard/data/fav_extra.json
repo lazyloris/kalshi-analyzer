@@ -1,0 +1,5776 @@
+{
+ "generated_at": "2026-11-10T04:09+00:00",
+ "maker": {
+  "KXBTCD": {
+   "candidates": 1142,
+   "with_trades": 1142,
+   "rows": [
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "taker (buy at ask)",
+     "opportunities": 374,
+     "fills": 374,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.901,
+     "win_rate_all": 0.901,
+     "pnl": 314.43,
+     "roi": 0.0867,
+     "t_day": 4.24,
+     "older": 87.2,
+     "newer": 227.2
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, through",
+     "opportunities": 374,
+     "fills": 321,
+     "fill_rate": 0.858,
+     "win_rate_filled": 0.885,
+     "win_rate_all": 0.901,
+     "pnl": 290.77,
+     "roi": 0.0946,
+     "t_day": 3.88,
+     "older": 60.8,
+     "newer": 230.0
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 374,
+     "fills": 339,
+     "fill_rate": 0.906,
+     "win_rate_filled": 0.891,
+     "win_rate_all": 0.901,
+     "pnl": 332.67,
+     "roi": 0.1025,
+     "t_day": 4.42,
+     "older": 71.2,
+     "newer": 261.5
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 374,
+     "fills": 282,
+     "fill_rate": 0.754,
+     "win_rate_filled": 0.897,
+     "win_rate_all": 0.901,
+     "pnl": 297.42,
+     "roi": 0.1102,
+     "t_day": 4.43,
+     "older": 85.1,
+     "newer": 212.3
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through",
+     "opportunities": 374,
+     "fills": 301,
+     "fill_rate": 0.805,
+     "win_rate_filled": 0.877,
+     "win_rate_all": 0.901,
+     "pnl": 285.77,
+     "roi": 0.099,
+     "t_day": 3.77,
+     "older": 62.3,
+     "newer": 223.5
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 374,
+     "fills": 316,
+     "fill_rate": 0.845,
+     "win_rate_filled": 0.883,
+     "win_rate_all": 0.901,
+     "pnl": 322.66,
+     "roi": 0.1065,
+     "t_day": 4.25,
+     "older": 71.2,
+     "newer": 251.4
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 374,
+     "fills": 251,
+     "fill_rate": 0.671,
+     "win_rate_filled": 0.896,
+     "win_rate_all": 0.901,
+     "pnl": 299.7,
+     "roi": 0.1244,
+     "t_day": 4.6,
+     "older": 90.0,
+     "newer": 209.7
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, through",
+     "opportunities": 374,
+     "fills": 287,
+     "fill_rate": 0.767,
+     "win_rate_filled": 0.871,
+     "win_rate_all": 0.901,
+     "pnl": 290.79,
+     "roi": 0.1056,
+     "t_day": 3.8,
+     "older": 63.8,
+     "newer": 227.0
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 374,
+     "fills": 298,
+     "fill_rate": 0.797,
+     "win_rate_filled": 0.876,
+     "win_rate_all": 0.901,
+     "pnl": 318.08,
+     "roi": 0.1112,
+     "t_day": 4.14,
+     "older": 72.4,
+     "newer": 245.6
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 374,
+     "fills": 231,
+     "fill_rate": 0.618,
+     "win_rate_filled": 0.887,
+     "win_rate_all": 0.901,
+     "pnl": 279.55,
+     "roi": 0.1261,
+     "t_day": 4.25,
+     "older": 91.8,
+     "newer": 187.7
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 374,
+     "fills": 301,
+     "fill_rate": 0.805,
+     "win_rate_filled": 0.877,
+     "win_rate_all": 0.901,
+     "pnl": 273.96,
+     "roi": 0.0945,
+     "t_day": 3.62,
+     "older": 57.6,
+     "newer": 216.4
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "taker (buy at ask)",
+     "opportunities": 254,
+     "fills": 254,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.988,
+     "win_rate_all": 0.988,
+     "pnl": 106.45,
+     "roi": 0.0443,
+     "t_day": 6.06,
+     "older": 47.2,
+     "newer": 59.2
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, through",
+     "opportunities": 254,
+     "fills": 182,
+     "fill_rate": 0.717,
+     "win_rate_filled": 0.984,
+     "win_rate_all": 0.988,
+     "pnl": 94.0,
+     "roi": 0.0554,
+     "t_day": 5.24,
+     "older": 41.6,
+     "newer": 52.4
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 254,
+     "fills": 211,
+     "fill_rate": 0.831,
+     "win_rate_filled": 0.986,
+     "win_rate_all": 0.988,
+     "pnl": 113.5,
+     "roi": 0.0577,
+     "t_day": 6.35,
+     "older": 44.7,
+     "newer": 68.8
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 254,
+     "fills": 161,
+     "fill_rate": 0.634,
+     "win_rate_filled": 0.981,
+     "win_rate_all": 0.988,
+     "pnl": 79.9,
+     "roi": 0.0533,
+     "t_day": 4.46,
+     "older": 30.8,
+     "newer": 49.1
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through",
+     "opportunities": 254,
+     "fills": 156,
+     "fill_rate": 0.614,
+     "win_rate_filled": 0.981,
+     "win_rate_all": 0.988,
+     "pnl": 92.0,
+     "roi": 0.064,
+     "t_day": 5.08,
+     "older": 43.7,
+     "newer": 48.3
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 254,
+     "fills": 182,
+     "fill_rate": 0.717,
+     "win_rate_filled": 0.984,
+     "win_rate_all": 0.988,
+     "pnl": 112.2,
+     "roi": 0.0669,
+     "t_day": 6.19,
+     "older": 49.1,
+     "newer": 63.1
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 254,
+     "fills": 132,
+     "fill_rate": 0.52,
+     "win_rate_filled": 0.977,
+     "win_rate_all": 0.988,
+     "pnl": 73.3,
+     "roi": 0.0602,
+     "t_day": 4.07,
+     "older": 32.7,
+     "newer": 40.6
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, through",
+     "opportunities": 254,
+     "fills": 133,
+     "fill_rate": 0.524,
+     "win_rate_filled": 0.977,
+     "win_rate_all": 0.988,
+     "pnl": 90.3,
+     "roi": 0.0729,
+     "t_day": 4.91,
+     "older": 38.7,
+     "newer": 51.6
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 254,
+     "fills": 154,
+     "fill_rate": 0.606,
+     "win_rate_filled": 0.981,
+     "win_rate_all": 0.988,
+     "pnl": 109.2,
+     "roi": 0.0761,
+     "t_day": 5.91,
+     "older": 50.8,
+     "newer": 58.4
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 254,
+     "fills": 103,
+     "fill_rate": 0.406,
+     "win_rate_filled": 0.971,
+     "win_rate_all": 0.988,
+     "pnl": 63.5,
+     "roi": 0.0661,
+     "t_day": 3.5,
+     "older": 25.5,
+     "newer": 38.0
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 254,
+     "fills": 156,
+     "fill_rate": 0.614,
+     "win_rate_filled": 0.981,
+     "win_rate_all": 0.988,
+     "pnl": 88.88,
+     "roi": 0.0617,
+     "t_day": 4.92,
+     "older": 42.3,
+     "newer": 46.5
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "taker (buy at ask)",
+     "opportunities": 299,
+     "fills": 299,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.886,
+     "win_rate_all": 0.886,
+     "pnl": 208.07,
+     "roi": 0.0718,
+     "t_day": 2.96,
+     "older": 91.1,
+     "newer": 117.0
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, through",
+     "opportunities": 299,
+     "fills": 255,
+     "fill_rate": 0.853,
+     "win_rate_filled": 0.867,
+     "win_rate_all": 0.886,
+     "pnl": 187.05,
+     "roi": 0.0768,
+     "t_day": 2.67,
+     "older": 74.2,
+     "newer": 112.9
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 299,
+     "fills": 264,
+     "fill_rate": 0.883,
+     "win_rate_filled": 0.871,
+     "win_rate_all": 0.886,
+     "pnl": 204.83,
+     "roi": 0.0812,
+     "t_day": 2.92,
+     "older": 72.4,
+     "newer": 132.4
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 299,
+     "fills": 245,
+     "fill_rate": 0.819,
+     "win_rate_filled": 0.861,
+     "win_rate_all": 0.886,
+     "pnl": 165.29,
+     "roi": 0.0706,
+     "t_day": 2.36,
+     "older": 57.7,
+     "newer": 107.6
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through",
+     "opportunities": 299,
+     "fills": 246,
+     "fill_rate": 0.823,
+     "win_rate_filled": 0.862,
+     "win_rate_all": 0.886,
+     "pnl": 195.98,
+     "roi": 0.083,
+     "t_day": 2.75,
+     "older": 82.3,
+     "newer": 113.6
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 299,
+     "fills": 250,
+     "fill_rate": 0.836,
+     "win_rate_filled": 0.864,
+     "win_rate_all": 0.886,
+     "pnl": 207.15,
+     "roi": 0.0864,
+     "t_day": 2.89,
+     "older": 79.1,
+     "newer": 128.0
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 299,
+     "fills": 230,
+     "fill_rate": 0.769,
+     "win_rate_filled": 0.861,
+     "win_rate_all": 0.886,
+     "pnl": 181.93,
+     "roi": 0.0824,
+     "t_day": 2.62,
+     "older": 61.2,
+     "newer": 120.7
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, through",
+     "opportunities": 299,
+     "fills": 227,
+     "fill_rate": 0.759,
+     "win_rate_filled": 0.85,
+     "win_rate_all": 0.886,
+     "pnl": 180.83,
+     "roi": 0.083,
+     "t_day": 2.53,
+     "older": 84.9,
+     "newer": 95.9
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 299,
+     "fills": 240,
+     "fill_rate": 0.803,
+     "win_rate_filled": 0.858,
+     "win_rate_all": 0.886,
+     "pnl": 213.54,
+     "roi": 0.0927,
+     "t_day": 2.97,
+     "older": 85.9,
+     "newer": 127.7
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 299,
+     "fills": 206,
+     "fill_rate": 0.689,
+     "win_rate_filled": 0.85,
+     "win_rate_all": 0.886,
+     "pnl": 160.9,
+     "roi": 0.0813,
+     "t_day": 2.34,
+     "older": 72.0,
+     "newer": 88.9
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 299,
+     "fills": 246,
+     "fill_rate": 0.823,
+     "win_rate_filled": 0.862,
+     "win_rate_all": 0.886,
+     "pnl": 186.15,
+     "roi": 0.0785,
+     "t_day": 2.61,
+     "older": 78.9,
+     "newer": 107.3
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "taker (buy at ask)",
+     "opportunities": 215,
+     "fills": 215,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.977,
+     "win_rate_all": 0.977,
+     "pnl": 66.36,
+     "roi": 0.0326,
+     "t_day": 3.02,
+     "older": 16.3,
+     "newer": 50.1
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, through",
+     "opportunities": 215,
+     "fills": 157,
+     "fill_rate": 0.73,
+     "win_rate_filled": 0.968,
+     "win_rate_all": 0.977,
+     "pnl": 57.4,
+     "roi": 0.0392,
+     "t_day": 2.61,
+     "older": 13.0,
+     "newer": 44.4
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 215,
+     "fills": 178,
+     "fill_rate": 0.828,
+     "win_rate_filled": 0.972,
+     "win_rate_all": 0.977,
+     "pnl": 72.1,
+     "roi": 0.0435,
+     "t_day": 3.28,
+     "older": 13.6,
+     "newer": 58.5
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 215,
+     "fills": 145,
+     "fill_rate": 0.674,
+     "win_rate_filled": 0.972,
+     "win_rate_all": 0.977,
+     "pnl": 59.2,
+     "roi": 0.0438,
+     "t_day": 3.0,
+     "older": 16.0,
+     "newer": 43.2
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through",
+     "opportunities": 215,
+     "fills": 141,
+     "fill_rate": 0.656,
+     "win_rate_filled": 0.965,
+     "win_rate_all": 0.977,
+     "pnl": 60.7,
+     "roi": 0.0467,
+     "t_day": 2.76,
+     "older": 17.7,
+     "newer": 43.0
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 215,
+     "fills": 155,
+     "fill_rate": 0.721,
+     "win_rate_filled": 0.968,
+     "win_rate_all": 0.977,
+     "pnl": 71.3,
+     "roi": 0.0499,
+     "t_day": 3.24,
+     "older": 18.4,
+     "newer": 52.9
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 215,
+     "fills": 124,
+     "fill_rate": 0.577,
+     "win_rate_filled": 0.968,
+     "win_rate_all": 0.977,
+     "pnl": 57.6,
+     "roi": 0.0504,
+     "t_day": 2.91,
+     "older": 18.2,
+     "newer": 39.4
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, through",
+     "opportunities": 215,
+     "fills": 122,
+     "fill_rate": 0.567,
+     "win_rate_filled": 0.959,
+     "win_rate_all": 0.977,
+     "pnl": 58.0,
+     "roi": 0.0509,
+     "t_day": 2.49,
+     "older": 16.3,
+     "newer": 41.7
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 215,
+     "fills": 139,
+     "fill_rate": 0.647,
+     "win_rate_filled": 0.964,
+     "win_rate_all": 0.977,
+     "pnl": 73.4,
+     "roi": 0.0565,
+     "t_day": 3.14,
+     "older": 22.0,
+     "newer": 51.4
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 215,
+     "fills": 101,
+     "fill_rate": 0.47,
+     "win_rate_filled": 0.96,
+     "win_rate_all": 0.977,
+     "pnl": 50.2,
+     "roi": 0.0532,
+     "t_day": 2.42,
+     "older": 15.7,
+     "newer": 34.5
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 215,
+     "fills": 141,
+     "fill_rate": 0.656,
+     "win_rate_filled": 0.965,
+     "win_rate_all": 0.977,
+     "pnl": 57.88,
+     "roi": 0.0445,
+     "t_day": 2.63,
+     "older": 16.5,
+     "newer": 41.4
+    }
+   ]
+  },
+  "KXETHD": {
+   "candidates": 385,
+   "with_trades": 385,
+   "rows": [
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "taker (buy at ask)",
+     "opportunities": 119,
+     "fills": 119,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.874,
+     "win_rate_all": 0.874,
+     "pnl": 54.33,
+     "roi": 0.0471,
+     "t_day": 1.27,
+     "older": 35.4,
+     "newer": 18.9
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, through",
+     "opportunities": 119,
+     "fills": 88,
+     "fill_rate": 0.739,
+     "win_rate_filled": 0.83,
+     "win_rate_all": 0.874,
+     "pnl": 19.02,
+     "roi": 0.0225,
+     "t_day": 0.45,
+     "older": 0.1,
+     "newer": 18.9
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 119,
+     "fills": 88,
+     "fill_rate": 0.739,
+     "win_rate_filled": 0.83,
+     "win_rate_all": 0.874,
+     "pnl": 18.14,
+     "roi": 0.0215,
+     "t_day": 0.43,
+     "older": -0.8,
+     "newer": 18.9
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 119,
+     "fills": 70,
+     "fill_rate": 0.588,
+     "win_rate_filled": 0.829,
+     "win_rate_all": 0.874,
+     "pnl": 13.32,
+     "roi": 0.0198,
+     "t_day": 0.35,
+     "older": -2.8,
+     "newer": 16.1
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through",
+     "opportunities": 119,
+     "fills": 86,
+     "fill_rate": 0.723,
+     "win_rate_filled": 0.826,
+     "win_rate_all": 0.874,
+     "pnl": 26.53,
+     "roi": 0.0321,
+     "t_day": 0.63,
+     "older": 3.8,
+     "newer": 22.7
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 119,
+     "fills": 85,
+     "fill_rate": 0.714,
+     "win_rate_filled": 0.824,
+     "win_rate_all": 0.874,
+     "pnl": 23.41,
+     "roi": 0.0287,
+     "t_day": 0.55,
+     "older": 0.7,
+     "newer": 22.7
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 119,
+     "fills": 69,
+     "fill_rate": 0.58,
+     "win_rate_filled": 0.826,
+     "win_rate_all": 0.874,
+     "pnl": 20.11,
+     "roi": 0.0303,
+     "t_day": 0.53,
+     "older": 0.5,
+     "newer": 19.6
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, through",
+     "opportunities": 119,
+     "fills": 80,
+     "fill_rate": 0.672,
+     "win_rate_filled": 0.812,
+     "win_rate_all": 0.874,
+     "pnl": 22.59,
+     "roi": 0.0296,
+     "t_day": 0.53,
+     "older": 9.4,
+     "newer": 13.2
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 119,
+     "fills": 82,
+     "fill_rate": 0.689,
+     "win_rate_filled": 0.817,
+     "win_rate_all": 0.874,
+     "pnl": 26.79,
+     "roi": 0.0342,
+     "t_day": 0.63,
+     "older": 3.8,
+     "newer": 23.0
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 119,
+     "fills": 61,
+     "fill_rate": 0.513,
+     "win_rate_filled": 0.82,
+     "win_rate_all": 0.874,
+     "pnl": 21.41,
+     "roi": 0.0367,
+     "t_day": 0.59,
+     "older": 11.5,
+     "newer": 9.9
+    },
+    {
+     "hours": 4,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 119,
+     "fills": 86,
+     "fill_rate": 0.723,
+     "win_rate_filled": 0.826,
+     "win_rate_all": 0.874,
+     "pnl": 23.15,
+     "roi": 0.0279,
+     "t_day": 0.55,
+     "older": 2.0,
+     "newer": 21.2
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "taker (buy at ask)",
+     "opportunities": 86,
+     "fills": 86,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.988,
+     "win_rate_all": 0.988,
+     "pnl": 35.47,
+     "roi": 0.0435,
+     "t_day": 3.51,
+     "older": 28.2,
+     "newer": 7.2
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, through",
+     "opportunities": 86,
+     "fills": 44,
+     "fill_rate": 0.512,
+     "win_rate_filled": 0.977,
+     "win_rate_all": 0.988,
+     "pnl": 19.6,
+     "roi": 0.0478,
+     "t_day": 1.91,
+     "older": 14.2,
+     "newer": 5.4
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 86,
+     "fills": 48,
+     "fill_rate": 0.558,
+     "win_rate_filled": 0.979,
+     "win_rate_all": 0.988,
+     "pnl": 22.1,
+     "roi": 0.0493,
+     "t_day": 2.15,
+     "older": 14.8,
+     "newer": 7.3
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 86,
+     "fills": 32,
+     "fill_rate": 0.372,
+     "win_rate_filled": 0.969,
+     "win_rate_all": 0.988,
+     "pnl": 11.3,
+     "roi": 0.0378,
+     "t_day": 1.12,
+     "older": 7.3,
+     "newer": 4.0
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through",
+     "opportunities": 86,
+     "fills": 41,
+     "fill_rate": 0.477,
+     "win_rate_filled": 0.976,
+     "win_rate_all": 0.988,
+     "pnl": 21.5,
+     "roi": 0.0568,
+     "t_day": 2.09,
+     "older": 16.3,
+     "newer": 5.2
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 86,
+     "fills": 44,
+     "fill_rate": 0.512,
+     "win_rate_filled": 0.977,
+     "win_rate_all": 0.988,
+     "pnl": 24.0,
+     "roi": 0.0591,
+     "t_day": 2.32,
+     "older": 16.3,
+     "newer": 7.7
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 86,
+     "fills": 28,
+     "fill_rate": 0.326,
+     "win_rate_filled": 0.964,
+     "win_rate_all": 0.988,
+     "pnl": 11.2,
+     "roi": 0.0433,
+     "t_day": 1.11,
+     "older": 8.4,
+     "newer": 2.8
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, through",
+     "opportunities": 86,
+     "fills": 41,
+     "fill_rate": 0.477,
+     "win_rate_filled": 0.976,
+     "win_rate_all": 0.988,
+     "pnl": 26.4,
+     "roi": 0.0692,
+     "t_day": 2.52,
+     "older": 18.9,
+     "newer": 7.5
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 86,
+     "fills": 41,
+     "fill_rate": 0.477,
+     "win_rate_filled": 0.976,
+     "win_rate_all": 0.988,
+     "pnl": 26.4,
+     "roi": 0.0692,
+     "t_day": 2.52,
+     "older": 18.9,
+     "newer": 7.5
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 86,
+     "fills": 26,
+     "fill_rate": 0.302,
+     "win_rate_filled": 0.962,
+     "win_rate_all": 0.988,
+     "pnl": 12.7,
+     "roi": 0.0526,
+     "t_day": 1.25,
+     "older": 8.0,
+     "newer": 4.7
+    },
+    {
+     "hours": 4,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 86,
+     "fills": 41,
+     "fill_rate": 0.477,
+     "win_rate_filled": 0.976,
+     "win_rate_all": 0.988,
+     "pnl": 20.68,
+     "roi": 0.0545,
+     "t_day": 2.01,
+     "older": 15.9,
+     "newer": 4.8
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "taker (buy at ask)",
+     "opportunities": 103,
+     "fills": 103,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.893,
+     "win_rate_all": 0.893,
+     "pnl": 75.74,
+     "roi": 0.0759,
+     "t_day": 2.06,
+     "older": 56.2,
+     "newer": 19.5
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, through",
+     "opportunities": 103,
+     "fills": 84,
+     "fill_rate": 0.816,
+     "win_rate_filled": 0.881,
+     "win_rate_all": 0.893,
+     "pnl": 69.78,
+     "roi": 0.0868,
+     "t_day": 1.96,
+     "older": 55.5,
+     "newer": 14.3
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 103,
+     "fills": 80,
+     "fill_rate": 0.777,
+     "win_rate_filled": 0.875,
+     "win_rate_all": 0.893,
+     "pnl": 59.82,
+     "roi": 0.0781,
+     "t_day": 1.68,
+     "older": 45.5,
+     "newer": 14.3
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 103,
+     "fills": 70,
+     "fill_rate": 0.68,
+     "win_rate_filled": 0.886,
+     "win_rate_all": 0.893,
+     "pnl": 62.86,
+     "roi": 0.0938,
+     "t_day": 1.96,
+     "older": 50.2,
+     "newer": 12.6
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through",
+     "opportunities": 103,
+     "fills": 80,
+     "fill_rate": 0.777,
+     "win_rate_filled": 0.875,
+     "win_rate_all": 0.893,
+     "pnl": 69.04,
+     "roi": 0.0901,
+     "t_day": 1.92,
+     "older": 57.0,
+     "newer": 12.0
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 103,
+     "fills": 78,
+     "fill_rate": 0.757,
+     "win_rate_filled": 0.872,
+     "win_rate_all": 0.893,
+     "pnl": 64.98,
+     "roi": 0.087,
+     "t_day": 1.8,
+     "older": 47.2,
+     "newer": 17.8
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 103,
+     "fills": 64,
+     "fill_rate": 0.621,
+     "win_rate_filled": 0.891,
+     "win_rate_all": 0.893,
+     "pnl": 68.33,
+     "roi": 0.1115,
+     "t_day": 2.23,
+     "older": 50.7,
+     "newer": 17.7
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, through",
+     "opportunities": 103,
+     "fills": 76,
+     "fill_rate": 0.738,
+     "win_rate_filled": 0.868,
+     "win_rate_all": 0.893,
+     "pnl": 71.95,
+     "roi": 0.0987,
+     "t_day": 1.98,
+     "older": 62.2,
+     "newer": 9.7
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 103,
+     "fills": 74,
+     "fill_rate": 0.718,
+     "win_rate_filled": 0.865,
+     "win_rate_all": 0.893,
+     "pnl": 64.59,
+     "roi": 0.0909,
+     "t_day": 1.79,
+     "older": 51.4,
+     "newer": 13.2
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 103,
+     "fills": 58,
+     "fill_rate": 0.563,
+     "win_rate_filled": 0.879,
+     "win_rate_all": 0.893,
+     "pnl": 64.71,
+     "roi": 0.1161,
+     "t_day": 2.09,
+     "older": 54.1,
+     "newer": 10.6
+    },
+    {
+     "hours": 3,
+     "band": "75-88c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 103,
+     "fills": 80,
+     "fill_rate": 0.777,
+     "win_rate_filled": 0.875,
+     "win_rate_all": 0.893,
+     "pnl": 65.95,
+     "roi": 0.0858,
+     "t_day": 1.83,
+     "older": 55.1,
+     "newer": 10.8
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "taker (buy at ask)",
+     "opportunities": 77,
+     "fills": 77,
+     "fill_rate": 1.0,
+     "win_rate_filled": 0.948,
+     "win_rate_all": 0.948,
+     "pnl": 1.34,
+     "roi": 0.0018,
+     "t_day": 0.07,
+     "older": -10.1,
+     "newer": 11.4
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, through",
+     "opportunities": 77,
+     "fills": 51,
+     "fill_rate": 0.662,
+     "win_rate_filled": 0.922,
+     "win_rate_all": 0.948,
+     "pnl": -5.1,
+     "roi": -0.0107,
+     "t_day": -0.26,
+     "older": -14.5,
+     "newer": 9.4
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, touch",
+     "opportunities": 77,
+     "fills": 56,
+     "fill_rate": 0.727,
+     "win_rate_filled": 0.929,
+     "win_rate_all": 0.948,
+     "pnl": -1.8,
+     "roi": -0.0034,
+     "t_day": -0.09,
+     "older": -13.9,
+     "newer": 12.1
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-1c, through, 1h expiry",
+     "opportunities": 77,
+     "fills": 43,
+     "fill_rate": 0.558,
+     "win_rate_filled": 0.953,
+     "win_rate_all": 0.948,
+     "pnl": 9.3,
+     "roi": 0.0232,
+     "t_day": 0.66,
+     "older": 1.5,
+     "newer": 7.8
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through",
+     "opportunities": 77,
+     "fills": 45,
+     "fill_rate": 0.584,
+     "win_rate_filled": 0.911,
+     "win_rate_all": 0.948,
+     "pnl": -4.3,
+     "roi": -0.0104,
+     "t_day": -0.22,
+     "older": -14.4,
+     "newer": 10.1
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, touch",
+     "opportunities": 77,
+     "fills": 50,
+     "fill_rate": 0.649,
+     "win_rate_filled": 0.92,
+     "win_rate_all": 0.948,
+     "pnl": -0.7,
+     "roi": -0.0015,
+     "t_day": -0.04,
+     "older": -12.9,
+     "newer": 12.2
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, 1h expiry",
+     "opportunities": 77,
+     "fills": 35,
+     "fill_rate": 0.455,
+     "win_rate_filled": 0.943,
+     "win_rate_all": 0.948,
+     "pnl": 7.6,
+     "roi": 0.0236,
+     "t_day": 0.55,
+     "older": -0.7,
+     "newer": 8.3
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, through",
+     "opportunities": 77,
+     "fills": 38,
+     "fill_rate": 0.494,
+     "win_rate_filled": 0.895,
+     "win_rate_all": 0.948,
+     "pnl": -5.2,
+     "roi": -0.0147,
+     "t_day": -0.27,
+     "older": -12.1,
+     "newer": 6.9
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, touch",
+     "opportunities": 77,
+     "fills": 44,
+     "fill_rate": 0.571,
+     "win_rate_filled": 0.909,
+     "win_rate_all": 0.948,
+     "pnl": 0.3,
+     "roi": 0.0007,
+     "t_day": 0.02,
+     "older": -13.2,
+     "newer": 13.5
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-3c, through, 1h expiry",
+     "opportunities": 77,
+     "fills": 27,
+     "fill_rate": 0.351,
+     "win_rate_filled": 0.926,
+     "win_rate_all": 0.948,
+     "pnl": 4.8,
+     "roi": 0.0191,
+     "t_day": 0.35,
+     "older": 0.6,
+     "newer": 4.2
+    },
+    {
+     "hours": 3,
+     "band": "93-96c",
+     "how": "bid ask-2c, through, with 1.75% maker fee",
+     "opportunities": 77,
+     "fills": 45,
+     "fill_rate": 0.584,
+     "win_rate_filled": 0.911,
+     "win_rate_all": 0.948,
+     "pnl": -5.2,
+     "roi": -0.0125,
+     "t_day": -0.27,
+     "older": -14.8,
+     "newer": 9.6
+    }
+   ]
+  }
+ },
+ "assets": {
+  "KXETHD": {
+   "markets": 4781,
+   "events": 599,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 194,
+     "events": 192,
+     "market": 0.8,
+     "actual": 0.835,
+     "yes": {
+      "trades": 194,
+      "events": 192,
+      "win_rate": 0.835,
+      "pnl": 28.2,
+      "roi": 0.015,
+      "t_event": 0.56
+     },
+     "no": {
+      "trades": 194,
+      "events": 192,
+      "win_rate": 0.165,
+      "pnl": -539.82,
+      "roi": -0.2662,
+      "t_event": -2.36
+     },
+     "yes_older": {
+      "trades": 116,
+      "events": 114,
+      "win_rate": 0.802,
+      "pnl": -31.37,
+      "roi": -0.0279,
+      "t_event": -0.49
+     },
+     "yes_newer": {
+      "trades": 78,
+      "events": 78,
+      "win_rate": 0.885,
+      "pnl": 59.57,
+      "roi": 0.0784,
+      "t_event": 1.73
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.1905,
+      "2025-Q2": -0.1136,
+      "2025-Q3": -0.1276,
+      "2025-Q4": -0.0361,
+      "2026-Q1": 0.1157,
+      "2026-Q2": 0.0822,
+      "2026-Q3": 0.0835,
+      "2026-Q4": 0.0669
+     },
+     "quarters_positive": "5/8",
+     "median_volume_after": 4820
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 114,
+     "events": 114,
+     "market": 0.89,
+     "actual": 0.912,
+     "yes": {
+      "trades": 114,
+      "events": 114,
+      "win_rate": 0.912,
+      "pnl": 3.0,
+      "roi": 0.0028,
+      "t_event": 0.08
+     },
+     "no": {
+      "trades": 114,
+      "events": 114,
+      "win_rate": 0.088,
+      "pnl": -413.33,
+      "roi": -0.3438,
+      "t_event": -1.72
+     },
+     "yes_older": {
+      "trades": 60,
+      "events": 60,
+      "win_rate": 0.883,
+      "pnl": -15.92,
+      "roi": -0.0277,
+      "t_event": -0.63
+     },
+     "yes_newer": {
+      "trades": 54,
+      "events": 54,
+      "win_rate": 0.944,
+      "pnl": 18.92,
+      "roi": 0.0369,
+      "t_event": 1.07
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.1035,
+      "2025-Q2": -0.0749,
+      "2025-Q3": -0.0201,
+      "2025-Q4": -0.112,
+      "2026-Q1": 0.0958,
+      "2026-Q2": -0.0124,
+      "2026-Q3": 0.0986,
+      "2026-Q4": -0.0301
+     },
+     "quarters_positive": "3/8",
+     "median_volume_after": 3232
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 138,
+     "events": 137,
+     "market": 0.927,
+     "actual": 0.949,
+     "yes": {
+      "trades": 138,
+      "events": 137,
+      "win_rate": 0.949,
+      "pnl": 4.56,
+      "roi": 0.0035,
+      "t_event": 0.16
+     },
+     "no": {
+      "trades": 138,
+      "events": 137,
+      "win_rate": 0.051,
+      "pnl": -615.68,
+      "roi": -0.4206,
+      "t_event": -1.89
+     },
+     "yes_older": {
+      "trades": 76,
+      "events": 75,
+      "win_rate": 0.947,
+      "pnl": 0.8,
+      "roi": 0.0011,
+      "t_event": 0.02
+     },
+     "yes_newer": {
+      "trades": 62,
+      "events": 62,
+      "win_rate": 0.952,
+      "pnl": 3.76,
+      "roi": 0.0064,
+      "t_event": 0.22
+     },
+     "quarters_yes": {
+      "2025-Q2": 0.058,
+      "2025-Q3": 0.0037,
+      "2025-Q4": -0.0703,
+      "2026-Q1": 0.0605,
+      "2026-Q2": 0.0572,
+      "2026-Q3": 0.0103,
+      "2026-Q4": -0.1344
+     },
+     "quarters_positive": "5/7",
+     "median_volume_after": 1257
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 119,
+     "events": 119,
+     "market": 0.808,
+     "actual": 0.874,
+     "yes": {
+      "trades": 119,
+      "events": 119,
+      "win_rate": 0.874,
+      "pnl": 54.33,
+      "roi": 0.0471,
+      "t_event": 1.29
+     },
+     "no": {
+      "trades": 119,
+      "events": 119,
+      "win_rate": 0.126,
+      "pnl": -546.06,
+      "roi": -0.4389,
+      "t_event": -3.15
+     },
+     "yes_older": {
+      "trades": 73,
+      "events": 73,
+      "win_rate": 0.877,
+      "pnl": 35.44,
+      "roi": 0.05,
+      "t_event": 1.07
+     },
+     "yes_newer": {
+      "trades": 46,
+      "events": 46,
+      "win_rate": 0.87,
+      "pnl": 18.89,
+      "roi": 0.0423,
+      "t_event": 0.72
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.2935,
+      "2025-Q2": -0.1935,
+      "2025-Q3": 0.0424,
+      "2025-Q4": 0.0361,
+      "2026-Q1": 0.0624,
+      "2026-Q2": 0.0166,
+      "2026-Q3": 0.1369,
+      "2026-Q4": -0.0343
+     },
+     "quarters_positive": "6/8",
+     "median_volume_after": 4098
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 82,
+     "events": 82,
+     "market": 0.889,
+     "actual": 0.939,
+     "yes": {
+      "trades": 82,
+      "events": 82,
+      "win_rate": 0.939,
+      "pnl": 26.31,
+      "roi": 0.0334,
+      "t_event": 1.14
+     },
+     "no": {
+      "trades": 82,
+      "events": 82,
+      "win_rate": 0.061,
+      "pnl": -463.92,
+      "roi": -0.5364,
+      "t_event": -2.63
+     },
+     "yes_older": {
+      "trades": 41,
+      "events": 41,
+      "win_rate": 0.927,
+      "pnl": 8.99,
+      "roi": 0.0228,
+      "t_event": 0.46
+     },
+     "yes_newer": {
+      "trades": 41,
+      "events": 41,
+      "win_rate": 0.951,
+      "pnl": 17.32,
+      "roi": 0.0441,
+      "t_event": 1.22
+     },
+     "quarters_yes": {
+      "2025-Q2": -0.1636,
+      "2025-Q3": 0.1004,
+      "2025-Q4": -0.0912,
+      "2026-Q1": 0.1008,
+      "2026-Q2": -0.0862,
+      "2026-Q3": 0.0413,
+      "2026-Q4": 0.0984
+     },
+     "quarters_positive": "4/7",
+     "median_volume_after": 3571
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 86,
+     "events": 86,
+     "market": 0.928,
+     "actual": 0.988,
+     "yes": {
+      "trades": 86,
+      "events": 86,
+      "win_rate": 0.988,
+      "pnl": 35.47,
+      "roi": 0.0435,
+      "t_event": 3.55
+     },
+     "no": {
+      "trades": 86,
+      "events": 86,
+      "win_rate": 0.012,
+      "pnl": -788.24,
+      "roi": -0.8631,
+      "t_event": -6.33
+     },
+     "yes_older": {
+      "trades": 53,
+      "events": 53,
+      "win_rate": 1.0,
+      "pnl": 28.25,
+      "roi": 0.0563,
+      "t_event": 46.24
+     },
+     "yes_newer": {
+      "trades": 33,
+      "events": 33,
+      "win_rate": 0.97,
+      "pnl": 7.22,
+      "roi": 0.0231,
+      "t_event": 0.73
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.0519,
+      "2025-Q2": 0.0501,
+      "2025-Q3": 0.0595,
+      "2025-Q4": 0.0567,
+      "2026-Q1": 0.0582,
+      "2026-Q2": -0.0286,
+      "2026-Q3": 0.0547,
+      "2026-Q4": 0.0546
+     },
+     "quarters_positive": "7/8",
+     "median_volume_after": 1114
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 103,
+     "events": 103,
+     "market": 0.806,
+     "actual": 0.893,
+     "yes": {
+      "trades": 103,
+      "events": 103,
+      "win_rate": 0.893,
+      "pnl": 75.74,
+      "roi": 0.0759,
+      "t_event": 2.02
+     },
+     "no": {
+      "trades": 103,
+      "events": 103,
+      "win_rate": 0.107,
+      "pnl": -535.13,
+      "roi": -0.4964,
+      "t_event": -3.33
+     },
+     "yes_older": {
+      "trades": 63,
+      "events": 63,
+      "win_rate": 0.905,
+      "pnl": 56.2,
+      "roi": 0.0922,
+      "t_event": 2.02
+     },
+     "yes_newer": {
+      "trades": 40,
+      "events": 40,
+      "win_rate": 0.875,
+      "pnl": 19.54,
+      "roi": 0.0504,
+      "t_event": 0.76
+     },
+     "quarters_yes": {
+      "2025-Q2": -0.0404,
+      "2025-Q3": 0.199,
+      "2025-Q4": -0.1419,
+      "2026-Q1": 0.2081,
+      "2026-Q2": 0.141,
+      "2026-Q3": -0.1855,
+      "2026-Q4": 0.1915
+     },
+     "quarters_positive": "4/7",
+     "median_volume_after": 4079
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 55,
+     "events": 55,
+     "market": 0.886,
+     "actual": 0.945,
+     "yes": {
+      "trades": 55,
+      "events": 55,
+      "win_rate": 0.945,
+      "pnl": 21.85,
+      "roi": 0.0412,
+      "t_event": 1.24
+     },
+     "no": {
+      "trades": 55,
+      "events": 55,
+      "win_rate": 0.055,
+      "pnl": -347.56,
+      "roi": -0.5997,
+      "t_event": -2.61
+     },
+     "yes_older": {
+      "trades": 26,
+      "events": 26,
+      "win_rate": 0.962,
+      "pnl": 15.17,
+      "roi": 0.0605,
+      "t_event": 1.43
+     },
+     "yes_newer": {
+      "trades": 29,
+      "events": 29,
+      "win_rate": 0.931,
+      "pnl": 6.68,
+      "roi": 0.0239,
+      "t_event": 0.49
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.1145,
+      "2025-Q2": -0.4773,
+      "2025-Q3": 0.1071,
+      "2025-Q4": 0.1102,
+      "2026-Q1": 0.0933,
+      "2026-Q2": 0.1124,
+      "2026-Q3": -0.0557,
+      "2026-Q4": 0.0858
+     },
+     "quarters_positive": "6/8",
+     "median_volume_after": 3724
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 77,
+     "events": 77,
+     "market": 0.928,
+     "actual": 0.948,
+     "yes": {
+      "trades": 77,
+      "events": 77,
+      "win_rate": 0.948,
+      "pnl": 1.34,
+      "roi": 0.0018,
+      "t_event": 0.08
+     },
+     "no": {
+      "trades": 77,
+      "events": 77,
+      "win_rate": 0.052,
+      "pnl": -301.48,
+      "roi": -0.3688,
+      "t_event": -1.18
+     },
+     "yes_older": {
+      "trades": 38,
+      "events": 38,
+      "win_rate": 0.921,
+      "pnl": -10.08,
+      "roi": -0.028,
+      "t_event": -0.6
+     },
+     "yes_newer": {
+      "trades": 39,
+      "events": 39,
+      "win_rate": 0.974,
+      "pnl": 11.42,
+      "roi": 0.031,
+      "t_event": 1.15
+     },
+     "quarters_yes": {
+      "2025-Q2": 0.0562,
+      "2025-Q3": 0.0553,
+      "2025-Q4": -0.1568,
+      "2026-Q1": 0.058,
+      "2026-Q2": 0.0559,
+      "2026-Q3": 0.0584,
+      "2026-Q4": -0.1513
+     },
+     "quarters_positive": "5/7",
+     "median_volume_after": 2360
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 76,
+     "events": 76,
+     "market": 0.805,
+     "actual": 0.882,
+     "yes": {
+      "trades": 76,
+      "events": 76,
+      "win_rate": 0.882,
+      "pnl": 47.28,
+      "roi": 0.0644,
+      "t_event": 1.4
+     },
+     "no": {
+      "trades": 76,
+      "events": 76,
+      "win_rate": 0.118,
+      "pnl": -352.09,
+      "roi": -0.4428,
+      "t_event": -2.5
+     },
+     "yes_older": {
+      "trades": 49,
+      "events": 49,
+      "win_rate": 0.857,
+      "pnl": 15.32,
+      "roi": 0.0325,
+      "t_event": 0.51
+     },
+     "yes_newer": {
+      "trades": 27,
+      "events": 27,
+      "win_rate": 0.926,
+      "pnl": 31.96,
+      "roi": 0.122,
+      "t_event": 1.93
+     },
+     "quarters_yes": {
+      "2025-Q1": 0.2048,
+      "2025-Q2": -0.1247,
+      "2025-Q3": 0.1247,
+      "2025-Q4": -0.0327,
+      "2026-Q1": 0.0935,
+      "2026-Q2": 0.1963,
+      "2026-Q3": 0.0157,
+      "2026-Q4": 0.2185
+     },
+     "quarters_positive": "6/8",
+     "median_volume_after": 6463
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 43,
+     "events": 43,
+     "market": 0.889,
+     "actual": 0.953,
+     "yes": {
+      "trades": 43,
+      "events": 43,
+      "win_rate": 0.953,
+      "pnl": 20.89,
+      "roi": 0.0508,
+      "t_event": 1.41
+     },
+     "no": {
+      "trades": 43,
+      "events": 43,
+      "win_rate": 0.047,
+      "pnl": -301.35,
+      "roi": -0.6647,
+      "t_event": -2.82
+     },
+     "yes_older": {
+      "trades": 23,
+      "events": 23,
+      "win_rate": 0.913,
+      "pnl": 1.69,
+      "roi": 0.0077,
+      "t_event": 0.11
+     },
+     "yes_newer": {
+      "trades": 20,
+      "events": 20,
+      "win_rate": 1.0,
+      "pnl": 19.2,
+      "roi": 0.1006,
+      "t_event": 26.32
+     },
+     "quarters_yes": {
+      "2025-Q2": 0.1145,
+      "2025-Q3": 0.1035,
+      "2025-Q4": -0.3243,
+      "2026-Q1": 0.1016,
+      "2026-Q2": 0.1022,
+      "2026-Q3": 0.0952,
+      "2026-Q4": 0.0978
+     },
+     "quarters_positive": "6/7",
+     "median_volume_after": 3040
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 59,
+     "events": 59,
+     "market": 0.926,
+     "actual": 0.949,
+     "yes": {
+      "trades": 59,
+      "events": 59,
+      "win_rate": 0.949,
+      "pnl": 1.97,
+      "roi": 0.0035,
+      "t_event": 0.12
+     },
+     "no": {
+      "trades": 59,
+      "events": 59,
+      "win_rate": 0.051,
+      "pnl": -273.01,
+      "roi": -0.4361,
+      "t_event": -1.35
+     },
+     "yes_older": {
+      "trades": 29,
+      "events": 29,
+      "win_rate": 0.931,
+      "pnl": -4.15,
+      "roi": -0.0151,
+      "t_event": -0.3
+     },
+     "yes_newer": {
+      "trades": 30,
+      "events": 30,
+      "win_rate": 0.967,
+      "pnl": 6.12,
+      "roi": 0.0216,
+      "t_event": 0.61
+     },
+     "quarters_yes": {
+      "2025-Q2": 0.051,
+      "2025-Q3": -0.0722,
+      "2025-Q4": 0.0566,
+      "2026-Q1": -0.013,
+      "2026-Q2": 0.0588,
+      "2026-Q3": 0.0565,
+      "2026-Q4": -0.0935
+     },
+     "quarters_positive": "4/7",
+     "median_volume_after": 2236
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 35,
+     "events": 35,
+     "market": 0.801,
+     "actual": 0.8,
+     "yes": {
+      "trades": 35,
+      "events": 35,
+      "win_rate": 0.8,
+      "pnl": -12.66,
+      "roi": -0.0375,
+      "t_event": -0.48
+     },
+     "no": {
+      "trades": 35,
+      "events": 35,
+      "win_rate": 0.2,
+      "pnl": -68.32,
+      "roi": -0.187,
+      "t_event": -0.65
+     },
+     "yes_older": {
+      "trades": 12,
+      "events": 12,
+      "win_rate": 0.833,
+      "pnl": 0.88,
+      "roi": 0.0076,
+      "t_event": 0.03
+     },
+     "yes_newer": {
+      "trades": 23,
+      "events": 23,
+      "win_rate": 0.783,
+      "pnl": -13.54,
+      "roi": -0.0611,
+      "t_event": -0.59
+     },
+     "quarters_yes": {
+      "2025-Q3": 0.2117,
+      "2025-Q4": -0.3064,
+      "2026-Q1": 0.2437,
+      "2026-Q2": -0.3335,
+      "2026-Q3": 0.1064,
+      "2026-Q4": -0.0869
+     },
+     "quarters_positive": "3/6",
+     "median_volume_after": 7877
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 12,
+     "events": 12,
+     "market": 0.894,
+     "actual": 0.917,
+     "yes": {
+      "trades": 12,
+      "events": 12,
+      "win_rate": 0.917,
+      "pnl": -0.65,
+      "roi": -0.0058,
+      "t_event": -0.02
+     },
+     "no": {
+      "trades": 12,
+      "events": 12,
+      "win_rate": 0.083,
+      "pnl": -43.64,
+      "roi": -0.3446,
+      "t_event": -0.53
+     },
+     "yes_older": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 1.0,
+      "pnl": 4.68,
+      "roi": 0.0989,
+      "t_event": 14.29
+     },
+     "yes_newer": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 0.857,
+      "pnl": -5.33,
+      "roi": -0.0816,
+      "t_event": -0.47
+     },
+     "quarters_yes": {
+      "2025-Q3": 0.1034,
+      "2025-Q4": 0.0917,
+      "2026-Q1": 0.0917,
+      "2026-Q2": 0.0799,
+      "2026-Q3": -0.4773,
+      "2026-Q4": 0.0917
+     },
+     "quarters_positive": "5/6",
+     "median_volume_after": 7092
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 33,
+     "events": 33,
+     "market": 0.928,
+     "actual": 1.0,
+     "yes": {
+      "trades": 33,
+      "events": 33,
+      "win_rate": 1.0,
+      "pnl": 17.35,
+      "roi": 0.0555,
+      "t_event": 45.61
+     },
+     "no": {
+      "trades": 33,
+      "events": 33,
+      "win_rate": 0.0,
+      "pnl": -350.09,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 14,
+      "events": 14,
+      "win_rate": 1.0,
+      "pnl": 7.41,
+      "roi": 0.0559,
+      "t_event": 23.68
+     },
+     "yes_newer": {
+      "trades": 19,
+      "events": 19,
+      "win_rate": 1.0,
+      "pnl": 9.94,
+      "roi": 0.0552,
+      "t_event": 43.75
+     },
+     "quarters_yes": {
+      "2025-Q3": 0.0546,
+      "2025-Q4": 0.0562,
+      "2026-Q1": 0.0555,
+      "2026-Q2": 0.0519,
+      "2026-Q3": 0.0577,
+      "2026-Q4": 0.0593
+     },
+     "quarters_positive": "6/6",
+     "median_volume_after": 4282
+    }
+   ]
+  },
+  "KXGOLDD": {
+   "markets": 3268,
+   "events": 127,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 151,
+     "events": 105,
+     "market": 0.808,
+     "actual": 0.775,
+     "yes": {
+      "trades": 151,
+      "events": 105,
+      "win_rate": 0.775,
+      "pnl": -98.43,
+      "roi": -0.0674,
+      "t_event": -0.87
+     },
+     "no": {
+      "trades": 151,
+      "events": 105,
+      "win_rate": 0.225,
+      "pnl": 39.78,
+      "roi": 0.0252,
+      "t_event": -0.43
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 151,
+      "events": 105,
+      "win_rate": 0.775,
+      "pnl": -98.43,
+      "roi": -0.0674,
+      "t_event": -0.87
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.1905,
+      "2026-Q2": -0.1366,
+      "2026-Q3": -0.0899,
+      "2026-Q4": 0.1585
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 4862
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 84,
+     "events": 77,
+     "market": 0.893,
+     "actual": 0.869,
+     "yes": {
+      "trades": 84,
+      "events": 77,
+      "win_rate": 0.869,
+      "pnl": -34.78,
+      "roi": -0.0433,
+      "t_event": -0.99
+     },
+     "no": {
+      "trades": 84,
+      "events": 77,
+      "win_rate": 0.131,
+      "pnl": 62.62,
+      "roi": 0.0706,
+      "t_event": 0.15
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 84,
+      "events": 77,
+      "win_rate": 0.869,
+      "pnl": -34.78,
+      "roi": -0.0433,
+      "t_event": -0.99
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0192,
+      "2026-Q3": -0.0948,
+      "2026-Q4": 0.0402
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 3636
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 117,
+     "events": 83,
+     "market": 0.935,
+     "actual": 0.957,
+     "yes": {
+      "trades": 117,
+      "events": 83,
+      "win_rate": 0.957,
+      "pnl": 11.12,
+      "roi": 0.01,
+      "t_event": 0.54
+     },
+     "no": {
+      "trades": 117,
+      "events": 83,
+      "win_rate": 0.043,
+      "pnl": -587.24,
+      "roi": -0.4727,
+      "t_event": -1.64
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 117,
+      "events": 83,
+      "win_rate": 0.957,
+      "pnl": 11.12,
+      "roi": 0.01,
+      "t_event": 0.54
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0537,
+      "2026-Q2": 0.0089,
+      "2026-Q3": -0.0066,
+      "2026-Q4": 0.059
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 1480
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 111,
+     "events": 89,
+     "market": 0.81,
+     "actual": 0.802,
+     "yes": {
+      "trades": 111,
+      "events": 89,
+      "win_rate": 0.802,
+      "pnl": -35.72,
+      "roi": -0.0331,
+      "t_event": -0.89
+     },
+     "no": {
+      "trades": 111,
+      "events": 89,
+      "win_rate": 0.198,
+      "pnl": -104.46,
+      "roi": -0.0899,
+      "t_event": -0.24
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 111,
+      "events": 89,
+      "win_rate": 0.802,
+      "pnl": -35.72,
+      "roi": -0.0331,
+      "t_event": -0.89
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0886,
+      "2026-Q3": -0.0729,
+      "2026-Q4": 0.2059
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 5051
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 68,
+     "events": 63,
+     "market": 0.894,
+     "actual": 0.941,
+     "yes": {
+      "trades": 68,
+      "events": 63,
+      "win_rate": 0.941,
+      "pnl": 22.28,
+      "roi": 0.0343,
+      "t_event": 0.88
+     },
+     "no": {
+      "trades": 68,
+      "events": 63,
+      "win_rate": 0.059,
+      "pnl": -405.36,
+      "roi": -0.5643,
+      "t_event": -2.3
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 68,
+      "events": 63,
+      "win_rate": 0.941,
+      "pnl": 22.28,
+      "roi": 0.0343,
+      "t_event": 0.88
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0544,
+      "2026-Q3": -0.0207,
+      "2026-Q4": 0.1068
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 2414
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 71,
+     "events": 62,
+     "market": 0.932,
+     "actual": 0.93,
+     "yes": {
+      "trades": 71,
+      "events": 62,
+      "win_rate": 0.93,
+      "pnl": -11.63,
+      "roi": -0.0173,
+      "t_event": -0.32
+     },
+     "no": {
+      "trades": 71,
+      "events": 62,
+      "win_rate": 0.07,
+      "pnl": -147.03,
+      "roi": -0.195,
+      "t_event": -0.65
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 71,
+      "events": 62,
+      "win_rate": 0.93,
+      "pnl": -11.63,
+      "roi": -0.0173,
+      "t_event": -0.32
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.02,
+      "2026-Q3": -0.0433,
+      "2026-Q4": 0.058
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 1412
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 90,
+     "events": 79,
+     "market": 0.809,
+     "actual": 0.8,
+     "yes": {
+      "trades": 90,
+      "events": 79,
+      "win_rate": 0.8,
+      "pnl": -30.51,
+      "roi": -0.035,
+      "t_event": -0.29
+     },
+     "no": {
+      "trades": 90,
+      "events": 79,
+      "win_rate": 0.2,
+      "pnl": -26.28,
+      "roi": -0.0279,
+      "t_event": -0.54
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 90,
+      "events": 79,
+      "win_rate": 0.8,
+      "pnl": -30.51,
+      "roi": -0.035,
+      "t_event": -0.29
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.087,
+      "2026-Q3": -0.033,
+      "2026-Q4": 0.0675
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 4903
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 55,
+     "events": 52,
+     "market": 0.893,
+     "actual": 0.873,
+     "yes": {
+      "trades": 55,
+      "events": 52,
+      "win_rate": 0.873,
+      "pnl": -21.01,
+      "roi": -0.0398,
+      "t_event": -0.14
+     },
+     "no": {
+      "trades": 55,
+      "events": 52,
+      "win_rate": 0.127,
+      "pnl": 18.78,
+      "roi": 0.0324,
+      "t_event": -0.88
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 55,
+      "events": 52,
+      "win_rate": 0.873,
+      "pnl": -21.01,
+      "roi": -0.0398,
+      "t_event": -0.14
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0959,
+      "2026-Q3": -0.0425,
+      "2026-Q4": 0.1034
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 2544
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 66,
+     "events": 58,
+     "market": 0.932,
+     "actual": 0.955,
+     "yes": {
+      "trades": 66,
+      "events": 58,
+      "win_rate": 0.955,
+      "pnl": 5.96,
+      "roi": 0.0096,
+      "t_event": 0.86
+     },
+     "no": {
+      "trades": 66,
+      "events": 58,
+      "win_rate": 0.045,
+      "pnl": -267.9,
+      "roi": -0.3822,
+      "t_event": -1.71
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 66,
+      "events": 58,
+      "win_rate": 0.955,
+      "pnl": 5.96,
+      "roi": 0.0096,
+      "t_event": 0.86
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0244,
+      "2026-Q3": 0.0185,
+      "2026-Q4": 0.0559
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1442
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 71,
+     "events": 68,
+     "market": 0.821,
+     "actual": 0.845,
+     "yes": {
+      "trades": 71,
+      "events": 68,
+      "win_rate": 0.845,
+      "pnl": 2.13,
+      "roi": 0.0031,
+      "t_event": 0.3
+     },
+     "no": {
+      "trades": 71,
+      "events": 68,
+      "win_rate": 0.155,
+      "pnl": -162.75,
+      "roi": -0.2191,
+      "t_event": -1.18
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 71,
+      "events": 68,
+      "win_rate": 0.845,
+      "pnl": 2.13,
+      "roi": 0.0031,
+      "t_event": 0.3
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0548,
+      "2026-Q3": -0.0317,
+      "2026-Q4": -0.0139
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 5839
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 48,
+     "events": 45,
+     "market": 0.894,
+     "actual": 0.896,
+     "yes": {
+      "trades": 48,
+      "events": 45,
+      "win_rate": 0.896,
+      "pnl": -7.33,
+      "roi": -0.016,
+      "t_event": 0.04
+     },
+     "no": {
+      "trades": 48,
+      "events": 45,
+      "win_rate": 0.104,
+      "pnl": -50.69,
+      "roi": -0.0998,
+      "t_event": -0.64
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 48,
+      "events": 45,
+      "win_rate": 0.896,
+      "pnl": -7.33,
+      "roi": -0.016,
+      "t_event": 0.04
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0449,
+      "2026-Q3": -0.1261,
+      "2026-Q4": 0.0997
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 3061
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 39,
+     "events": 39,
+     "market": 0.931,
+     "actual": 0.949,
+     "yes": {
+      "trades": 39,
+      "events": 39,
+      "win_rate": 0.949,
+      "pnl": 1.37,
+      "roi": 0.0037,
+      "t_event": 0.09
+     },
+     "no": {
+      "trades": 39,
+      "events": 39,
+      "win_rate": 0.051,
+      "pnl": -147.01,
+      "roi": -0.3551,
+      "t_event": -0.79
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 39,
+      "events": 39,
+      "win_rate": 0.949,
+      "pnl": 1.37,
+      "roi": 0.0037,
+      "t_event": 0.09
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.056,
+      "2026-Q3": -0.0009,
+      "2026-Q4": -0.1998
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 2003
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 40,
+     "events": 40,
+     "market": 0.808,
+     "actual": 0.925,
+     "yes": {
+      "trades": 40,
+      "events": 40,
+      "win_rate": 0.925,
+      "pnl": 43.74,
+      "roi": 0.1132,
+      "t_event": 2.2
+     },
+     "no": {
+      "trades": 40,
+      "events": 40,
+      "win_rate": 0.075,
+      "pnl": -284.59,
+      "roi": -0.6799,
+      "t_event": -3.76
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 40,
+      "events": 40,
+      "win_rate": 0.925,
+      "pnl": 43.74,
+      "roi": 0.1132,
+      "t_event": 2.2
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1967,
+      "2026-Q3": 0.1479,
+      "2026-Q4": -0.1641
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 8316
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 23,
+     "events": 21,
+     "market": 0.897,
+     "actual": 0.913,
+     "yes": {
+      "trades": 23,
+      "events": 21,
+      "win_rate": 0.913,
+      "pnl": 0.14,
+      "roi": 0.0006,
+      "t_event": -0.12
+     },
+     "no": {
+      "trades": 23,
+      "events": 21,
+      "win_rate": 0.087,
+      "pnl": -67.02,
+      "roi": -0.2758,
+      "t_event": -0.38
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 23,
+      "events": 21,
+      "win_rate": 0.913,
+      "pnl": 0.14,
+      "roi": 0.0006,
+      "t_event": -0.12
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0074,
+      "2026-Q3": -0.0495,
+      "2026-Q4": 0.1034
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 3416
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 23,
+     "events": 22,
+     "market": 0.932,
+     "actual": 0.957,
+     "yes": {
+      "trades": 23,
+      "events": 22,
+      "win_rate": 0.957,
+      "pnl": 2.62,
+      "roi": 0.0121,
+      "t_event": 0.2
+     },
+     "no": {
+      "trades": 23,
+      "events": 22,
+      "win_rate": 0.043,
+      "pnl": -119.37,
+      "roi": -0.4885,
+      "t_event": -0.87
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 23,
+      "events": 22,
+      "win_rate": 0.957,
+      "pnl": 2.62,
+      "roi": 0.0121,
+      "t_event": 0.2
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0566,
+      "2026-Q3": -0.0373,
+      "2026-Q4": 0.0589
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 2703
+    }
+   ]
+  },
+  "KXSILVERD": {
+   "markets": 3268,
+   "events": 127,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 160,
+     "events": 100,
+     "market": 0.802,
+     "actual": 0.775,
+     "yes": {
+      "trades": 160,
+      "events": 100,
+      "win_rate": 0.775,
+      "pnl": -95.36,
+      "roi": -0.0614,
+      "t_event": -0.21
+     },
+     "no": {
+      "trades": 160,
+      "events": 100,
+      "win_rate": 0.225,
+      "pnl": -10.39,
+      "roi": -0.0062,
+      "t_event": -1.23
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 160,
+      "events": 100,
+      "win_rate": 0.775,
+      "pnl": -95.36,
+      "roi": -0.0614,
+      "t_event": -0.21
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.2109,
+      "2026-Q2": -0.2199,
+      "2026-Q3": -0.0056,
+      "2026-Q4": 0.1587
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 1458
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 134,
+     "events": 82,
+     "market": 0.899,
+     "actual": 0.94,
+     "yes": {
+      "trades": 134,
+      "events": 82,
+      "win_rate": 0.94,
+      "pnl": 39.11,
+      "roi": 0.0307,
+      "t_event": 0.52
+     },
+     "no": {
+      "trades": 134,
+      "events": 82,
+      "win_rate": 0.06,
+      "pnl": -720.52,
+      "roi": -0.5083,
+      "t_event": -1.7
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 134,
+      "events": 82,
+      "win_rate": 0.94,
+      "pnl": 39.11,
+      "roi": 0.0307,
+      "t_event": 0.52
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.1034,
+      "2026-Q2": -0.0355,
+      "2026-Q3": 0.0516,
+      "2026-Q4": 0.094
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 531
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 85,
+     "events": 49,
+     "market": 0.936,
+     "actual": 0.965,
+     "yes": {
+      "trades": 85,
+      "events": 49,
+      "win_rate": 0.965,
+      "pnl": 13.83,
+      "roi": 0.0172,
+      "t_event": -0.26
+     },
+     "no": {
+      "trades": 85,
+      "events": 49,
+      "win_rate": 0.035,
+      "pnl": -499.89,
+      "roi": -0.5543,
+      "t_event": -0.52
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 85,
+      "events": 49,
+      "win_rate": 0.965,
+      "pnl": 13.83,
+      "roi": 0.0172,
+      "t_event": -0.26
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0593,
+      "2026-Q2": -0.0182,
+      "2026-Q3": 0.0312,
+      "2026-Q4": 0.0574
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 299
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 116,
+     "events": 84,
+     "market": 0.805,
+     "actual": 0.828,
+     "yes": {
+      "trades": 116,
+      "events": 84,
+      "win_rate": 0.828,
+      "pnl": 4.52,
+      "roi": 0.004,
+      "t_event": -0.1
+     },
+     "no": {
+      "trades": 116,
+      "events": 84,
+      "win_rate": 0.172,
+      "pnl": -254.9,
+      "roi": -0.21,
+      "t_event": -0.86
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 116,
+      "events": 84,
+      "win_rate": 0.828,
+      "pnl": 4.52,
+      "roi": 0.004,
+      "t_event": -0.1
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.013,
+      "2026-Q3": -0.0381,
+      "2026-Q4": 0.1286
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1252
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 89,
+     "events": 66,
+     "market": 0.897,
+     "actual": 0.933,
+     "yes": {
+      "trades": 89,
+      "events": 66,
+      "win_rate": 0.933,
+      "pnl": 15.42,
+      "roi": 0.0183,
+      "t_event": 0.94
+     },
+     "no": {
+      "trades": 89,
+      "events": 66,
+      "win_rate": 0.067,
+      "pnl": -486.11,
+      "roi": -0.5165,
+      "t_event": -2.78
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 89,
+      "events": 66,
+      "win_rate": 0.933,
+      "pnl": 15.42,
+      "roi": 0.0183,
+      "t_event": 0.94
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0058,
+      "2026-Q3": 0.0099,
+      "2026-Q4": 0.0946
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 701
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 71,
+     "events": 52,
+     "market": 0.932,
+     "actual": 0.93,
+     "yes": {
+      "trades": 71,
+      "events": 52,
+      "win_rate": 0.93,
+      "pnl": -11.7,
+      "roi": -0.0174,
+      "t_event": -0.6
+     },
+     "no": {
+      "trades": 71,
+      "events": 52,
+      "win_rate": 0.07,
+      "pnl": -92.81,
+      "roi": -0.1231,
+      "t_event": -0.18
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 71,
+      "events": 52,
+      "win_rate": 0.93,
+      "pnl": -11.7,
+      "roi": -0.0174,
+      "t_event": -0.6
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0726,
+      "2026-Q3": 0.006,
+      "2026-Q4": 0.0573
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 552
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 81,
+     "events": 64,
+     "market": 0.807,
+     "actual": 0.79,
+     "yes": {
+      "trades": 81,
+      "events": 64,
+      "win_rate": 0.79,
+      "pnl": -36.18,
+      "roi": -0.0464,
+      "t_event": -0.45
+     },
+     "no": {
+      "trades": 81,
+      "events": 64,
+      "win_rate": 0.21,
+      "pnl": 3.66,
+      "roi": 0.0043,
+      "t_event": -0.29
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 81,
+      "events": 64,
+      "win_rate": 0.79,
+      "pnl": -36.18,
+      "roi": -0.0464,
+      "t_event": -0.45
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.1125,
+      "2026-Q3": -0.0778,
+      "2026-Q4": 0.2016
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 1785
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 74,
+     "events": 58,
+     "market": 0.895,
+     "actual": 0.851,
+     "yes": {
+      "trades": 74,
+      "events": 58,
+      "win_rate": 0.851,
+      "pnl": -44.62,
+      "roi": -0.0631,
+      "t_event": -1.25
+     },
+     "no": {
+      "trades": 74,
+      "events": 58,
+      "win_rate": 0.149,
+      "pnl": 218.7,
+      "roi": 0.2796,
+      "t_event": 0.67
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 74,
+      "events": 58,
+      "win_rate": 0.851,
+      "pnl": -44.62,
+      "roi": -0.0631,
+      "t_event": -1.25
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0912,
+      "2026-Q3": -0.0466,
+      "2026-Q4": -0.0371
+     },
+     "quarters_positive": "0/3",
+     "median_volume_after": 789
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 65,
+     "events": 51,
+     "market": 0.934,
+     "actual": 0.877,
+     "yes": {
+      "trades": 65,
+      "events": 51,
+      "win_rate": 0.877,
+      "pnl": -45.33,
+      "roi": -0.0737,
+      "t_event": -1.07
+     },
+     "no": {
+      "trades": 65,
+      "events": 51,
+      "win_rate": 0.123,
+      "pnl": 321.8,
+      "roi": 0.4662,
+      "t_event": 0.31
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 65,
+      "events": 51,
+      "win_rate": 0.877,
+      "pnl": -45.33,
+      "roi": -0.0737,
+      "t_event": -1.07
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.2606,
+      "2026-Q3": -0.0047,
+      "2026-Q4": 0.0591
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 377
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 70,
+     "events": 56,
+     "market": 0.799,
+     "actual": 0.814,
+     "yes": {
+      "trades": 70,
+      "events": 56,
+      "win_rate": 0.814,
+      "pnl": -2.56,
+      "roi": -0.0038,
+      "t_event": -0.26
+     },
+     "no": {
+      "trades": 70,
+      "events": 56,
+      "win_rate": 0.186,
+      "pnl": -89.63,
+      "roi": -0.1225,
+      "t_event": -0.3
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 70,
+      "events": 56,
+      "win_rate": 0.814,
+      "pnl": -2.56,
+      "roi": -0.0038,
+      "t_event": -0.26
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.002,
+      "2026-Q3": -0.0061,
+      "2026-Q4": -0.0036
+     },
+     "quarters_positive": "0/3",
+     "median_volume_after": 1813
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 57,
+     "events": 48,
+     "market": 0.899,
+     "actual": 0.877,
+     "yes": {
+      "trades": 57,
+      "events": 48,
+      "win_rate": 0.877,
+      "pnl": -20.64,
+      "roi": -0.0382,
+      "t_event": -0.37
+     },
+     "no": {
+      "trades": 57,
+      "events": 48,
+      "win_rate": 0.123,
+      "pnl": 40.78,
+      "roi": 0.0676,
+      "t_event": -0.36
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 57,
+      "events": 48,
+      "win_rate": 0.877,
+      "pnl": -20.64,
+      "roi": -0.0382,
+      "t_event": -0.37
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.1075,
+      "2026-Q3": -0.0122,
+      "2026-Q4": 0.092
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 650
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 50,
+     "events": 39,
+     "market": 0.934,
+     "actual": 0.94,
+     "yes": {
+      "trades": 50,
+      "events": 39,
+      "win_rate": 0.94,
+      "pnl": -3.57,
+      "roi": -0.0075,
+      "t_event": -0.29
+     },
+     "no": {
+      "trades": 50,
+      "events": 39,
+      "win_rate": 0.06,
+      "pnl": -122.07,
+      "roi": -0.2299,
+      "t_event": -0.38
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 50,
+      "events": 39,
+      "win_rate": 0.94,
+      "pnl": -3.57,
+      "roi": -0.0075,
+      "t_event": -0.29
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0564,
+      "2026-Q3": -0.0578,
+      "2026-Q4": 0.0569
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 525
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 45,
+     "events": 41,
+     "market": 0.797,
+     "actual": 0.822,
+     "yes": {
+      "trades": 45,
+      "events": 41,
+      "win_rate": 0.822,
+      "pnl": 1.31,
+      "roi": 0.003,
+      "t_event": -0.17
+     },
+     "no": {
+      "trades": 45,
+      "events": 41,
+      "win_rate": 0.178,
+      "pnl": -84.58,
+      "roi": -0.1797,
+      "t_event": -0.34
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 45,
+      "events": 41,
+      "win_rate": 0.822,
+      "pnl": 1.31,
+      "roi": 0.003,
+      "t_event": -0.17
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0543,
+      "2026-Q3": -0.0228,
+      "2026-Q4": -0.1189
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 2462
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 33,
+     "events": 31,
+     "market": 0.896,
+     "actual": 0.909,
+     "yes": {
+      "trades": 33,
+      "events": 31,
+      "win_rate": 0.909,
+      "pnl": -0.22,
+      "roi": -0.0007,
+      "t_event": -0.15
+     },
+     "no": {
+      "trades": 33,
+      "events": 31,
+      "win_rate": 0.091,
+      "pnl": -61.02,
+      "roi": -0.1748,
+      "t_event": -0.25
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 33,
+      "events": 31,
+      "win_rate": 0.909,
+      "pnl": -0.22,
+      "roi": -0.0007,
+      "t_event": -0.15
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0101,
+      "2026-Q3": 0.0246,
+      "2026-Q4": -0.1105
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1244
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 19,
+     "events": 19,
+     "market": 0.93,
+     "actual": 1.0,
+     "yes": {
+      "trades": 19,
+      "events": 19,
+      "win_rate": 1.0,
+      "pnl": 10.95,
+      "roi": 0.0612,
+      "t_event": 29.4
+     },
+     "no": {
+      "trades": 19,
+      "events": 19,
+      "win_rate": 0.0,
+      "pnl": -201.75,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 19,
+      "events": 19,
+      "win_rate": 1.0,
+      "pnl": 10.95,
+      "roi": 0.0612,
+      "t_event": 29.4
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0537,
+      "2026-Q3": 0.0622,
+      "2026-Q4": 0.0695
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 1072
+    }
+   ]
+  },
+  "KXWTI": {
+   "markets": 2429,
+   "events": 205,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 192,
+     "events": 133,
+     "market": 0.802,
+     "actual": 0.839,
+     "yes": {
+      "trades": 192,
+      "events": 133,
+      "win_rate": 0.839,
+      "pnl": 39.04,
+      "roi": 0.021,
+      "t_event": 0.74
+     },
+     "no": {
+      "trades": 192,
+      "events": 133,
+      "win_rate": 0.161,
+      "pnl": -521.86,
+      "roi": -0.2596,
+      "t_event": -1.9
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 1.44,
+      "roi": 0.1506,
+      "t_event": null
+     },
+     "yes_newer": {
+      "trades": 191,
+      "events": 132,
+      "win_rate": 0.838,
+      "pnl": 37.6,
+      "roi": 0.0203,
+      "t_event": 0.71
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.213,
+      "2026-Q2": -0.0248,
+      "2026-Q3": 0.052,
+      "2026-Q4": -0.0152
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 18999
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 103,
+     "events": 93,
+     "market": 0.893,
+     "actual": 0.922,
+     "yes": {
+      "trades": 103,
+      "events": 93,
+      "win_rate": 0.922,
+      "pnl": 15.47,
+      "roi": 0.0157,
+      "t_event": 0.4
+     },
+     "no": {
+      "trades": 103,
+      "events": 93,
+      "win_rate": 0.078,
+      "pnl": -383.04,
+      "roi": -0.352,
+      "t_event": -1.35
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 103,
+      "events": 93,
+      "win_rate": 0.922,
+      "pnl": 15.47,
+      "roi": 0.0157,
+      "t_event": 0.4
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.1183,
+      "2026-Q2": -0.0799,
+      "2026-Q3": 0.035,
+      "2026-Q4": 0.0544
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 10997
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 116,
+     "events": 97,
+     "market": 0.933,
+     "actual": 0.957,
+     "yes": {
+      "trades": 116,
+      "events": 97,
+      "win_rate": 0.957,
+      "pnl": 13.26,
+      "roi": 0.0121,
+      "t_event": 0.39
+     },
+     "no": {
+      "trades": 116,
+      "events": 97,
+      "win_rate": 0.043,
+      "pnl": -587.75,
+      "roi": -0.4772,
+      "t_event": -1.88
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 116,
+      "events": 97,
+      "win_rate": 0.957,
+      "pnl": 13.26,
+      "roi": 0.0121,
+      "t_event": 0.39
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0589,
+      "2026-Q2": 0.0017,
+      "2026-Q3": 0.0359,
+      "2026-Q4": -0.0351
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 6860
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 154,
+     "events": 123,
+     "market": 0.804,
+     "actual": 0.844,
+     "yes": {
+      "trades": 154,
+      "events": 123,
+      "win_rate": 0.844,
+      "pnl": 34.77,
+      "roi": 0.0233,
+      "t_event": 1.04
+     },
+     "no": {
+      "trades": 154,
+      "events": 123,
+      "win_rate": 0.156,
+      "pnl": -510.04,
+      "roi": -0.3166,
+      "t_event": -2.78
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 154,
+      "events": 123,
+      "win_rate": 0.844,
+      "pnl": 34.77,
+      "roi": 0.0233,
+      "t_event": 1.04
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.2218,
+      "2026-Q2": -0.0861,
+      "2026-Q3": 0.0359,
+      "2026-Q4": 0.0845
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 17908
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 108,
+     "events": 99,
+     "market": 0.895,
+     "actual": 0.889,
+     "yes": {
+      "trades": 108,
+      "events": 99,
+      "win_rate": 0.889,
+      "pnl": -21.65,
+      "roi": -0.021,
+      "t_event": -0.79
+     },
+     "no": {
+      "trades": 108,
+      "events": 99,
+      "win_rate": 0.111,
+      "pnl": -90.32,
+      "roi": -0.0791,
+      "t_event": -0.11
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 1.23,
+      "roi": 0.1259,
+      "t_event": null
+     },
+     "yes_newer": {
+      "trades": 107,
+      "events": 98,
+      "win_rate": 0.888,
+      "pnl": -22.88,
+      "roi": -0.0224,
+      "t_event": -0.82
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.1066,
+      "2026-Q2": -0.0918,
+      "2026-Q3": 0.0265,
+      "2026-Q4": -0.0472
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 9760
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 82,
+     "events": 75,
+     "market": 0.934,
+     "actual": 0.976,
+     "yes": {
+      "trades": 82,
+      "events": 75,
+      "win_rate": 0.976,
+      "pnl": 24.6,
+      "roi": 0.0317,
+      "t_event": 1.48
+     },
+     "no": {
+      "trades": 82,
+      "events": 75,
+      "win_rate": 0.024,
+      "pnl": -580.25,
+      "roi": -0.666,
+      "t_event": -2.45
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 82,
+      "events": 75,
+      "win_rate": 0.976,
+      "pnl": 24.6,
+      "roi": 0.0317,
+      "t_event": 1.48
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0577,
+      "2026-Q2": 0.0564,
+      "2026-Q3": 0.0293,
+      "2026-Q4": -0.0038
+     },
+     "quarters_positive": "3/4",
+     "median_volume_after": 5308
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 134,
+     "events": 115,
+     "market": 0.805,
+     "actual": 0.813,
+     "yes": {
+      "trades": 134,
+      "events": 115,
+      "win_rate": 0.813,
+      "pnl": -17.69,
+      "roi": -0.0136,
+      "t_event": 0.03
+     },
+     "no": {
+      "trades": 134,
+      "events": 115,
+      "win_rate": 0.187,
+      "pnl": -182.79,
+      "roi": -0.1303,
+      "t_event": -1.24
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 134,
+      "events": 115,
+      "win_rate": 0.813,
+      "pnl": -17.69,
+      "roi": -0.0136,
+      "t_event": 0.03
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0307,
+      "2026-Q2": -0.0865,
+      "2026-Q3": 0.0284,
+      "2026-Q4": -0.0075
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 15365
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 77,
+     "events": 74,
+     "market": 0.892,
+     "actual": 0.883,
+     "yes": {
+      "trades": 77,
+      "events": 74,
+      "win_rate": 0.883,
+      "pnl": -19.22,
+      "roi": -0.0259,
+      "t_event": -0.38
+     },
+     "no": {
+      "trades": 77,
+      "events": 74,
+      "win_rate": 0.117,
+      "pnl": -41.53,
+      "roi": -0.051,
+      "t_event": -0.48
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 77,
+      "events": 74,
+      "win_rate": 0.883,
+      "pnl": -19.22,
+      "roi": -0.0259,
+      "t_event": -0.38
+     },
+     "quarters_yes": {
+      "2026-Q1": -0.1703,
+      "2026-Q2": 0.0111,
+      "2026-Q3": -0.0286,
+      "2026-Q4": -0.0373
+     },
+     "quarters_positive": "1/4",
+     "median_volume_after": 11908
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 87,
+     "events": 79,
+     "market": 0.933,
+     "actual": 0.943,
+     "yes": {
+      "trades": 87,
+      "events": 79,
+      "win_rate": 0.943,
+      "pnl": -2.28,
+      "roi": -0.0028,
+      "t_event": -0.32
+     },
+     "no": {
+      "trades": 87,
+      "events": 79,
+      "win_rate": 0.057,
+      "pnl": -307.49,
+      "roi": -0.3326,
+      "t_event": -0.82
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 0.65,
+      "roi": 0.0695,
+      "t_event": null
+     },
+     "yes_newer": {
+      "trades": 86,
+      "events": 78,
+      "win_rate": 0.942,
+      "pnl": -2.93,
+      "roi": -0.0036,
+      "t_event": -0.35
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0524,
+      "2026-Q2": -0.0225,
+      "2026-Q3": -0.0296,
+      "2026-Q4": 0.0573
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 6405
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 105,
+     "events": 101,
+     "market": 0.81,
+     "actual": 0.8,
+     "yes": {
+      "trades": 105,
+      "events": 101,
+      "win_rate": 0.8,
+      "pnl": -39.61,
+      "roi": -0.0389,
+      "t_event": -0.98
+     },
+     "no": {
+      "trades": 105,
+      "events": 101,
+      "win_rate": 0.2,
+      "pnl": -83.28,
+      "roi": -0.0758,
+      "t_event": -0.21
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 105,
+      "events": 101,
+      "win_rate": 0.8,
+      "pnl": -39.61,
+      "roi": -0.0389,
+      "t_event": -0.98
+     },
+     "quarters_yes": {
+      "2026-Q1": -0.1078,
+      "2026-Q2": -0.0478,
+      "2026-Q3": -0.0029,
+      "2026-Q4": -0.0708
+     },
+     "quarters_positive": "0/4",
+     "median_volume_after": 16139
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 76,
+     "events": 75,
+     "market": 0.895,
+     "actual": 0.895,
+     "yes": {
+      "trades": 76,
+      "events": 75,
+      "win_rate": 0.895,
+      "pnl": -10.73,
+      "roi": -0.0148,
+      "t_event": -0.27
+     },
+     "no": {
+      "trades": 76,
+      "events": 75,
+      "win_rate": 0.105,
+      "pnl": -58.76,
+      "roi": -0.0732,
+      "t_event": -0.39
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 76,
+      "events": 75,
+      "win_rate": 0.895,
+      "pnl": -10.73,
+      "roi": -0.0148,
+      "t_event": -0.27
+     },
+     "quarters_yes": {
+      "2026-Q1": -0.0393,
+      "2026-Q2": -0.0798,
+      "2026-Q3": -0.0347,
+      "2026-Q4": 0.0977
+     },
+     "quarters_positive": "1/4",
+     "median_volume_after": 8128
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 61,
+     "events": 57,
+     "market": 0.935,
+     "actual": 0.918,
+     "yes": {
+      "trades": 61,
+      "events": 57,
+      "win_rate": 0.918,
+      "pnl": -17.47,
+      "roi": -0.0303,
+      "t_event": -0.91
+     },
+     "no": {
+      "trades": 61,
+      "events": 57,
+      "win_rate": 0.082,
+      "pnl": 7.28,
+      "roi": 0.0112,
+      "t_event": 0.17
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 61,
+      "events": 57,
+      "win_rate": 0.918,
+      "pnl": -17.47,
+      "roi": -0.0303,
+      "t_event": -0.91
+     },
+     "quarters_yes": {
+      "2026-Q1": -0.0921,
+      "2026-Q2": -0.0466,
+      "2026-Q3": 0.004,
+      "2026-Q4": -0.0233
+     },
+     "quarters_positive": "1/4",
+     "median_volume_after": 5093
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 86,
+     "events": 84,
+     "market": 0.807,
+     "actual": 0.837,
+     "yes": {
+      "trades": 86,
+      "events": 84,
+      "win_rate": 0.837,
+      "pnl": 11.01,
+      "roi": 0.0132,
+      "t_event": 0.21
+     },
+     "no": {
+      "trades": 86,
+      "events": 84,
+      "win_rate": 0.163,
+      "pnl": -189.62,
+      "roi": -0.2108,
+      "t_event": -0.95
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 86,
+      "events": 84,
+      "win_rate": 0.837,
+      "pnl": 11.01,
+      "roi": 0.0132,
+      "t_event": 0.21
+     },
+     "quarters_yes": {
+      "2026-Q1": -0.1411,
+      "2026-Q2": -0.0305,
+      "2026-Q3": 0.0764,
+      "2026-Q4": 0.0134
+     },
+     "quarters_positive": "2/4",
+     "median_volume_after": 10694
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 60,
+     "events": 60,
+     "market": 0.897,
+     "actual": 0.967,
+     "yes": {
+      "trades": 60,
+      "events": 60,
+      "win_rate": 0.967,
+      "pnl": 35.88,
+      "roi": 0.0624,
+      "t_event": 2.41
+     },
+     "no": {
+      "trades": 60,
+      "events": 60,
+      "win_rate": 0.033,
+      "pnl": -460.86,
+      "roi": -0.7271,
+      "t_event": -3.79
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 1.03,
+      "roi": 0.1033,
+      "t_event": null
+     },
+     "yes_newer": {
+      "trades": 59,
+      "events": 59,
+      "win_rate": 0.966,
+      "pnl": 34.85,
+      "roi": 0.0617,
+      "t_event": 2.34
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.089,
+      "2026-Q2": 0.1009,
+      "2026-Q3": 0.0528,
+      "2026-Q4": 0.02
+     },
+     "quarters_positive": "4/4",
+     "median_volume_after": 6901
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 62,
+     "events": 62,
+     "market": 0.932,
+     "actual": 0.968,
+     "yes": {
+      "trades": 62,
+      "events": 62,
+      "win_rate": 0.968,
+      "pnl": 13.85,
+      "roi": 0.0236,
+      "t_event": 0.99
+     },
+     "no": {
+      "trades": 62,
+      "events": 62,
+      "win_rate": 0.032,
+      "pnl": -391.15,
+      "roi": -0.5943,
+      "t_event": -2.09
+     },
+     "yes_older": {
+      "trades": 2,
+      "events": 2,
+      "win_rate": 1.0,
+      "pnl": 1.02,
+      "roi": 0.0537,
+      "t_event": 9.68
+     },
+     "yes_newer": {
+      "trades": 60,
+      "events": 60,
+      "win_rate": 0.967,
+      "pnl": 12.83,
+      "roi": 0.0226,
+      "t_event": 0.92
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0562,
+      "2026-Q2": 0.007,
+      "2026-Q3": 0.005,
+      "2026-Q4": 0.0591
+     },
+     "quarters_positive": "4/4",
+     "median_volume_after": 4997
+    }
+   ]
+  },
+  "KXBRENTD": {
+   "markets": 2233,
+   "events": 127,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 139,
+     "events": 93,
+     "market": 0.805,
+     "actual": 0.871,
+     "yes": {
+      "trades": 139,
+      "events": 93,
+      "win_rate": 0.871,
+      "pnl": 75.46,
+      "roi": 0.056,
+      "t_event": 1.54
+     },
+     "no": {
+      "trades": 139,
+      "events": 93,
+      "win_rate": 0.129,
+      "pnl": -567.01,
+      "roi": -0.39,
+      "t_event": -2.65
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 139,
+      "events": 93,
+      "win_rate": 0.871,
+      "pnl": 75.46,
+      "roi": 0.056,
+      "t_event": 1.54
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0589,
+      "2026-Q3": 0.0601,
+      "2026-Q4": 0.0424
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 3880
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 88,
+     "events": 78,
+     "market": 0.893,
+     "actual": 0.955,
+     "yes": {
+      "trades": 88,
+      "events": 78,
+      "win_rate": 0.955,
+      "pnl": 45.34,
+      "roi": 0.0539,
+      "t_event": 1.66
+     },
+     "no": {
+      "trades": 88,
+      "events": 78,
+      "win_rate": 0.045,
+      "pnl": -559.15,
+      "roi": -0.6018,
+      "t_event": -2.49
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 88,
+      "events": 78,
+      "win_rate": 0.955,
+      "pnl": 45.34,
+      "roi": 0.0539,
+      "t_event": 1.66
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0357,
+      "2026-Q3": 0.0495,
+      "2026-Q4": 0.1076
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 2079
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 74,
+     "events": 55,
+     "market": 0.936,
+     "actual": 0.946,
+     "yes": {
+      "trades": 74,
+      "events": 55,
+      "win_rate": 0.946,
+      "pnl": -1.16,
+      "roi": -0.0017,
+      "t_event": -0.57
+     },
+     "no": {
+      "trades": 74,
+      "events": 55,
+      "win_rate": 0.054,
+      "pnl": -241.57,
+      "roi": -0.3075,
+      "t_event": -0.15
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 74,
+      "events": 55,
+      "win_rate": 0.946,
+      "pnl": -1.16,
+      "roi": -0.0017,
+      "t_event": -0.57
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0052,
+      "2026-Q3": -0.0251,
+      "2026-Q4": 0.0549
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 826
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 106,
+     "events": 93,
+     "market": 0.806,
+     "actual": 0.849,
+     "yes": {
+      "trades": 106,
+      "events": 93,
+      "win_rate": 0.849,
+      "pnl": 28.34,
+      "roi": 0.0276,
+      "t_event": 0.63
+     },
+     "no": {
+      "trades": 106,
+      "events": 93,
+      "win_rate": 0.151,
+      "pnl": -332.34,
+      "roi": -0.2996,
+      "t_event": -1.75
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 106,
+      "events": 93,
+      "win_rate": 0.849,
+      "pnl": 28.34,
+      "roi": 0.0276,
+      "t_event": 0.63
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.01,
+      "2026-Q3": 0.0437,
+      "2026-Q4": 0.0826
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 3783
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 67,
+     "events": 62,
+     "market": 0.894,
+     "actual": 0.97,
+     "yes": {
+      "trades": 67,
+      "events": 62,
+      "win_rate": 0.97,
+      "pnl": 42.76,
+      "roi": 0.067,
+      "t_event": 2.57
+     },
+     "no": {
+      "trades": 67,
+      "events": 62,
+      "win_rate": 0.03,
+      "pnl": -541.44,
+      "roi": -0.7654,
+      "t_event": -4.15
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 67,
+      "events": 62,
+      "win_rate": 0.97,
+      "pnl": 42.76,
+      "roi": 0.067,
+      "t_event": 2.57
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0984,
+      "2026-Q3": 0.0626,
+      "2026-Q4": 0.0024
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 2173
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 63,
+     "events": 54,
+     "market": 0.931,
+     "actual": 0.984,
+     "yes": {
+      "trades": 63,
+      "events": 54,
+      "win_rate": 0.984,
+      "pnl": 24.76,
+      "roi": 0.0416,
+      "t_event": 1.98
+     },
+     "no": {
+      "trades": 63,
+      "events": 54,
+      "win_rate": 0.016,
+      "pnl": -544.79,
+      "roi": -0.8134,
+      "t_event": -3.6
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 63,
+      "events": 54,
+      "win_rate": 0.984,
+      "pnl": 24.76,
+      "roi": 0.0416,
+      "t_event": 1.98
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0482,
+      "2026-Q2": 0.019,
+      "2026-Q3": 0.0581,
+      "2026-Q4": 0.057
+     },
+     "quarters_positive": "4/4",
+     "median_volume_after": 1031
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 88,
+     "events": 77,
+     "market": 0.804,
+     "actual": 0.92,
+     "yes": {
+      "trades": 88,
+      "events": 77,
+      "win_rate": 0.92,
+      "pnl": 99.11,
+      "roi": 0.1166,
+      "t_event": 2.52
+     },
+     "no": {
+      "trades": 88,
+      "events": 77,
+      "win_rate": 0.08,
+      "pnl": -581.03,
+      "roi": -0.6308,
+      "t_event": -3.71
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 88,
+      "events": 77,
+      "win_rate": 0.92,
+      "pnl": 99.11,
+      "roi": 0.1166,
+      "t_event": 2.52
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1086,
+      "2026-Q3": 0.1573,
+      "2026-Q4": 0.0267
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 3366
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 49,
+     "events": 46,
+     "market": 0.891,
+     "actual": 1.0,
+     "yes": {
+      "trades": 49,
+      "events": 46,
+      "win_rate": 1.0,
+      "pnl": 48.37,
+      "roi": 0.1028,
+      "t_event": 43.5
+     },
+     "no": {
+      "trades": 49,
+      "events": 46,
+      "win_rate": 0.0,
+      "pnl": -516.98,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 49,
+      "events": 46,
+      "win_rate": 1.0,
+      "pnl": 48.37,
+      "roi": 0.1028,
+      "t_event": 43.5
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1006,
+      "2026-Q3": 0.104,
+      "2026-Q4": 0.1035
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 1391
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 53,
+     "events": 48,
+     "market": 0.932,
+     "actual": 0.981,
+     "yes": {
+      "trades": 53,
+      "events": 48,
+      "win_rate": 0.981,
+      "pnl": 18.69,
+      "roi": 0.0373,
+      "t_event": 1.59
+     },
+     "no": {
+      "trades": 53,
+      "events": 48,
+      "win_rate": 0.019,
+      "pnl": -451.9,
+      "roi": -0.8028,
+      "t_event": -3.6
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 53,
+      "events": 48,
+      "win_rate": 0.981,
+      "pnl": 18.69,
+      "roi": 0.0373,
+      "t_event": 1.59
+     },
+     "quarters_yes": {
+      "2026-Q1": 0.0593,
+      "2026-Q2": 0.059,
+      "2026-Q3": 0.0082,
+      "2026-Q4": 0.0555
+     },
+     "quarters_positive": "4/4",
+     "median_volume_after": 1083
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 64,
+     "events": 61,
+     "market": 0.801,
+     "actual": 0.812,
+     "yes": {
+      "trades": 64,
+      "events": 61,
+      "win_rate": 0.812,
+      "pnl": -13.2,
+      "roi": -0.0214,
+      "t_event": -0.34
+     },
+     "no": {
+      "trades": 64,
+      "events": 61,
+      "win_rate": 0.188,
+      "pnl": -181.6,
+      "roi": -0.2712,
+      "t_event": -1.38
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 64,
+      "events": 61,
+      "win_rate": 0.812,
+      "pnl": -13.2,
+      "roi": -0.0214,
+      "t_event": -0.34
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.097,
+      "2026-Q3": 0.0401,
+      "2026-Q4": -0.0132
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 4912
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 40,
+     "events": 39,
+     "market": 0.895,
+     "actual": 0.95,
+     "yes": {
+      "trades": 40,
+      "events": 39,
+      "win_rate": 0.95,
+      "pnl": 17.1,
+      "roi": 0.0448,
+      "t_event": 1.09
+     },
+     "no": {
+      "trades": 40,
+      "events": 39,
+      "win_rate": 0.05,
+      "pnl": -249.81,
+      "roi": -0.5908,
+      "t_event": -1.97
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 40,
+      "events": 39,
+      "win_rate": 0.95,
+      "pnl": 17.1,
+      "roi": 0.0448,
+      "t_event": 1.09
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0254,
+      "2026-Q3": 0.0451,
+      "2026-Q4": 0.0958
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 1657
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 51,
+     "events": 47,
+     "market": 0.933,
+     "actual": 0.961,
+     "yes": {
+      "trades": 51,
+      "events": 47,
+      "win_rate": 0.961,
+      "pnl": 7.48,
+      "roi": 0.0155,
+      "t_event": 0.37
+     },
+     "no": {
+      "trades": 51,
+      "events": 47,
+      "win_rate": 0.039,
+      "pnl": -316.45,
+      "roi": -0.5844,
+      "t_event": -1.74
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 51,
+      "events": 47,
+      "win_rate": 0.961,
+      "pnl": 7.48,
+      "roi": 0.0155,
+      "t_event": 0.37
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0024,
+      "2026-Q3": 0.0561,
+      "2026-Q4": -0.044
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1354
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 35,
+     "events": 35,
+     "market": 0.813,
+     "actual": 0.886,
+     "yes": {
+      "trades": 35,
+      "events": 35,
+      "win_rate": 0.886,
+      "pnl": 23.78,
+      "roi": 0.0703,
+      "t_event": 1.03
+     },
+     "no": {
+      "trades": 35,
+      "events": 35,
+      "win_rate": 0.114,
+      "pnl": -143.9,
+      "roi": -0.3933,
+      "t_event": -1.34
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 35,
+      "events": 35,
+      "win_rate": 0.886,
+      "pnl": 23.78,
+      "roi": 0.0703,
+      "t_event": 1.03
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0178,
+      "2026-Q3": 0.1036,
+      "2026-Q4": 0.2344
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 5431
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 30,
+     "events": 30,
+     "market": 0.897,
+     "actual": 0.967,
+     "yes": {
+      "trades": 30,
+      "events": 30,
+      "win_rate": 0.967,
+      "pnl": 16.47,
+      "roi": 0.0577,
+      "t_event": 1.61
+     },
+     "no": {
+      "trades": 30,
+      "events": 30,
+      "win_rate": 0.033,
+      "pnl": -226.86,
+      "roi": -0.716,
+      "t_event": -2.51
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 30,
+      "events": 30,
+      "win_rate": 0.967,
+      "pnl": 16.47,
+      "roi": 0.0577,
+      "t_event": 1.61
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0335,
+      "2026-Q3": 0.0955,
+      "2026-Q4": 0.0992
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 2211
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 32,
+     "events": 28,
+     "market": 0.932,
+     "actual": 1.0,
+     "yes": {
+      "trades": 32,
+      "events": 28,
+      "win_rate": 1.0,
+      "pnl": 17.14,
+      "roi": 0.0566,
+      "t_event": 34.86
+     },
+     "no": {
+      "trades": 32,
+      "events": 28,
+      "win_rate": 0.0,
+      "pnl": -339.78,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 32,
+      "events": 28,
+      "win_rate": 1.0,
+      "pnl": 17.14,
+      "roi": 0.0566,
+      "t_event": 34.86
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0566,
+      "2026-Q3": 0.0567,
+      "2026-Q4": 0.0562
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 1586
+    }
+   ]
+  },
+  "KXNATGASD": {
+   "markets": 7774,
+   "events": 123,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 307,
+     "events": 87,
+     "market": 0.798,
+     "actual": 0.86,
+     "yes": {
+      "trades": 307,
+      "events": 87,
+      "win_rate": 0.86,
+      "pnl": 135.88,
+      "roi": 0.0457,
+      "t_event": 0.75
+     },
+     "no": {
+      "trades": 307,
+      "events": 87,
+      "win_rate": 0.14,
+      "pnl": -1219.73,
+      "roi": -0.3802,
+      "t_event": -2.0
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 307,
+      "events": 87,
+      "win_rate": 0.86,
+      "pnl": 135.88,
+      "roi": 0.0457,
+      "t_event": 0.75
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0633,
+      "2026-Q3": 0.0336,
+      "2026-Q4": 0.0518
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 821
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 157,
+     "events": 72,
+     "market": 0.886,
+     "actual": 0.943,
+     "yes": {
+      "trades": 157,
+      "events": 72,
+      "win_rate": 0.943,
+      "pnl": 59.29,
+      "roi": 0.0394,
+      "t_event": 1.22
+     },
+     "no": {
+      "trades": 157,
+      "events": 72,
+      "win_rate": 0.057,
+      "pnl": -975.7,
+      "roi": -0.5897,
+      "t_event": -2.86
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 157,
+      "events": 72,
+      "win_rate": 0.943,
+      "pnl": 59.29,
+      "roi": 0.0394,
+      "t_event": 1.22
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0518,
+      "2026-Q3": 0.0275,
+      "2026-Q4": 0.0473
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 286
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 142,
+     "events": 68,
+     "market": 0.929,
+     "actual": 0.965,
+     "yes": {
+      "trades": 142,
+      "events": 68,
+      "win_rate": 0.965,
+      "pnl": 26.09,
+      "roi": 0.0194,
+      "t_event": 0.82
+     },
+     "no": {
+      "trades": 142,
+      "events": 68,
+      "win_rate": 0.035,
+      "pnl": -981.0,
+      "roi": -0.651,
+      "t_event": -2.69
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 142,
+      "events": 68,
+      "win_rate": 0.965,
+      "pnl": 26.09,
+      "roi": 0.0194,
+      "t_event": 0.82
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.02,
+      "2026-Q3": -0.0067,
+      "2026-Q4": 0.057
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 80
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 283,
+     "events": 92,
+     "market": 0.801,
+     "actual": 0.88,
+     "yes": {
+      "trades": 283,
+      "events": 92,
+      "win_rate": 0.88,
+      "pnl": 184.76,
+      "roi": 0.0673,
+      "t_event": 1.04
+     },
+     "no": {
+      "trades": 283,
+      "events": 92,
+      "win_rate": 0.12,
+      "pnl": -1423.28,
+      "roi": -0.4811,
+      "t_event": -2.8
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 283,
+      "events": 92,
+      "win_rate": 0.88,
+      "pnl": 184.76,
+      "roi": 0.0673,
+      "t_event": 1.04
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.087,
+      "2026-Q3": 0.1071,
+      "2026-Q4": -0.067
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1121
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 152,
+     "events": 80,
+     "market": 0.889,
+     "actual": 0.934,
+     "yes": {
+      "trades": 152,
+      "events": 80,
+      "win_rate": 0.934,
+      "pnl": 40.49,
+      "roi": 0.0279,
+      "t_event": 0.49
+     },
+     "no": {
+      "trades": 152,
+      "events": 80,
+      "win_rate": 0.066,
+      "pnl": -825.33,
+      "roi": -0.5144,
+      "t_event": -2.05
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 152,
+      "events": 80,
+      "win_rate": 0.934,
+      "pnl": 40.49,
+      "roi": 0.0279,
+      "t_event": 0.49
+     },
+     "quarters_yes": {
+      "2026-Q2": -0.0135,
+      "2026-Q3": 0.0588,
+      "2026-Q4": 0.0036
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 579
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 139,
+     "events": 81,
+     "market": 0.928,
+     "actual": 0.964,
+     "yes": {
+      "trades": 139,
+      "events": 81,
+      "win_rate": 0.964,
+      "pnl": 25.28,
+      "roi": 0.0192,
+      "t_event": -0.05
+     },
+     "no": {
+      "trades": 139,
+      "events": 81,
+      "win_rate": 0.036,
+      "pnl": -996.02,
+      "roi": -0.6748,
+      "t_event": -2.23
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 139,
+      "events": 81,
+      "win_rate": 0.964,
+      "pnl": 25.28,
+      "roi": 0.0192,
+      "t_event": -0.05
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0325,
+      "2026-Q3": 0.0098,
+      "2026-Q4": 0.0202
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 113
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 227,
+     "events": 93,
+     "market": 0.802,
+     "actual": 0.833,
+     "yes": {
+      "trades": 227,
+      "events": 93,
+      "win_rate": 0.833,
+      "pnl": 18.17,
+      "roi": 0.0083,
+      "t_event": -0.09
+     },
+     "no": {
+      "trades": 227,
+      "events": 93,
+      "win_rate": 0.167,
+      "pnl": -584.92,
+      "roi": -0.2464,
+      "t_event": -0.82
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 227,
+      "events": 93,
+      "win_rate": 0.833,
+      "pnl": 18.17,
+      "roi": 0.0083,
+      "t_event": -0.09
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0427,
+      "2026-Q3": 0.0169,
+      "2026-Q4": -0.052
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 1114
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 134,
+     "events": 78,
+     "market": 0.888,
+     "actual": 0.918,
+     "yes": {
+      "trades": 134,
+      "events": 78,
+      "win_rate": 0.918,
+      "pnl": 15.01,
+      "roi": 0.0117,
+      "t_event": -0.31
+     },
+     "no": {
+      "trades": 134,
+      "events": 78,
+      "win_rate": 0.082,
+      "pnl": -554.36,
+      "roi": -0.3922,
+      "t_event": -0.82
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 134,
+      "events": 78,
+      "win_rate": 0.918,
+      "pnl": 15.01,
+      "roi": 0.0117,
+      "t_event": -0.31
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0517,
+      "2026-Q3": 0.0329,
+      "2026-Q4": -0.0988
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 488
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 118,
+     "events": 71,
+     "market": 0.928,
+     "actual": 0.949,
+     "yes": {
+      "trades": 118,
+      "events": 71,
+      "win_rate": 0.949,
+      "pnl": 4.62,
+      "roi": 0.0041,
+      "t_event": -0.27
+     },
+     "no": {
+      "trades": 118,
+      "events": 71,
+      "win_rate": 0.051,
+      "pnl": -549.18,
+      "roi": -0.4386,
+      "t_event": -0.79
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 118,
+      "events": 71,
+      "win_rate": 0.949,
+      "pnl": 4.62,
+      "roi": 0.0041,
+      "t_event": -0.27
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0286,
+      "2026-Q3": 0.001,
+      "2026-Q4": -0.0284
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 112
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 144,
+     "events": 85,
+     "market": 0.8,
+     "actual": 0.861,
+     "yes": {
+      "trades": 144,
+      "events": 85,
+      "win_rate": 0.861,
+      "pnl": 66.1,
+      "roi": 0.0474,
+      "t_event": 1.13
+     },
+     "no": {
+      "trades": 144,
+      "events": 85,
+      "win_rate": 0.139,
+      "pnl": -582.38,
+      "roi": -0.3869,
+      "t_event": -2.43
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 144,
+      "events": 85,
+      "win_rate": 0.861,
+      "pnl": 66.1,
+      "roi": 0.0474,
+      "t_event": 1.13
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.091,
+      "2026-Q3": 0.0118,
+      "2026-Q4": 0.0795
+     },
+     "quarters_positive": "3/3",
+     "median_volume_after": 1488
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 93,
+     "events": 76,
+     "market": 0.89,
+     "actual": 0.914,
+     "yes": {
+      "trades": 93,
+      "events": 76,
+      "win_rate": 0.914,
+      "pnl": 5.85,
+      "roi": 0.0065,
+      "t_event": 0.47
+     },
+     "no": {
+      "trades": 93,
+      "events": 76,
+      "win_rate": 0.086,
+      "pnl": -367.65,
+      "roi": -0.3745,
+      "t_event": -2.02
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 93,
+      "events": 76,
+      "win_rate": 0.914,
+      "pnl": 5.85,
+      "roi": 0.0065,
+      "t_event": 0.47
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1012,
+      "2026-Q3": -0.0318,
+      "2026-Q4": -0.0185
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 832
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 78,
+     "events": 58,
+     "market": 0.93,
+     "actual": 0.962,
+     "yes": {
+      "trades": 78,
+      "events": 58,
+      "win_rate": 0.962,
+      "pnl": 11.97,
+      "roi": 0.0162,
+      "t_event": 0.83
+     },
+     "no": {
+      "trades": 78,
+      "events": 58,
+      "win_rate": 0.038,
+      "pnl": -485.12,
+      "roi": -0.5858,
+      "t_event": -2.58
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 78,
+      "events": 58,
+      "win_rate": 0.962,
+      "pnl": 11.97,
+      "roi": 0.0162,
+      "t_event": 0.83
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0559,
+      "2026-Q3": -0.0116,
+      "2026-Q4": -0.016
+     },
+     "quarters_positive": "1/3",
+     "median_volume_after": 147
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 97,
+     "events": 82,
+     "market": 0.801,
+     "actual": 0.866,
+     "yes": {
+      "trades": 97,
+      "events": 82,
+      "win_rate": 0.866,
+      "pnl": 48.6,
+      "roi": 0.0517,
+      "t_event": 1.74
+     },
+     "no": {
+      "trades": 97,
+      "events": 82,
+      "win_rate": 0.134,
+      "pnl": -384.38,
+      "roi": -0.3793,
+      "t_event": -2.71
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 97,
+      "events": 82,
+      "win_rate": 0.866,
+      "pnl": 48.6,
+      "roi": 0.0517,
+      "t_event": 1.74
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1223,
+      "2026-Q3": 0.0679,
+      "2026-Q4": -0.0695
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 2524
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 60,
+     "events": 53,
+     "market": 0.89,
+     "actual": 0.933,
+     "yes": {
+      "trades": 60,
+      "events": 53,
+      "win_rate": 0.933,
+      "pnl": 15.29,
+      "roi": 0.0267,
+      "t_event": 0.79
+     },
+     "no": {
+      "trades": 60,
+      "events": 53,
+      "win_rate": 0.067,
+      "pnl": -315.25,
+      "roi": -0.4978,
+      "t_event": -2.04
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 60,
+      "events": 53,
+      "win_rate": 0.933,
+      "pnl": 15.29,
+      "roi": 0.0267,
+      "t_event": 0.79
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.1048,
+      "2026-Q3": -0.0126,
+      "2026-Q4": 0.0166
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 765
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 63,
+     "events": 55,
+     "market": 0.929,
+     "actual": 0.968,
+     "yes": {
+      "trades": 63,
+      "events": 55,
+      "win_rate": 0.968,
+      "pnl": 14.22,
+      "roi": 0.0239,
+      "t_event": 0.71
+     },
+     "no": {
+      "trades": 63,
+      "events": 55,
+      "win_rate": 0.032,
+      "pnl": -467.8,
+      "roi": -0.6995,
+      "t_event": -2.69
+     },
+     "yes_older": null,
+     "yes_newer": {
+      "trades": 63,
+      "events": 55,
+      "win_rate": 0.968,
+      "pnl": 14.22,
+      "roi": 0.0239,
+      "t_event": 0.71
+     },
+     "quarters_yes": {
+      "2026-Q2": 0.0536,
+      "2026-Q3": 0.0228,
+      "2026-Q4": -0.0166
+     },
+     "quarters_positive": "2/3",
+     "median_volume_after": 968
+    }
+   ]
+  },
+  "KXINXU": {
+   "markets": 9200,
+   "events": 129,
+   "rows": [
+    {
+     "hours": 6,
+     "bucket": "75-88c",
+     "n": 9,
+     "events": 9,
+     "market": 0.815,
+     "actual": 0.667,
+     "yes": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.667,
+      "pnl": -17.52,
+      "roi": -0.2002,
+      "t_event": -1.02
+     },
+     "no": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.333,
+      "pnl": 65.9,
+      "roi": 0.7003,
+      "t_event": 0.82
+     },
+     "yes_older": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.667,
+      "pnl": -17.52,
+      "roi": -0.2002,
+      "t_event": -1.02
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.2002
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 11181
+    },
+    {
+     "hours": 6,
+     "bucket": "88-93c",
+     "n": 4,
+     "events": 4,
+     "market": 0.889,
+     "actual": 1.0,
+     "yes": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 1.0,
+      "pnl": 3.74,
+      "roi": 0.0978,
+      "t_event": 13.08
+     },
+     "no": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.0,
+      "pnl": -42.19,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 1.0,
+      "pnl": 3.74,
+      "roi": 0.0978,
+      "t_event": 13.08
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0978
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 20252
+    },
+    {
+     "hours": 6,
+     "bucket": "93-96c",
+     "n": 9,
+     "events": 9,
+     "market": 0.927,
+     "actual": 0.889,
+     "yes": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.889,
+      "pnl": -5.57,
+      "roi": -0.0651,
+      "t_event": -0.55
+     },
+     "no": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.111,
+      "pnl": 15.56,
+      "roi": 0.163,
+      "t_event": 0.14
+     },
+     "yes_older": {
+      "trades": 9,
+      "events": 9,
+      "win_rate": 0.889,
+      "pnl": -5.57,
+      "roi": -0.0651,
+      "t_event": -0.55
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.0651
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 12
+    },
+    {
+     "hours": 4,
+     "bucket": "75-88c",
+     "n": 7,
+     "events": 7,
+     "market": 0.785,
+     "actual": 0.857,
+     "yes": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 0.857,
+      "pnl": 3.26,
+      "roi": 0.0481,
+      "t_event": 0.29
+     },
+     "no": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 0.143,
+      "pnl": -30.32,
+      "roi": -0.4135,
+      "t_event": -0.7
+     },
+     "yes_older": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 0.857,
+      "pnl": 3.26,
+      "roi": 0.0481,
+      "t_event": 0.29
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0481
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 29176
+    },
+    {
+     "hours": 4,
+     "bucket": "88-93c",
+     "n": 7,
+     "events": 7,
+     "market": 0.884,
+     "actual": 1.0,
+     "yes": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 1.0,
+      "pnl": 7.04,
+      "roi": 0.1051,
+      "t_event": 20.02
+     },
+     "no": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 0.0,
+      "pnl": -73.76,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 7,
+      "events": 7,
+      "win_rate": 1.0,
+      "pnl": 7.04,
+      "roi": 0.1051,
+      "t_event": 20.02
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.1051
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 11526
+    },
+    {
+     "hours": 4,
+     "bucket": "93-96c",
+     "n": 4,
+     "events": 4,
+     "market": 0.929,
+     "actual": 1.0,
+     "yes": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 1.0,
+      "pnl": 1.94,
+      "roi": 0.051,
+      "t_event": 18.37
+     },
+     "no": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.0,
+      "pnl": -42.54,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 1.0,
+      "pnl": 1.94,
+      "roi": 0.051,
+      "t_event": 18.37
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.051
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 2170
+    },
+    {
+     "hours": 3,
+     "bucket": "75-88c",
+     "n": 5,
+     "events": 5,
+     "market": 0.808,
+     "actual": 0.6,
+     "yes": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 0.6,
+      "pnl": -13.43,
+      "roi": -0.2773,
+      "t_event": -0.99
+     },
+     "no": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 0.4,
+      "pnl": 37.84,
+      "roi": 0.7255,
+      "t_event": 0.67
+     },
+     "yes_older": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 0.6,
+      "pnl": -13.43,
+      "roi": -0.2773,
+      "t_event": -0.99
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.2773
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 12782
+    },
+    {
+     "hours": 3,
+     "bucket": "88-93c",
+     "n": 5,
+     "events": 5,
+     "market": 0.892,
+     "actual": 1.0,
+     "yes": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 1.0,
+      "pnl": 4.49,
+      "roi": 0.0965,
+      "t_event": 12.38
+     },
+     "no": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 0.0,
+      "pnl": -52.77,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 5,
+      "events": 5,
+      "win_rate": 1.0,
+      "pnl": 4.49,
+      "roi": 0.0965,
+      "t_event": 12.38
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0965
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 2150
+    },
+    {
+     "hours": 3,
+     "bucket": "93-96c",
+     "n": 6,
+     "events": 6,
+     "market": 0.926,
+     "actual": 1.0,
+     "yes": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 1.0,
+      "pnl": 3.05,
+      "roi": 0.0536,
+      "t_event": 14.65
+     },
+     "no": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 0.0,
+      "pnl": -63.57,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 1.0,
+      "pnl": 3.05,
+      "roi": 0.0536,
+      "t_event": 14.65
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0536
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 2038
+    },
+    {
+     "hours": 2,
+     "bucket": "75-88c",
+     "n": 1,
+     "events": 1,
+     "market": 0.825,
+     "actual": 1.0,
+     "yes": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 1.55,
+      "roi": 0.164,
+      "t_event": null
+     },
+     "no": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 0.0,
+      "pnl": -10.56,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 1.55,
+      "roi": 0.164,
+      "t_event": null
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.164
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 445
+    },
+    {
+     "hours": 2,
+     "bucket": "88-93c",
+     "n": 1,
+     "events": 1,
+     "market": 0.9,
+     "actual": 1.0,
+     "yes": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 0.74,
+      "roi": 0.0799,
+      "t_event": null
+     },
+     "no": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 0.0,
+      "pnl": -10.58,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 0.74,
+      "roi": 0.0799,
+      "t_event": null
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0799
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 6598
+    },
+    {
+     "hours": 2,
+     "bucket": "93-96c",
+     "n": 6,
+     "events": 6,
+     "market": 0.922,
+     "actual": 0.833,
+     "yes": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 0.833,
+      "pnl": -6.85,
+      "roi": -0.1205,
+      "t_event": -0.69
+     },
+     "no": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 0.167,
+      "pnl": 26.59,
+      "roi": 0.4193,
+      "t_event": 0.3
+     },
+     "yes_older": {
+      "trades": 6,
+      "events": 6,
+      "win_rate": 0.833,
+      "pnl": -6.85,
+      "roi": -0.1205,
+      "t_event": -0.69
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.1205
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 5165
+    },
+    {
+     "hours": 1,
+     "bucket": "75-88c",
+     "n": 4,
+     "events": 4,
+     "market": 0.806,
+     "actual": 0.75,
+     "yes": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.75,
+      "pnl": -4.29,
+      "roi": -0.112,
+      "t_event": -0.35
+     },
+     "no": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.25,
+      "pnl": 5.28,
+      "roi": 0.1266,
+      "t_event": 0.11
+     },
+     "yes_older": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.75,
+      "pnl": -4.29,
+      "roi": -0.112,
+      "t_event": -0.35
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.112
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 50161
+    },
+    {
+     "hours": 1,
+     "bucket": "88-93c",
+     "n": 1,
+     "events": 1,
+     "market": 0.91,
+     "actual": 1.0,
+     "yes": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 0.74,
+      "roi": 0.0799,
+      "t_event": null
+     },
+     "no": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 0.0,
+      "pnl": -10.63,
+      "roi": -1.0,
+      "t_event": null
+     },
+     "yes_older": {
+      "trades": 1,
+      "events": 1,
+      "win_rate": 1.0,
+      "pnl": 0.74,
+      "roi": 0.0799,
+      "t_event": null
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": 0.0799
+     },
+     "quarters_positive": "1/1",
+     "median_volume_after": 6595
+    },
+    {
+     "hours": 1,
+     "bucket": "93-96c",
+     "n": 4,
+     "events": 4,
+     "market": 0.931,
+     "actual": 0.75,
+     "yes": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.75,
+      "pnl": -8.16,
+      "roi": -0.2138,
+      "t_event": -0.82
+     },
+     "no": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.25,
+      "pnl": 68.52,
+      "roi": 1.613,
+      "t_event": 0.62
+     },
+     "yes_older": {
+      "trades": 4,
+      "events": 4,
+      "win_rate": 0.75,
+      "pnl": -8.16,
+      "roi": -0.2138,
+      "t_event": -0.82
+     },
+     "yes_newer": null,
+     "quarters_yes": {
+      "2025-Q4": -0.2138
+     },
+     "quarters_positive": "0/1",
+     "median_volume_after": 14960
+    }
+   ]
+  }
+ }
+}
