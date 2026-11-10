@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-10T02:10+00:00",
+ "generated_at": "2026-11-10T09:56+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 1000.0,
    "starting_bankroll": 1000.0,
    "settled": 0,
-   "open": 21,
+   "open": 24,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-10T14:00+00:00"
   },
@@ -88,6 +88,17 @@
    "open": 4,
    "version": "eth-tod-v1",
    "next_results_by": "2026-11-10T23:00+00:00"
+  },
+  {
+   "id": "bitcoin_fav",
+   "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)",
+   "short": "BTC favorites",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 0,
+   "version": "btc-fav-v1",
+   "next_results_by": ""
   }
  ]
 }

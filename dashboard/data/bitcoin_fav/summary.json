@@ -1,0 +1,57 @@
+{
+ "book": "bitcoin_fav",
+ "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)",
+ "short": "BTC favorites",
+ "kind": "crypto",
+ "unit": "$",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-10T09:56+00:00",
+ "strategy_version": "btc-fav-v1",
+ "rules": {
+  "MIN_EDGE": 0.08,
+  "MIN_PRICE": 0.75,
+  "MAX_PRICE": 0.96,
+  "MAX_SPREAD": 0.05,
+  "MIN_LEAD_HOURS": 6,
+  "MAX_POSITIONS_PER_EVENT": 2,
+  "STAKE_DOLLARS": 10.0
+ },
+ "strategy": "favorite",
+ "model": {
+  "fallback_vol": 0.5,
+  "asset": "BTC-USD"
+ },
+ "markets": [
+  "KXBTCD"
+ ],
+ "bankroll": 1000.0,
+ "open_exposure": 0,
+ "totals": {
+  "n": 0
+ },
+ "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
+ "breakdowns": {
+  "city": {},
+  "side": {},
+  "edge": {},
+  "price": {},
+  "days_ahead": {},
+  "bracket_distance": {},
+  "bracket_type": {},
+  "cause": {},
+  "version": {}
+ },
+ "calibration": [],
+ "forecast_accuracy": [],
+ "suggestions": [
+  {
+   "priority": 0,
+   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+  }
+ ],
+ "bankroll_curve": []
+}
