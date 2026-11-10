@@ -1,0 +1,48 @@
+name: Minute-level Bitcoin lag test
+
+on:
+  workflow_dispatch:
+    inputs:
+      days:
+        description: "Days back"
+        default: "400"
+  push:
+    branches: [minute-lag]
+    paths: [kalshi_analyzer/minute_lag.py, .github/workflows/minute.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  lag:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore minute data
+        uses: actions/cache/restore@v4
+        with:
+          path: data/backtest_cache/minute_lag*.json.gz
+          key: minute-lag-${{ github.run_id }}
+          restore-keys: minute-lag-
+      - name: Download and replay
+        run: python -m kalshi_analyzer.minute_lag --days ${{ github.event.inputs.days || '400' }}
+      - name: Save minute data
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/backtest_cache/minute_lag*.json.gz
+          key: minute-lag-${{ github.run_id }}
+      - name: Save results to the repo
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add reports/minute_lag.md dashboard/data/minute_lag.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "minute lag test $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1

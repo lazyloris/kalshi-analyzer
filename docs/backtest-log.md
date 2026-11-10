@@ -106,6 +106,29 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 
 **Conclusion:** same story as crypto. Every edge we found on 2026-03 to 2026-11 disappears on the earlier data. Kalshi weather and crypto prices look efficient at hourly resolution after fees.
 
+## 2026-11-09 — Minute-level lag test v2 (run 42697790490, branch minute-lag)
+
+**Setup:** 1-minute Kalshi quotes and 1-minute Coinbase prices over the last 6 hours before 5pm ET, about 400 days, for Bitcoin (KXBTCD) and Ethereum (KXETHD). Strikes within 2% of the price. Signal: the coin moved X% in 5 minutes and Kalshi is below a lognormal fair value by the edge, in the direction of the move. Taker fees are included. Fill delay is 0, 1 or 2 minutes (the order fills at that later quote). There are 72 settings per coin. We report both a per-trade t-stat and a per-day t-stat.
+
+**Result:**
+- **BTC: holding to settlement after a 0.2% move, 5c edge, vol x0.5:**
+  - No delay: +2.2% on 5,907 trades. t = 3.4 per trade, 2.5 per day.
+  - 1-2 minute delay: +1.8%. t = 2.3 per day.
+  - Both halves and the older year are positive.
+  - Every vol x0.5 row is positive, and every vol x0.75 or x1.0 row loses.
+- **ETH:** the same setting is +2.0% on 2,027 trades, but the per-day t is only 0.5, and +1.2% with a 2-minute delay. Positive but not significant.
+- **15-minute exit (pure lag capture):** loses in every setting on both coins.
+
+**Conclusion:** this is the first crypto signal that survives the older year and a fill delay, but only on Bitcoin. With 144 settings tried, a per-day t of 2.3 is borderline. It also depends entirely on vol x0.5, which failed at hourly resolution on the older year. Treat it as a candidate for a small paper book, not as proven.
+
+## 2026-11-09 — Swing pairing test v1 (branch minute-lag)
+
+**Setup:** buy the side that dropped D cents in 5 minutes. If it swings back X cents, buy the other side so the pair costs under $1; otherwise hold to settlement. 1-minute quotes over the last 4 hours of trading, sports *GAME series, 90 days.
+
+**Result:** every setting lost, -11.5% to -20%. Locks made +700 to +1,200, but positions that never locked lost more. Coverage was bad: 240 markets, mostly eSoccer (KXESOCCERGAME has 45k markets and filled the download cap). The crypto group had 0 markets because the minute caches weren't restored.
+
+**Fix:** v2 takes major leagues first, caps each series at 400 markets, and restores the crypto minute data.
+
 ## 2026-11-09 — Polymarket top-wallet study (wallet-study branch)
 
 **Setup:** Top 30 all-time wallets by P&L, plus swisstony. Read-only public data (Data API v2, CLOB). For each wallet we read the latest 10,000 trades. The copy test buys 150 of their recent resolved buys at the price 1, 10 and 60 minutes later, with a 1c worse fill, held to resolution.
@@ -119,6 +142,17 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 **Caveats:** returns are per buy and not weighted by dollars. Position totals from the API were capped and inconsistent, so they were dropped. No fees assumed.
 
 **Next:** the swisstony-style swing pairing (buy one side after a drop, the other side after the opposite swing, aiming for under $1 combined) can be tested on Kalshi 1-minute data for live sports.
+
+## 2026-11-09 — Swing pairing test v2 (run 42716975260, branch minute-lag)
+
+**Setup:** same rules as v1. Major leagues come first, capped at 400 markets per series. That gives 5,220 sports markets: NBA, MLB, NHL, NCAAF, MLS, NCAAMB, NFL and La Liga. It also adds 4,688 Bitcoin and Ethereum daily markets from the minute-lag data.
+
+**Result: it loses everywhere.**
+- Sports: -13% to -14.5% in all 9 settings, with t from -14 to -28. 56-72% of trades locked, and the locks made +$18k to +$30k. Trades that never locked lost $31k to $46k.
+- Crypto: -11% to -15%. 66-82% locked, with the same pattern.
+- Both halves are negative.
+
+**Conclusion:** "buy the dip, lock the other side on the rebound" loses as a taker. The dips that never come back cost more than the locks earn. This is the same adverse selection as before. swisstony-style profits, if real, would need maker fills (earning the spread), which candles can't test. Swing pairing is closed.
 
 ## 2026-11-09 — 600-day replay: late entries, Bayesian, fat-tail, exits, volume, combined (run 42689764374)
 
