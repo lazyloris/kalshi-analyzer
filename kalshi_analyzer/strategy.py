@@ -86,6 +86,9 @@ def evaluate(book_id, m, ctx, now):
     snap["time"] = now.isoformat(timespec="minutes")
     if book["kind"] == "fade":
         return snap, fade(book_id, m, now, snap)
+    if book.get("strategy") == "favorite":
+        snap.update(forecast="", sigma="", model_p="")
+        return snap, favorite(book_id, m, now)
     try:
         res = model(book_id, m, ctx, now)
     except ValueError:  # bracket type the model doesn't understand
@@ -178,3 +181,70 @@ def fade(book_id, m, now, snap):
         "spread": round(na - nb, 4), "volume": m["volume"], "status": "open",
         **timing(book_id, m, contracts, implied_no, contracts * na + fee),
     }
+
+
+def fav_band(book, ask):
+    """(low, high, backtest win rate) of the favorite band this YES ask falls in, or None."""
+    for lo, hi, win in book["fav_bands"]:
+        if lo <= ask < hi:
+            return lo, hi, win
+    return None
+
+
+def favorite(book_id, m, now):
+    """Pre-registered favorite test: buy YES at the ask when it sits in a band, 3.5-4.5h before close.
+    No model; the 'model' chance logged is the band's backtest win rate."""
+    book, R = C.BOOKS[book_id], C.rules(book_id)
+    ya, yb = m["yes_ask"], m["yes_bid"]
+    close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
+    if ya is None or yb is None or close is None:
+        return None
+    hours = (close - now).total_seconds() / 3600
+    lo_h, hi_h = book["fav_lead_hours"]
+    if not (lo_h <= hours <= hi_h) or ya - yb > R["MAX_SPREAD"]:
+        return None
+    band = fav_band(book, ya)
+    if band is None:
+        return None
+    contracts = max(1, math.floor(R["STAKE_DOLLARS"] / ya))
+    fee = taker_fee(contracts, ya, C.FEE_RATE)
+    p = band[2]
+    st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
+    return {
+        "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
+        "series": m["series"], "city": C.ASSET_NAMES.get(book["series"][m["series"]], m["series"]),
+        "ticker": m["ticker"], "event_ticker": m["event_ticker"], "target_date": m["target_date"],
+        "bracket": bracket_label(st, lo, hi, book["unit"]), "strike_type": st, "floor": m["floor"], "cap": m["cap"],
+        "side": "yes", "contracts": contracts, "price": round(ya, 4), "fee": fee,
+        "cost": round(contracts * ya + fee, 2), "model_p": p, "market_p": round(ya, 4),
+        "edge": round(p - ya - fee / contracts, 4), "forecast": "", "sigma": "", "unit": book["unit"],
+        "lead_hours": round(hours, 2), "lead_days": 0, "distance": "",
+        "spread": round(ya - yb, 4), "volume": m["volume"], "status": "open",
+        "cap_key": f"{m['event_ticker']}|{band[0]:.2f}",
+        **timing(book_id, m, contracts, p, contracts * ya + fee),
+    }
+
+
+def kill_reason(book_id, trades, now):
+    """Pre-registered kill rules for the favorite test. Returns why the test has stopped, or None."""
+    book = C.BOOKS[book_id]
+    k = book.get("kill")
+    if not k:
+        return None
+    end = dt.date.fromisoformat(book["test_start"]) + dt.timedelta(days=book["test_days"])
+    settled = [t for t in trades if t["status"] == "settled"]
+    days = {}
+    for t in settled:
+        days[t["target_date"]] = days.get(t["target_date"], 0.0) + float(t["pnl"])
+    order = sorted(days)
+    for i in range(len(order)):
+        window = order[i:i + k["window_days"]]
+        if sum(1 for d in window if days[d] < 0) >= k["losing_days"]:
+            return f"{k['losing_days']} losing days within {k['window_days']} trading days (from {window[0]})"
+    staked = sum(float(t["cost"]) for t in settled)
+    elapsed = (now.date() - dt.date.fromisoformat(book["test_start"])).days
+    if staked and (elapsed >= k["min_days"] or len(settled) >= k["min_trades"]) and sum(days.values()) < 0:
+        return f"return per $ below 0 after {elapsed} days and {len(settled)} trades"
+    if now.date() >= end:
+        return f"60-day test finished on {end.isoformat()}"
+    return None

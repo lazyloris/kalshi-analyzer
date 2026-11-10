@@ -135,6 +135,26 @@ BOOKS = {
         "series": {"KXETHD": "ETH"}, "event_suffix": "17", "fallback_vol": 0.65,
         "rules": {"MIN_LEAD_HOURS": 2},
     },
+    # 2026-11-10: PRE-REGISTERED test from the independent review (docs/review-2026-11-10.md, section C).
+    # No model. Buy YES on Bitcoin 5pm strikes priced 75-88c or 93-96c about 4 hours before close.
+    # Backtest, 600 days (in-sample, found by scanning ~60 price/time cells): 75-88c +8.7%/$ on 374
+    # trades, 93-96c +4.4% on 254, both positive before and after 2026-03-13.
+    # These rules are FIXED for the 60-day test (2026-11-10 to 2027-01-09). Don't tune them mid-test.
+    # Kill rules (checked automatically before every new trade, see strategy.kill_reason):
+    #   - return per $ below 0 once 60 days have passed or 120 trades have settled
+    #   - 3 losing days within any 10 trading days
+    "bitcoin_fav": {
+        "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)", "short": "BTC favorites",
+        "kind": "crypto", "asset": "BTC-USD", "version": "btc-fav-v1", "bankroll": 1000.0, "unit": "$",
+        "strategy": "favorite",
+        # (low, high, backtest win rate): the win rate is only logged as the "model" chance.
+        "fav_bands": ((0.75, 0.88, 0.90), (0.93, 0.96, 0.985)),
+        "fav_lead_hours": (3.5, 4.5),          # backtest entry: 4h before close (hourly candles)
+        "test_start": "2026-11-10", "test_days": 60,
+        "kill": {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10},
+        "series": {"KXBTCD": "BTC"}, "event_suffix": "17", "fallback_vol": 0.50,
+        "rules": {"MAX_SPREAD": 0.05, "MAX_POSITIONS_PER_EVENT": 2, "MAX_PRICE": 0.96, "MIN_PRICE": 0.75},
+    },
 }
 ASSET_NAMES = {"BTC": "Bitcoin", "ETH": "Ethereum", "GOLD": "Gold"}
 

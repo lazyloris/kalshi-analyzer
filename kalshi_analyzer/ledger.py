@@ -8,7 +8,7 @@ TRADE_FIELDS = [
     "cost", "model_p", "raw_model_p", "market_p", "edge", "forecast", "sigma", "unit", "lead_hours", "lead_days",
     "distance", "spread", "volume", "status", "result", "actual", "won", "payout", "pnl",
     "forecast_error", "cause", "why", "closed_at",
-    "closes_at", "results_by", "expected_pnl", "mark_price", "mark_pnl", "marked_at",
+    "closes_at", "results_by", "expected_pnl", "mark_price", "mark_pnl", "marked_at", "cap_key",
 ]
 SNAPSHOT_FIELDS = [
     "time", "series", "ticker", "target_date", "strike_type", "floor", "cap", "yes_bid", "yes_ask",

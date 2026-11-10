@@ -179,3 +179,20 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 **New result (candidate, found by scanning ~60 cells per asset, so discount it):** Bitcoin 4h moves are fat-tailed (82% inside 1σ vs 68% for a normal) and the ladder is priced as if normal. Buying YES on favorites 3-4h before the 5pm close: 75-88c made +8.7% on 374 trades (330 days, t_event 4.4, older +5.7%, newer +10.9%, positive 8/8 quarters); 93-96c made +4.4% on 254 (t 5.8, older +4.7%, newer +4.2%, 8/8 quarters). Pooled 75-99c at 4h: +2.7% on 2,114 trades, 4 a day, positive both periods. Mirror: NO on 12-25c at 6h +4.9%. Ethereum shows the same shape weakly (93-96c at 4h +4.4%, t 3.5). 2026-Q4 so far is negative in the pooled cells. Median post-entry volume 10k-58k contracts, so tens of contracts per trade should fill.
 
 **Decision (proposed, no live change in this PR):** stop model work (weather, volatility variants, minute lag, swing); run a pre-registered paper book "BTC favorites 75-88c and 93-96c at 4h and 3h before close" for 60 days with kill criteria written down first; test the maker version from the public trade feed. Engine change: `metrics` now reports `events` and `t_event`, shown in `reports/backtest.md`.
+
+## 2026-11-10: pre-registered paper book "bitcoin_fav" (owner approved)
+
+**Rule (fixed for 60 days, 2026-11-10 to 2027-01-09):** buy YES at the ask on KXBTCD 5pm strikes priced 75-88c or 93-96c, when 3.5-4.5 hours are left, with a spread of 5c or less. $10 a trade, one strike per price band per day (2 at most), held to settlement, taker fee. There's no model.
+
+**Where it comes from:** the 2026-11-10 review's ladder test, which was independently recomputed from the raw history and matched:
+- 75-88c at 4h: +8.7% on 374 trades (older year +5.7%, newer +10.9%).
+- 93-96c at 4h: +4.4% on 254 trades (older +4.7%, newer +4.2%).
+- Pooled 75-96c: +5.8% on 867 trades, day-level t 3.9.
+
+It was found by scanning about 60 cells, so expect it to shrink.
+
+**Kill rules (written before the first trade, checked by code before each new trade):**
+- Return per dollar is below 0 once 60 days have passed or 120 trades have settled.
+- 3 losing days within any 10 trading days.
+
+**Timing:** a separate workflow (favorites.yml) tries every 15 minutes from 16:00 to 18:59 UTC, because the hourly cron fires only about every 6 hours. It trades only this book.

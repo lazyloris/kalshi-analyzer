@@ -11,6 +11,10 @@ def explain(t):
     p, price = float(t["model_p"]), float(t["price"])
     won = t["won"] == "1"
     head = f"{'Won' if won else 'Lost'} {side} on {bracket}. Model {p:.0%} vs price {price:.0%}."
+    if str(t.get("strategy_version", "")).startswith("btc-fav"):
+        cause = "favorite_held" if won else "favorite_lost"
+        return cause, head + (" The favorite held, as the rule expects." if won
+                              else " The favorite lost. One loss here costs several wins.")
     if t.get("book") == "trending" or t.get("forecast") in (None, ""):
         cause = "longshot_held" if won else "longshot_hit"
         return cause, head + (" The long shot missed, as the rule expects." if won
