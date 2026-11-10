@@ -26,6 +26,8 @@ from collections import defaultdict
 from . import data as D
 from . import engine as E
 from . import signals as S
+from . import bayes as B
+from . import fattail as F
 
 UTC = dt.timezone.utc
 YAHOO = "https://query1.finance.yahoo.com/v8/finance/chart/"
@@ -292,9 +294,12 @@ def books(strategy_result):
         has_iv = E.attach_ivol(evs, iv) if iv else 0
         tod = a["src"][0] == "coinbase"  # 24/7 markets only
         S.enrich(evs, prices, tod=tod)
+        has_emp = F.attach(evs, prices) if tod else 0
         sw = {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in sweeps()["vol"]]}
         if tod and S.has_any(evs, "tod_vol"):
             sw["time-of-day vol"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()]
+        if has_emp:
+            sw["fat-tail"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in F.sweep()]
         if has_iv:
             sw["options vol"] = [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]
         out[bid] = {
@@ -303,7 +308,9 @@ def books(strategy_result):
             "series": sorted(data), "basis": round(statistics.median(e["basis"] for e in evs), 4),
             "strategies": [strategy_result(sid, name, desc, bid, E.simulate(evs, pick))
                            for sid, name, desc, pick in strategies() + (E.iv_strategies() if has_iv else [])
-                           + S.crypto_strategies(tod=tod)],
+                           + S.crypto_strategies(tod=tod)
+                           + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")
+                           + (F.strategies() if has_emp else [])],
             "sweeps": sw, "iv_coverage": round(has_iv / len(evs), 3),
             "market_calibration": E.market_calibration(evs),
         }

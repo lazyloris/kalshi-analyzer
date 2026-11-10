@@ -119,3 +119,19 @@ Over the full 600 days, BTC tod is +2.1% and combo_all is +4.0%, but the first h
 **Caveats:** returns are per buy and not weighted by dollars. Position totals from the API were capped and inconsistent, so they were dropped. No fees assumed.
 
 **Next:** the swisstony-style swing pairing (buy one side after a drop, the other side after the opposite swing, aiming for under $1 combined) can be tested on Kalshi 1-minute data for live sports.
+
+## 2026-11-09 — 600-day replay: late entries, Bayesian, fat-tail, exits, volume, combined (run 42689764374)
+
+**Data:** Bitcoin and Ethereum 2025-03 to 2026-11 (about 600 days), weather highs 2025-03 onward, lows 2025-12 onward. The history is now also kept permanently as GitHub release `backtest-data`.
+
+**Results:**
+- **Late Bitcoin long-shot fade (NO on 1-4c strikes, 1-3h before close):** +1.0% on 868 trades. It won 867 of them, was positive in every quarter, and was +1.2% on the older year. That's the most consistent result so far, but it's tiny ($87 on about $8,700 staked) and one loss wipes out about 30 wins.
+- **Late Bitcoin favorite 90-97c:** +1.7% on 201 (older +2.4%). Small sample.
+- **Bayes price-level (95% sure):** BTC +2.6% on 781, profitable in both halves. On the late book it was -2.3% on the older year. Mixed.
+- **Fat-tail model:** -0.5% (x0.5) and worse at larger multipliers. No edge.
+- **Take-profit / stop-loss exits:** worse than holding in every book (you pay the spread twice).
+- **Heavy-volume follow/fade:** noise (weather lows fade -393 in the 2nd half).
+- **Combined rolling-best:** BTC +3.0% overall but -0.3% older. Consensus of 3+ strategies: -11% to -14% on weather (the strategies agree when they're all wrong).
+- **Volatility check:** BTC's real moves were 1.0-1.4x the 30-day volatility in most quarters. The "calm 2026" theory is wrong.
+
+**Conclusion:** no model-based edge. The one consistent pattern is a structural one: very cheap Bitcoin long shots near the close are slightly overpriced, which is the favorite-longshot bias. It's worth a live paper book at small size.

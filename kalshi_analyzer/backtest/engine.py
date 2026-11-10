@@ -23,6 +23,12 @@ ENTRIES = {
     "high": [("same day 8am", 0, 8, 0, 1), ("day before 10am", -1, 10, 1, 2)],
     "low": [("day before 8pm", -1, 20, 1, 1), ("day before 10am", -1, 10, 1, 2)],
 }
+# Late entries: the day's extreme is mostly known (high by late afternoon, low by mid-morning)
+LATE_ENTRIES = {
+    "high": [("same day 4pm", 0, 16, 0, 1), ("same day 6pm", 0, 18, 0, 1)],
+    "low": [("same day 9am", 0, 9, 0, 1), ("same day 11am", 0, 11, 0, 1)],
+}
+CRYPTO_LATE = ((3, "3h before"), (1, "1h before"))
 DEFAULT_SIGMA = {0: 1.5, 1: 2.0, 2: 2.8}
 V1_SIGMA = {0: 2.0, 1: 2.5, 2: 3.2}
 
@@ -53,7 +59,7 @@ def quote(cs, ts, max_age_h=6):
 
 # ---------------------------------------------------------------- decision points
 
-def weather_events(book_id, kalshi_by_series, nbm_by_code):
+def weather_events(book_id, kalshi_by_series, nbm_by_code, entries=None):
     """One record per (event, entry): markets with quotes, forecast, actual. Sorted by entry time."""
     book = C.BOOKS[book_id]
     out = []
@@ -73,7 +79,7 @@ def weather_events(book_id, kalshi_by_series, nbm_by_code):
             actual = next((_f(m["value"]) for m in ms if _f(m["value"]) is not None), None)
             if actual is None:
                 continue
-            for name, off, hour, lead_days, fc_age in ENTRIES[book["extreme"]]:
+            for name, off, hour, lead_days, fc_age in (entries or ENTRIES)[book["extreme"]]:
                 d = day + dt.timedelta(days=off)
                 ts = int(dt.datetime(d.year, d.month, d.day, hour, tzinfo=ZoneInfo(stn["tz"])).timestamp())
                 fc = (nbm.get(day.isoformat(), {}).get(book["extreme"], {}) or {}).get(str(fc_age))
@@ -288,6 +294,17 @@ def forecast_bracket(min_edge=0.05, max_price=0.70):
             return [_trade(e, m, "yes", p)]
         return []
     return pick
+
+
+def late_strategies():
+    """No model: near the close, is the favorite (or a cheap long shot) still mispriced?"""
+    return [
+        ("late_fav_50_80", "Late favorite 50-80c", "Buy YES on the market favorite when it costs 50-80c", market_favorite(0.50, 0.80)),
+        ("late_fav_80_90", "Late favorite 80-90c", "Buy YES on the favorite at 80-90c", market_favorite(0.80, 0.90)),
+        ("late_fav_90_97", "Late favorite 90-97c", "Buy YES on the favorite at 90-97c", market_favorite(0.90, 0.97)),
+        ("late_fade", "Late long-shot fade", "Buy NO on 3-10c long shots near the close", longshot_fade()),
+        ("late_fade_cheap", "Late long-shot fade 1-4c", "Buy NO on 1-4c long shots near the close", longshot_fade(0.01, 0.04)),
+    ]
 
 
 def market_favorite(lo=0.35, hi=0.75):

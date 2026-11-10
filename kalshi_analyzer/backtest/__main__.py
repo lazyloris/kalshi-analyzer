@@ -10,17 +10,21 @@ import argparse
 import time
 import datetime as dt
 import json
+import math
 
 from .. import config as C
 from . import data as D
 from . import engine as E
 from . import signals as S
+from . import bayes as B
+from . import fattail as F
 
 OUT_JSON = C.DASHBOARD_DATA / "backtest.json"
 OUT_MD = C.ROOT / "reports" / "backtest.md"
 WEATHER_BOOKS = ("weather_high", "weather_low")
 
 
+WHY_IDS = {"m_rolling", "v2", "c_v1", "c_vol50", "s_tod", "s_combo_all", "s_spike_fade", "late_fav_80_90", "b_bucket95"}
 OOS_CUT = "2026-03-13"  # strategies were chosen on data from here on; earlier days are a fresh test
 
 
@@ -69,7 +73,105 @@ def load():
     return kalshi, nbm, btc, prices
 
 
+def _quarter(d):
+    return f"{d[:4]}-Q{(int(d[5:7]) - 1) // 3 + 1}"
+
+
+def _band(edges, v):
+    for lo, hi in zip(edges, edges[1:]):
+        if lo <= v < hi:
+            return f"{lo:.2f}-{hi:.2f}"
+    return "other"
+
+
+def why(trades):
+    """Where the money was made or lost: by quarter, price paid, side, and model-vs-market gap."""
+    for t in trades:
+        t["_q"] = _quarter(t["date"])
+        t["_price"] = _band((0, .1, .3, .5, .7, .9, 1.01), t["price"])
+        gap = abs(t["p_model"] - t["p_market"]) if t.get("p_model") is not None and t.get("p_market") is not None else None
+        t["_gap"] = "no model" if gap is None else _band((0, .05, .10, .20, .35, 1.01), gap)
+    out = {k: E.breakdown(trades, f"_{k}") for k in ("q", "price", "gap")}
+    for t in trades:
+        for k in ("_q", "_price", "_gap"):
+            t.pop(k, None)
+    return out
+
+
+def vol_check(evs):
+    """Per quarter: how big the moves really were vs the 30-day volatility we assumed.
+    ratio ~1 = vol estimate was right; ~0.5 = the market moved half as much as assumed."""
+    g = {}
+    for e in evs:
+        if e.get("actual") and e.get("spot") and e.get("vol"):
+            s = e["vol"] * (max(e["hours"], 0.01) / 8760) ** 0.5
+            g.setdefault(_quarter(e["date"]), []).append((math.log(e["actual"] / e["spot"]) / s) ** 2)
+    return {q: {"n": len(v), "ratio": round((sum(v) / len(v)) ** 0.5, 3)} for q, v in sorted(g.items())}
+
+
+TRADES = {}  # book -> {sid: trades}, for the combined strategies
+
+
+def _tstat(ts):
+    if len(ts) < 2:
+        return None
+    rets = [t["pnl"] / t["cost"] for t in ts]
+    m = sum(rets) / len(rets)
+    sd = (sum((r - m) ** 2 for r in rets) / (len(rets) - 1)) ** 0.5
+    return m / sd * len(rets) ** 0.5 if sd else None
+
+
+def rolling_pick(by_sid, lookback_days=180, min_trades=30, lag_days=2):
+    """Each quarter, trade only the strategy with the best t-stat over the previous `lookback_days`
+    (trades that had settled, so nothing from the future). Sits out if none made money."""
+    allt = [t for ts in by_sid.values() for t in ts]
+    if not allt:
+        return [], []
+    qs = sorted({_quarter(t["date"]) for t in allt})
+    out, picks = [], []
+    for q in qs:
+        y, n = int(q[:4]), int(q[-1])
+        start = dt.date(y, 3 * n - 2, 1)
+        lo = (start - dt.timedelta(days=lookback_days)).isoformat()
+        hi = (start - dt.timedelta(days=lag_days)).isoformat()
+        best, best_t = None, 0.0
+        for sid, ts in by_sid.items():
+            past = [t for t in ts if lo <= t["date"] < hi]
+            tt = _tstat(past)
+            if len(past) >= min_trades and sum(t["pnl"] for t in past) > 0 and tt and tt > best_t:
+                best, best_t = sid, tt
+        picks.append({"quarter": q, "pick": best, "t": round(best_t, 2) if best else None})
+        if best:
+            out += [t for t in by_sid[best] if _quarter(t["date"]) == q]
+    return out, picks
+
+
+def consensus(by_sid, k=3):
+    """Trades that k+ different strategies made (same entry, market and side)."""
+    seen = {}
+    for sid, ts in by_sid.items():
+        for t in ts:
+            key = (t["ts"], t["ticker"], t["side"])
+            seen.setdefault(key, [t, set()])[1].add(sid)
+    return sorted((t for t, sids in seen.values() if len(sids) >= k), key=lambda t: t["ts"])
+
+
+def add_combined(book, r):
+    by_sid = {sid: ts for sid, ts in TRADES.get(book, {}).items() if not sid.startswith("m_")}
+    if not by_sid:
+        return
+    trades, picks = rolling_pick(by_sid)
+    r["strategies"].append(_strategy_result("m_rolling", "Combined: rolling best (past 6 months)",
+                                            "Each quarter, trade the strategy that did best over the previous 6 months",
+                                            book, trades))
+    r["rolling_picks"] = picks
+    for k in (3, 5):
+        r["strategies"].append(_strategy_result(f"m_consensus{k}", f"Combined: {k}+ strategies agree",
+                                                f"Only trades that at least {k} strategies made", book, consensus(by_sid, k)))
+
+
 def _strategy_result(sid, name, desc, book, trades):
+    TRADES.setdefault(book, {})[sid] = trades
     by_entry = E.breakdown(trades, "entry")
     old = [t for t in trades if t["date"] < OOS_CUT]
     staked = sum(t["cost"] for t in old)
@@ -77,7 +179,32 @@ def _strategy_result(sid, name, desc, book, trades):
              "roi": round(sum(t["pnl"] for t in old) / staked, 4) if staked else None}
     return {"id": sid, "name": name, "desc": desc, "book": book, **E.metrics(trades), "older": older,
             "by_entry": by_entry, "by_city": E.breakdown(trades, "city"), "by_side": E.breakdown(trades, "side"),
+            "why": why(trades),
             "curve": E.curve(trades)}
+
+
+LIVE_MAP = {  # live paper book -> (backtest book, strategy id it copies)
+    "bitcoin": ("bitcoin", "c_vol50"), "bitcoin_tod": ("bitcoin", "s_combo_tod"),
+    "ethereum": ("asset_eth", "a_vol50"), "ethereum_tod": ("asset_eth", "s_combo_tod"),
+    "weather_high": ("weather_high", "fade"), "weather_low": ("weather_low", "fade"),
+}
+
+
+def live_vs_backtest(books):
+    """Settled live paper trades per book next to what the backtest says that rule should earn."""
+    import csv
+    out = []
+    for live, (bb, sid) in LIVE_MAP.items():
+        f = C.DATA_DIR / live / "trades.csv"
+        rows = list(csv.DictReader(f.open())) if f.exists() else []
+        done = [r for r in rows if r.get("status") == "settled" and r.get("pnl") not in (None, "")]
+        cost = sum(float(r["cost"]) for r in done)
+        pnl = sum(float(r["pnl"]) for r in done)
+        bt = next((x for x in books.get(bb, {}).get("strategies", []) if x["id"] == sid), None)
+        out.append({"book": live, "open": len(rows) - len(done), "settled": len(done), "pnl": round(pnl, 2),
+                    "roi": round(pnl / cost, 4) if cost else None, "backtest": sid,
+                    "backtest_roi": bt["roi"] if bt else None})
+    return out
 
 
 def run(now=None):
@@ -90,7 +217,8 @@ def run(now=None):
             continue
         S.enrich(evs)
         strategies = [_strategy_result(sid, name, desc, b, E.simulate(evs, pick))
-                      for sid, name, desc, pick in E.weather_strategies() + S.weather_strategies()]
+                      for sid, name, desc, pick in E.weather_strategies() + S.weather_strategies()
+                      + B.strategies(lambda e, m: E.p_weather(e, m), "forecast")]
         sw = E.weather_sweeps()
         result["books"][b] = {
             "name": C.BOOKS[b]["name"], "events": len({e["event"] for e in evs}),
@@ -108,18 +236,38 @@ def run(now=None):
         iv = {int(k): v for k, v in D._load("dvol_BTC", {}).items()}
         has_iv = E.attach_ivol(evs, iv) if evs and iv else 0
         S.enrich(evs, prices, tod=True)
+        has_emp = F.attach(evs, prices) if evs else 0
         if evs:
             result["books"]["bitcoin"] = {
                 "name": C.BOOKS["bitcoin"]["name"], "events": len({e["event"] for e in evs}),
                 "first": evs[0]["date"], "last": evs[-1]["date"],
                 "strategies": [_strategy_result(sid, name, desc, "bitcoin", E.simulate(evs, pick))
                                for sid, name, desc, pick in E.crypto_strategies() + (E.iv_strategies() if has_iv else [])
-                               + S.crypto_strategies()],
+                               + S.crypto_strategies()
+                               + B.strategies(lambda e, m: E.p_crypto(e, m, 1.0), "full vol")
+                               + (F.strategies() if has_emp else [])],
                 "sweeps": {"vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.crypto_sweeps()["vol"]],
                            **({"options vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in E.iv_sweeps()]}
                               if has_iv else {}),
-                           "time-of-day vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()]},
+                           "time-of-day vol": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in S.tod_sweep()],
+                           **({"fat-tail": [{"mult": k, **E.metrics(E.simulate(evs, p))} for k, p in F.sweep()]}
+                              if has_emp else {})},
                 "iv_coverage": round(has_iv / len(evs), 3),
+                "vol_check": vol_check(evs),
+                "market_calibration": E.market_calibration(evs),
+            }
+    late = [(f"{b}_late", f"{C.BOOKS[b]['name']}: late entries", E.weather_events(b, kalshi, nbm, E.LATE_ENTRIES))
+            for b in WEATHER_BOOKS]
+    if btc and prices:
+        late.append(("bitcoin_late", "Bitcoin: last 1-3 hours", E.crypto_events("KXBTCD", btc, prices, E.CRYPTO_LATE)))
+    for bid, name, evs in late:
+        if evs:
+            result["books"][bid] = {
+                "name": name, "events": len({e["event"] for e in evs}), "first": evs[0]["date"], "last": evs[-1]["date"],
+                "strategies": [_strategy_result(sid, n, desc, bid, E.simulate(evs, pick))
+                               for sid, n, desc, pick in E.late_strategies() + B.strategies()
+                               + S.exit_strategies(E.market_favorite(0.80, 0.90), "Late fav 80-90c")
+                               + S.volume_strategies()],
                 "market_calibration": E.market_calibration(evs),
             }
     try:
@@ -128,7 +276,9 @@ def run(now=None):
     except Exception as e:  # never lose the weather/Bitcoin results over a new market
         D.log(f"asset backtest failed: {e}")
     for b, r in result["books"].items():
+        add_combined(b, r)
         r["verdict"] = verdict(r["strategies"])
+    result["live"] = live_vs_backtest(result["books"])
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(result, indent=1))
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
@@ -159,6 +309,12 @@ def markdown(r):
          f"Flat ${r['stake']:.0f} per trade at the ask plus Kalshi fees, held to settlement. "
          "Prices are real hourly Kalshi quotes. Forecasts are archived NWS-blend (NBM) runs 1-2 days old. "
          "Bias/sigma learned only from earlier days.", ""]
+    if r.get("live"):
+        L += ["## Live paper books vs backtest", "", "| Book | Settled | Open | Live P&L | Live return/$ | Backtest rule | Backtest return/$ |",
+              "|---|---|---|---|---|---|---|"]
+        L += [f"| {x['book']} | {x['settled']} | {x['open']} | {x['pnl']:+.2f} | {_roi(x['roi'])} | {x['backtest']} | "
+              f"{_roi(x['backtest_roi'])} |" for x in r["live"]]
+        L += ["", "Live numbers need ~100 settled trades before they mean much.", ""]
     for b, x in r["books"].items():
         L += [f"## {x['name']}", "", f"{x['events']} events, {x['first']} to {x['last']}.", "",
               f"**Verdict:** {x['verdict']['text']}", "",
@@ -184,6 +340,24 @@ def markdown(r):
                     setting = f"blend {s['blend']}, edge {s['min_edge']}"
                 L.append(f"| {setting} | {s['trades']} | {s['pnl']:+.2f} | "
                          f"{_roi(s['roi'])} |")
+        if x.get("rolling_picks"):
+            L += ["", "Rolling best: which strategy it picked each quarter", "", "| Quarter | Picked | Past t |", "|---|---|---|"]
+            names = {s["id"]: s["name"] for s in x["strategies"]}
+            L += [f"| {p['quarter']} | {names.get(p['pick'], 'sat out') if p['pick'] else 'sat out'} | {p['t'] or '–'} |"
+                  for p in x["rolling_picks"]]
+        if x.get("vol_check"):
+            L += ["", "Volatility check: real moves vs the 30-day volatility assumed (1.0 = right, 0.5 = moved half as much)",
+                  "", "| Quarter | Events | Ratio |", "|---|---|---|"]
+            L += [f"| {q} | {v['n']} | {v['ratio']} |" for q, v in x["vol_check"].items()]
+        picks = [s for s in x["strategies"] if s["id"] in WHY_IDS or s["id"] == x["verdict"].get("id")]
+        for s in picks:
+            w = s.get("why") or {}
+            L += ["", f"Why: {s['name']}", "", "| Split | Group | Trades | P&L | Win % |", "|---|---|---|---|---|"]
+            for split, label in (("q", "Quarter"), ("price", "Price paid"), ("gap", "Model vs market gap")):
+                for k, v in (w.get(split) or {}).items():
+                    L.append(f"| {label} | {k} | {v['trades']} | {v['pnl']:+.0f} | {v['win_rate'] * 100:.0f}% |")
+            for k, v in (s.get("by_side") or {}).items():
+                L.append(f"| Side | {k} | {v['trades']} | {v['pnl']:+.0f} | {v['win_rate'] * 100:.0f}% |")
         if x.get("forecast_errors"):
             L += ["", "Forecast error (actual minus NBM forecast)", "", "| City | Entry | n | Bias | RMSE |", "|---|---|---|---|---|"]
             L += [f"| {f['city']} | {f['entry']} | {f['n']} | {f['bias']:+.2f} | {f['rmse']} |" for f in x["forecast_errors"]]

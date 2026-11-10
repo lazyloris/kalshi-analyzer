@@ -20,7 +20,8 @@ import datetime as dt
 import math
 from zoneinfo import ZoneInfo
 
-from ..model import lognormal_probability
+from .. import config as C
+from ..model import lognormal_probability, taker_fee
 from . import engine as E
 
 ET = ZoneInfo("America/New_York")
@@ -245,6 +246,79 @@ def maker(base, improve=0.01, through=False, stop_before_h=0):
     return pick
 
 
+def volume_move(follow=True, move=0.05, vol_mult=3.0, lookback_h=3, lo=0.10, hi=0.90, max_per_event=2):
+    """Candles have volume but not who bought, so: a 5c+ move in the last 3 hours on 3x the market's
+    usual hourly volume = heavy one-sided flow. follow=True bets it continues, False bets it reverses."""
+    def pick(e):
+        cands = []
+        for m in e["markets"]:
+            if m["ask"] - m["bid"] > 0.08:
+                continue
+            cs = [c for c in (m.get("cs") or []) if c[0] <= e["ts"]]
+            recent = [c for c in cs if c[0] > e["ts"] - lookback_h * HOUR]
+            past = [c for c in cs if e["ts"] - 7 * 24 * HOUR < c[0] <= e["ts"] - lookback_h * HOUR]
+            if not recent or len(past) < 12:
+                continue
+            base = sum(c[3] or 0 for c in past) / len(past)
+            vol = sum(c[3] or 0 for c in recent) / len(recent)
+            before = _mid_before(m, e["ts"] - lookback_h * HOUR)
+            if before is None or base <= 0 or vol < vol_mult * base:
+                continue
+            ch = E.mid(m) - before
+            if abs(ch) < move:
+                continue
+            side = ("yes" if ch > 0 else "no") if follow else ("no" if ch > 0 else "yes")
+            ask = m["ask"] if side == "yes" else 1 - m["bid"]
+            if lo <= ask <= hi:
+                cands.append((abs(ch) * vol / base, m, side))
+        cands.sort(key=lambda x: -x[0])
+        return [E._trade(e, m, side, None) for _, m, side in cands[:max_per_event]]
+    return pick
+
+
+def volume_strategies():
+    return [
+        ("v_follow", "Heavy-volume move: follow", "5c+ move on 3x usual volume in 3h: bet it continues", volume_move(True)),
+        ("v_fade", "Heavy-volume move: fade", "Same signal, bet it reverses", volume_move(False)),
+        ("v_follow_big", "Heavy-volume move (10c, 5x): follow", "Bigger move, heavier volume, follow", volume_move(True, 0.10, 5.0)),
+        ("v_fade_big", "Heavy-volume move (10c, 5x): fade", "Bigger move, heavier volume, fade", volume_move(False, 0.10, 5.0)),
+    ]
+
+
+def exits(base, tp=None, sl=None):
+    """Sell early: take profit when our side's bid is tp above what we paid, stop loss when it is sl
+    below. Checked on each later hourly quote; selling pays the bid plus the taker fee again."""
+    def pick(e):
+        by_t = {m["ticker"]: m for m in e["markets"]}
+        out = []
+        for t in base(e):
+            m = by_t[t["ticker"]]
+            yes = t["side"] == "yes"
+            end = _ts(m["close_time"])
+            for c in m.get("cs") or []:
+                if not (e["ts"] < c[0] < end) or c[1] is None or c[2] is None:
+                    continue
+                bid = c[1] if yes else 1 - c[2]
+                if (tp is not None and bid >= t["price"] + tp) or (sl is not None and bid <= t["price"] - sl):
+                    n = t["contracts"]
+                    fee = taker_fee(n, bid, C.FEE_RATE)
+                    t = {**t, "pnl": round(n * bid - fee - t["cost"], 4), "won": n * bid - fee > t["cost"],
+                         "exit": "tp" if bid > t["price"] else "sl"}
+                    break
+            out.append(t)
+        return out
+    return pick
+
+
+def exit_strategies(base, label):
+    return [
+        (f"x_tp15_sl15_{label}", f"{label}, take profit 15c / stop 15c", "Sell early at +15c or -15c", exits(base, 0.15, 0.15)),
+        (f"x_tp10_{label}", f"{label}, take profit 10c", "Sell once up 10c, else hold", exits(base, tp=0.10)),
+        (f"x_sl10_{label}", f"{label}, stop loss 10c", "Sell once down 10c, else hold", exits(base, sl=0.10)),
+        (f"x_sl25_{label}", f"{label}, stop loss 25c", "Sell once down 25c, else hold", exits(base, sl=0.25)),
+    ]
+
+
 # ---------------------------------------------------------------- catalogues
 
 def crypto_strategies(base_id="c_vol50", tod=True):
@@ -295,6 +369,8 @@ def crypto_strategies(base_id="c_vol50", tod=True):
     if tod:
         out.append(("s_tod", "Time-of-day vol x0.5", "Volatility by hour and weekday/weekend, summed over the hours held",
                     E.edge_picker(lambda e, m: p_tod(e, m, 0.5))))
+    out += exit_strategies(base, "Vol x0.5")
+    out += volume_strategies()
     return out
 
 
@@ -309,7 +385,7 @@ def weather_strategies():
         ("s_fav_maker", "Market favorite, limit order", "Favorite YES at 35-75c, posting 1c above the bid",
          maker(E.market_favorite())),
         ("s_spike_fade", "Kalshi price-spike fade (no model)", "Bet against a 15c+ move in the last 3 hours", spike_fade()),
-    ]
+    ] + exit_strategies(E.market_favorite(), "Favorite") + volume_strategies()
 
 
 def has_any(events, key):
