@@ -196,3 +196,27 @@ It was found by scanning about 60 cells, so expect it to shrink.
 - 3 losing days within any 10 trading days.
 
 **Timing:** a separate workflow (favorites.yml) tries every 15 minutes from 16:00 to 18:59 UTC, because the hourly cron fires only about every 6 hours. It trades only this book.
+
+## 2026-11-10: favorite follow-ups (run 42754016870, branch fav-extra)
+
+**1. Limit order instead of paying the ask** (Kalshi trade feed, 1,142 BTC and 385 ETH entries, all with trade data). Rest a YES bid 1-3c below the ask at the entry time. A fill counts only if a later trade printed below our bid ("through") or a seller hit our price ("touch").
+- **BTC 4h, 75-88c:**
+  - Taker: +8.7% on 374, +$314.
+  - Bid 1-2c lower, through: 80-86% filled, +9.5% to +9.9%, +$286 to +$291.
+  - Touch: +10.2% to +10.7%, +$323 to +$333.
+- **BTC 4h, 93-96c:**
+  - Taker: +4.4%, +$107.
+  - Maker: 52-83% filled, +5.5% to +7.6%, +$90 to +$114.
+- The filled orders win slightly less often than the ones that miss (adverse selection), but the cheaper price more than pays for it per dollar staked. Total profit is about the same as the taker version. Both years are positive.
+- **ETH:** maker is worse than taker (75-88c at 4h: +2-3% vs +4.7%). Adverse selection is stronger there.
+
+**Conclusion:** on Bitcoin a limit order earns more per dollar for about the same total profit, so it's a modest improvement, not a new edge. The pre-registered book stays taker. A maker version can be tested after the 60 days.
+
+**2. Same ladder on other daily price markets** (strikes near the previous settle, so no look-ahead).
+- Gold and silver: mostly negative, no pattern.
+- WTI oil: mixed, around 0.
+- Brent: positive in most cells (+3% to +12% at 3-4h), but small samples: under 100 days, no older year, t up to 2.5.
+- Natural gas: mildly positive (+1% to +7%), no cell above t 1.8.
+- The S&P (KXINXU) has about 500k markets (hourly events). It used up the time budget, so KXINX, Nasdaq and other coins weren't tested.
+
+**Conclusion:** the favorite pattern is clearly present only in crypto (BTC strongly, ETH at 93-96c). Elsewhere it's weak or missing. This is consistent with the fat-tail explanation for crypto, but it adds no confirmation from other assets.

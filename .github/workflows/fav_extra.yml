@@ -1,0 +1,57 @@
+name: Favorite follow-ups (maker fills, other markets)
+
+on:
+  workflow_dispatch:
+    inputs:
+      cmd:
+        description: "maker, assets or all"
+        default: "all"
+  push:
+    branches: [fav-extra]
+    paths: [kalshi_analyzer/backtest/fav_extra.py, .github/workflows/fav_extra.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore earlier downloads of this test
+        uses: actions/cache/restore@v4
+        with:
+          path: data/backtest_cache
+          key: fav-extra-${{ github.run_id }}
+          restore-keys: fav-extra-
+      - name: Fill in candles from the permanent copy (GitHub release "backtest-data")
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p data/backtest_cache
+          gh release download backtest-data -p backtest_cache.tar -D /tmp
+          tar -xf /tmp/backtest_cache.tar --skip-old-files -C data
+          rm /tmp/backtest_cache.tar
+          du -sh data/backtest_cache
+      - name: Download trades and other ladders, then score
+        run: python -m kalshi_analyzer.backtest.fav_extra ${{ github.event.inputs.cmd || 'all' }} --budget 240
+      - name: Save downloads
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/backtest_cache
+          key: fav-extra-${{ github.run_id }}
+      - name: Save results to the repo
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add reports/fav_extra.md dashboard/data/fav_extra.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "favorite follow-ups $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
