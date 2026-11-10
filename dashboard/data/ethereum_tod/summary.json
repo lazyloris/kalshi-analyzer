@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-10T09:56+00:00",
+ "generated_at": "2026-11-10T17:54+00:00",
  "strategy_version": "eth-tod-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -40,7 +40,7 @@
   "brier_market": 0.2465
  },
  "open_count": 4,
- "open_mark_pnl": 0.15,
+ "open_mark_pnl": -8.19,
  "open_marked": 4,
  "open_expected_pnl": 5.91,
  "upcoming": [

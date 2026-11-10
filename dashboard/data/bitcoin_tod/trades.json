@@ -43,9 +43,10 @@
   "closes_at": "2026-11-10T22:00:00Z",
   "results_by": "2026-11-10T23:00+00:00",
   "expected_pnl": "1.7",
-  "mark_price": 0.9,
-  "mark_pnl": 1.18,
-  "marked_at": "2026-11-10T09:56+00:00"
+  "mark_price": 0.99,
+  "mark_pnl": 2.26,
+  "marked_at": "2026-11-10T17:54+00:00",
+  "cap_key": ""
  },
  {
   "trade_id": "KXBTCD-26NOV1017-T73999.99-yes",
@@ -91,9 +92,10 @@
   "closes_at": "2026-11-10T22:00:00Z",
   "results_by": "2026-11-10T23:00+00:00",
   "expected_pnl": "1.8",
-  "mark_price": 0.63,
-  "mark_pnl": -1.61,
-  "marked_at": "2026-11-10T09:56+00:00"
+  "mark_price": 0.08,
+  "mark_pnl": -8.76,
+  "marked_at": "2026-11-10T17:54+00:00",
+  "cap_key": ""
  },
  {
   "trade_id": "KXBTCD-26NOV0917-T74749.99-no",
@@ -141,7 +143,8 @@
   "expected_pnl": "2.73",
   "mark_price": "0.0",
   "mark_pnl": "-10.01",
-  "marked_at": "2026-11-10T02:10+00:00"
+  "marked_at": "2026-11-10T02:10+00:00",
+  "cap_key": ""
  },
  {
   "trade_id": "KXBTCD-26NOV0917-T74999.99-no",
@@ -189,7 +192,8 @@
   "expected_pnl": "2.17",
   "mark_price": "0.0",
   "mark_pnl": "-9.39",
-  "marked_at": "2026-11-10T02:10+00:00"
+  "marked_at": "2026-11-10T02:10+00:00",
+  "cap_key": ""
  },
  {
   "trade_id": "KXBTCD-26NOV1317-T75999.99-no",
@@ -235,9 +239,10 @@
   "closes_at": "2026-11-13T22:00:00Z",
   "results_by": "2026-11-13T23:00+00:00",
   "expected_pnl": "2.35",
-  "mark_price": 0.72,
-  "mark_pnl": -0.07,
-  "marked_at": "2026-11-10T09:56+00:00"
+  "mark_price": 0.85,
+  "mark_pnl": 1.75,
+  "marked_at": "2026-11-10T17:54+00:00",
+  "cap_key": ""
  },
  {
   "trade_id": "KXBTCD-26NOV1317-T76499.99-no",
@@ -283,8 +288,9 @@
   "closes_at": "2026-11-13T22:00:00Z",
   "results_by": "2026-11-13T23:00+00:00",
   "expected_pnl": "2.16",
-  "mark_price": 0.77,
-  "mark_pnl": -0.04,
-  "marked_at": "2026-11-10T09:56+00:00"
+  "mark_price": 0.89,
+  "mark_pnl": 1.52,
+  "marked_at": "2026-11-10T17:54+00:00",
+  "cap_key": ""
  }
 ]
