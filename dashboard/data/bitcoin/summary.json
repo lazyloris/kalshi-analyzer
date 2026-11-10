@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-09T18:51+00:00",
+ "generated_at": "2026-11-10T02:10+00:00",
  "strategy_version": "crypto-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -25,22 +25,31 @@
  "markets": [
   "KXBTCD"
  ],
- "bankroll": 1000.0,
- "open_exposure": 39.22,
+ "bankroll": 1007.19,
+ "open_exposure": 39.01,
  "totals": {
-  "n": 0
+  "n": 2,
+  "wins": 2,
+  "win_rate": 1.0,
+  "pnl": 7.19,
+  "roi": 0.363,
+  "fees": 0.39,
+  "avg_edge": 0.182,
+  "avg_model_p": 0.916,
+  "brier_model": 0.0077,
+  "brier_market": 0.0788
  },
  "open_count": 4,
- "open_mark_pnl": 10.04,
+ "open_mark_pnl": 2.09,
  "open_marked": 4,
- "open_expected_pnl": 9.94,
+ "open_expected_pnl": 9.23,
  "upcoming": [
   {
-   "results_by": "2026-11-09T23:00+00:00",
-   "closes_at": "2026-11-09T22:00:00Z",
+   "results_by": "2026-11-10T23:00+00:00",
+   "closes_at": "2026-11-10T22:00:00Z",
    "n": 2,
-   "at_risk": 19.81,
-   "expected_pnl": 4.9
+   "at_risk": 19.6,
+   "expected_pnl": 4.19
   },
   {
    "results_by": "2026-11-13T23:00+00:00",
@@ -51,23 +60,174 @@
   }
  ],
  "breakdowns": {
-  "city": {},
-  "side": {},
-  "edge": {},
-  "price": {},
-  "days_ahead": {},
-  "bracket_distance": {},
-  "bracket_type": {},
-  "cause": {},
-  "version": {}
+  "city": {
+   "Bitcoin": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "side": {
+   "NO": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "edge": {
+   "12-20c": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "price": {
+   "50-75c": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "days_ahead": {
+   "1 day+": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "bracket_distance": {
+   "0.5-1.5 sigma": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 3.99,
+    "roi": 0.399,
+    "fees": 0.21,
+    "avg_edge": 0.176,
+    "avg_model_p": 0.891,
+    "brier_model": 0.012,
+    "brier_market": 0.09
+   },
+   "1.5+ sigma": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 3.2,
+    "roi": 0.327,
+    "fees": 0.18,
+    "avg_edge": 0.188,
+    "avg_model_p": 0.942,
+    "brier_model": 0.0034,
+    "brier_market": 0.0676
+   }
+  },
+  "bracket_type": {
+   "greater": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "cause": {
+   "forecast_right": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  },
+  "version": {
+   "crypto-v2": {
+    "n": 2,
+    "wins": 2,
+    "win_rate": 1.0,
+    "pnl": 7.19,
+    "roi": 0.363,
+    "fees": 0.39,
+    "avg_edge": 0.182,
+    "avg_model_p": 0.916,
+    "brier_model": 0.0077,
+    "brier_market": 0.0788
+   }
+  }
  },
- "calibration": [],
+ "calibration": [
+  {
+   "bucket": "80-90%",
+   "n": 1,
+   "predicted": 0.891,
+   "actual": 1.0
+  },
+  {
+   "bucket": "90-100%",
+   "n": 1,
+   "predicted": 0.942,
+   "actual": 1.0
+  }
+ ],
  "forecast_accuracy": [],
  "suggestions": [
   {
    "priority": 0,
-   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+   "text": "Only 2 settled trades. Wait for 20+ before changing any rule."
   }
  ],
- "bankroll_curve": []
+ "bankroll_curve": [
+  {
+   "t": "2026-11-10T02:10+00:00",
+   "bankroll": 1003.2
+  },
+  {
+   "t": "2026-11-10T02:10+00:00",
+   "bankroll": 1007.19
+  }
+ ]
 }
