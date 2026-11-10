@@ -91,7 +91,7 @@ def bucket_posterior(conf=0.95, k=20, width=0.05, lo=0.03, hi=0.97, max_spread=0
                 ask = m["ask"] if side == "yes" else 1 - m["bid"]
                 if not (lo <= ask <= hi):
                     continue
-                key = (side, int(ask / width))
+                key = (side, int(ask / width + 1e-9))  # 0.95 / 0.05 is 18.999... in floating point
                 won = m["won_yes"] if side == "yes" else not m["won_yes"]
                 seen.append((key, int(won), ask))
                 w, n, sp = stats.get(key, (0, 0, 0.0))

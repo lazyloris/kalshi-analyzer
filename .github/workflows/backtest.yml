@@ -84,6 +84,10 @@ jobs:
         if: ${{ !cancelled() }}
         continue-on-error: true
         run: python -m kalshi_analyzer.backtest scan-run
+      - name: Price-level ladder test (per event)
+        if: ${{ !cancelled() }}
+        continue-on-error: true
+        run: python -m kalshi_analyzer.backtest ladder
       - name: Save results to the repo
         if: ${{ !cancelled() }}
         run: |
@@ -91,6 +95,7 @@ jobs:
           git config user.email "kalshi-paper-bot@users.noreply.github.com"
           git add dashboard/data/backtest.json reports/backtest.md
           git add dashboard/data/scanner.json reports/scanner.md 2>/dev/null || true
+          git add dashboard/data/ladder.json reports/ladder.md 2>/dev/null || true
           if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
           git commit -m "backtest $(date -u +%Y-%m-%dT%H:%MZ)"
           for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done

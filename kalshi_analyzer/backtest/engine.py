@@ -394,8 +394,8 @@ def metrics(trades):
     if not n:
         return {"trades": 0, "wins": 0, "win_rate": None, "pnl": 0.0, "staked": 0.0, "roi": None,
                 "avg_price": None, "avg_claimed": None, "brier_model": None, "brier_market": None,
-                "max_drawdown": 0.0, "t_stat": None, "first_half": 0.0, "second_half": 0.0,
-                "roi_ci": None, "holdout": None}
+                "max_drawdown": 0.0, "t_stat": None, "events": 0, "t_event": None, "first_half": 0.0,
+                "second_half": 0.0, "roi_ci": None, "holdout": None}
     trades = sorted(trades, key=lambda t: t["ts"])
     pnl = [t["pnl"] for t in trades]
     staked = sum(t["cost"] for t in trades)
@@ -417,10 +417,24 @@ def metrics(trades):
         "brier_market": round(statistics.fmean((t["p_market"] - t["won"]) ** 2 for t in trades), 4),
         "max_drawdown": round(dd, 2),
         "t_stat": round(statistics.fmean(rets) / sd * math.sqrt(n), 2) if sd else None,
+        **event_t(trades),
         "first_half": round(sum(pnl[:half]), 2), "second_half": round(sum(pnl[half:]), 2),
         "roi_ci": roi_ci(trades),
         "holdout": holdout(trades),
     }
+
+
+def event_t(trades):
+    """t-stat with one sample per event (entry time + event ticker). Trades inside one event settle
+    on the same outcome, so the per-trade t-stat overstates the evidence; this one doesn't."""
+    g = defaultdict(lambda: [0.0, 0.0])
+    for t in trades:
+        key = (t["ts"], t["ticker"].rsplit("-", 1)[0])
+        g[key][0] += t["pnl"]
+        g[key][1] += t["cost"]
+    rs = [p / c for p, c in g.values() if c]
+    sd = statistics.stdev(rs) if len(rs) > 1 else 0.0
+    return {"events": len(rs), "t_event": round(statistics.fmean(rs) / sd * math.sqrt(len(rs)), 2) if sd else None}
 
 
 HOLDOUT_DAYS = 60
@@ -443,9 +457,9 @@ def roi_ci(trades, n_boot=400, seed=7):
 
 
 def holdout(trades, days=HOLDOUT_DAYS):
-    """Result on the most recent `days` only: settings were chosen before looking at this part,
-    so it's the fairest guess of live performance. (From the 2026-11-08 run on, pick settings on
-    the earlier part and only read this at the end.)"""
+    """Result on the most recent `days` only. NOTE (2026-11-10 review): most strategies were tuned
+    with this window already in the data, so this is NOT a clean holdout. Use the `older` split
+    (before OOS_CUT) for strategies picked on 2026-03-13+ data, and live paper trading for the rest."""
     if not trades:
         return None
     last = max(t["date"] for t in trades)
