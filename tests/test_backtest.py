@@ -245,3 +245,117 @@ def test_spike_fade_bets_against_recent_jump():
     e = {"date": "x", "ts": 3 * 3600 + 60, "series": "S", "city": "c", "entry": "e", "markets": [m]}
     t = S.spike_fade()(e)
     assert len(t) == 1 and t[0]["side"] == "no" and t[0]["won"]
+
+
+def test_late_strategies_buy_the_favorite_in_band():
+    from kalshi_analyzer.backtest import engine as E
+    e = {"book": "x", "kind": "weather", "series": "S", "event": "EV", "date": "2025-06-01", "entry": "same day 4pm", "ts": 0,
+         "city": "C", "markets": [
+             {"ticker": "A", "bid": 0.84, "ask": 0.86, "won_yes": True},
+             {"ticker": "B", "bid": 0.10, "ask": 0.12, "won_yes": False}]}
+    picks = {sid: pick(e) for sid, _, _, pick in E.late_strategies()}
+    assert [t["ticker"] for t in picks["late_fav_80_90"]] == ["A"]
+    assert picks["late_fav_50_80"] == [] and picks["late_fav_90_97"] == []
+
+
+def test_beta_cdf_matches_known_values():
+    from kalshi_analyzer.backtest.bayes import beta_cdf
+    assert abs(beta_cdf(0.5, 1, 1) - 0.5) < 1e-9
+    assert abs(beta_cdf(0.3, 2, 2) - (3 * 0.09 - 2 * 0.027)) < 1e-9
+    assert abs(beta_cdf(0.9, 50, 5) - (1 - beta_cdf(0.1, 5, 50))) < 1e-9
+
+
+def _ev(i, ask, won):
+    import datetime as dt
+    d = (dt.date(2025, 1, 1) + dt.timedelta(days=i)).isoformat()
+    ts = int(dt.datetime.fromisoformat(d + "T12:00:00+00:00").timestamp())
+    return {"book": "x", "kind": "weather", "series": "S", "event": f"E{i}", "date": d, "entry": "a", "ts": ts,
+            "city": "C", "markets": [{"ticker": f"T{i}", "bid": ask - 0.02, "ask": ask, "won_yes": won}]}
+
+
+def test_bucket_posterior_learns_underpriced_level_without_lookahead():
+    from kalshi_analyzer.backtest import bayes as B, engine as E
+    evs = [_ev(i, 0.60, True) for i in range(80)]  # 60c YES that always wins
+    trades = E.simulate(evs, B.bucket_posterior(0.95))
+    assert trades and all(t["side"] == "yes" for t in trades)
+    first = min(t["date"] for t in trades)
+    assert first >= evs[31]["date"]  # needs 30 settled (outcomes known 2 days later)
+
+
+def test_market_prior_ignores_a_useless_model():
+    from kalshi_analyzer.backtest import bayes as B, engine as E
+    import random
+    rnd = random.Random(1)
+    evs = [_ev(i, 0.52, rnd.random() < 0.5) for i in range(400)]
+    pick = B.market_prior(lambda e, m: rnd.random(), min_obs=100)
+    E.simulate(evs, pick)
+    assert pick.state["w"] <= 0.1
+
+
+def test_fat_tail_odds_come_from_past_moves_only():
+    from kalshi_analyzer.backtest import fattail as F
+    t0 = 1_700_000_000 - 1_700_000_000 % 3600
+    prices = {t0 + i * 3600: 100.0 * (1.01 if i % 2 else 1.0) for i in range(24 * 100)}
+    e = {"ts": t0 + 24 * 95 * 3600, "hours": 1, "spot": 100.0}
+    prices[e["ts"] + 3600] = 1e9  # a future price must not leak in
+    assert F.attach([e], prices) == 1
+    assert max(e["emp"]) < 0.02
+    m = {"strike_type": "greater", "floor": "100.5", "cap": None}
+    assert abs(F.p_emp(e, m) - 0.5) < 0.02  # half of past 1h moves were +1%
+
+
+def test_stop_loss_sells_at_the_bid_when_price_falls():
+    from kalshi_analyzer.backtest import signals as S
+    m = {"ticker": "A", "bid": 0.48, "ask": 0.50, "won_yes": True, "close_time": "2025-01-01T22:00:00Z",
+         "cs": [[1735740000, 0.30, 0.32, 0], [1735743600, 0.90, 0.92, 0]]}  # 14:00Z drop, 15:00Z recover
+    e = {"ts": 1735736400, "date": "2025-01-01", "markets": [m]}
+    base = lambda ev: [{"ticker": "A", "side": "yes", "price": 0.50, "contracts": 20, "cost": 10.18, "won": True, "pnl": 9.82}]
+    t, = S.exits(base, sl=0.15)(e)
+    assert t["exit"] == "sl" and t["pnl"] < 0
+    t, = S.exits(base, tp=0.30)(e)
+    assert t["exit"] == "tp" and 0 < t["pnl"] < 9.82
+
+
+def test_why_breakdown_and_report_render():
+    from kalshi_analyzer.backtest import __main__ as M, engine as E
+    evs = [_ev(i, 0.60, i % 3 > 0) for i in range(120)]
+    for e in evs:
+        e.update(spot=100.0, vol=0.5, hours=8, actual=101.0)
+    s = M._strategy_result("c_vol50", "Vol x0.5", "", "bitcoin", E.simulate(evs, E.market_favorite(0.5, 0.7)))
+    assert set(s["why"]) == {"q", "price", "gap"} and "2025-Q1" in s["why"]["q"]
+    x = {"name": "B", "events": 120, "first": "a", "last": "b", "strategies": [s], "vol_check": M.vol_check(evs)}
+    x["verdict"] = M.verdict(x["strategies"])
+    md = M.markdown({"generated_at": "2026-11-09T00:00", "stake": 10, "books": {"bitcoin": x}})
+    assert "Why: Vol x0.5" in md and "Volatility check" in md
+
+
+def test_rolling_pick_only_uses_the_past():
+    from kalshi_analyzer.backtest import __main__ as M
+    def tr(d, pnl, tk="A"):
+        return {"date": d, "ts": hash(d) % 10**6, "ticker": tk, "side": "yes", "pnl": pnl, "cost": 10.0}
+    good_then_bad = [tr(f"2025-0{m}-{d:02d}", 3 + (d % 3)) for m in (1, 2, 3) for d in range(1, 15)] + \
+                    [tr(f"2025-0{m}-{d:02d}", -5) for m in (4, 5, 6) for d in range(1, 15)]
+    trades, picks = M.rolling_pick({"s1": good_then_bad})
+    q = {p["quarter"]: p["pick"] for p in picks}
+    assert q["2025-Q1"] is None and q["2025-Q2"] == "s1"  # Q1 had no past; Q2 picks on Q1 only
+    assert all(M._quarter(t["date"]) == "2025-Q2" for t in trades)
+
+
+def test_consensus_needs_k_strategies():
+    from kalshi_analyzer.backtest import __main__ as M
+    t = {"ts": 1, "ticker": "A", "side": "yes", "pnl": 1, "cost": 10, "date": "2025-01-01"}
+    assert len(M.consensus({"a": [t], "b": [t], "c": [t]}, 3)) == 1
+    assert M.consensus({"a": [t], "b": [t]}, 3) == []
+
+
+def test_volume_move_follows_heavy_flow():
+    from kalshi_analyzer.backtest import signals as S
+    ts = 1_735_732_800
+    cs = [[ts - h * 3600, 0.38, 0.40, 10] for h in range(30, 3, -1)]
+    cs += [[ts - h * 3600, 0.50, 0.52, 100] for h in (2, 1, 0)]
+    m = {"ticker": "A", "bid": 0.50, "ask": 0.52, "won_yes": True, "cs": cs}
+    e = {"ts": ts, "date": "2025-01-01", "series": "S", "city": "C", "entry": "x", "markets": [m]}
+    t, = S.volume_move(True)(e)
+    assert t["side"] == "yes"
+    t, = S.volume_move(False)(e)
+    assert t["side"] == "no"
