@@ -76,7 +76,8 @@ def run_book(book_id, f, now, do_settle=True):
     traded = {t["ticker"] for t in trades}
     per_event = {}
     for t in trades:
-        per_event[t["event_ticker"]] = per_event.get(t["event_ticker"], 0) + 1
+        key = t.get("cap_key") or t["event_ticker"]
+        per_event[key] = per_event.get(key, 0) + 1
 
     snaps, new_fc, candidates, today_by_series = [], [], [], {}
     for series, key in book["series"].items():
@@ -115,12 +116,20 @@ def run_book(book_id, f, now, do_settle=True):
         log(f"[{book_id}] {series}: {len(markets)} markets{extra}")
 
     opened = 0
+    stopped = strategy.kill_reason(book_id, trades, now)
+    if stopped:
+        log(f"[{book_id}] test stopped, no new trades: {stopped}")
+        candidates = []
+    # Favorite book: one trade per band per event (cap_key); the backtest's best fill is the closest to 4h.
+    cap = 1 if book.get("strategy") == "favorite" else R["MAX_POSITIONS_PER_EVENT"]
     for c in sorted(candidates, key=lambda c: -c["edge"]):
-        if c["ticker"] in traded or per_event.get(c["event_ticker"], 0) >= R["MAX_POSITIONS_PER_EVENT"]:
+        key = c.get("cap_key") or c["event_ticker"]
+        if c["ticker"] in traded or per_event.get(key, 0) >= cap \
+                or sum(v for k, v in per_event.items() if k.split("|")[0] == c["event_ticker"]) >= R["MAX_POSITIONS_PER_EVENT"]:
             continue
         c["trade_id"] = f"{c['ticker']}-{c['side']}"
         traded.add(c["ticker"])
-        per_event[c["event_ticker"]] = per_event.get(c["event_ticker"], 0) + 1
+        per_event[key] = per_event.get(key, 0) + 1
         trades.append(c)
         opened += 1
         log(f"[{book_id}] OPEN {c['city']} {c['target_date']} {c['side'].upper()} {c['bracket']} x{c['contracts']} "
@@ -173,14 +182,20 @@ def write_index(summaries, now):
         json.dumps({"generated_at": now.isoformat(timespec="minutes"), "books": books}, indent=1), encoding="utf-8")
 
 
-def run(now=None, fetcher=None, do_settle=True):
+def run(now=None, fetcher=None, do_settle=True, books=None):
+    """books: only trade these (the others just get their dashboard files rebuilt, no new looks)."""
     now = now or dt.datetime.now(dt.timezone.utc)
     migrate()
     f = fetcher or Fetcher()
     summaries = []
     for book_id in C.BOOKS:
         try:
-            summaries.append(run_book(book_id, f, now, do_settle))
+            if books is None or book_id in books:
+                summaries.append(run_book(book_id, f, now, do_settle))
+            else:
+                P = C.paths(book_id)
+                summaries.append(write_outputs(book_id, ledger.read(P["trades"], {"book": book_id, "unit": C.BOOKS[book_id]["unit"]}),
+                                               ledger.read(P["forecasts"]), ledger.read(P["actuals"]), now))
         except Exception as e:  # one broken book must not stop the others
             log(f"[{book_id}] FAILED: {e!r}")
     write_index(summaries, now)
@@ -220,9 +235,10 @@ def main(argv=None):
     ap = argparse.ArgumentParser(prog="kalshi_analyzer")
     ap.add_argument("command", nargs="?", default="run", choices=["run", "report", "reset"])
     ap.add_argument("book", nargs="?", help="for reset: a book id, or 'all'")
+    ap.add_argument("--books", help="run: comma-separated book ids to trade (default: all)")
     a = ap.parse_args(argv)
     if a.command == "run":
-        run()
+        run(books=a.books.split(",") if a.books else None)
     elif a.command == "report":
         report_only()
     else:

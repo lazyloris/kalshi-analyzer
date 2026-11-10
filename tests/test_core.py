@@ -238,3 +238,44 @@ def test_hourly_vol_book_models_and_skips_spikes():
     assert spiked is None  # a market that just jumped 15c+ is skipped
     _, calm = strategy.evaluate("bitcoin_tod", m, {**ctx, "mid_before": lambda s, t: 0.22}, now)
     assert calm is not None
+
+
+def _fav_market(ticker, ask, bid=None, close="2026-11-10T22:00:00Z"):
+    return mk(ticker, "greater", 75000, None, bid if bid is not None else ask - 0.01, ask, day="2026-11-10",
+              series="KXBTCD", close=close, event="KXBTCD-26NOV1017")
+
+
+def test_favorite_buys_band_only_in_window():
+    at4h = dt.datetime(2026, 11, 10, 18, 0, tzinfo=dt.timezone.utc)
+    _, c = strategy.evaluate("bitcoin_fav", _fav_market("A", 0.80), {}, at4h)
+    assert c["side"] == "yes" and c["price"] == 0.80 and c["cap_key"].endswith("|0.75")
+    assert strategy.evaluate("bitcoin_fav", _fav_market("B", 0.90), {}, at4h)[1] is None   # between bands
+    assert strategy.evaluate("bitcoin_fav", _fav_market("C", 0.97), {}, at4h)[1] is None   # above top band
+    assert strategy.evaluate("bitcoin_fav", _fav_market("D", 0.94, bid=0.85), {}, at4h)[1] is None  # wide spread
+    assert strategy.evaluate("bitcoin_fav", _fav_market("A", 0.80), {}, at4h - dt.timedelta(hours=2))[1] is None  # 6h out
+    assert strategy.evaluate("bitcoin_fav", _fav_market("A", 0.80), {}, at4h + dt.timedelta(hours=1))[1] is None  # 3h out
+
+
+def test_favorite_kill_rules():
+    now = dt.datetime(2026, 11, 20, tzinfo=dt.timezone.utc)
+    t = lambda day, pnl: {"status": "settled", "target_date": day, "pnl": pnl, "cost": 10}
+    ok = [t(f"2026-11-{d:02d}", 0.5) for d in range(10, 20)]
+    assert strategy.kill_reason("bitcoin_fav", ok, now) is None
+    bad = ok[:5] + [t("2026-11-15", -9), t("2026-11-16", -9), t("2026-11-18", -9)]
+    assert "losing days" in strategy.kill_reason("bitcoin_fav", bad, now)
+    late = dt.datetime(2027, 1, 10, tzinfo=dt.timezone.utc)
+    assert "finished" in strategy.kill_reason("bitcoin_fav", ok, late)
+    assert strategy.kill_reason("bitcoin", [t("2026-11-15", -9)] * 5, now) is None  # other books: no kill rules
+
+
+def test_favorite_run_one_per_band_and_only_its_book(tmp_repo):
+    at4h = dt.datetime(2026, 11, 10, 18, 0, tzinfo=dt.timezone.utc)
+    ms = [_fav_market("A", 0.80), _fav_market("B", 0.82), _fav_market("C", 0.94), _fav_market("D", 0.95)]
+    app.run(now=at4h, fetcher=FakeFetcher({"KXBTCD": ms}), do_settle=False, books=["bitcoin_fav"])
+    got = ledger.read(C.paths("bitcoin_fav")["trades"])
+    assert sorted(t["cap_key"][-4:] for t in got) == ["0.75", "0.93"] and len(got) == 2
+    assert not C.paths("bitcoin")["trades"].exists()  # other books not traded
+    app.run(now=at4h + dt.timedelta(minutes=15), fetcher=FakeFetcher({"KXBTCD": ms}), do_settle=False, books=["bitcoin_fav"])
+    assert len(ledger.read(C.paths("bitcoin_fav")["trades"])) == 2  # cap survives a second look
+    idx = json.loads((C.DASHBOARD_DATA / "books.json").read_text())
+    assert [b["id"] for b in idx["books"]] == list(C.BOOKS)

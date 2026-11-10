@@ -1,0 +1,38 @@
+name: Bitcoin favorites window
+
+# The pre-registered favorite test enters about 4 hours before Bitcoin's 5pm ET close
+# (1pm ET = 17:00 UTC in summer, 18:00 UTC in winter). GitHub's hourly cron is unreliable
+# (it fired about every 6h), so this job tries every 15 minutes across the window and only
+# trades the bitcoin_fav book; the book itself only buys when 3.5-4.5 hours remain.
+on:
+  schedule:
+    - cron: "*/15 16-18 * * *"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: paper-trader
+  cancel-in-progress: false
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Paper trade the favorite book only
+        run: python -m kalshi_analyzer run --books bitcoin_fav
+      - name: Save results to the repo
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add -A data dashboard/data reports
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "favorites run $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
