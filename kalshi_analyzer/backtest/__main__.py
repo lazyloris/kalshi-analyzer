@@ -1,10 +1,11 @@
-"""python -m kalshi_analyzer.backtest [fetch|run|all|scan] [--days 240]
+"""python -m kalshi_analyzer.backtest [fetch|run|all|scan|ladder] [--days 240]
 
 fetch  download/refresh historical data into data/backtest_cache
 run    replay every strategy, write dashboard/data/backtest.json and reports/backtest.md
 all    both (default)
 scan   market scanner across all Kalshi categories (see scanner.py)
 assets-fetch  download Ethereum/gold/oil/S&P/... ladders (see assets.py); `run` includes them
+ladder  no-model price-level test by hours-to-close, per event (see ladder.py)
 """
 import argparse
 import time
@@ -318,12 +319,13 @@ def markdown(r):
     for b, x in r["books"].items():
         L += [f"## {x['name']}", "", f"{x['events']} events, {x['first']} to {x['last']}.", "",
               f"**Verdict:** {x['verdict']['text']}", "",
-              "| Strategy | Trades | Win % | P&L | Return/$ | 1st half | 2nd half | Claimed win % | Brier model | Brier market |",
-              "|---|---|---|---|---|---|---|---|---|---|"]
+              "| Strategy | Trades | Win % | P&L | Return/$ | t | t (event) | 1st half | 2nd half | Claimed win % | Brier model | Brier market |",
+              "|---|---|---|---|---|---|---|---|---|---|---|---|"]
         for s in sorted(x["strategies"], key=lambda s: -s["pnl"]):
             pct = lambda v: "–" if v is None else f"{v * 100:.0f}%"
             L.append(f"| {s['name']} | {s['trades']} | {pct(s['win_rate'])} | {s['pnl']:+.2f} | "
-                     f"{_roi(s['roi'])} | {s['first_half']:+.0f} | {s['second_half']:+.0f} | "
+                     f"{_roi(s['roi'])} | {s['t_stat'] if s['t_stat'] is not None else '–'} | "
+                     f"{s.get('t_event') if s.get('t_event') is not None else '–'} | {s['first_half']:+.0f} | {s['second_half']:+.0f} | "
                      f"{pct(s['avg_claimed'])} | {s['brier_model'] if s['brier_model'] is not None else '–'} | "
                      f"{s['brier_market'] if s['brier_market'] is not None else '–'} |")
         if any(s.get("older", {}).get("trades") for s in x["strategies"]):
@@ -367,7 +369,7 @@ def markdown(r):
 
 def main(argv=None):
     ap = argparse.ArgumentParser(prog="python -m kalshi_analyzer.backtest")
-    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run", "assets-fetch"])
+    ap.add_argument("cmd", nargs="?", default="all", choices=["fetch", "run", "all", "scan", "scan-fetch", "scan-run", "assets-fetch", "ladder"])
     ap.add_argument("--days", type=int, default=240)
     ap.add_argument("--crypto-days", type=int, default=None,
                     help="fetch/assets-fetch: longer history for Bitcoin/Ethereum only")
@@ -382,6 +384,10 @@ def main(argv=None):
             scanner.fetch(top=a.top, days=min(a.days, 60))
         if a.cmd in ("scan", "scan-run"):
             scanner.analyze()
+        return
+    if a.cmd == "ladder":
+        from . import ladder
+        ladder.run()
         return
     if a.cmd == "assets-fetch":
         from . import assets
