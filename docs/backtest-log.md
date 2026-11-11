@@ -220,3 +220,10 @@ It was found by scanning about 60 cells, so expect it to shrink.
 - The S&P (KXINXU) has about 500k markets (hourly events). It used up the time budget, so KXINX, Nasdaq and other coins weren't tested.
 
 **Conclusion:** the favorite pattern is clearly present only in crypto (BTC strongly, ETH at 93-96c). Elsewhere it's weak or missing. This is consistent with the fat-tail explanation for crypto, but it adds no confirmation from other assets.
+
+## 2026-11-11: bitcoin_fav timing fix (no rule change)
+
+The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, after the window. Day 1's trades came from a lucky hourly run at 17:54 UTC. Day 2 (2026-11-11) had no run in the window, so no trades. That's a missed day, not a rule result.
+- **Day 1:** both trades won, +$2.59. YES on >$72,500 at 82c and YES on >$72,000 at 94c.
+- **Fix:** favorites.yml is now scheduled hourly from 09:07 to 17:07 UTC. The first run that starts waits until 1pm ET, then trades. Later runs exit, or can't double up because of the one-per-band cap.
+- **Trading rules and kill rules are unchanged.**
