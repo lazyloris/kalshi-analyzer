@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-11T15:17+00:00",
+ "generated_at": "2026-11-11T22:43+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 1010.87,
    "starting_bankroll": 1000.0,
    "settled": 25,
-   "open": 15,
+   "open": 16,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-12T14:00+00:00"
   },
@@ -19,7 +19,7 @@
    "bankroll": 983.69,
    "starting_bankroll": 1000.0,
    "settled": 9,
-   "open": 4,
+   "open": 6,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-12T14:00+00:00"
   },
@@ -27,23 +27,23 @@
    "id": "bitcoin",
    "name": "Crypto: Bitcoin 5pm price",
    "short": "Bitcoin",
-   "bankroll": 1000.59,
+   "bankroll": 1006.86,
    "starting_bankroll": 1000.0,
-   "settled": 4,
+   "settled": 6,
    "open": 4,
    "version": "crypto-v2",
-   "next_results_by": "2026-11-11T23:00+00:00"
+   "next_results_by": "2026-11-12T23:00+00:00"
   },
   {
    "id": "gold",
    "name": "Commodity: gold 5pm price",
    "short": "Gold",
-   "bankroll": 990.6,
+   "bankroll": 1001.01,
    "starting_bankroll": 1000.0,
-   "settled": 4,
-   "open": 4,
+   "settled": 6,
+   "open": 2,
    "version": "gold-v2",
-   "next_results_by": "2026-11-11T23:00+00:00"
+   "next_results_by": "2026-11-12T23:00+00:00"
   },
   {
    "id": "trending",
@@ -60,34 +60,34 @@
    "id": "ethereum",
    "name": "Crypto: Ethereum 5pm price",
    "short": "Ethereum",
-   "bankroll": 986.03,
+   "bankroll": 991.4,
    "starting_bankroll": 1000.0,
-   "settled": 4,
+   "settled": 6,
    "open": 4,
    "version": "eth-v1",
-   "next_results_by": "2026-11-11T23:00+00:00"
+   "next_results_by": "2026-11-12T23:00+00:00"
   },
   {
    "id": "bitcoin_tod",
    "name": "Crypto: Bitcoin 5pm, hour-by-hour vol",
    "short": "BTC hourly-vol",
-   "bankroll": 985.18,
+   "bankroll": 990.64,
    "starting_bankroll": 1000.0,
-   "settled": 4,
+   "settled": 6,
    "open": 4,
    "version": "btc-tod-v1",
-   "next_results_by": "2026-11-11T23:00+00:00"
+   "next_results_by": "2026-11-12T23:00+00:00"
   },
   {
    "id": "ethereum_tod",
    "name": "Crypto: Ethereum 5pm, hour-by-hour vol",
    "short": "ETH hourly-vol",
-   "bankroll": 986.0,
+   "bankroll": 991.37,
    "starting_bankroll": 1000.0,
-   "settled": 4,
+   "settled": 6,
    "open": 4,
    "version": "eth-tod-v1",
-   "next_results_by": "2026-11-11T23:00+00:00"
+   "next_results_by": "2026-11-12T23:00+00:00"
   },
   {
    "id": "bitcoin_fav",
