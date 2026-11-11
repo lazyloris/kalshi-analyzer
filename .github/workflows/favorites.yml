@@ -1,33 +1,55 @@
 name: Bitcoin favorites window
 
-# The pre-registered favorite test enters about 4 hours before Bitcoin's 5pm ET close
-# (1pm ET = 17:00 UTC in summer, 18:00 UTC in winter). GitHub's hourly cron is unreliable
-# (it fired about every 6h), so this job tries every 15 minutes across the window and only
-# trades the bitcoin_fav book; the book itself only buys when 3.5-4.5 hours remain.
+# The pre-registered favorite test enters about 4 hours before Bitcoin's 5pm ET close, i.e. 1pm ET.
+# GitHub's cron is very unreliable here (on day one this job fired once, 3 hours late), so several
+# start times are scheduled through the morning. Whichever run starts first WAITS until 1pm ET and
+# then trades only the bitcoin_fav book; runs that start after the window just exit. The book's
+# one-per-band cap means a second run in the window can't double up. Public repo: minutes are free.
 on:
   schedule:
-    - cron: "*/15 16-18 * * *"
+    - cron: "7 9-17 * * *"
   workflow_dispatch: {}
 
 permissions:
   contents: write
 
 concurrency:
-  group: paper-trader
+  group: favorites-window
   cancel-in-progress: false
 
 jobs:
   run:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 350
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
+      - name: Wait until 1pm ET (skip if the window has passed)
+        id: wait
+        run: |
+          python - <<'PY'
+          import datetime as dt, os, time
+          from zoneinfo import ZoneInfo
+          ny = ZoneInfo("America/New_York")
+          now = dt.datetime.now(ny)
+          target = now.replace(hour=13, minute=0, second=0, microsecond=0)
+          wait = (target - now).total_seconds()
+          go = -1800 <= wait <= 5.5 * 3600   # book trades 3.5-4.5h before the 5pm close
+          print(f"now {now:%H:%M} ET, target 13:00, wait {wait / 60:.0f} min, go={go}")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"go={'true' if go else 'false'}\n")
+          if go and wait > 0:
+              time.sleep(wait)
+          PY
       - name: Paper trade the favorite book only
-        run: python -m kalshi_analyzer run --books bitcoin_fav
+        if: steps.wait.outputs.go == 'true'
+        run: |
+          git pull --rebase || true
+          python -m kalshi_analyzer run --books bitcoin_fav
       - name: Save results to the repo
+        if: steps.wait.outputs.go == 'true'
         run: |
           git config user.name "kalshi-paper-bot"
           git config user.email "kalshi-paper-bot@users.noreply.github.com"
