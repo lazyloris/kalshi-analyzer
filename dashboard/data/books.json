@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12T12:48+00:00",
+ "generated_at": "2026-11-12T18:00+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -96,9 +96,9 @@
    "bankroll": 1002.59,
    "starting_bankroll": 1000.0,
    "settled": 2,
-   "open": 0,
+   "open": 2,
    "version": "btc-fav-v1",
-   "next_results_by": ""
+   "next_results_by": "2026-11-12T23:00+00:00"
   }
  ]
 }
