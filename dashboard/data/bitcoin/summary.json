@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-12T20:51+00:00",
+ "generated_at": "2026-11-13T01:51+00:00",
  "strategy_version": "crypto-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -25,32 +25,25 @@
  "markets": [
   "KXBTCD"
  ],
- "bankroll": 1006.86,
- "open_exposure": 38.95,
+ "bankroll": 1013.32,
+ "open_exposure": 19.41,
  "totals": {
-  "n": 6,
-  "wins": 5,
-  "win_rate": 0.833,
-  "pnl": 6.86,
-  "roi": 0.116,
-  "fees": 1.11,
-  "avg_edge": 0.162,
-  "avg_model_p": 0.911,
-  "brier_model": 0.1467,
-  "brier_market": 0.1505
+  "n": 8,
+  "wins": 7,
+  "win_rate": 0.875,
+  "pnl": 13.32,
+  "roi": 0.169,
+  "fees": 1.47,
+  "avg_edge": 0.158,
+  "avg_model_p": 0.909,
+  "brier_model": 0.1126,
+  "brier_market": 0.13
  },
- "open_count": 4,
- "open_mark_pnl": 13.38,
- "open_marked": 4,
- "open_expected_pnl": 8.9,
+ "open_count": 2,
+ "open_mark_pnl": 7.32,
+ "open_marked": 2,
+ "open_expected_pnl": 5.04,
  "upcoming": [
-  {
-   "results_by": "2026-11-12T23:00+00:00",
-   "closes_at": "2026-11-12T22:00:00Z",
-   "n": 2,
-   "at_risk": 19.54,
-   "expected_pnl": 3.86
-  },
   {
    "results_by": "2026-11-13T23:00+00:00",
    "closes_at": "2026-11-13T22:00:00Z",
@@ -62,30 +55,30 @@
  "breakdowns": {
   "city": {
    "Bitcoin": {
-    "n": 6,
-    "wins": 5,
-    "win_rate": 0.833,
-    "pnl": 6.86,
-    "roi": 0.116,
-    "fees": 1.11,
-    "avg_edge": 0.162,
-    "avg_model_p": 0.911,
-    "brier_model": 0.1467,
-    "brier_market": 0.1505
+    "n": 8,
+    "wins": 7,
+    "win_rate": 0.875,
+    "pnl": 13.32,
+    "roi": 0.169,
+    "fees": 1.47,
+    "avg_edge": 0.158,
+    "avg_model_p": 0.909,
+    "brier_model": 0.1126,
+    "brier_market": 0.13
    }
   },
   "side": {
    "NO": {
-    "n": 4,
-    "wins": 4,
+    "n": 6,
+    "wins": 6,
     "win_rate": 1.0,
-    "pnl": 13.46,
-    "roi": 0.34,
-    "fees": 0.75,
-    "avg_edge": 0.166,
-    "avg_model_p": 0.913,
-    "brier_model": 0.0079,
-    "brier_market": 0.0719
+    "pnl": 19.92,
+    "roi": 0.337,
+    "fees": 1.11,
+    "avg_edge": 0.161,
+    "avg_model_p": 0.91,
+    "brier_model": 0.0088,
+    "brier_market": 0.0708
    },
    "YES": {
     "n": 2,
@@ -102,42 +95,42 @@
   },
   "edge": {
    "12-20c": {
-    "n": 6,
-    "wins": 5,
-    "win_rate": 0.833,
-    "pnl": 6.86,
-    "roi": 0.116,
-    "fees": 1.11,
-    "avg_edge": 0.162,
-    "avg_model_p": 0.911,
-    "brier_model": 0.1467,
-    "brier_market": 0.1505
+    "n": 8,
+    "wins": 7,
+    "win_rate": 0.875,
+    "pnl": 13.32,
+    "roi": 0.169,
+    "fees": 1.47,
+    "avg_edge": 0.158,
+    "avg_model_p": 0.909,
+    "brier_model": 0.1126,
+    "brier_market": 0.13
    }
   },
   "price": {
    "50-75c": {
-    "n": 5,
-    "wins": 4,
-    "win_rate": 0.8,
-    "pnl": 3.79,
-    "roi": 0.077,
-    "fees": 0.93,
-    "avg_edge": 0.166,
-    "avg_model_p": 0.912,
-    "brier_model": 0.1742,
-    "brier_market": 0.1681
+    "n": 6,
+    "wins": 5,
+    "win_rate": 0.833,
+    "pnl": 7.64,
+    "roi": 0.129,
+    "fees": 1.14,
+    "avg_edge": 0.163,
+    "avg_model_p": 0.905,
+    "brier_model": 0.1479,
+    "brier_market": 0.1541
    },
    "75-90c": {
-    "n": 1,
-    "wins": 1,
+    "n": 2,
+    "wins": 2,
     "win_rate": 1.0,
-    "pnl": 3.07,
-    "roi": 0.309,
-    "fees": 0.18,
-    "avg_edge": 0.141,
-    "avg_model_p": 0.905,
-    "brier_model": 0.0089,
-    "brier_market": 0.0625
+    "pnl": 5.68,
+    "roi": 0.294,
+    "fees": 0.33,
+    "avg_edge": 0.146,
+    "avg_model_p": 0.919,
+    "brier_model": 0.0067,
+    "brier_market": 0.0577
    }
   },
   "days_ahead": {
@@ -154,56 +147,56 @@
     "brier_market": 0.0788
    },
    "6-24h": {
-    "n": 4,
-    "wins": 3,
-    "win_rate": 0.75,
-    "pnl": -0.33,
-    "roi": -0.008,
-    "fees": 0.72,
-    "avg_edge": 0.152,
-    "avg_model_p": 0.908,
-    "brier_model": 0.2162,
-    "brier_market": 0.1863
+    "n": 6,
+    "wins": 5,
+    "win_rate": 0.833,
+    "pnl": 6.13,
+    "roi": 0.104,
+    "fees": 1.08,
+    "avg_edge": 0.151,
+    "avg_model_p": 0.906,
+    "brier_model": 0.1476,
+    "brier_market": 0.1471
    }
   },
   "bracket_distance": {
    "0.5-1.5 sigma": {
-    "n": 5,
-    "wins": 4,
-    "win_rate": 0.8,
-    "pnl": 3.66,
-    "roi": 0.074,
-    "fees": 0.93,
-    "avg_edge": 0.156,
-    "avg_model_p": 0.904,
-    "brier_model": 0.1753,
-    "brier_market": 0.1671
+    "n": 6,
+    "wins": 5,
+    "win_rate": 0.833,
+    "pnl": 7.51,
+    "roi": 0.126,
+    "fees": 1.14,
+    "avg_edge": 0.155,
+    "avg_model_p": 0.899,
+    "brier_model": 0.1489,
+    "brier_market": 0.1532
    },
    "1.5+ sigma": {
-    "n": 1,
-    "wins": 1,
+    "n": 2,
+    "wins": 2,
     "win_rate": 1.0,
-    "pnl": 3.2,
-    "roi": 0.327,
-    "fees": 0.18,
-    "avg_edge": 0.188,
-    "avg_model_p": 0.942,
-    "brier_model": 0.0034,
-    "brier_market": 0.0676
+    "pnl": 5.81,
+    "roi": 0.303,
+    "fees": 0.33,
+    "avg_edge": 0.169,
+    "avg_model_p": 0.937,
+    "brier_model": 0.0039,
+    "brier_market": 0.0602
    }
   },
   "bracket_type": {
    "greater": {
-    "n": 6,
-    "wins": 5,
-    "win_rate": 0.833,
-    "pnl": 6.86,
-    "roi": 0.116,
-    "fees": 1.11,
-    "avg_edge": 0.162,
-    "avg_model_p": 0.911,
-    "brier_model": 0.1467,
-    "brier_market": 0.1505
+    "n": 8,
+    "wins": 7,
+    "win_rate": 0.875,
+    "pnl": 13.32,
+    "roi": 0.169,
+    "fees": 1.47,
+    "avg_edge": 0.158,
+    "avg_model_p": 0.909,
+    "brier_model": 0.1126,
+    "brier_market": 0.13
    }
   },
   "cause": {
@@ -232,52 +225,52 @@
     "brier_market": 0.0788
    },
    "lucky": {
-    "n": 3,
-    "wins": 3,
+    "n": 5,
+    "wins": 5,
     "win_rate": 1.0,
-    "pnl": 9.47,
-    "roi": 0.321,
-    "fees": 0.54,
+    "pnl": 15.93,
+    "roi": 0.325,
+    "fees": 0.9,
     "avg_edge": 0.148,
-    "avg_model_p": 0.905,
-    "brier_model": 0.009,
-    "brier_market": 0.0659
+    "avg_model_p": 0.904,
+    "brier_model": 0.0096,
+    "brier_market": 0.0669
    }
   },
   "version": {
    "crypto-v2": {
-    "n": 6,
-    "wins": 5,
-    "win_rate": 0.833,
-    "pnl": 6.86,
-    "roi": 0.116,
-    "fees": 1.11,
-    "avg_edge": 0.162,
-    "avg_model_p": 0.911,
-    "brier_model": 0.1467,
-    "brier_market": 0.1505
+    "n": 8,
+    "wins": 7,
+    "win_rate": 0.875,
+    "pnl": 13.32,
+    "roi": 0.169,
+    "fees": 1.47,
+    "avg_edge": 0.158,
+    "avg_model_p": 0.909,
+    "brier_model": 0.1126,
+    "brier_market": 0.13
    }
   }
  },
  "calibration": [
   {
    "bucket": "80-90%",
-   "n": 2,
-   "predicted": 0.894,
+   "n": 3,
+   "predicted": 0.886,
    "actual": 1.0
   },
   {
    "bucket": "90-100%",
-   "n": 4,
-   "predicted": 0.919,
-   "actual": 0.75
+   "n": 5,
+   "predicted": 0.922,
+   "actual": 0.8
   }
  ],
  "forecast_accuracy": [],
  "suggestions": [
   {
    "priority": 0,
-   "text": "Only 6 settled trades. Wait for 20+ before changing any rule."
+   "text": "Only 8 settled trades. Wait for 20+ before changing any rule."
   }
  ],
  "bankroll_curve": [
@@ -304,6 +297,14 @@
   {
    "t": "2026-11-11T22:43+00:00",
    "bankroll": 1006.86
+  },
+  {
+   "t": "2026-11-13T01:51+00:00",
+   "bankroll": 1009.47
+  },
+  {
+   "t": "2026-11-13T01:51+00:00",
+   "bankroll": 1013.32
   }
  ]
 }
