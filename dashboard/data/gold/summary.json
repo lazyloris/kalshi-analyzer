@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-13T18:00+00:00",
+ "generated_at": "2026-11-13T23:37+00:00",
  "strategy_version": "gold-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -40,7 +40,7 @@
   "brier_market": 0.2045
  },
  "open_count": 2,
- "open_mark_pnl": -0.79,
+ "open_mark_pnl": 0.57,
  "open_marked": 2,
  "open_expected_pnl": 4.28,
  "upcoming": [
