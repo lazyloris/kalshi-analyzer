@@ -5,7 +5,7 @@
  "kind": "fade",
  "unit": "",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-13T01:51+00:00",
+ "generated_at": "2026-11-13T09:37+00:00",
  "strategy_version": "fade-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -42,15 +42,23 @@
   "KXTOPALBUM"
  ],
  "bankroll": 1000.0,
- "open_exposure": 0,
+ "open_exposure": 9.44,
  "totals": {
   "n": 0
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 1,
+ "open_mark_pnl": -0.34,
+ "open_marked": 1,
+ "open_expected_pnl": -0.19,
+ "upcoming": [
+  {
+   "results_by": "2026-11-16T16:59+00:00",
+   "closes_at": "2026-11-16T04:59:00Z",
+   "n": 1,
+   "at_risk": 9.44,
+   "expected_pnl": -0.19
+  }
+ ],
  "breakdowns": {
   "city": {},
   "side": {},
