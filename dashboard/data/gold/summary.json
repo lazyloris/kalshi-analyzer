@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-13T09:37+00:00",
+ "generated_at": "2026-11-13T17:47+00:00",
  "strategy_version": "gold-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,7 +26,7 @@
   "KXGOLDD"
  ],
  "bankroll": 1013.2,
- "open_exposure": 0,
+ "open_exposure": 19.47,
  "totals": {
   "n": 8,
   "wins": 6,
@@ -39,11 +39,19 @@
   "brier_model": 0.2304,
   "brier_market": 0.2045
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 2,
+ "open_mark_pnl": -0.79,
+ "open_marked": 2,
+ "open_expected_pnl": 4.28,
+ "upcoming": [
+  {
+   "results_by": "2026-11-16T23:00+00:00",
+   "closes_at": "2026-11-16T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.47,
+   "expected_pnl": 4.28
+  }
+ ],
  "breakdowns": {
   "city": {
    "Gold": {
