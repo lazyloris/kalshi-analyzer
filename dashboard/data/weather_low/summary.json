@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-14T18:00+00:00",
+ "generated_at": "2026-11-14T19:12+00:00",
  "strategy_version": "weather-low-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -37,7 +37,7 @@
   "KXLOWTLAX"
  ],
  "bankroll": 988.73,
- "open_exposure": 19.46,
+ "open_exposure": 29.09,
  "totals": {
   "n": 23,
   "wins": 21,
@@ -50,10 +50,10 @@
   "brier_model": 0.0788,
   "brier_market": 0.0801
  },
- "open_count": 2,
- "open_mark_pnl": 0.34,
- "open_marked": 2,
- "open_expected_pnl": -0.41,
+ "open_count": 3,
+ "open_mark_pnl": 0.11,
+ "open_marked": 3,
+ "open_expected_pnl": -0.54,
  "upcoming": [
   {
    "results_by": "2026-11-15T14:00+00:00",
@@ -68,6 +68,13 @@
    "n": 1,
    "at_risk": 9.73,
    "expected_pnl": -0.23
+  },
+  {
+   "results_by": "2026-11-16T14:00+00:00",
+   "closes_at": "2026-11-16T06:00:00Z",
+   "n": 1,
+   "at_risk": 9.63,
+   "expected_pnl": -0.13
   }
  ],
  "breakdowns": {
@@ -391,20 +398,20 @@
    "series": "KXLOWTLAX",
    "city": "Los Angeles",
    "days_ahead": 0,
-   "n": 5,
-   "bias": -0.2,
-   "mae": 3.0,
-   "stdev": 3.49,
+   "n": 6,
+   "bias": 0.0,
+   "mae": 2.67,
+   "stdev": 3.21,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTLAX",
    "city": "Los Angeles",
    "days_ahead": 1,
-   "n": 6,
-   "bias": 0.33,
-   "mae": 3.33,
-   "stdev": 3.5,
+   "n": 7,
+   "bias": 0.43,
+   "mae": 3.0,
+   "stdev": 3.25,
    "sigma_used": 2.0
   },
   {
