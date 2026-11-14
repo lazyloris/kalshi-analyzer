@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-14T06:32+00:00",
+ "generated_at": "2026-11-14T14:12+00:00",
  "strategy_version": "eth-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,7 +26,7 @@
   "KXETHD"
  ],
  "bankroll": 989.75,
- "open_exposure": 28.69,
+ "open_exposure": 38.08,
  "totals": {
   "n": 10,
   "wins": 7,
@@ -39,17 +39,17 @@
   "brier_model": 0.2323,
   "brier_market": 0.1861
  },
- "open_count": 3,
- "open_mark_pnl": -0.62,
- "open_marked": 3,
- "open_expected_pnl": 4.2,
+ "open_count": 4,
+ "open_mark_pnl": -0.04,
+ "open_marked": 4,
+ "open_expected_pnl": 6.5,
  "upcoming": [
   {
    "results_by": "2026-11-14T23:00+00:00",
    "closes_at": "2026-11-14T22:00:00Z",
-   "n": 1,
-   "at_risk": 9.56,
-   "expected_pnl": 0.97
+   "n": 2,
+   "at_risk": 18.95,
+   "expected_pnl": 3.27
   },
   {
    "results_by": "2026-11-20T23:00+00:00",
