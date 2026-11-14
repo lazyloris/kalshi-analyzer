@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-13T23:37+00:00",
+ "generated_at": "2026-11-14T06:32+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 978.8,
    "starting_bankroll": 1000.0,
    "settled": 43,
-   "open": 18,
+   "open": 19,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-14T14:00+00:00"
   },
@@ -63,9 +63,9 @@
    "bankroll": 989.75,
    "starting_bankroll": 1000.0,
    "settled": 10,
-   "open": 2,
+   "open": 3,
    "version": "eth-v1",
-   "next_results_by": "2026-11-20T23:00+00:00"
+   "next_results_by": "2026-11-14T23:00+00:00"
   },
   {
    "id": "bitcoin_tod",
