@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-11-15T11:01+00:00",
+ "generated_at": "2026-11-15T17:46+00:00",
  "books": [
   {
    "id": "weather_high",
    "name": "Weather: daily highs",
    "short": "Highs",
-   "bankroll": 983.12,
+   "bankroll": 968.77,
    "starting_bankroll": 1000.0,
-   "settled": 54,
-   "open": 23,
+   "settled": 64,
+   "open": 20,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-14T14:00+00:00"
   },
@@ -16,12 +16,12 @@
    "id": "weather_low",
    "name": "Weather: daily lows",
    "short": "Lows",
-   "bankroll": 988.73,
+   "bankroll": 989.27,
    "starting_bankroll": 1000.0,
-   "settled": 23,
-   "open": 8,
+   "settled": 25,
+   "open": 6,
    "version": "weather-low-fade-v2",
-   "next_results_by": "2026-11-15T14:00+00:00"
+   "next_results_by": "2026-11-16T14:00+00:00"
   },
   {
    "id": "bitcoin",
@@ -96,9 +96,9 @@
    "bankroll": 976.28,
    "starting_bankroll": 1000.0,
    "settled": 8,
-   "open": 0,
+   "open": 2,
    "version": "btc-fav-v1",
-   "next_results_by": ""
+   "next_results_by": "2026-11-15T23:00+00:00"
   }
  ]
 }
