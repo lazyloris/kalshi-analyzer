@@ -1,21 +1,21 @@
-# Market scanner (2026-11-12)
+# Market scanner (2026-11-16)
 
-107 series, 29991 price snapshots. Returns per $ staked after fees, (trades) [90% range]. Price-correction rule is learned on older events and scored only on events from 2026-10-26 on.
+99 series, 39219 price snapshots. Returns per $ staked after fees, (trades) [90% range]. Price-correction rule is learned on older events and scored only on events from 2026-10-29 on.
 
 ## By category (6h before close)
 
 | Category | Series | Long-shot fade | Favorite buy | Price-correction (holdout) |
 |---|---|---|---|---|
-| Sports | 67 | -2.9% (1340) [-4..-2] | -2.2% (375) [-5..+0] | -2.7% (330) [-15..+12] |
-| Commodities | 5 | -1.7% (83) [-6..+2] | -0.0% (146) [-4..+3] | +3.2% (23) [-15..+22] |
-| Climate and Weather | 6 | +4.7% (38) [+4..+5] | +6.0% (6) | – |
-| Mentions | 6 | -64.8% (3) | +8.2% (6) | – |
-| Financials | 2 | – | -18.5% (17) [-38..-0] | – |
-| Economics | 6 | +5.1% (28) [+4..+6] | +0.4% (33) [-7..+8] | – |
-| Politics | 2 | +5.2% (9) | -1.0% (11) [-20..+10] | – |
-| Elections | 2 | +3.6% (4) | +11.5% (1) | – |
-| Entertainment | 4 | +4.9% (4) | -10.4% (7) | – |
-| Science and Technology | 5 | +2.8% (1) | – | – |
+| Sports | 60 | -2.6% (1708) [-4..-2] | -3.3% (557) [-6..-1] | -12.3% (516) [-23..-0] |
+| Commodities | 5 | +0.6% (101) [-3..+4] | +0.9% (166) [-2..+4] | -20.2% (20) [-44..+3] |
+| Climate and Weather | 6 | +4.7% (48) [+4..+5] | +6.6% (12) [+5..+8] | – |
+| Economics | 7 | +2.9% (42) [-2..+6] | -0.7% (57) [-7..+5] | – |
+| Financials | 3 | – | -17.3% (18) [-35..-1] | – |
+| Politics | 4 | -0.1% (22) [-10..+5] | -1.0% (11) [-20..+10] | – |
+| Entertainment | 5 | -5.6% (19) [-17..+6] | +5.2% (7) | – |
+| Mentions | 3 | +8.0% (1) | +7.3% (6) | – |
+| Elections | 1 | +3.6% (4) | – | – |
+| Science and Technology | 3 | – | – | – |
 | Crypto | 1 | – | – | – |
 | Companies | 1 | – | +2.8% (1) | – |
 
@@ -23,55 +23,55 @@
 
 | Hours before close | Snapshots | Median spread | Fade | Favorite |
 |---|---|---|---|---|
-| 24 | 9652 | 0.02 | -1.9% (1290) [-3..-1] | -4.1% (455) [-6..-2] |
-| 6 | 10654 | 0.01 | -2.5% (1510) [-4..-1] | -1.8% (603) [-4..+0] |
-| 1 | 9685 | 0.02 | -1.4% (1385) [-2..-0] | +0.2% (615) [-2..+2] |
+| 24 | 12220 | 0.02 | -1.8% (1632) [-3..-1] | -4.2% (636) [-6..-2] |
+| 6 | 14322 | 0.01 | -2.1% (1945) [-3..-1] | -2.2% (835) [-4..-0] |
+| 1 | 12677 | 0.02 | -1.1% (1740) [-2..-0] | +0.3% (778) [-1..+2] |
 
 ## Bracket-sum arbitrage
 
-0 opportunities in 277 one-winner ladders checked.
+0 opportunities in 426 one-winner ladders checked.
 
 ## Top series
 
 | Series | Category | 24h volume | Spread | Fade | Favorite | Correction (holdout) |
 |---|---|---|---|---|---|---|
-| Pro Football Spread (KXNFLSPREAD) | Sports | 1027462 | 0.02 | +3.4% (74) [-1..+6] | – | +61.1% (21) [+1..+134] |
-| Men's College Basketball Spread (KXNCAAMBSPREAD) | Sports | 401986 | 0.02 | +3.8% (7) | +5.6% (10) [+4..+7] | +26.1% (19) [-30..+88] |
-| Men's College Basketball Total Points (KXNCAAMBTOTAL) | Sports | 325682 | 0.02 | +5.9% (4) | -4.7% (10) [-24..+7] | +12.1% (29) [-27..+52] |
-| NBA Spread (KXNBASPREAD) | Sports | 402697 | 0.02 | -16.5% (82) [-24..-9] | – | +8.1% (39) [-30..+53] |
-| College Football Spread (KXNCAAFSPREAD) | Sports | 943097 | 0.03 | +6.7% (26) [+6..+7] | +9.8% (8) | -73.8% (7) |
-| NBA Total (KXNBATOTAL) | Sports | 150232 | 0.02 | +5.6% (25) [+5..+6] | -3.6% (71) [-10..+3] | -37.5% (34) [-74..+3] |
-| NBA Player Points (KXNBAPTS) | Sports | 118186 | 0.02 | +5.5% (22) [+5..+6] | +1.5% (12) [-16..+11] | -10.9% (27) [-51..+25] |
-| College Football Total Points (KXNCAAFTOTAL) | Sports | 346365 | 0.04 | +7.0% (13) [+6..+8] | +5.5% (25) [-3..+10] | -23.8% (8) |
-| Where will it rain daily (KXRAIN) | Climate and Weather | 542894 | 0.01 | +4.7% (34) [+4..+5] | +7.8% (3) | – |
-| Natural Gas Daily (KXNATGASD) | Commodities | 45797 | 0.04 | -19.0% (9) | +3.8% (43) [-1..+7] | +0.2% (14) [-27..+21] |
-| Brent Oil Daily (KXBRENTD) | Commodities | 44363 | 0.02 | -1.6% (32) [-8..+5] | +2.4% (45) [-3..+7] | -10.0% (3) |
-| NHL Goalscorer (KXNHLGOAL) | Sports | 192720 | 0.02 | +2.1% (64) [-2..+5] | – | +6.4% (8) |
-| Gold Daily (KXGOLDD) | Commodities | 107181 | 0.02 | +1.6% (37) [-4..+5] | -4.6% (48) [-14..+3] | +39.9% (5) |
-| Pro Football First Touchdown (KXNFLFIRSTTD) | Sports | 475121 | 0.02 | -0.3% (189) [-3..+2] | – | +96.6% (3) |
-| Pro Football 1st  Half Total Points (KXNFL1HTOTAL) | Sports | 167264 | 0.03 | -0.8% (37) [-9..+5] | -3.8% (41) [-11..+4] | +72.8% (6) |
-| Pro Football Touchdowns (KXNFLTD) | Sports | 1679664 | 0.02 | -1.6% (152) [-5..+1] | – | -100.0% (6) |
-| Correct Score (KXUEFANLSCORE) | Sports | 303606 | 0.02 | -2.4% (81) [-7..+3] | – | – |
-| Correct Score (KXAFCONSCORE) | Sports | 69043 | 0.03 | -2.5% (53) [-10..+3] | – | – |
-| Pro Football Total Points (KXNFLTOTAL) | Sports | 635304 | 0.02 | -3.3% (34) [-13..+3] | -12.6% (60) [-21..-4] | -6.1% (11) [-83..+100] |
-| UFC Method of Victory (KXUFCMOV) | Sports | 114510 | 0.01 | -3.8% (24) [-16..+5] | – | +26.1% (2) |
-| Pro Football Rushing Yards (KXNFLRSHYDS) | Sports | 188791 | 0.05 | -5.0% (104) [-11..-1] | +11.0% (7) | -38.5% (13) [-100..+47] |
-| US gas price up (KXAAAGASD) | Economics | 209643 | 0.01 | +5.8% (14) [+5..+7] | -5.1% (19) [-21..+7] | – |
-| Pro Football Player Receptions (KXNFLREC) | Sports | 94777 | 0.04 | -7.1% (95) [-13..-2] | -5.5% (14) [-22..+11] | -23.5% (14) [-81..+29] |
-| Pro Football Receiving Yards (KXNFLRECYDS) | Sports | 177681 | 0.05 | -12.2% (110) [-18..-6] | -31.9% (5) | -40.7% (18) [-86..+13] |
-| S&P 500 above/below (KXINXU) | Financials | 261367 | 0.03 | – | -18.5% (17) [-38..-0] | – |
-| PGA Tour (KXPGATOUR) | Sports | 10738612 | 0.001 | +5.1% (4) | +11.5% (1) | -8.6% (2) |
-| UEFA Nations League Game (KXUEFANLGAME) | Sports | 4706654 | 0.01 | -11.9% (6) | -27.6% (3) | – |
-| NFL Game (KXNFLGAME) | Sports | 2749565 | 0.01 | – | – | -100.0% (1) |
-| PGA Round 1 Leader (KXPGAR1LEAD) | Sports | 2453882 | 0.009 | +4.9% (2) | – | – |
-| DP World Tour Tournament Winner (KXDPWORLDTOUR) | Sports | 2052349 | 0.001 | +5.1% (6) | +4.9% (1) | – |
-| Fed meeting (KXFEDDECISION) | Economics | 1885637 | 0.015 | +3.8% (1) | +8.9% (2) | – |
-| NBA Game (KXNBAGAME) | Sports | 1253664 | 0.02 | – | – | -14.9% (5) |
-| College Football Game (KXNCAAFGAME) | Sports | 1189514 | 0.03 | +5.5% (5) | +7.8% (7) | -100.0% (4) |
-| ITF Women's Match (KXITFWMATCH) | Sports | 1161599 | 0.03 | +6.2% (6) | +8.0% (7) | +145.8% (1) |
-| Rotten Tomatoes Scores (KXRT) | Entertainment | 1120390 | 0.01 | +2.8% (1) | +4.6% (6) | – |
-| UFC Fight (KXUFCFIGHT) | Sports | 811078 | 0.01 | – | +15.1% (2) | -100.0% (1) |
-| Women's College Basketball Game (KXNCAAWBGAME) | Sports | 789081 | 0.35 | +6.8% (5) | +6.6% (7) | -38.8% (3) |
-| CONCACAF Nations League Game (KXCONCACAFNLGAME) | Sports | 772060 | 0.06 | +5.0% (5) | +11.6% (2) | – |
-| Challenger ATP  (KXATPCHALLENGERMATCH) | Sports | 721231 | 0.01 | +5.4% (2) | +7.5% (3) | +181.4% (2) |
-| ITF Men's Match (KXITFMATCH) | Sports | 717014 | 0.04 | +5.1% (4) | +7.2% (5) | – |
+| Pro Football Spread (KXNFLSPREAD) | Sports | 1465104 | 0.03 | +3.9% (84) [+1..+7] | – | +84.0% (28) [+26..+155] |
+| Pro Football Total Points (KXNFLTOTAL) | Sports | 340613 | 0.03 | -2.5% (37) [-11..+4] | -11.4% (70) [-19..-4] | +19.5% (15) [-50..+99] |
+| NBA Total (KXNBATOTAL) | Sports | 194706 | 0.02 | -1.9% (42) [-10..+4] | +0.7% (109) [-4..+5] | +8.9% (38) [-36..+57] |
+| Point Total (KXCONCACAFNLTOTAL) | Sports | 293338 | 0.02 | -33.1% (11) [-62..-13] | +8.2% (17) [+7..+10] | -100.0% (1) |
+| College Football Spread (KXNCAAFSPREAD) | Sports | 162456 | 0.05 | +6.5% (39) [+6..+7] | +9.8% (9) | -57.7% (13) [-100..-15] |
+| US gas price up (KXAAAGASD) | Economics | 230794 | 0.01 | +5.9% (21) [+5..+7] | -4.3% (30) [-15..+6] | – |
+| Pro Football Passing Yards (KXNFLPASSYDS) | Sports | 53429 | 0.02 | +5.6% (67) [+5..+6] | -17.2% (31) [-32..-3] | -86.3% (19) [-100..-59] |
+| Point Total (KXUEFANLTOTAL) | Sports | 840342 | 0.01 | +5.2% (15) [+4..+6] | +1.0% (17) [-11..+8] | +455.6% (1) |
+| NBA Player Threes (KXNBA3PT) | Sports | 77664 | 0.02 | +4.8% (26) [+4..+5] | -1.5% (12) [-18..+8] | -45.1% (22) [-83..-0] |
+| Where will it rain daily (KXRAIN) | Climate and Weather | 571571 | 0.01 | +4.7% (44) [+4..+5] | +7.4% (9) | – |
+| Daily Diesel Price (KXDIESELD) | Economics | 54219 | 0.01 | +4.5% (15) [+4..+5] | -1.2% (14) [-17..+7] | – |
+| Men's College Basketball Spread (KXNCAAMBSPREAD) | Sports | 764676 | 0.03 | +4.0% (17) [+4..+5] | +5.7% (11) [+4..+7] | -6.1% (30) [-47..+46] |
+| Pro Football Player Receptions (KXNFLREC) | Sports | 75493 | 0.01 | -6.6% (108) [-12..-2] | -2.2% (18) [-15..+10] | +3.9% (18) [-55..+68] |
+| Brent Oil Daily (KXBRENTD) | Commodities | 110647 | 0.04 | -1.1% (35) [-8..+5] | +2.9% (51) [-2..+7] | -52.6% (10) [-77..-18] |
+| NBA Player Points (KXNBAPTS) | Sports | 113338 | 0.01 | +2.6% (36) [-3..+6] | -6.6% (20) [-23..+5] | -40.2% (39) [-66..-13] |
+| Gold Daily (KXGOLDD) | Commodities | 104403 | 0.04 | +2.1% (43) [-3..+5] | -1.7% (64) [-8..+4] | +30.6% (4) |
+| Silver daily (KXSILVERD) | Commodities | 36929 | 0.04 | -0.2% (20) [-11..+6] | +1.4% (45) [-5..+6] | -18.5% (3) |
+| Men's College Basketball Total Points (KXNCAAMBTOTAL) | Sports | 658664 | 0.02 | -5.5% (10) [-26..+5] | +1.3% (19) [-10..+8] | -3.3% (46) [-29..+28] |
+| Pro Football First Touchdown (KXNFLFIRSTTD) | Sports | 346048 | 0.01 | -0.2% (212) [-3..+2] | – | +47.5% (4) |
+| Spread (KXUEFANLSPREAD) | Sports | 250221 | 0.01 | -0.5% (19) [-12..+6] | -100.0% (1) | -100.0% (1) |
+| Pro Football Touchdowns Protected (KXNFLTDPROT) | Sports | 108374 | 0.02 | -1.9% (89) [-7..+3] | – | -25.4% (19) [-73..+26] |
+| Pro Football Touchdowns (KXNFLTD) | Sports | 915805 | 0.01 | -1.9% (176) [-6..+1] | – | -100.0% (8) |
+| Correct Score (KXUEFANLSCORE) | Sports | 304850 | 0.02 | -2.1% (141) [-7..+2] | – | -100.0% (1) |
+| Pro Football Rushing Yards (KXNFLRSHYDS) | Sports | 194522 | 0.01 | -3.7% (118) [-9..+1] | +11.5% (10) [+10..+12] | -23.4% (22) [-77..+37] |
+| Pro Football Team Total Points (KXNFLTEAMTOTAL) | Sports | 67234 | 0.03 | -6.3% (67) [-13..-0] | -5.0% (86) [-11..+0] | +71.6% (11) [-28..+174] |
+| DANCING WITH THE STARS ELIMINATION (KXDWTSELIMINATION) | Entertainment | 56574 | 0.01 | -6.7% (17) [-20..+6] | – | – |
+| NBA Spread (KXNBASPREAD) | Sports | 603967 | 0.02 | -8.9% (126) [-14..-4] | +10.3% (2) | -26.9% (55) [-56..+12] |
+| NBA Player Assists (KXNBAAST) | Sports | 71119 | 0.01 | -9.0% (15) [-29..+4] | -18.6% (4) | +2.8% (11) [-54..+65] |
+| Pro Football Receiving Yards (KXNFLRECYDS) | Sports | 238655 | 0.01 | -12.4% (126) [-17..-7] | -31.9% (5) | -13.3% (21) [-54..+39] |
+| S&P 500 above/below (KXINXU) | Financials | 288695 | 0.02 | – | -17.3% (18) [-35..-1] | – |
+| NBA Player Rebounds (KXNBAREB) | Sports | 56804 | 0.01 | +5.4% (12) [+4..+6] | -15.3% (14) [-39..+1] | -38.3% (16) [-84..+6] |
+| NFL Game (KXNFLGAME) | Sports | 8625970 | 0.01 | – | – | -100.0% (3) |
+| PGA Tour (KXPGATOUR) | Sports | 5975036 | 0.003 | +5.1% (4) | +11.5% (1) | +265.4% (1) |
+| UEFA Nations League Game (KXUEFANLGAME) | Sports | 4111683 | 0.01 | -9.0% (7) | -27.6% (3) | +152.2% (1) |
+| NBA Game (KXNBAGAME) | Sports | 2192905 | 0.02 | +9.2% (1) | +12.2% (2) | +7.7% (4) |
+| Challenger ATP  (KXATPCHALLENGERMATCH) | Sports | 1715034 | 0.01 | +5.4% (2) | +9.4% (4) | -100.0% (3) |
+| Men's College Basketball Game (KXNCAAMBGAME) | Sports | 1151232 | 0.03 | +5.2% (5) | -2.7% (9) | -17.9% (9) |
+| CONCACAF Nations League Game (KXCONCACAFNLGAME) | Sports | 982519 | 0.01 | +5.1% (10) [+4..+6] | +12.1% (4) | – |
+| who will be featured on album (KXFEATURE) | Entertainment | 887763 | 0.01 | – | – | – |
+| Challenger WTA (KXWTACHALLENGERMATCH) | Sports | 790293 | 0.01 | +4.8% (2) | +8.8% (4) | – |

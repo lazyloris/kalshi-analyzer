@@ -1,126 +1,126 @@
 {
- "generated_at": "2026-11-12T20:50+00:00",
- "series_scanned": 107,
- "quotes": 29991,
- "holdout_from": "2026-10-26",
+ "generated_at": "2026-11-16T20:45+00:00",
+ "series_scanned": 99,
+ "quotes": 39219,
+ "holdout_from": "2026-10-29",
  "categories": [
   {
    "category": "Sports",
-   "series": 67,
-   "quotes": 23915,
+   "series": 60,
+   "quotes": 32111,
    "fade": {
-    "trades": 1340,
-    "pnl": -365.45,
-    "roi": -0.0287,
+    "trades": 1708,
+    "pnl": -421.04,
+    "roi": -0.026,
     "roi_ci": [
-     -0.0422,
-     -0.017
+     -0.0376,
+     -0.0158
     ],
-    "win_rate": 0.922
+    "win_rate": 0.925
    },
    "favorite": {
-    "trades": 375,
-    "pnl": -77.69,
-    "roi": -0.0216,
+    "trades": 557,
+    "pnl": -175.62,
+    "roi": -0.0329,
     "roi_ci": [
-     -0.0515,
-     0.005
+     -0.0577,
+     -0.0123
     ],
-    "win_rate": 0.904
+    "win_rate": 0.894
    },
    "corrected_holdout": {
-    "trades": 330,
-    "pnl": -91.33,
-    "roi": -0.0267,
+    "trades": 516,
+    "pnl": -656.84,
+    "roi": -0.1231,
     "roi_ci": [
-     -0.1502,
-     0.12
+     -0.232,
+     -0.0015
     ],
-    "win_rate": 0.348
+    "win_rate": 0.302
    },
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 485,
-     "market": 0.018,
-     "actual": 0.012
+     "n": 509,
+     "market": 0.02,
+     "actual": 0.014
     },
     {
      "bucket": "3c+",
-     "n": 795,
+     "n": 1059,
      "market": 0.043,
-     "actual": 0.057
+     "actual": 0.052
     },
     {
      "bucket": "6c+",
-     "n": 881,
-     "market": 0.078,
-     "actual": 0.093
+     "n": 1169,
+     "market": 0.077,
+     "actual": 0.089
     },
     {
      "bucket": "10c+",
-     "n": 761,
+     "n": 1056,
      "market": 0.123,
-     "actual": 0.156
+     "actual": 0.147
     },
     {
      "bucket": "15c+",
-     "n": 1110,
-     "market": 0.195,
-     "actual": 0.217
+     "n": 1563,
+     "market": 0.196,
+     "actual": 0.221
     },
     {
      "bucket": "25c+",
-     "n": 887,
-     "market": 0.296,
-     "actual": 0.307
+     "n": 1253,
+     "market": 0.295,
+     "actual": 0.31
     },
     {
      "bucket": "35c+",
-     "n": 1222,
-     "market": 0.423,
-     "actual": 0.462
+     "n": 1634,
+     "market": 0.422,
+     "actual": 0.437
     },
     {
      "bucket": "50c+",
-     "n": 1043,
-     "market": 0.567,
-     "actual": 0.6
+     "n": 1374,
+     "market": 0.57,
+     "actual": 0.574
     },
     {
      "bucket": "65c+",
-     "n": 527,
-     "market": 0.699,
-     "actual": 0.719
+     "n": 780,
+     "market": 0.698,
+     "actual": 0.705
     },
     {
      "bucket": "75c+",
-     "n": 479,
-     "market": 0.798,
-     "actual": 0.8
+     "n": 727,
+     "market": 0.799,
+     "actual": 0.807
     },
     {
      "bucket": "85c+",
-     "n": 222,
+     "n": 351,
      "market": 0.873,
-     "actual": 0.865
+     "actual": 0.872
     },
     {
      "bucket": "90c+",
-     "n": 177,
-     "market": 0.918,
-     "actual": 0.915
+     "n": 262,
+     "market": 0.919,
+     "actual": 0.912
     },
     {
      "bucket": "94c+",
-     "n": 101,
-     "market": 0.95,
-     "actual": 0.96
+     "n": 141,
+     "market": 0.952,
+     "actual": 0.979
     },
     {
      "bucket": "97c+",
-     "n": 33,
-     "market": 0.979,
+     "n": 62,
+     "market": 0.978,
      "actual": 1.0
     }
    ]
@@ -128,120 +128,120 @@
   {
    "category": "Commodities",
    "series": 5,
-   "quotes": 2387,
+   "quotes": 2705,
    "fade": {
-    "trades": 83,
-    "pnl": -13.09,
-    "roi": -0.0165,
+    "trades": 101,
+    "pnl": 6.06,
+    "roi": 0.0063,
     "roi_ci": [
-     -0.0648,
-     0.0218
+     -0.0346,
+     0.0369
     ],
-    "win_rate": 0.94
+    "win_rate": 0.96
    },
    "favorite": {
-    "trades": 146,
-    "pnl": -0.62,
-    "roi": -0.0004,
+    "trades": 166,
+    "pnl": 14.4,
+    "roi": 0.0091,
     "roi_ci": [
-     -0.0368,
-     0.0321
+     -0.0237,
+     0.0366
     ],
-    "win_rate": 0.938
+    "win_rate": 0.946
    },
    "corrected_holdout": {
-    "trades": 23,
-    "pnl": 7.08,
-    "roi": 0.0316,
+    "trades": 20,
+    "pnl": -39.14,
+    "roi": -0.2016,
     "roi_ci": [
-     -0.148,
-     0.2249
+     -0.4437,
+     0.0293
     ],
-    "win_rate": 0.783
+    "win_rate": 0.65
    },
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 39,
-     "market": 0.022,
-     "actual": 0.0
+     "n": 89,
+     "market": 0.021,
+     "actual": 0.022
     },
     {
      "bucket": "3c+",
-     "n": 72,
+     "n": 91,
      "market": 0.04,
-     "actual": 0.028
+     "actual": 0.033
     },
     {
      "bucket": "6c+",
-     "n": 36,
-     "market": 0.079,
-     "actual": 0.111
+     "n": 43,
+     "market": 0.08,
+     "actual": 0.047
     },
     {
      "bucket": "10c+",
-     "n": 33,
-     "market": 0.121,
-     "actual": 0.152
+     "n": 41,
+     "market": 0.123,
+     "actual": 0.073
     },
     {
      "bucket": "15c+",
-     "n": 53,
-     "market": 0.195,
-     "actual": 0.132
+     "n": 64,
+     "market": 0.2,
+     "actual": 0.109
     },
     {
      "bucket": "25c+",
      "n": 45,
-     "market": 0.298,
-     "actual": 0.2
+     "market": 0.301,
+     "actual": 0.244
     },
     {
      "bucket": "35c+",
-     "n": 62,
-     "market": 0.429,
-     "actual": 0.355
+     "n": 58,
+     "market": 0.425,
+     "actual": 0.414
     },
     {
      "bucket": "50c+",
-     "n": 70,
-     "market": 0.572,
-     "actual": 0.6
+     "n": 66,
+     "market": 0.568,
+     "actual": 0.576
     },
     {
      "bucket": "65c+",
-     "n": 60,
-     "market": 0.697,
-     "actual": 0.667
+     "n": 56,
+     "market": 0.7,
+     "actual": 0.696
     },
     {
      "bucket": "75c+",
-     "n": 88,
-     "market": 0.802,
-     "actual": 0.864
+     "n": 64,
+     "market": 0.804,
+     "actual": 0.828
     },
     {
      "bucket": "85c+",
-     "n": 55,
-     "market": 0.87,
-     "actual": 0.873
+     "n": 48,
+     "market": 0.875,
+     "actual": 0.875
     },
     {
      "bucket": "90c+",
-     "n": 53,
-     "market": 0.917,
-     "actual": 0.943
+     "n": 47,
+     "market": 0.918,
+     "actual": 0.915
     },
     {
      "bucket": "94c+",
-     "n": 80,
+     "n": 96,
      "market": 0.956,
-     "actual": 0.975
+     "actual": 0.979
     },
     {
      "bucket": "97c+",
-     "n": 73,
-     "market": 0.976,
+     "n": 98,
+     "market": 0.977,
      "actual": 1.0
     }
    ]
@@ -249,22 +249,25 @@
   {
    "category": "Climate and Weather",
    "series": 6,
-   "quotes": 1063,
+   "quotes": 1569,
    "fade": {
-    "trades": 38,
-    "pnl": 17.04,
-    "roi": 0.0469,
+    "trades": 48,
+    "pnl": 21.56,
+    "roi": 0.047,
     "roi_ci": [
-     0.0429,
-     0.0516
+     0.0434,
+     0.0511
     ],
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 6,
-    "pnl": 3.43,
-    "roi": 0.0596,
-    "roi_ci": null,
+    "trades": 12,
+    "pnl": 7.56,
+    "roi": 0.0661,
+    "roi_ci": [
+     0.0519,
+     0.0829
+    ],
     "win_rate": 1.0
    },
    "corrected_holdout": {
@@ -277,107 +280,113 @@
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 67,
+     "n": 94,
      "market": 0.018,
-     "actual": 0.015
+     "actual": 0.011
     },
     {
      "bucket": "3c+",
-     "n": 29,
-     "market": 0.04,
+     "n": 35,
+     "market": 0.041,
      "actual": 0.0
     },
     {
      "bucket": "6c+",
-     "n": 20,
-     "market": 0.076,
+     "n": 24,
+     "market": 0.075,
      "actual": 0.0
     },
     {
      "bucket": "10c+",
-     "n": 9,
-     "market": 0.126,
-     "actual": 0.111
+     "n": 14,
+     "market": 0.123,
+     "actual": 0.071
     },
     {
      "bucket": "15c+",
-     "n": 13,
-     "market": 0.194,
-     "actual": 0.0
+     "n": 17,
+     "market": 0.192,
+     "actual": 0.118
     },
     {
      "bucket": "25c+",
-     "n": 7,
-     "market": 0.286,
-     "actual": 0.143
+     "n": 10,
+     "market": 0.295,
+     "actual": 0.3
     },
     {
      "bucket": "35c+",
-     "n": 5,
-     "market": 0.451,
-     "actual": 0.4
+     "n": 9,
+     "market": 0.445,
+     "actual": 0.556
     },
     {
      "bucket": "50c+",
-     "n": 2,
-     "market": 0.623,
-     "actual": 0.5
+     "n": 5,
+     "market": 0.583,
+     "actual": 0.2
     },
     {
      "bucket": "65c+",
-     "n": 3,
+     "n": 4,
      "market": 0.702,
      "actual": 1.0
     },
     {
      "bucket": "75c+",
-     "n": 4,
-     "market": 0.795,
-     "actual": 0.5
+     "n": 3,
+     "market": 0.8,
+     "actual": 0.333
     },
     {
      "bucket": "85c+",
-     "n": 1,
-     "market": 0.885,
+     "n": 3,
+     "market": 0.878,
      "actual": 1.0
     },
     {
      "bucket": "90c+",
-     "n": 3,
-     "market": 0.925,
+     "n": 5,
+     "market": 0.927,
      "actual": 1.0
     },
     {
      "bucket": "94c+",
      "n": 6,
-     "market": 0.956,
-     "actual": 0.833
+     "market": 0.952,
+     "actual": 1.0
     },
     {
      "bucket": "97c+",
-     "n": 2,
-     "market": 0.975,
+     "n": 3,
+     "market": 0.978,
      "actual": 1.0
     }
    ]
   },
   {
-   "category": "Mentions",
-   "series": 6,
-   "quotes": 799,
+   "category": "Economics",
+   "series": 7,
+   "quotes": 772,
    "fade": {
-    "trades": 3,
-    "pnl": -18.43,
-    "roi": -0.6483,
-    "roi_ci": null,
-    "win_rate": 0.333
+    "trades": 42,
+    "pnl": 11.43,
+    "roi": 0.0287,
+    "roi_ci": [
+     -0.0215,
+     0.0566
+    ],
+    "win_rate": 0.976
    },
    "favorite": {
-    "trades": 6,
-    "pnl": 4.7,
-    "roi": 0.082,
-    "roi_ci": null,
-    "win_rate": 1.0
+    "trades": 57,
+    "pnl": -3.53,
+    "roi": -0.0065,
+    "roi_ci": [
+     -0.0693,
+     0.0532
+    ],
+    "win_rate": 0.93
    },
    "corrected_holdout": {
     "trades": 0,
@@ -389,94 +398,94 @@
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 7,
+     "n": 60,
      "market": 0.018,
-     "actual": 0.143
-    },
-    {
-     "bucket": "3c+",
-     "n": 4,
-     "market": 0.048,
-     "actual": 0.5
-    },
-    {
-     "bucket": "6c+",
-     "n": 3,
-     "market": 0.08,
      "actual": 0.0
     },
     {
+     "bucket": "3c+",
+     "n": 30,
+     "market": 0.043,
+     "actual": 0.0
+    },
+    {
+     "bucket": "6c+",
+     "n": 22,
+     "market": 0.085,
+     "actual": 0.045
+    },
+    {
      "bucket": "10c+",
-     "n": 4,
-     "market": 0.119,
+     "n": 17,
+     "market": 0.121,
      "actual": 0.0
     },
     {
      "bucket": "15c+",
-     "n": 18,
-     "market": 0.201,
-     "actual": 0.222
+     "n": 22,
+     "market": 0.194,
+     "actual": 0.045
     },
     {
      "bucket": "25c+",
-     "n": 17,
-     "market": 0.293,
-     "actual": 0.294
+     "n": 19,
+     "market": 0.3,
+     "actual": 0.105
     },
     {
      "bucket": "35c+",
-     "n": 18,
-     "market": 0.406,
-     "actual": 0.5
+     "n": 26,
+     "market": 0.454,
+     "actual": 0.538
     },
     {
      "bucket": "50c+",
-     "n": 23,
-     "market": 0.588,
-     "actual": 0.565
+     "n": 21,
+     "market": 0.574,
+     "actual": 0.476
     },
     {
      "bucket": "65c+",
-     "n": 15,
-     "market": 0.703,
-     "actual": 0.933
+     "n": 22,
+     "market": 0.708,
+     "actual": 0.864
     },
     {
      "bucket": "75c+",
-     "n": 11,
-     "market": 0.784,
-     "actual": 0.818
+     "n": 21,
+     "market": 0.807,
+     "actual": 1.0
     },
     {
      "bucket": "85c+",
-     "n": 5,
-     "market": 0.886,
-     "actual": 1.0
+     "n": 20,
+     "market": 0.874,
+     "actual": 0.9
     },
     {
      "bucket": "90c+",
-     "n": 3,
-     "market": 0.925,
-     "actual": 1.0
+     "n": 20,
+     "market": 0.92,
+     "actual": 0.95
     },
     {
      "bucket": "94c+",
-     "n": 3,
-     "market": 0.955,
-     "actual": 1.0
+     "n": 27,
+     "market": 0.952,
+     "actual": 0.963
     },
     {
      "bucket": "97c+",
-     "n": 4,
-     "market": 0.985,
-     "actual": 1.0
+     "n": 48,
+     "market": 0.981,
+     "actual": 0.979
     }
    ]
   },
   {
    "category": "Financials",
-   "series": 2,
-   "quotes": 636,
+   "series": 3,
+   "quotes": 772,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -485,14 +494,14 @@
     "win_rate": null
    },
    "favorite": {
-    "trades": 17,
-    "pnl": -30.14,
-    "roi": -0.1847,
+    "trades": 18,
+    "pnl": -29.87,
+    "roi": -0.1728,
     "roi_ci": [
-     -0.3757,
-     -0.0045
+     -0.3531,
+     -0.0119
     ],
-    "win_rate": 0.765
+    "win_rate": 0.778
    },
    "corrected_holdout": {
     "trades": 0,
@@ -534,45 +543,45 @@
     },
     {
      "bucket": "35c+",
-     "n": 33,
-     "market": 0.425,
-     "actual": 0.697
+     "n": 39,
+     "market": 0.428,
+     "actual": 0.59
     },
     {
      "bucket": "50c+",
-     "n": 80,
-     "market": 0.573,
-     "actual": 0.838
+     "n": 96,
+     "market": 0.569,
+     "actual": 0.719
     },
     {
      "bucket": "65c+",
-     "n": 32,
-     "market": 0.704,
-     "actual": 0.938
+     "n": 33,
+     "market": 0.703,
+     "actual": 0.909
     },
     {
      "bucket": "75c+",
-     "n": 86,
-     "market": 0.803,
-     "actual": 0.884
+     "n": 101,
+     "market": 0.806,
+     "actual": 0.851
     },
     {
      "bucket": "85c+",
-     "n": 53,
-     "market": 0.879,
-     "actual": 0.962
+     "n": 72,
+     "market": 0.877,
+     "actual": 0.917
     },
     {
      "bucket": "90c+",
-     "n": 25,
-     "market": 0.92,
-     "actual": 0.92
+     "n": 40,
+     "market": 0.921,
+     "actual": 0.925
     },
     {
      "bucket": "94c+",
-     "n": 19,
-     "market": 0.952,
-     "actual": 0.842
+     "n": 25,
+     "market": 0.951,
+     "actual": 0.88
     },
     {
      "bucket": "97c+",
@@ -583,133 +592,18 @@
    ]
   },
   {
-   "category": "Economics",
-   "series": 6,
-   "quotes": 493,
-   "fade": {
-    "trades": 28,
-    "pnl": 13.45,
-    "roi": 0.0505,
-    "roi_ci": [
-     0.0438,
-     0.0583
-    ],
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 33,
-    "pnl": 1.4,
-    "roi": 0.0044,
-    "roi_ci": [
-     -0.066,
-     0.075
-    ],
-    "win_rate": 0.939
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "calibration": [
-    {
-     "bucket": "0c+",
-     "n": 38,
-     "market": 0.019,
-     "actual": 0.0
-    },
-    {
-     "bucket": "3c+",
-     "n": 21,
-     "market": 0.042,
-     "actual": 0.0
-    },
-    {
-     "bucket": "6c+",
-     "n": 15,
-     "market": 0.083,
-     "actual": 0.0
-    },
-    {
-     "bucket": "10c+",
-     "n": 12,
-     "market": 0.121,
-     "actual": 0.0
-    },
-    {
-     "bucket": "15c+",
-     "n": 15,
-     "market": 0.19,
-     "actual": 0.0
-    },
-    {
-     "bucket": "25c+",
-     "n": 9,
-     "market": 0.291,
-     "actual": 0.111
-    },
-    {
-     "bucket": "35c+",
-     "n": 17,
-     "market": 0.453,
-     "actual": 0.706
-    },
-    {
-     "bucket": "50c+",
-     "n": 14,
-     "market": 0.587,
-     "actual": 0.5
-    },
-    {
-     "bucket": "65c+",
-     "n": 15,
-     "market": 0.712,
-     "actual": 0.933
-    },
-    {
-     "bucket": "75c+",
-     "n": 12,
-     "market": 0.802,
-     "actual": 1.0
-    },
-    {
-     "bucket": "85c+",
-     "n": 13,
-     "market": 0.871,
-     "actual": 0.923
-    },
-    {
-     "bucket": "90c+",
-     "n": 11,
-     "market": 0.921,
-     "actual": 1.0
-    },
-    {
-     "bucket": "94c+",
-     "n": 16,
-     "market": 0.952,
-     "actual": 0.938
-    },
-    {
-     "bucket": "97c+",
-     "n": 24,
-     "market": 0.98,
-     "actual": 1.0
-    }
-   ]
-  },
-  {
    "category": "Politics",
-   "series": 2,
-   "quotes": 241,
+   "series": 4,
+   "quotes": 457,
    "fade": {
-    "trades": 9,
-    "pnl": 4.43,
-    "roi": 0.0518,
-    "roi_ci": null,
-    "win_rate": 1.0
+    "trades": 22,
+    "pnl": -0.24,
+    "roi": -0.0011,
+    "roi_ci": [
+     -0.0958,
+     0.0522
+    ],
+    "win_rate": 0.955
    },
    "favorite": {
     "trades": 11,
@@ -731,45 +625,45 @@
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 26,
-     "market": 0.017,
+     "n": 40,
+     "market": 0.018,
      "actual": 0.0
     },
     {
      "bucket": "3c+",
-     "n": 5,
-     "market": 0.042,
-     "actual": 0.0
+     "n": 14,
+     "market": 0.041,
+     "actual": 0.071
     },
     {
      "bucket": "6c+",
-     "n": 4,
-     "market": 0.084,
+     "n": 10,
+     "market": 0.076,
      "actual": 0.0
     },
     {
      "bucket": "10c+",
-     "n": 2,
-     "market": 0.123,
-     "actual": 0.5
+     "n": 15,
+     "market": 0.119,
+     "actual": 0.133
     },
     {
      "bucket": "15c+",
-     "n": 2,
-     "market": 0.163,
-     "actual": 0.5
+     "n": 9,
+     "market": 0.193,
+     "actual": 0.333
     },
     {
      "bucket": "25c+",
-     "n": 2,
-     "market": 0.323,
+     "n": 4,
+     "market": 0.29,
      "actual": 0.5
     },
     {
      "bucket": "35c+",
-     "n": 7,
-     "market": 0.416,
-     "actual": 0.571
+     "n": 15,
+     "market": 0.415,
+     "actual": 0.4
     },
     {
      "bucket": "50c+",
@@ -779,15 +673,15 @@
     },
     {
      "bucket": "65c+",
-     "n": 2,
+     "n": 3,
      "market": 0.705,
      "actual": 1.0
     },
     {
      "bucket": "75c+",
-     "n": 2,
-     "market": 0.76,
-     "actual": 0.5
+     "n": 3,
+     "market": 0.757,
+     "actual": 0.667
     },
     {
      "bucket": "85c+",
@@ -809,27 +703,30 @@
     },
     {
      "bucket": "97c+",
-     "n": 15,
+     "n": 17,
      "market": 0.981,
      "actual": 1.0
     }
    ]
   },
   {
-   "category": "Elections",
-   "series": 2,
-   "quotes": 218,
+   "category": "Entertainment",
+   "series": 5,
+   "quotes": 450,
    "fade": {
-    "trades": 4,
-    "pnl": 1.4,
-    "roi": 0.0363,
-    "roi_ci": null,
-    "win_rate": 1.0
+    "trades": 19,
+    "pnl": -10.11,
+    "roi": -0.0561,
+    "roi_ci": [
+     -0.1676,
+     0.055
+    ],
+    "win_rate": 0.895
    },
    "favorite": {
-    "trades": 1,
-    "pnl": 1.13,
-    "roi": 0.1145,
+    "trades": 7,
+    "pnl": 3.51,
+    "roi": 0.052,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -843,13 +740,225 @@
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 33,
-     "market": 0.016,
+     "n": 30,
+     "market": 0.018,
      "actual": 0.0
     },
     {
      "bucket": "3c+",
+     "n": 15,
+     "market": 0.046,
+     "actual": 0.067
+    },
+    {
+     "bucket": "6c+",
+     "n": 9,
+     "market": 0.077,
+     "actual": 0.111
+    },
+    {
+     "bucket": "10c+",
+     "n": 11,
+     "market": 0.121,
+     "actual": 0.0
+    },
+    {
+     "bucket": "15c+",
+     "n": 11,
+     "market": 0.195,
+     "actual": 0.273
+    },
+    {
+     "bucket": "25c+",
+     "n": 4,
+     "market": 0.299,
+     "actual": 0.0
+    },
+    {
+     "bucket": "35c+",
+     "n": 8,
+     "market": 0.423,
+     "actual": 0.25
+    },
+    {
+     "bucket": "50c+",
+     "n": 2,
+     "market": 0.607,
+     "actual": 0.5
+    },
+    {
+     "bucket": "65c+",
+     "n": 4,
+     "market": 0.674,
+     "actual": 1.0
+    },
+    {
+     "bucket": "75c+",
+     "n": 6,
+     "market": 0.794,
+     "actual": 0.833
+    },
+    {
+     "bucket": "85c+",
+     "n": 5,
+     "market": 0.871,
+     "actual": 1.0
+    },
+    {
+     "bucket": "90c+",
+     "n": 3,
+     "market": 0.913,
+     "actual": 1.0
+    },
+    {
+     "bucket": "94c+",
+     "n": 14,
+     "market": 0.952,
+     "actual": 1.0
+    },
+    {
+     "bucket": "97c+",
+     "n": 32,
+     "market": 0.98,
+     "actual": 1.0
+    }
+   ]
+  },
+  {
+   "category": "Mentions",
+   "series": 3,
+   "quotes": 202,
+   "fade": {
+    "trades": 1,
+    "pnl": 0.74,
+    "roi": 0.0799,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 6,
+    "pnl": 4.23,
+    "roi": 0.0732,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "calibration": [
+    {
+     "bucket": "3c+",
+     "n": 5,
+     "market": 0.04,
+     "actual": 0.0
+    },
+    {
+     "bucket": "6c+",
+     "n": 5,
+     "market": 0.072,
+     "actual": 0.0
+    },
+    {
+     "bucket": "10c+",
+     "n": 3,
+     "market": 0.118,
+     "actual": 0.333
+    },
+    {
+     "bucket": "15c+",
+     "n": 8,
+     "market": 0.194,
+     "actual": 0.375
+    },
+    {
+     "bucket": "25c+",
      "n": 17,
+     "market": 0.301,
+     "actual": 0.412
+    },
+    {
+     "bucket": "35c+",
+     "n": 10,
+     "market": 0.406,
+     "actual": 0.6
+    },
+    {
+     "bucket": "50c+",
+     "n": 11,
+     "market": 0.564,
+     "actual": 0.727
+    },
+    {
+     "bucket": "65c+",
+     "n": 4,
+     "market": 0.705,
+     "actual": 1.0
+    },
+    {
+     "bucket": "75c+",
+     "n": 4,
+     "market": 0.8,
+     "actual": 1.0
+    },
+    {
+     "bucket": "85c+",
+     "n": 4,
+     "market": 0.867,
+     "actual": 1.0
+    },
+    {
+     "bucket": "90c+",
+     "n": 2,
+     "market": 0.92,
+     "actual": 1.0
+    },
+    {
+     "bucket": "94c+",
+     "n": 2,
+     "market": 0.95,
+     "actual": 1.0
+    }
+   ]
+  },
+  {
+   "category": "Elections",
+   "series": 1,
+   "quotes": 155,
+   "fade": {
+    "trades": 4,
+    "pnl": 1.4,
+    "roi": 0.0363,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "calibration": [
+    {
+     "bucket": "0c+",
+     "n": 32,
+     "market": 0.014,
+     "actual": 0.0
+    },
+    {
+     "bucket": "3c+",
+     "n": 16,
      "market": 0.039,
      "actual": 0.0
     },
@@ -861,8 +970,8 @@
     },
     {
      "bucket": "10c+",
-     "n": 4,
-     "market": 0.125,
+     "n": 3,
+     "market": 0.127,
      "actual": 0.0
     },
     {
@@ -876,125 +985,19 @@
      "n": 2,
      "market": 0.488,
      "actual": 0.5
-    },
-    {
-     "bucket": "85c+",
-     "n": 1,
-     "market": 0.885,
-     "actual": 1.0
-    },
-    {
-     "bucket": "94c+",
-     "n": 2,
-     "market": 0.965,
-     "actual": 1.0
-    },
-    {
-     "bucket": "97c+",
-     "n": 16,
-     "market": 0.983,
-     "actual": 1.0
-    }
-   ]
-  },
-  {
-   "category": "Entertainment",
-   "series": 4,
-   "quotes": 120,
-   "fade": {
-    "trades": 4,
-    "pnl": 1.85,
-    "roi": 0.0485,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 7,
-    "pnl": -7.1,
-    "roi": -0.1043,
-    "roi_ci": null,
-    "win_rate": 0.857
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "calibration": [
-    {
-     "bucket": "0c+",
-     "n": 7,
-     "market": 0.02,
-     "actual": 0.0
-    },
-    {
-     "bucket": "3c+",
-     "n": 4,
-     "market": 0.045,
-     "actual": 0.0
-    },
-    {
-     "bucket": "6c+",
-     "n": 2,
-     "market": 0.077,
-     "actual": 0.0
-    },
-    {
-     "bucket": "10c+",
-     "n": 2,
-     "market": 0.11,
-     "actual": 0.0
-    },
-    {
-     "bucket": "15c+",
-     "n": 3,
-     "market": 0.185,
-     "actual": 0.0
-    },
-    {
-     "bucket": "25c+",
-     "n": 2,
-     "market": 0.255,
-     "actual": 0.0
-    },
-    {
-     "bucket": "75c+",
-     "n": 2,
-     "market": 0.792,
-     "actual": 1.0
-    },
-    {
-     "bucket": "85c+",
-     "n": 2,
-     "market": 0.883,
-     "actual": 0.5
-    },
-    {
-     "bucket": "94c+",
-     "n": 5,
-     "market": 0.952,
-     "actual": 1.0
-    },
-    {
-     "bucket": "97c+",
-     "n": 4,
-     "market": 0.981,
-     "actual": 1.0
     }
    ]
   },
   {
    "category": "Science and Technology",
-   "series": 5,
-   "quotes": 105,
+   "series": 3,
+   "quotes": 12,
    "fade": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": null
    },
    "favorite": {
     "trades": 0,
@@ -1013,62 +1016,14 @@
    "calibration": [
     {
      "bucket": "0c+",
-     "n": 11,
-     "market": 0.018,
-     "actual": 0.0
-    },
-    {
-     "bucket": "3c+",
-     "n": 3,
-     "market": 0.038,
-     "actual": 0.0
-    },
-    {
-     "bucket": "6c+",
-     "n": 1,
-     "market": 0.075,
-     "actual": 0.0
-    },
-    {
-     "bucket": "10c+",
-     "n": 1,
-     "market": 0.11,
-     "actual": 0.0
-    },
-    {
-     "bucket": "15c+",
-     "n": 1,
-     "market": 0.165,
-     "actual": 0.0
-    },
-    {
-     "bucket": "50c+",
      "n": 2,
-     "market": 0.55,
-     "actual": 1.0
+     "market": 0.015,
+     "actual": 0.0
     },
     {
      "bucket": "75c+",
-     "n": 1,
-     "market": 0.77,
-     "actual": 1.0
-    },
-    {
-     "bucket": "85c+",
-     "n": 1,
-     "market": 0.9,
-     "actual": 1.0
-    },
-    {
-     "bucket": "94c+",
-     "n": 1,
-     "market": 0.96,
-     "actual": 1.0
-    },
-    {
-     "bucket": "97c+",
      "n": 2,
-     "market": 0.98,
+     "market": 0.805,
      "actual": 1.0
     }
    ]
@@ -1154,191 +1109,80 @@
    "title": "Pro Football Spread",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 1027462,
-   "open_markets": 354,
-   "median_spread": 0.02,
-   "quotes": 1465,
-   "events": 20,
-   "brier_market": 0.1739,
-   "fade": {
-    "trades": 74,
-    "pnl": 23.76,
-    "roi": 0.0341,
-    "roi_ci": [
-     -0.0061,
-     0.0641
-    ],
-    "win_rate": 0.973
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 21,
-    "pnl": 132.39,
-    "roi": 0.6112,
-    "roi_ci": [
-     0.0096,
-     1.3407
-    ],
-    "win_rate": 0.524
-   }
-  },
-  {
-   "series": "KXNCAAMBSPREAD",
-   "title": "Men's College Basketball Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 401986,
-   "open_markets": 300,
-   "median_spread": 0.02,
-   "quotes": 781,
-   "events": 23,
-   "brier_market": 0.1381,
-   "fade": {
-    "trades": 7,
-    "pnl": 2.58,
-    "roi": 0.0383,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 10,
-    "pnl": 5.38,
-    "roi": 0.0563,
-    "roi_ci": [
-     0.0412,
-     0.071
-    ],
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 19,
-    "pnl": 51.07,
-    "roi": 0.2607,
-    "roi_ci": [
-     -0.2979,
-     0.8822
-    ],
-    "win_rate": 0.474
-   }
-  },
-  {
-   "series": "KXNCAAMBTOTAL",
-   "title": "Men's College Basketball Total Points",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 325682,
-   "open_markets": 360,
-   "median_spread": 0.02,
-   "quotes": 955,
-   "events": 23,
-   "brier_market": 0.1579,
-   "fade": {
-    "trades": 4,
-    "pnl": 2.23,
-    "roi": 0.059,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 10,
-    "pnl": -4.53,
-    "roi": -0.0474,
-    "roi_ci": [
-     -0.2427,
-     0.0656
-    ],
-    "win_rate": 0.9
-   },
-   "corrected_holdout": {
-    "trades": 29,
-    "pnl": 36.17,
-    "roi": 0.121,
-    "roi_ci": [
-     -0.2696,
-     0.5213
-    ],
-    "win_rate": 0.448
-   }
-  },
-  {
-   "series": "KXNBASPREAD",
-   "title": "NBA Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 402697,
-   "open_markets": 132,
-   "median_spread": 0.02,
-   "quotes": 1283,
-   "events": 19,
-   "brier_market": 0.2251,
-   "fade": {
-    "trades": 82,
-    "pnl": -128.19,
-    "roi": -0.1647,
-    "roi_ci": [
-     -0.2413,
-     -0.0874
-    ],
-    "win_rate": 0.793
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 39,
-    "pnl": 32.74,
-    "roi": 0.0812,
-    "roi_ci": [
-     -0.3008,
-     0.5308
-    ],
-    "win_rate": 0.333
-   }
-  },
-  {
-   "series": "KXNCAAFSPREAD",
-   "title": "College Football Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 943097,
-   "open_markets": 2562,
+   "vol24": 1465104,
+   "open_markets": 340,
    "median_spread": 0.03,
-   "quotes": 884,
-   "events": 19,
-   "brier_market": 0.1509,
+   "quotes": 1687,
+   "events": 23,
+   "brier_market": 0.1748,
    "fade": {
-    "trades": 26,
-    "pnl": 16.31,
-    "roi": 0.0669,
+    "trades": 84,
+    "pnl": 30.46,
+    "roi": 0.0386,
     "roi_ci": [
-     0.06,
-     0.0727
+     0.0115,
+     0.0655
     ],
-    "win_rate": 1.0
+    "win_rate": 0.976
    },
    "favorite": {
-    "trades": 8,
-    "pnl": 7.53,
-    "roi": 0.0985,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 7,
-    "pnl": -53.48,
-    "roi": -0.7379,
-    "roi_ci": null,
-    "win_rate": 0.143
+    "trades": 28,
+    "pnl": 242.84,
+    "roi": 0.8398,
+    "roi_ci": [
+     0.2562,
+     1.5548
+    ],
+    "win_rate": 0.536
+   }
+  },
+  {
+   "series": "KXNFLTOTAL",
+   "title": "Pro Football Total Points",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 340613,
+   "open_markets": 247,
+   "median_spread": 0.03,
+   "quotes": 1308,
+   "events": 23,
+   "brier_market": 0.1891,
+   "fade": {
+    "trades": 37,
+    "pnl": -8.6,
+    "roi": -0.0247,
+    "roi_ci": [
+     -0.1105,
+     0.036
+    ],
+    "win_rate": 0.919
+   },
+   "favorite": {
+    "trades": 70,
+    "pnl": -76.6,
+    "roi": -0.1139,
+    "roi_ci": [
+     -0.1918,
+     -0.0372
+    ],
+    "win_rate": 0.829
+   },
+   "corrected_holdout": {
+    "trades": 15,
+    "pnl": 30.19,
+    "roi": 0.195,
+    "roi_ci": [
+     -0.505,
+     0.9869
+    ],
+    "win_rate": 0.4
    }
   },
   {
@@ -1346,122 +1190,281 @@
    "title": "NBA Total",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 150232,
-   "open_markets": 116,
+   "vol24": 194706,
+   "open_markets": 232,
    "median_spread": 0.02,
-   "quotes": 1167,
-   "events": 19,
-   "brier_market": 0.1956,
+   "quotes": 1821,
+   "events": 28,
+   "brier_market": 0.1853,
    "fade": {
-    "trades": 25,
-    "pnl": 13.25,
-    "roi": 0.056,
+    "trades": 42,
+    "pnl": -7.77,
+    "roi": -0.0195,
     "roi_ci": [
-     0.051,
-     0.061
+     -0.0969,
+     0.0359
+    ],
+    "win_rate": 0.929
+   },
+   "favorite": {
+    "trades": 109,
+    "pnl": 7.58,
+    "roi": 0.0073,
+    "roi_ci": [
+     -0.0412,
+     0.0489
+    ],
+    "win_rate": 0.927
+   },
+   "corrected_holdout": {
+    "trades": 38,
+    "pnl": 35.08,
+    "roi": 0.0895,
+    "roi_ci": [
+     -0.3573,
+     0.571
+    ],
+    "win_rate": 0.342
+   }
+  },
+  {
+   "series": "KXCONCACAFNLTOTAL",
+   "title": "Point Total",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 293338,
+   "open_markets": 93,
+   "median_spread": 0.02,
+   "quotes": 309,
+   "events": 18,
+   "brier_market": 0.1777,
+   "fade": {
+    "trades": 11,
+    "pnl": -34.55,
+    "roi": -0.3305,
+    "roi_ci": [
+     -0.6163,
+     -0.1305
+    ],
+    "win_rate": 0.636
+   },
+   "favorite": {
+    "trades": 17,
+    "pnl": 13.3,
+    "roi": 0.0823,
+    "roi_ci": [
+     0.0697,
+     0.0951
+    ],
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 1,
+    "pnl": -10.31,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
+   "series": "KXNCAAFSPREAD",
+   "title": "College Football Spread",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 162456,
+   "open_markets": 1922,
+   "median_spread": 0.05,
+   "quotes": 1325,
+   "events": 28,
+   "brier_market": 0.1594,
+   "fade": {
+    "trades": 39,
+    "pnl": 23.75,
+    "roi": 0.0648,
+    "roi_ci": [
+     0.0596,
+     0.0698
     ],
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 71,
-    "pnl": -24.6,
-    "roi": -0.0363,
-    "roi_ci": [
-     -0.1022,
-     0.0255
-    ],
-    "win_rate": 0.887
+    "trades": 9,
+    "pnl": 8.37,
+    "roi": 0.0977,
+    "roi_ci": null,
+    "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 34,
-    "pnl": -132.25,
-    "roi": -0.3754,
+    "trades": 13,
+    "pnl": -77.68,
+    "roi": -0.5768,
     "roi_ci": [
-     -0.7385,
-     0.0293
+     -1.0,
+     -0.1527
     ],
-    "win_rate": 0.206
+    "win_rate": 0.231
    }
   },
   {
-   "series": "KXNBAPTS",
-   "title": "NBA Player Points",
+   "series": "KXAAAGASD",
+   "title": "US gas price up",
+   "category": "Economics",
+   "frequency": "daily",
+   "vol24": 230794,
+   "open_markets": 17,
+   "median_spread": 0.01,
+   "quotes": 294,
+   "events": 30,
+   "brier_market": 0.0646,
+   "fade": {
+    "trades": 21,
+    "pnl": 11.66,
+    "roi": 0.0588,
+    "roi_ci": [
+     0.0513,
+     0.0669
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 30,
+    "pnl": -12.36,
+    "roi": -0.0429,
+    "roi_ci": [
+     -0.1505,
+     0.0568
+    ],
+    "win_rate": 0.9
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXNFLPASSYDS",
+   "title": "Pro Football Passing Yards",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 118186,
-   "open_markets": 174,
+   "vol24": 53429,
+   "open_markets": 35,
    "median_spread": 0.02,
-   "quotes": 975,
-   "events": 18,
-   "brier_market": 0.1779,
+   "quotes": 1025,
+   "events": 20,
+   "brier_market": 0.1574,
    "fade": {
-    "trades": 22,
-    "pnl": 11.56,
-    "roi": 0.0555,
+    "trades": 67,
+    "pnl": 35.51,
+    "roi": 0.056,
     "roi_ci": [
-     0.0494,
-     0.0613
+     0.0524,
+     0.06
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 31,
+    "pnl": -51.61,
+    "roi": -0.1717,
+    "roi_ci": [
+     -0.3177,
+     -0.0305
+    ],
+    "win_rate": 0.742
+   },
+   "corrected_holdout": {
+    "trades": 19,
+    "pnl": -170.37,
+    "roi": -0.8632,
+    "roi_ci": [
+     -1.0,
+     -0.5899
+    ],
+    "win_rate": 0.053
+   }
+  },
+  {
+   "series": "KXUEFANLTOTAL",
+   "title": "Point Total",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 840342,
+   "open_markets": 79,
+   "median_spread": 0.01,
+   "quotes": 328,
+   "events": 18,
+   "brier_market": 0.1111,
+   "fade": {
+    "trades": 15,
+    "pnl": 7.46,
+    "roi": 0.0523,
+    "roi_ci": [
+     0.0433,
+     0.0601
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 17,
+    "pnl": 1.58,
+    "roi": 0.0097,
+    "roi_ci": [
+     -0.1066,
+     0.0826
+    ],
+    "win_rate": 0.941
+   },
+   "corrected_holdout": {
+    "trades": 1,
+    "pnl": 47.56,
+    "roi": 4.5556,
+    "roi_ci": null,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "series": "KXNBA3PT",
+   "title": "NBA Player Threes",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 77664,
+   "open_markets": 458,
+   "median_spread": 0.02,
+   "quotes": 983,
+   "events": 19,
+   "brier_market": 0.1562,
+   "fade": {
+    "trades": 26,
+    "pnl": 11.91,
+    "roi": 0.048,
+    "roi_ci": [
+     0.0421,
+     0.054
     ],
     "win_rate": 1.0
    },
    "favorite": {
     "trades": 12,
-    "pnl": 1.76,
-    "roi": 0.0153,
+    "pnl": -1.7,
+    "roi": -0.0148,
     "roi_ci": [
-     -0.1603,
-     0.1132
+     -0.1821,
+     0.0819
     ],
     "win_rate": 0.917
    },
    "corrected_holdout": {
-    "trades": 27,
-    "pnl": -30.48,
-    "roi": -0.1095,
+    "trades": 22,
+    "pnl": -102.5,
+    "roi": -0.4505,
     "roi_ci": [
-     -0.5074,
-     0.2533
+     -0.8335,
+     -0.0003
     ],
-    "win_rate": 0.37
-   }
-  },
-  {
-   "series": "KXNCAAFTOTAL",
-   "title": "College Football Total Points",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 346365,
-   "open_markets": 1808,
-   "median_spread": 0.04,
-   "quotes": 798,
-   "events": 20,
-   "brier_market": 0.1592,
-   "fade": {
-    "trades": 13,
-    "pnl": 8.56,
-    "roi": 0.0705,
-    "roi_ci": [
-     0.0623,
-     0.0781
-    ],
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 25,
-    "pnl": 13.01,
-    "roi": 0.0547,
-    "roi_ci": [
-     -0.031,
-     0.1038
-    ],
-    "win_rate": 0.96
-   },
-   "corrected_holdout": {
-    "trades": 8,
-    "pnl": -19.73,
-    "roi": -0.2385,
-    "roi_ci": null,
-    "win_rate": 0.375
+    "win_rate": 0.182
    }
   },
   {
@@ -1469,26 +1472,26 @@
    "title": "Where will it rain daily",
    "category": "Climate and Weather",
    "frequency": "daily",
-   "vol24": 542894,
-   "open_markets": 68,
+   "vol24": 571571,
+   "open_markets": 71,
    "median_spread": 0.01,
-   "quotes": 598,
-   "events": 20,
-   "brier_market": 0.0425,
+   "quotes": 888,
+   "events": 30,
+   "brier_market": 0.0529,
    "fade": {
-    "trades": 34,
-    "pnl": 15.38,
+    "trades": 44,
+    "pnl": 19.9,
     "roi": 0.0474,
     "roi_ci": [
-     0.0425,
-     0.0526
+     0.0438,
+     0.0519
     ],
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 3,
-    "pnl": 2.24,
-    "roi": 0.0779,
+    "trades": 9,
+    "pnl": 6.37,
+    "roi": 0.0744,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -1501,42 +1504,126 @@
    }
   },
   {
-   "series": "KXNATGASD",
-   "title": "Natural Gas Daily",
-   "category": "Commodities",
+   "series": "KXDIESELD",
+   "title": "Daily Diesel Price",
+   "category": "Economics",
    "frequency": "daily",
-   "vol24": 45797,
-   "open_markets": 120,
-   "median_spread": 0.04,
-   "quotes": 637,
-   "events": 15,
-   "brier_market": 0.1334,
+   "vol24": 54219,
+   "open_markets": 21,
+   "median_spread": 0.01,
+   "quotes": 266,
+   "events": 20,
+   "brier_market": 0.0828,
    "fade": {
-    "trades": 9,
-    "pnl": -16.42,
-    "roi": -0.19,
-    "roi_ci": null,
-    "win_rate": 0.778
+    "trades": 15,
+    "pnl": 6.52,
+    "roi": 0.0454,
+    "roi_ci": [
+     0.0379,
+     0.0538
+    ],
+    "win_rate": 1.0
    },
    "favorite": {
-    "trades": 43,
-    "pnl": 15.66,
-    "roi": 0.0381,
+    "trades": 14,
+    "pnl": -1.55,
+    "roi": -0.0117,
     "roi_ci": [
-     -0.0148,
-     0.0683
+     -0.1651,
+     0.0722
     ],
-    "win_rate": 0.977
+    "win_rate": 0.929
    },
    "corrected_holdout": {
-    "trades": 14,
-    "pnl": 0.33,
-    "roi": 0.0024,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXNCAAMBSPREAD",
+   "title": "Men's College Basketball Spread",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 764676,
+   "open_markets": 288,
+   "median_spread": 0.03,
+   "quotes": 1047,
+   "events": 32,
+   "brier_market": 0.1213,
+   "fade": {
+    "trades": 17,
+    "pnl": 6.53,
+    "roi": 0.0399,
     "roi_ci": [
-     -0.2711,
-     0.213
+     0.035,
+     0.0454
     ],
-    "win_rate": 0.786
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 11,
+    "pnl": 5.94,
+    "roi": 0.0565,
+    "roi_ci": [
+     0.0438,
+     0.0703
+    ],
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 30,
+    "pnl": -18.77,
+    "roi": -0.0606,
+    "roi_ci": [
+     -0.4705,
+     0.4646
+    ],
+    "win_rate": 0.367
+   }
+  },
+  {
+   "series": "KXNFLREC",
+   "title": "Pro Football Player Receptions",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 75493,
+   "open_markets": 89,
+   "median_spread": 0.01,
+   "quotes": 1626,
+   "events": 23,
+   "brier_market": 0.1665,
+   "fade": {
+    "trades": 108,
+    "pnl": -68.0,
+    "roi": -0.0661,
+    "roi_ci": [
+     -0.1212,
+     -0.0179
+    ],
+    "win_rate": 0.889
+   },
+   "favorite": {
+    "trades": 18,
+    "pnl": -3.83,
+    "roi": -0.0222,
+    "roi_ci": [
+     -0.1531,
+     0.1013
+    ],
+    "win_rate": 0.889
+   },
+   "corrected_holdout": {
+    "trades": 18,
+    "pnl": 7.32,
+    "roi": 0.0392,
+    "roi_ci": [
+     -0.5519,
+     0.6834
+    ],
+    "win_rate": 0.333
    }
   },
   {
@@ -1544,60 +1631,336 @@
    "title": "Brent Oil Daily",
    "category": "Commodities",
    "frequency": "daily",
-   "vol24": 44363,
-   "open_markets": 20,
-   "median_spread": 0.02,
-   "quotes": 771,
-   "events": 20,
-   "brier_market": 0.1049,
+   "vol24": 110647,
+   "open_markets": 50,
+   "median_spread": 0.04,
+   "quotes": 849,
+   "events": 22,
+   "brier_market": 0.112,
    "fade": {
-    "trades": 32,
-    "pnl": -4.89,
-    "roi": -0.016,
+    "trades": 35,
+    "pnl": -3.7,
+    "roi": -0.0111,
     "roi_ci": [
-     -0.0848,
-     0.0496
+     -0.076,
+     0.0485
     ],
-    "win_rate": 0.938
+    "win_rate": 0.943
+   },
+   "favorite": {
+    "trades": 51,
+    "pnl": 14.35,
+    "roi": 0.0294,
+    "roi_ci": [
+     -0.0212,
+     0.0735
+    ],
+    "win_rate": 0.961
+   },
+   "corrected_holdout": {
+    "trades": 10,
+    "pnl": -50.99,
+    "roi": -0.5257,
+    "roi_ci": [
+     -0.7748,
+     -0.1834
+    ],
+    "win_rate": 0.4
+   }
+  },
+  {
+   "series": "KXNBAPTS",
+   "title": "NBA Player Points",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 113338,
+   "open_markets": 393,
+   "median_spread": 0.01,
+   "quotes": 1442,
+   "events": 26,
+   "brier_market": 0.1699,
+   "fade": {
+    "trades": 36,
+    "pnl": 8.99,
+    "roi": 0.0264,
+    "roi_ci": [
+     -0.0311,
+     0.0571
+    ],
+    "win_rate": 0.972
+   },
+   "favorite": {
+    "trades": 20,
+    "pnl": -12.64,
+    "roi": -0.0656,
+    "roi_ci": [
+     -0.2321,
+     0.0539
+    ],
+    "win_rate": 0.85
+   },
+   "corrected_holdout": {
+    "trades": 39,
+    "pnl": -162.05,
+    "roi": -0.4021,
+    "roi_ci": [
+     -0.6581,
+     -0.1251
+    ],
+    "win_rate": 0.256
+   }
+  },
+  {
+   "series": "KXGOLDD",
+   "title": "Gold Daily",
+   "category": "Commodities",
+   "frequency": "daily",
+   "vol24": 104403,
+   "open_markets": 80,
+   "median_spread": 0.04,
+   "quotes": 993,
+   "events": 26,
+   "brier_market": 0.0864,
+   "fade": {
+    "trades": 43,
+    "pnl": 8.77,
+    "roi": 0.0213,
+    "roi_ci": [
+     -0.0264,
+     0.0473
+    ],
+    "win_rate": 0.977
+   },
+   "favorite": {
+    "trades": 64,
+    "pnl": -10.55,
+    "roi": -0.0173,
+    "roi_ci": [
+     -0.0778,
+     0.0384
+    ],
+    "win_rate": 0.922
+   },
+   "corrected_holdout": {
+    "trades": 4,
+    "pnl": 11.95,
+    "roi": 0.306,
+    "roi_ci": null,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "series": "KXSILVERD",
+   "title": "Silver daily",
+   "category": "Commodities",
+   "frequency": "daily",
+   "vol24": 36929,
+   "open_markets": 80,
+   "median_spread": 0.04,
+   "quotes": 724,
+   "events": 18,
+   "brier_market": 0.0948,
+   "fade": {
+    "trades": 20,
+    "pnl": -0.39,
+    "roi": -0.002,
+    "roi_ci": [
+     -0.1084,
+     0.0552
+    ],
+    "win_rate": 0.95
    },
    "favorite": {
     "trades": 45,
-    "pnl": 10.14,
-    "roi": 0.0235,
+    "pnl": 6.03,
+    "roi": 0.014,
     "roi_ci": [
-     -0.0324,
-     0.0722
+     -0.0531,
+     0.0584
     ],
     "win_rate": 0.956
    },
    "corrected_holdout": {
     "trades": 3,
-    "pnl": -2.88,
-    "roi": -0.0997,
+    "pnl": -5.45,
+    "roi": -0.1851,
     "roi_ci": null,
     "win_rate": 0.667
    }
   },
   {
-   "series": "KXNHLGOAL",
-   "title": "NHL Goalscorer",
+   "series": "KXNCAAMBTOTAL",
+   "title": "Men's College Basketball Total Points",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 192720,
-   "open_markets": 678,
+   "vol24": 658664,
+   "open_markets": 351,
    "median_spread": 0.02,
-   "quotes": 366,
-   "events": 10,
-   "brier_market": 0.098,
+   "quotes": 1285,
+   "events": 32,
+   "brier_market": 0.155,
    "fade": {
-    "trades": 64,
-    "pnl": 12.94,
-    "roi": 0.0213,
+    "trades": 10,
+    "pnl": -5.28,
+    "roi": -0.0554,
     "roi_ci": [
-     -0.0245,
-     0.0542
+     -0.2602,
+     0.0516
     ],
-    "win_rate": 0.969
+    "win_rate": 0.9
+   },
+   "favorite": {
+    "trades": 19,
+    "pnl": 2.37,
+    "roi": 0.013,
+    "roi_ci": [
+     -0.0999,
+     0.075
+    ],
+    "win_rate": 0.947
+   },
+   "corrected_holdout": {
+    "trades": 46,
+    "pnl": -15.83,
+    "roi": -0.0333,
+    "roi_ci": [
+     -0.2939,
+     0.2797
+    ],
+    "win_rate": 0.391
+   }
+  },
+  {
+   "series": "KXNFLFIRSTTD",
+   "title": "Pro Football First Touchdown",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 346048,
+   "open_markets": 49,
+   "median_spread": 0.01,
+   "quotes": 1227,
+   "events": 23,
+   "brier_market": 0.0416,
+   "fade": {
+    "trades": 212,
+    "pnl": -3.67,
+    "roi": -0.0018,
+    "roi_ci": [
+     -0.0257,
+     0.0228
+    ],
+    "win_rate": 0.953
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 4,
+    "pnl": 19.96,
+    "roi": 0.4748,
+    "roi_ci": null,
+    "win_rate": 0.25
+   }
+  },
+  {
+   "series": "KXUEFANLSPREAD",
+   "title": "Spread",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 250221,
+   "open_markets": 52,
+   "median_spread": 0.01,
+   "quotes": 189,
+   "events": 18,
+   "brier_market": 0.119,
+   "fade": {
+    "trades": 19,
+    "pnl": -0.96,
+    "roi": -0.0053,
+    "roi_ci": [
+     -0.1162,
+     0.0573
+    ],
+    "win_rate": 0.947
+   },
+   "favorite": {
+    "trades": 1,
+    "pnl": -9.77,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   },
+   "corrected_holdout": {
+    "trades": 1,
+    "pnl": -10.44,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
+   "series": "KXNFLTDPROT",
+   "title": "Pro Football Touchdowns Protected",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 108374,
+   "open_markets": 79,
+   "median_spread": 0.02,
+   "quotes": 746,
+   "events": 18,
+   "brier_market": 0.1201,
+   "fade": {
+    "trades": 89,
+    "pnl": -15.71,
+    "roi": -0.0186,
+    "roi_ci": [
+     -0.0653,
+     0.0252
+    ],
+    "win_rate": 0.933
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 19,
+    "pnl": -50.07,
+    "roi": -0.2541,
+    "roi_ci": [
+     -0.7268,
+     0.2564
+    ],
+    "win_rate": 0.263
+   }
+  },
+  {
+   "series": "KXNFLTD",
+   "title": "Pro Football Touchdowns",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 915805,
+   "open_markets": 79,
+   "median_spread": 0.01,
+   "quotes": 1565,
+   "events": 23,
+   "brier_market": 0.0931,
+   "fade": {
+    "trades": 176,
+    "pnl": -32.16,
+    "roi": -0.0192,
+    "roi_ci": [
+     -0.0558,
+     0.0127
+    ],
+    "win_rate": 0.932
    },
    "favorite": {
     "trades": 0,
@@ -1608,157 +1971,7 @@
    },
    "corrected_holdout": {
     "trades": 8,
-    "pnl": 5.36,
-    "roi": 0.0641,
-    "roi_ci": null,
-    "win_rate": 0.375
-   }
-  },
-  {
-   "series": "KXGOLDD",
-   "title": "Gold Daily",
-   "category": "Commodities",
-   "frequency": "daily",
-   "vol24": 107181,
-   "open_markets": 40,
-   "median_spread": 0.02,
-   "quotes": 749,
-   "events": 19,
-   "brier_market": 0.0944,
-   "fade": {
-    "trades": 37,
-    "pnl": 5.82,
-    "roi": 0.0164,
-    "roi_ci": [
-     -0.0382,
-     0.0466
-    ],
-    "win_rate": 0.973
-   },
-   "favorite": {
-    "trades": 48,
-    "pnl": -20.99,
-    "roi": -0.0458,
-    "roi_ci": [
-     -0.1422,
-     0.0262
-    ],
-    "win_rate": 0.896
-   },
-   "corrected_holdout": {
-    "trades": 5,
-    "pnl": 19.68,
-    "roi": 0.399,
-    "roi_ci": null,
-    "win_rate": 1.0
-   }
-  },
-  {
-   "series": "KXNFLFIRSTTD",
-   "title": "Pro Football First Touchdown",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 475121,
-   "open_markets": 329,
-   "median_spread": 0.02,
-   "quotes": 1062,
-   "events": 20,
-   "brier_market": 0.0437,
-   "fade": {
-    "trades": 189,
-    "pnl": -5.44,
-    "roi": -0.003,
-    "roi_ci": [
-     -0.0294,
-     0.0224
-    ],
-    "win_rate": 0.952
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 3,
-    "pnl": 30.47,
-    "roi": 0.9664,
-    "roi_ci": null,
-    "win_rate": 0.333
-   }
-  },
-  {
-   "series": "KXNFL1HTOTAL",
-   "title": "Pro Football 1st  Half Total Points",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 167264,
-   "open_markets": 192,
-   "median_spread": 0.03,
-   "quotes": 771,
-   "events": 20,
-   "brier_market": 0.134,
-   "fade": {
-    "trades": 37,
-    "pnl": -2.87,
-    "roi": -0.0081,
-    "roi_ci": [
-     -0.0902,
-     0.0491
-    ],
-    "win_rate": 0.946
-   },
-   "favorite": {
-    "trades": 41,
-    "pnl": -14.79,
-    "roi": -0.0377,
-    "roi_ci": [
-     -0.1125,
-     0.0406
-    ],
-    "win_rate": 0.902
-   },
-   "corrected_holdout": {
-    "trades": 6,
-    "pnl": 45.07,
-    "roi": 0.7278,
-    "roi_ci": null,
-    "win_rate": 0.667
-   }
-  },
-  {
-   "series": "KXNFLTD",
-   "title": "Pro Football Touchdowns",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 1679664,
-   "open_markets": 586,
-   "median_spread": 0.02,
-   "quotes": 1354,
-   "events": 20,
-   "brier_market": 0.0907,
-   "fade": {
-    "trades": 152,
-    "pnl": -23.61,
-    "roi": -0.0164,
-    "roi_ci": [
-     -0.0516,
-     0.0117
-    ],
-    "win_rate": 0.934
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 6,
-    "pnl": -62.75,
+    "pnl": -83.7,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
@@ -1769,21 +1982,21 @@
    "title": "Correct Score",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 303606,
-   "open_markets": 570,
+   "vol24": 304850,
+   "open_markets": 390,
    "median_spread": 0.02,
-   "quotes": 372,
-   "events": 10,
-   "brier_market": 0.0644,
+   "quotes": 654,
+   "events": 17,
+   "brier_market": 0.0573,
    "fade": {
-    "trades": 81,
-    "pnl": -18.58,
-    "roi": -0.0242,
+    "trades": 141,
+    "pnl": -27.83,
+    "roi": -0.0208,
     "roi_ci": [
-     -0.0741,
-     0.0268
+     -0.0657,
+     0.0174
     ],
-    "win_rate": 0.926
+    "win_rate": 0.929
    },
    "favorite": {
     "trades": 0,
@@ -1793,125 +2006,11 @@
     "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 1,
+    "pnl": -10.51,
+    "roi": -1.0,
     "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXAFCONSCORE",
-   "title": "Correct Score",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 69043,
-   "open_markets": 543,
-   "median_spread": 0.03,
-   "quotes": 290,
-   "events": 10,
-   "brier_market": 0.0733,
-   "fade": {
-    "trades": 53,
-    "pnl": -12.72,
-    "roi": -0.0253,
-    "roi_ci": [
-     -0.1003,
-     0.0326
-    ],
-    "win_rate": 0.925
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXNFLTOTAL",
-   "title": "Pro Football Total Points",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 635304,
-   "open_markets": 266,
-   "median_spread": 0.02,
-   "quotes": 1136,
-   "events": 20,
-   "brier_market": 0.1901,
-   "fade": {
-    "trades": 34,
-    "pnl": -10.45,
-    "roi": -0.0326,
-    "roi_ci": [
-     -0.1257,
-     0.0322
-    ],
-    "win_rate": 0.912
-   },
-   "favorite": {
-    "trades": 60,
-    "pnl": -72.53,
-    "roi": -0.1258,
-    "roi_ci": [
-     -0.2148,
-     -0.0417
-    ],
-    "win_rate": 0.817
-   },
-   "corrected_holdout": {
-    "trades": 11,
-    "pnl": -6.96,
-    "roi": -0.0611,
-    "roi_ci": [
-     -0.834,
-     0.9988
-    ],
-    "win_rate": 0.273
-   }
-  },
-  {
-   "series": "KXUFCMOV",
-   "title": "UFC Method of Victory",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 114510,
-   "open_markets": 91,
-   "median_spread": 0.01,
-   "quotes": 196,
-   "events": 10,
-   "brier_market": 0.117,
-   "fade": {
-    "trades": 24,
-    "pnl": -8.66,
-    "roi": -0.0379,
-    "roi_ci": [
-     -0.1626,
-     0.05
-    ],
-    "win_rate": 0.917
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 2,
-    "pnl": 5.38,
-    "roi": 0.2609,
-    "roi_ci": null,
-    "win_rate": 0.5
+    "win_rate": 0.0
    }
   },
   {
@@ -1919,70 +2018,112 @@
    "title": "Pro Football Rushing Yards",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 188791,
-   "open_markets": 649,
-   "median_spread": 0.05,
-   "quotes": 1541,
-   "events": 20,
-   "brier_market": 0.1661,
+   "vol24": 194522,
+   "open_markets": 97,
+   "median_spread": 0.01,
+   "quotes": 1768,
+   "events": 23,
+   "brier_market": 0.1688,
    "fade": {
-    "trades": 104,
-    "pnl": -49.57,
-    "roi": -0.0501,
+    "trades": 118,
+    "pnl": -41.6,
+    "roi": -0.0371,
     "roi_ci": [
-     -0.11,
-     -0.006
+     -0.0893,
+     0.0082
     ],
-    "win_rate": 0.904
+    "win_rate": 0.915
    },
    "favorite": {
-    "trades": 7,
-    "pnl": 7.54,
-    "roi": 0.1101,
-    "roi_ci": null,
+    "trades": 10,
+    "pnl": 11.24,
+    "roi": 0.115,
+    "roi_ci": [
+     0.1049,
+     0.1241
+    ],
     "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 13,
-    "pnl": -51.87,
-    "roi": -0.3846,
+    "trades": 22,
+    "pnl": -53.3,
+    "roi": -0.2335,
     "roi_ci": [
-     -1.0,
-     0.4713
+     -0.7678,
+     0.3681
     ],
-    "win_rate": 0.154
+    "win_rate": 0.227
    }
   },
   {
-   "series": "KXAAAGASD",
-   "title": "US gas price up",
-   "category": "Economics",
-   "frequency": "daily",
-   "vol24": 209643,
-   "open_markets": 21,
-   "median_spread": 0.01,
-   "quotes": 198,
+   "series": "KXNFLTEAMTOTAL",
+   "title": "Pro Football Team Total Points",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 67234,
+   "open_markets": 55,
+   "median_spread": 0.03,
+   "quotes": 1505,
    "events": 20,
-   "brier_market": 0.0704,
+   "brier_market": 0.1501,
    "fade": {
-    "trades": 14,
-    "pnl": 7.67,
-    "roi": 0.058,
+    "trades": 67,
+    "pnl": -40.42,
+    "roi": -0.0631,
     "roi_ci": [
-     0.0474,
-     0.0693
+     -0.1276,
+     -0.002
     ],
-    "win_rate": 1.0
+    "win_rate": 0.896
    },
    "favorite": {
-    "trades": 19,
-    "pnl": -9.23,
-    "roi": -0.0507,
+    "trades": 86,
+    "pnl": -41.35,
+    "roi": -0.05,
     "roi_ci": [
-     -0.2064,
-     0.0652
+     -0.1067,
+     0.0022
     ],
     "win_rate": 0.895
+   },
+   "corrected_holdout": {
+    "trades": 11,
+    "pnl": 80.93,
+    "roi": 0.7158,
+    "roi_ci": [
+     -0.2762,
+     1.7423
+    ],
+    "win_rate": 0.455
+   }
+  },
+  {
+   "series": "KXDWTSELIMINATION",
+   "title": "DANCING WITH THE STARS ELIMINATION",
+   "category": "Entertainment",
+   "frequency": "one_off",
+   "vol24": 56574,
+   "open_markets": 7,
+   "median_spread": 0.01,
+   "quotes": 168,
+   "events": 9,
+   "brier_market": 0.0998,
+   "fade": {
+    "trades": 17,
+    "pnl": -10.75,
+    "roi": -0.0669,
+    "roi_ci": [
+     -0.1969,
+     0.0557
+    ],
+    "win_rate": 0.882
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
    },
    "corrected_holdout": {
     "trades": 0,
@@ -1993,45 +2134,81 @@
    }
   },
   {
-   "series": "KXNFLREC",
-   "title": "Pro Football Player Receptions",
+   "series": "KXNBASPREAD",
+   "title": "NBA Spread",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 94777,
-   "open_markets": 490,
-   "median_spread": 0.04,
-   "quotes": 1392,
-   "events": 20,
-   "brier_market": 0.1693,
+   "vol24": 603967,
+   "open_markets": 264,
+   "median_spread": 0.02,
+   "quotes": 1965,
+   "events": 28,
+   "brier_market": 0.1947,
    "fade": {
-    "trades": 95,
-    "pnl": -64.09,
-    "roi": -0.0709,
+    "trades": 126,
+    "pnl": -106.12,
+    "roi": -0.0887,
     "roi_ci": [
-     -0.1276,
-     -0.0175
+     -0.145,
+     -0.0375
     ],
-    "win_rate": 0.884
+    "win_rate": 0.865
    },
    "favorite": {
-    "trades": 14,
-    "pnl": -7.4,
-    "roi": -0.0547,
-    "roi_ci": [
-     -0.2178,
-     0.1052
-    ],
-    "win_rate": 0.857
+    "trades": 2,
+    "pnl": 1.97,
+    "roi": 0.1035,
+    "roi_ci": null,
+    "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 14,
-    "pnl": -34.13,
-    "roi": -0.2352,
+    "trades": 55,
+    "pnl": -152.8,
+    "roi": -0.2686,
     "roi_ci": [
-     -0.813,
-     0.2922
+     -0.558,
+     0.1199
     ],
-    "win_rate": 0.286
+    "win_rate": 0.255
+   }
+  },
+  {
+   "series": "KXNBAAST",
+   "title": "NBA Player Assists",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 71119,
+   "open_markets": 335,
+   "median_spread": 0.01,
+   "quotes": 583,
+   "events": 10,
+   "brier_market": 0.1428,
+   "fade": {
+    "trades": 15,
+    "pnl": -12.79,
+    "roi": -0.0896,
+    "roi_ci": [
+     -0.2923,
+     0.0444
+    ],
+    "win_rate": 0.867
+   },
+   "favorite": {
+    "trades": 4,
+    "pnl": -7.09,
+    "roi": -0.1861,
+    "roi_ci": null,
+    "win_rate": 0.75
+   },
+   "corrected_holdout": {
+    "trades": 11,
+    "pnl": 3.18,
+    "roi": 0.0279,
+    "roi_ci": [
+     -0.5447,
+     0.6548
+    ],
+    "win_rate": 0.455
    }
   },
   {
@@ -2039,21 +2216,21 @@
    "title": "Pro Football Receiving Yards",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 177681,
-   "open_markets": 1324,
-   "median_spread": 0.05,
-   "quotes": 1352,
-   "events": 20,
-   "brier_market": 0.1766,
+   "vol24": 238655,
+   "open_markets": 212,
+   "median_spread": 0.01,
+   "quotes": 1581,
+   "events": 23,
+   "brier_market": 0.1841,
    "fade": {
-    "trades": 110,
-    "pnl": -127.74,
-    "roi": -0.1219,
+    "trades": 126,
+    "pnl": -149.23,
+    "roi": -0.1244,
     "roi_ci": [
-     -0.1804,
-     -0.064
+     -0.1748,
+     -0.0664
     ],
-    "win_rate": 0.836
+    "win_rate": 0.833
    },
    "favorite": {
     "trades": 5,
@@ -2063,14 +2240,14 @@
     "win_rate": 0.6
    },
    "corrected_holdout": {
-    "trades": 18,
-    "pnl": -76.26,
-    "roi": -0.4072,
+    "trades": 21,
+    "pnl": -28.98,
+    "roi": -0.1329,
     "roi_ci": [
-     -0.8562,
-     0.1254
+     -0.5431,
+     0.3884
     ],
-    "win_rate": 0.222
+    "win_rate": 0.333
    }
   },
   {
@@ -2078,12 +2255,12 @@
    "title": "S&P 500 above/below",
    "category": "Financials",
    "frequency": "hourly",
-   "vol24": 261367,
+   "vol24": 288695,
    "open_markets": 180,
-   "median_spread": 0.03,
-   "quotes": 603,
-   "events": 24,
-   "brier_market": 0.1396,
+   "median_spread": 0.02,
+   "quotes": 737,
+   "events": 33,
+   "brier_market": 0.1469,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -2092,14 +2269,14 @@
     "win_rate": null
    },
    "favorite": {
-    "trades": 17,
-    "pnl": -30.14,
-    "roi": -0.1847,
+    "trades": 18,
+    "pnl": -29.87,
+    "roi": -0.1728,
     "roi_ci": [
-     -0.3757,
-     -0.0045
+     -0.3531,
+     -0.0119
     ],
-    "win_rate": 0.765
+    "win_rate": 0.778
    },
    "corrected_holdout": {
     "trades": 0,
@@ -2110,16 +2287,91 @@
    }
   },
   {
+   "series": "KXNBAREB",
+   "title": "NBA Player Rebounds",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 56804,
+   "open_markets": 427,
+   "median_spread": 0.01,
+   "quotes": 562,
+   "events": 10,
+   "brier_market": 0.1644,
+   "fade": {
+    "trades": 12,
+    "pnl": 6.1,
+    "roi": 0.0536,
+    "roi_ci": [
+     0.0442,
+     0.0639
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 14,
+    "pnl": -20.37,
+    "roi": -0.1527,
+    "roi_ci": [
+     -0.3877,
+     0.0114
+    ],
+    "win_rate": 0.786
+   },
+   "corrected_holdout": {
+    "trades": 16,
+    "pnl": -63.34,
+    "roi": -0.3831,
+    "roi_ci": [
+     -0.837,
+     0.0587
+    ],
+    "win_rate": 0.25
+   }
+  },
+  {
+   "series": "KXNFLGAME",
+   "title": "NFL Game",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 8625970,
+   "open_markets": 28,
+   "median_spread": 0.01,
+   "quotes": 148,
+   "events": 25,
+   "brier_market": 0.2386,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 3,
+    "pnl": -31.05,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
    "series": "KXPGATOUR",
    "title": "PGA Tour",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 10738612,
-   "open_markets": 172,
-   "median_spread": 0.001,
-   "quotes": 75,
-   "events": 6,
-   "brier_market": 0.0889,
+   "vol24": 5975036,
+   "open_markets": 305,
+   "median_spread": 0.003,
+   "quotes": 81,
+   "events": 7,
+   "brier_market": 0.0823,
    "fade": {
     "trades": 4,
     "pnl": 1.95,
@@ -2135,11 +2387,11 @@
     "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 2,
-    "pnl": -1.8,
-    "roi": -0.0865,
+    "trades": 1,
+    "pnl": 27.6,
+    "roi": 2.6538,
     "roi_ci": null,
-    "win_rate": 0.5
+    "win_rate": 1.0
    }
   },
   {
@@ -2147,18 +2399,18 @@
    "title": "UEFA Nations League Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 4706654,
-   "open_markets": 150,
+   "vol24": 4111683,
+   "open_markets": 39,
    "median_spread": 0.01,
-   "quotes": 150,
-   "events": 17,
-   "brier_market": 0.1495,
+   "quotes": 222,
+   "events": 25,
+   "brier_market": 0.1611,
    "fade": {
-    "trades": 6,
-    "pnl": -6.77,
-    "roi": -0.1193,
+    "trades": 7,
+    "pnl": -5.93,
+    "roi": -0.0899,
     "roi_ci": null,
-    "win_rate": 0.833
+    "win_rate": 0.857
    },
    "favorite": {
     "trades": 3,
@@ -2168,63 +2420,165 @@
     "win_rate": 0.667
    },
    "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 1,
+    "pnl": 15.69,
+    "roi": 1.5218,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    }
   },
   {
-   "series": "KXNFLGAME",
-   "title": "NFL Game",
+   "series": "KXNBAGAME",
+   "title": "NBA Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 2749565,
-   "open_markets": 54,
-   "median_spread": 0.01,
-   "quotes": 118,
-   "events": 20,
-   "brier_market": 0.2753,
+   "vol24": 2192905,
+   "open_markets": 60,
+   "median_spread": 0.02,
+   "quotes": 166,
+   "events": 28,
+   "brier_market": 0.2293,
    "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 1,
+    "pnl": 0.84,
+    "roi": 0.0917,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 2,
+    "pnl": 2.28,
+    "roi": 0.1218,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 1,
-    "pnl": -10.17,
+    "trades": 4,
+    "pnl": 3.14,
+    "roi": 0.0768,
+    "roi_ci": null,
+    "win_rate": 0.5
+   }
+  },
+  {
+   "series": "KXATPCHALLENGERMATCH",
+   "title": "Challenger ATP ",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 1715034,
+   "open_markets": 80,
+   "median_spread": 0.01,
+   "quotes": 188,
+   "events": 47,
+   "brier_market": 0.1687,
+   "fade": {
+    "trades": 2,
+    "pnl": 1.02,
+    "roi": 0.0537,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 4,
+    "pnl": 3.6,
+    "roi": 0.0938,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 3,
+    "pnl": -30.81,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
    }
   },
   {
-   "series": "KXPGAR1LEAD",
-   "title": "PGA Round 1 Leader",
+   "series": "KXNCAAMBGAME",
+   "title": "Men's College Basketball Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 2453882,
-   "open_markets": 120,
-   "median_spread": 0.009,
-   "quotes": 188,
-   "events": 6,
-   "brier_market": 0.0063,
+   "vol24": 1151232,
+   "open_markets": 330,
+   "median_spread": 0.03,
+   "quotes": 162,
+   "events": 30,
+   "brier_market": 0.1219,
    "fade": {
-    "trades": 2,
-    "pnl": 0.93,
-    "roi": 0.0488,
+    "trades": 5,
+    "pnl": 2.49,
+    "roi": 0.0524,
     "roi_ci": null,
     "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 9,
+    "pnl": -2.3,
+    "roi": -0.0267,
+    "roi_ci": null,
+    "win_rate": 0.889
+   },
+   "corrected_holdout": {
+    "trades": 9,
+    "pnl": -16.54,
+    "roi": -0.1787,
+    "roi_ci": null,
+    "win_rate": 0.333
+   }
+  },
+  {
+   "series": "KXCONCACAFNLGAME",
+   "title": "CONCACAF Nations League Game",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 982519,
+   "open_markets": 45,
+   "median_spread": 0.01,
+   "quotes": 164,
+   "events": 19,
+   "brier_market": 0.123,
+   "fade": {
+    "trades": 10,
+    "pnl": 4.89,
+    "roi": 0.0514,
+    "roi_ci": [
+     0.041,
+     0.0609
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 4,
+    "pnl": 4.64,
+    "roi": 0.121,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXFEATURE",
+   "title": "who will be featured on album",
+   "category": "Entertainment",
+   "frequency": "one_off",
+   "vol24": 887763,
+   "open_markets": 130,
+   "median_spread": 0.01,
+   "quotes": 14,
+   "events": 3,
+   "brier_market": 0.0018,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
    },
    "favorite": {
     "trades": 0,
@@ -2242,27 +2596,27 @@
    }
   },
   {
-   "series": "KXDPWORLDTOUR",
-   "title": "DP World Tour Tournament Winner",
+   "series": "KXWTACHALLENGERMATCH",
+   "title": "Challenger WTA",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 2052349,
-   "open_markets": 50,
-   "median_spread": 0.001,
-   "quotes": 94,
-   "events": 8,
-   "brier_market": 0.0291,
+   "vol24": 790293,
+   "open_markets": 6,
+   "median_spread": 0.01,
+   "quotes": 84,
+   "events": 20,
+   "brier_market": 0.1843,
    "fade": {
-    "trades": 6,
-    "pnl": 2.94,
-    "roi": 0.0515,
+    "trades": 2,
+    "pnl": 0.92,
+    "roi": 0.0482,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 1,
-    "pnl": 0.47,
-    "roi": 0.0493,
+    "trades": 4,
+    "pnl": 3.39,
+    "roi": 0.0878,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -2272,6 +2626,39 @@
     "roi": null,
     "roi_ci": null,
     "win_rate": null
+   }
+  },
+  {
+   "series": "KXTESTMATCH",
+   "title": "Men's Test Cricket Match",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 719795,
+   "open_markets": 15,
+   "median_spread": 0.01,
+   "quotes": 134,
+   "events": 19,
+   "brier_market": 0.0758,
+   "fade": {
+    "trades": 8,
+    "pnl": 3.21,
+    "roi": 0.0418,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 5,
+    "pnl": 5.03,
+    "roi": 0.1049,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 2,
+    "pnl": -20.95,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
    }
   },
   {
@@ -2279,9 +2666,9 @@
    "title": "Fed meeting",
    "category": "Economics",
    "frequency": "custom",
-   "vol24": 1885637,
+   "vol24": 701880,
    "open_markets": 50,
-   "median_spread": 0.015,
+   "median_spread": 0.02,
    "quotes": 12,
    "events": 2,
    "brier_market": 0.0092,
@@ -2308,36 +2695,36 @@
    }
   },
   {
-   "series": "KXNBAGAME",
-   "title": "NBA Game",
+   "series": "KXATPMATCH",
+   "title": "ATP Tennis Match",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 1253664,
-   "open_markets": 60,
-   "median_spread": 0.02,
-   "quotes": 112,
-   "events": 19,
-   "brier_market": 0.2697,
+   "vol24": 685212,
+   "open_markets": 18,
+   "median_spread": 0.04,
+   "quotes": 216,
+   "events": 39,
+   "brier_market": 0.241,
    "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 3,
+    "pnl": 1.48,
+    "roi": 0.0519,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 5,
+    "pnl": -6.95,
+    "roi": -0.1449,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 0.8
    },
    "corrected_holdout": {
-    "trades": 5,
-    "pnl": -7.69,
-    "roi": -0.1488,
+    "trades": 3,
+    "pnl": 24.31,
+    "roi": 0.7921,
     "roi_ci": null,
-    "win_rate": 0.4
+    "win_rate": 0.333
    }
   },
   {
@@ -2345,230 +2732,65 @@
    "title": "College Football Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 1189514,
-   "open_markets": 508,
-   "median_spread": 0.03,
-   "quotes": 114,
-   "events": 20,
-   "brier_market": 0.159,
-   "fade": {
-    "trades": 5,
-    "pnl": 2.59,
-    "roi": 0.0546,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 7,
-    "pnl": 5.18,
-    "roi": 0.0775,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 4,
-    "pnl": -41.31,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   }
-  },
-  {
-   "series": "KXITFWMATCH",
-   "title": "ITF Women's Match",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 1161599,
-   "open_markets": 104,
-   "median_spread": 0.03,
-   "quotes": 116,
+   "vol24": 524023,
+   "open_markets": 370,
+   "median_spread": 0.04,
+   "quotes": 162,
    "events": 29,
-   "brier_market": 0.1483,
+   "brier_market": 0.1525,
    "fade": {
     "trades": 6,
-    "pnl": 3.52,
-    "roi": 0.0623,
+    "pnl": 2.86,
+    "roi": 0.0501,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 7,
-    "pnl": 5.25,
-    "roi": 0.0798,
+    "trades": 8,
+    "pnl": 5.45,
+    "roi": 0.0712,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 1,
-    "pnl": 14.83,
-    "roi": 1.4582,
-    "roi_ci": null,
-    "win_rate": 1.0
-   }
-  },
-  {
-   "series": "KXRT",
-   "title": "Rotten Tomatoes Scores",
-   "category": "Entertainment",
-   "frequency": "custom",
-   "vol24": 1120390,
-   "open_markets": 174,
-   "median_spread": 0.01,
-   "quotes": 87,
-   "events": 16,
-   "brier_market": 0.0107,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
     "trades": 6,
-    "pnl": 2.67,
-    "roi": 0.0458,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXUFCFIGHT",
-   "title": "UFC Fight",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 811078,
-   "open_markets": 26,
-   "median_spread": 0.01,
-   "quotes": 120,
-   "events": 20,
-   "brier_market": 0.2149,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 2,
-    "pnl": 2.88,
-    "roi": 0.1506,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": -10.51,
+    "pnl": -61.74,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
    }
   },
   {
-   "series": "KXNCAAWBGAME",
-   "title": "Women's College Basketball Game",
+   "series": "KXUEFANLBTTS",
+   "title": "BTTS",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 789081,
-   "open_markets": 390,
-   "median_spread": 0.35,
-   "quotes": 122,
-   "events": 24,
-   "brier_market": 0.0811,
+   "vol24": 477272,
+   "open_markets": 13,
+   "median_spread": 0.01,
+   "quotes": 54,
+   "events": 18,
+   "brier_market": 0.2392,
    "fade": {
-    "trades": 5,
-    "pnl": 3.17,
-    "roi": 0.0677,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 7,
-    "pnl": 4.36,
-    "roi": 0.0664,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 3,
-    "pnl": -12.06,
-    "roi": -0.3883,
-    "roi_ci": null,
-    "win_rate": 0.333
-   }
-  },
-  {
-   "series": "KXCONCACAFNLGAME",
-   "title": "CONCACAF Nations League Game",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 772060,
-   "open_markets": 72,
-   "median_spread": 0.06,
-   "quotes": 86,
-   "events": 10,
-   "brier_market": 0.1126,
-   "fade": {
-    "trades": 5,
-    "pnl": 2.4,
-    "roi": 0.0504,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 2,
-    "pnl": 2.18,
-    "roi": 0.1158,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
     "trades": 0,
     "pnl": 0.0,
     "roi": null,
     "roi_ci": null,
     "win_rate": null
-   }
-  },
-  {
-   "series": "KXATPCHALLENGERMATCH",
-   "title": "Challenger ATP ",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 721231,
-   "open_markets": 28,
-   "median_spread": 0.01,
-   "quotes": 148,
-   "events": 37,
-   "brier_market": 0.1757,
-   "fade": {
-    "trades": 2,
-    "pnl": 1.02,
-    "roi": 0.0537,
-    "roi_ci": null,
-    "win_rate": 1.0
    },
    "favorite": {
-    "trades": 3,
-    "pnl": 2.16,
-    "roi": 0.0749,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 2,
-    "pnl": 37.39,
-    "roi": 1.8142,
+    "trades": 1,
+    "pnl": 8.78,
+    "roi": 0.8591,
     "roi_ci": null,
-    "win_rate": 0.5
+    "win_rate": 1.0
    }
   },
   {
@@ -2576,115 +2798,85 @@
    "title": "ITF Men's Match",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 717014,
-   "open_markets": 128,
-   "median_spread": 0.04,
-   "quotes": 112,
-   "events": 29,
-   "brier_market": 0.1253,
+   "vol24": 469726,
+   "open_markets": 202,
+   "median_spread": 0.07,
+   "quotes": 152,
+   "events": 39,
+   "brier_market": 0.1687,
    "fade": {
-    "trades": 4,
-    "pnl": 1.94,
-    "roi": 0.051,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
     "trades": 5,
-    "pnl": 3.44,
-    "roi": 0.0723,
+    "pnl": -7.6,
+    "roi": -0.1597,
     "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXUEFANLTOTAL",
-   "title": "Point Total",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 677153,
-   "open_markets": 302,
-   "median_spread": 0.02,
-   "quotes": 181,
-   "events": 10,
-   "brier_market": 0.0975,
-   "fade": {
-    "trades": 9,
-    "pnl": 4.33,
-    "roi": 0.0505,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 9,
-    "pnl": 7.31,
-    "roi": 0.0853,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXNCAAMBGAME",
-   "title": "Men's College Basketball Game",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 661383,
-   "open_markets": 356,
-   "median_spread": 0.03,
-   "quotes": 110,
-   "events": 21,
-   "brier_market": 0.1238,
-   "fade": {
-    "trades": 3,
-    "pnl": 1.57,
-    "roi": 0.0552,
-    "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": 0.8
    },
    "favorite": {
     "trades": 7,
-    "pnl": -4.08,
-    "roi": -0.0608,
+    "pnl": -4.56,
+    "roi": -0.0685,
     "roi_ci": null,
     "win_rate": 0.857
    },
    "corrected_holdout": {
-    "trades": 8,
-    "pnl": -25.75,
-    "roi": -0.3112,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 0.25
+    "win_rate": null
    }
   },
   {
-   "series": "KXATPMATCH",
-   "title": "ATP Tennis Match",
+   "series": "KXITFWMATCH",
+   "title": "ITF Women's Match",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 629827,
-   "open_markets": 4,
-   "median_spread": 0.02,
-   "quotes": 164,
-   "events": 29,
-   "brier_market": 0.2256,
+   "vol24": 418859,
+   "open_markets": 148,
+   "median_spread": 0.075,
+   "quotes": 158,
+   "events": 39,
+   "brier_market": 0.1479,
+   "fade": {
+    "trades": 8,
+    "pnl": 4.25,
+    "roi": 0.0561,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 10,
+    "pnl": 7.11,
+    "roi": 0.0749,
+    "roi_ci": [
+     0.0598,
+     0.0942
+    ],
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXCS2GAME",
+   "title": "Counter-Strike 2 Game",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 400476,
+   "open_markets": 108,
+   "median_spread": 0.04,
+   "quotes": 179,
+   "events": 38,
+   "brier_market": 0.1831,
    "fade": {
     "trades": 2,
-    "pnl": 1.11,
-    "roi": 0.0588,
+    "pnl": 1.3,
+    "roi": 0.0695,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -2697,34 +2889,34 @@
    },
    "corrected_holdout": {
     "trades": 1,
-    "pnl": -10.17,
+    "pnl": -10.42,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
    }
   },
   {
-   "series": "KXAFCONGAME",
-   "title": "AFCON Game Winner",
-   "category": "Sports",
+   "series": "KXRT",
+   "title": "Rotten Tomatoes Scores",
+   "category": "Entertainment",
    "frequency": "custom",
-   "vol24": 573542,
-   "open_markets": 57,
+   "vol24": 400361,
+   "open_markets": 139,
    "median_spread": 0.01,
-   "quotes": 90,
-   "events": 10,
-   "brier_market": 0.1232,
+   "quotes": 99,
+   "events": 18,
+   "brier_market": 0.0374,
    "fade": {
-    "trades": 4,
-    "pnl": 2.4,
-    "roi": 0.0638,
+    "trades": 1,
+    "pnl": 0.27,
+    "roi": 0.0277,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 1,
-    "pnl": 1.34,
-    "roi": 0.1387,
+    "trades": 7,
+    "pnl": 3.51,
+    "roi": 0.052,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -2737,65 +2929,29 @@
    }
   },
   {
-   "series": "KXTESTMATCH",
-   "title": "Men's Test Cricket Match",
+   "series": "KXCONCACAFNLADVANCE",
+   "title": "To Advance",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 546067,
-   "open_markets": 9,
-   "median_spread": 0.025,
-   "quotes": 128,
-   "events": 18,
-   "brier_market": 0.0788,
+   "vol24": 285859,
+   "open_markets": 14,
+   "median_spread": 0.035,
+   "quotes": 6,
+   "events": 1,
+   "brier_market": 0.0961,
    "fade": {
-    "trades": 7,
-    "pnl": 2.94,
-    "roi": 0.0438,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": null
    },
    "favorite": {
-    "trades": 4,
-    "pnl": 4.76,
-    "roi": 0.1245,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 3,
-    "pnl": -31.39,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   }
-  },
-  {
-   "series": "KXUEFANLSPREAD",
-   "title": "Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 523565,
-   "open_markets": 204,
-   "median_spread": 0.06,
-   "quotes": 107,
-   "events": 10,
-   "brier_market": 0.155,
-   "fade": {
-    "trades": 12,
-    "pnl": -4.0,
-    "roi": -0.0351,
-    "roi_ci": [
-     -0.2111,
-     0.0631
-    ],
-    "win_rate": 0.917
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": -9.77,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
+    "win_rate": null
    },
    "corrected_holdout": {
     "trades": 0,
@@ -2810,12 +2966,12 @@
    "title": "NHL Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 385796,
+   "vol24": 254632,
    "open_markets": 94,
    "median_spread": 0.02,
-   "quotes": 114,
-   "events": 19,
-   "brier_market": 0.2264,
+   "quotes": 162,
+   "events": 27,
+   "brier_market": 0.2287,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -2829,145 +2985,46 @@
     "roi": null,
     "roi_ci": null,
     "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 3,
-    "pnl": 7.72,
-    "roi": 0.255,
-    "roi_ci": null,
-    "win_rate": 0.667
-   }
-  },
-  {
-   "series": "KXTRUMPADMINLEAVE",
-   "title": "Who will leave the Trump administration",
-   "category": "Politics",
-   "frequency": "annual",
-   "vol24": 332514,
-   "open_markets": 109,
-   "median_spread": 0.07,
-   "quotes": 7,
-   "events": 1,
-   "brier_market": 0.1181,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXEUROLEAGUEGAME",
-   "title": "Euroleague Game",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 259703,
-   "open_markets": 16,
-   "median_spread": 0.02,
-   "quotes": 58,
-   "events": 10,
-   "brier_market": 0.2826,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": 14.83,
-    "roi": 1.4582,
-    "roi_ci": null,
-    "win_rate": 1.0
-   }
-  },
-  {
-   "series": "KXMIDTERMMOV",
-   "title": "Midterm margin of victory",
-   "category": "Elections",
-   "frequency": "one_off",
-   "vol24": 259015,
-   "open_markets": 4868,
-   "median_spread": 0.42,
-   "quotes": 108,
-   "events": 13,
-   "brier_market": 0.0157,
-   "fade": {
-    "trades": 4,
-    "pnl": 1.4,
-    "roi": 0.0363,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXWTAMATCH",
-   "title": "WTA Tennis Match",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 217231,
-   "open_markets": 4,
-   "median_spread": 0.01,
-   "quotes": 108,
-   "events": 23,
-   "brier_market": 0.2678,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.65,
-    "roi": 0.0695,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 0.65,
-    "roi": 0.0695,
-    "roi_ci": null,
-    "win_rate": 1.0
    },
    "corrected_holdout": {
     "trades": 2,
-    "pnl": 33.4,
-    "roi": 1.6214,
+    "pnl": -1.06,
+    "roi": -0.0528,
+    "roi_ci": null,
+    "win_rate": 0.5
+   }
+  },
+  {
+   "series": "KXAAAGASM",
+   "title": "US gas price",
+   "category": "Economics",
+   "frequency": "monthly",
+   "vol24": 223085,
+   "open_markets": 26,
+   "median_spread": 0.01,
+   "quotes": 20,
+   "events": 2,
+   "brier_market": 0.0054,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 2,
+    "pnl": 1.71,
+    "roi": 0.0886,
     "roi_ci": null,
     "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
    }
   },
   {
@@ -2975,12 +3032,12 @@
    "title": "US gas price up",
    "category": "Economics",
    "frequency": "weekly",
-   "vol24": 215872,
-   "open_markets": 26,
+   "vol24": 211096,
+   "open_markets": 21,
    "median_spread": 0.01,
-   "quotes": 119,
-   "events": 9,
-   "brier_market": 0.0447,
+   "quotes": 127,
+   "events": 10,
+   "brier_market": 0.0419,
    "fade": {
     "trades": 3,
     "pnl": 1.2,
@@ -2989,9 +3046,9 @@
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 4,
-    "pnl": 2.83,
-    "roi": 0.0741,
+    "trades": 5,
+    "pnl": 4.17,
+    "roi": 0.0872,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -3004,49 +3061,16 @@
    }
   },
   {
-   "series": "KXHIGHNY",
-   "title": "Highest temperature in NYC",
-   "category": "Climate and Weather",
-   "frequency": "daily",
-   "vol24": 203962,
-   "open_markets": 12,
-   "median_spread": 0.01,
-   "quotes": 96,
-   "events": 20,
-   "brier_market": 0.0023,
-   "fade": {
-    "trades": 2,
-    "pnl": 0.83,
-    "roi": 0.0433,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 2,
-    "pnl": 0.92,
-    "roi": 0.0482,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXNASDAQ100U",
-   "title": "Nasdaq above/below",
-   "category": "Financials",
-   "frequency": "hourly",
-   "vol24": 197075,
-   "open_markets": 800,
-   "median_spread": 0.05,
-   "quotes": 33,
-   "events": 2,
-   "brier_market": 0.0448,
+   "series": "KXNFLWINS",
+   "title": "Pro Football Wins",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 167484,
+   "open_markets": 249,
+   "median_spread": 0.03,
+   "quotes": 37,
+   "events": 13,
+   "brier_market": 0.0027,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -3055,11 +3079,11 @@
     "win_rate": null
    },
    "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 3,
+    "pnl": 1.97,
+    "roi": 0.0679,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "corrected_holdout": {
     "trades": 0,
@@ -3074,9 +3098,9 @@
    "title": "Year-end top LLM",
    "category": "Science and Technology",
    "frequency": "custom",
-   "vol24": 197053,
+   "vol24": 157997,
    "open_markets": 24,
-   "median_spread": 0.008,
+   "median_spread": 0.003,
    "quotes": 5,
    "events": 4,
    "brier_market": 0.0002,
@@ -3103,20 +3127,53 @@
    }
   },
   {
-   "series": "KXCOPADELREYGAME",
-   "title": "Copa Del Rey Game",
+   "series": "KXDOTA2GAME",
+   "title": "Dota 2 Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 176541,
-   "open_markets": 6,
-   "median_spread": 0.01,
-   "quotes": 79,
-   "events": 10,
-   "brier_market": 0.1975,
+   "vol24": 157807,
+   "open_markets": 26,
+   "median_spread": 0.16,
+   "quotes": 141,
+   "events": 30,
+   "brier_market": 0.2255,
    "fade": {
     "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
+    "pnl": 0.74,
+    "roi": 0.0799,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 5,
+    "pnl": 4.73,
+    "roi": 0.1001,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 1,
+    "pnl": 44.53,
+    "roi": 4.2531,
+    "roi_ci": null,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "series": "KXINTLFRIENDLYGAME",
+   "title": "International Friendly Game",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 145821,
+   "open_markets": 48,
+   "median_spread": 0.01,
+   "quotes": 77,
+   "events": 10,
+   "brier_market": 0.2157,
+   "fade": {
+    "trades": 2,
+    "pnl": 0.92,
+    "roi": 0.0482,
     "roi_ci": null,
     "win_rate": 1.0
    },
@@ -3128,30 +3185,30 @@
     "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 2,
-    "pnl": -20.84,
+    "trades": 1,
+    "pnl": -10.31,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
    }
   },
   {
-   "series": "KXNCAAWBTOTAL",
-   "title": "Women's College Basketball Total Points",
+   "series": "KXATPEXACTMATCH",
+   "title": "ATP Exact Match Score",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 174207,
-   "open_markets": 572,
-   "median_spread": 0.35,
-   "quotes": 287,
-   "events": 19,
-   "brier_market": 0.1975,
+   "vol24": 140764,
+   "open_markets": 36,
+   "median_spread": 0.045,
+   "quotes": 312,
+   "events": 30,
+   "brier_market": 0.1611,
    "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 8,
+    "pnl": -5.27,
+    "roi": -0.07,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 0.875
    },
    "favorite": {
     "trades": 0,
@@ -3169,49 +3226,514 @@
    }
   },
   {
-   "series": "KXCS2GAME",
-   "title": "Counter-Strike 2 Game",
+   "series": "KXNCAAWBGAME",
+   "title": "Women's College Basketball Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 166823,
-   "open_markets": 98,
-   "median_spread": 0.08,
-   "quotes": 136,
-   "events": 28,
-   "brier_market": 0.1938,
+   "vol24": 132714,
+   "open_markets": 346,
+   "median_spread": 0.05,
+   "quotes": 162,
+   "events": 31,
+   "brier_market": 0.1062,
    "fade": {
-    "trades": 2,
-    "pnl": 1.3,
-    "roi": 0.0695,
+    "trades": 6,
+    "pnl": 3.63,
+    "roi": 0.0644,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 8,
+    "pnl": 4.92,
+    "roi": 0.0655,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 4,
+    "pnl": 4.5,
+    "roi": 0.1084,
+    "roi_ci": null,
+    "win_rate": 0.5
+   }
+  },
+  {
+   "series": "KXODIMATCH",
+   "title": "Men's ODI Cricket Match",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 121851,
+   "open_markets": 8,
+   "median_spread": 0.2,
+   "quotes": 158,
+   "events": 29,
+   "brier_market": 0.1931,
+   "fade": {
+    "trades": 1,
+    "pnl": 0.37,
+    "roi": 0.0384,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "favorite": {
     "trades": 2,
-    "pnl": 1.11,
-    "roi": 0.0588,
+    "pnl": 1.8,
+    "roi": 0.0938,
     "roi_ci": null,
     "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 2,
+    "pnl": -20.75,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
+   "series": "KXUEFANL1HTOTAL",
+   "title": "1st Half Total",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 120390,
+   "open_markets": 39,
+   "median_spread": 0.02,
+   "quotes": 162,
+   "events": 18,
+   "brier_market": 0.2061,
+   "fade": {
+    "trades": 5,
+    "pnl": -6.84,
+    "roi": -0.146,
+    "roi_ci": null,
+    "win_rate": 0.8
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
    },
    "corrected_holdout": {
     "trades": 1,
-    "pnl": -10.42,
+    "pnl": -10.31,
     "roi": -1.0,
     "roi_ci": null,
     "win_rate": 0.0
    }
   },
   {
-   "series": "KXUEFANLBTTS",
-   "title": "BTTS",
+   "series": "KXNASDAQ100U",
+   "title": "Nasdaq above/below",
+   "category": "Financials",
+   "frequency": "hourly",
+   "vol24": 118849,
+   "open_markets": 800,
+   "median_spread": 0.04,
+   "quotes": 33,
+   "events": 2,
+   "brier_market": 0.0448,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXHIGHNY",
+   "title": "Highest temperature in NYC",
+   "category": "Climate and Weather",
+   "frequency": "daily",
+   "vol24": 116500,
+   "open_markets": 12,
+   "median_spread": 0.01,
+   "quotes": 141,
+   "events": 30,
+   "brier_market": 0.0019,
+   "fade": {
+    "trades": 2,
+    "pnl": 0.83,
+    "roi": 0.0433,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 2,
+    "pnl": 0.92,
+    "roi": 0.0482,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXTRUMPADMINLEAVE",
+   "title": "Who will leave the Trump administration",
+   "category": "Politics",
+   "frequency": "annual",
+   "vol24": 115128,
+   "open_markets": 109,
+   "median_spread": 0.06,
+   "quotes": 7,
+   "events": 1,
+   "brier_market": 0.1181,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXHIGHLAX",
+   "title": "Highest temperature in Los Angeles",
+   "category": "Climate and Weather",
+   "frequency": "daily",
+   "vol24": 113677,
+   "open_markets": 12,
+   "median_spread": 0.01,
+   "quotes": 145,
+   "events": 30,
+   "brier_market": 0.0008,
+   "fade": {
+    "trades": 1,
+    "pnl": 0.27,
+    "roi": 0.0277,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 1,
+    "pnl": 0.27,
+    "roi": 0.0277,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXCONCACAFNLSPREAD",
+   "title": "Spread",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 163510,
-   "open_markets": 50,
-   "median_spread": 0.105,
-   "quotes": 30,
+   "vol24": 99746,
+   "open_markets": 67,
+   "median_spread": 0.025,
+   "quotes": 90,
    "events": 10,
-   "brier_market": 0.2568,
+   "brier_market": 0.1649,
+   "fade": {
+    "trades": 7,
+    "pnl": -6.31,
+    "roi": -0.0952,
+    "roi_ci": null,
+    "win_rate": 0.857
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 1,
+    "pnl": 16.56,
+    "roi": 1.5862,
+    "roi_ci": null,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "series": "KXATPGTOTAL",
+   "title": "ATP Total Games",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 95319,
+   "open_markets": 3,
+   "median_spread": 0.01,
+   "quotes": 224,
+   "events": 30,
+   "brier_market": 0.2004,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 3,
+    "pnl": -7.57,
+    "roi": -0.265,
+    "roi_ci": null,
+    "win_rate": 0.667
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXUFCFIGHT",
+   "title": "UFC Fight",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 90963,
+   "open_markets": 22,
+   "median_spread": 0.01,
+   "quotes": 168,
+   "events": 28,
+   "brier_market": 0.2057,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 2,
+    "pnl": 2.88,
+    "roi": 0.1506,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 3,
+    "pnl": -30.83,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
+   "series": "KXUEFANLTEAMTOTAL",
+   "title": "Team Total",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 88859,
+   "open_markets": 81,
+   "median_spread": 0.02,
+   "quotes": 308,
+   "events": 17,
+   "brier_market": 0.146,
+   "fade": {
+    "trades": 10,
+    "pnl": 4.9,
+    "roi": 0.0515,
+    "roi_ci": [
+     0.0421,
+     0.0611
+    ],
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 9,
+    "pnl": -3.08,
+    "roi": -0.0358,
+    "roi_ci": null,
+    "win_rate": 0.889
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXUEFANL1H",
+   "title": "1st Half Winner",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 86677,
+   "open_markets": 39,
+   "median_spread": 0.02,
+   "quotes": 161,
+   "events": 18,
+   "brier_market": 0.2122,
+   "fade": {
+    "trades": 2,
+    "pnl": 1.68,
+    "roi": 0.0917,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 3,
+    "pnl": -5.83,
+    "roi": -0.1891,
+    "roi_ci": null,
+    "win_rate": 0.333
+   }
+  },
+  {
+   "series": "KXMIDTERMMOV",
+   "title": "Midterm margin of victory",
+   "category": "Elections",
+   "frequency": "one_off",
+   "vol24": 83727,
+   "open_markets": 4818,
+   "median_spread": 0.04,
+   "quotes": 155,
+   "events": 17,
+   "brier_market": 0.0115,
+   "fade": {
+    "trades": 4,
+    "pnl": 1.4,
+    "roi": 0.0363,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXCPIYOY",
+   "title": "Inflation",
+   "category": "Economics",
+   "frequency": "monthly",
+   "vol24": 83536,
+   "open_markets": 42,
+   "median_spread": 0.01,
+   "quotes": 17,
+   "events": 1,
+   "brier_market": 0.0522,
+   "fade": {
+    "trades": 1,
+    "pnl": 0.84,
+    "roi": 0.0917,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 1,
+    "pnl": 1.03,
+    "roi": 0.1033,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXCPI",
+   "title": "CPI",
+   "category": "Economics",
+   "frequency": "monthly",
+   "vol24": 80751,
+   "open_markets": 20,
+   "median_spread": 0.01,
+   "quotes": 36,
+   "events": 3,
+   "brier_market": 0.1162,
+   "fade": {
+    "trades": 1,
+    "pnl": -9.16,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   },
+   "favorite": {
+    "trades": 3,
+    "pnl": 1.76,
+    "roi": 0.0623,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXBTCMAXMON",
+   "title": "Bitcoin monthly one touch",
+   "category": "Crypto",
+   "frequency": "monthly",
+   "vol24": 77813,
+   "open_markets": 7,
+   "median_spread": 0.01,
+   "quotes": 11,
+   "events": 3,
+   "brier_market": 0.0958,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -3239,11 +3761,11 @@
    "title": "UEFA Nations League Goal",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 161583,
-   "open_markets": 61,
-   "median_spread": 0.09,
-   "quotes": 87,
-   "events": 9,
+   "vol24": 77635,
+   "open_markets": 36,
+   "median_spread": 0.06,
+   "quotes": 139,
+   "events": 13,
    "brier_market": null,
    "fade": {
     "trades": 0,
@@ -3268,29 +3790,62 @@
    }
   },
   {
-   "series": "KXLOLGAME",
-   "title": "League of Legends Game",
+   "series": "KXISLGAME",
+   "title": "Israel Super League Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 148998,
+   "vol24": 75237,
    "open_markets": 4,
-   "median_spread": 0.01,
-   "quotes": 104,
-   "events": 20,
-   "brier_market": 0.1077,
+   "median_spread": 0.04,
+   "quotes": 56,
+   "events": 10,
+   "brier_market": 0.2806,
    "fade": {
-    "trades": 1,
-    "pnl": 0.46,
-    "roi": 0.0482,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": null
    },
    "favorite": {
     "trades": 2,
-    "pnl": 1.8,
-    "roi": 0.0938,
+    "pnl": 1.97,
+    "roi": 0.1035,
     "roi_ci": null,
     "win_rate": 1.0
+   },
+   "corrected_holdout": {
+    "trades": 2,
+    "pnl": 32.25,
+    "roi": 1.5542,
+    "roi_ci": null,
+    "win_rate": 1.0
+   }
+  },
+  {
+   "series": "KXCS2MAP",
+   "title": "Counter-Strike 2 Map Winner ",
+   "category": "Sports",
+   "frequency": "daily",
+   "vol24": 74548,
+   "open_markets": 166,
+   "median_spread": 0.17,
+   "quotes": 45,
+   "events": 10,
+   "brier_market": 0.2945,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
    },
    "corrected_holdout": {
     "trades": 0,
@@ -3301,55 +3856,223 @@
    }
   },
   {
-   "series": "KXCOPADELREYTOTAL",
-   "title": "Copa del Rey Total",
+   "series": "KXCONCACAFNLBTTS",
+   "title": "BTTS",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 147825,
+   "vol24": 69309,
+   "open_markets": 15,
+   "median_spread": 0.02,
+   "quotes": 28,
+   "events": 10,
+   "brier_market": 0.2146,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXIPOANTHROPIC",
+   "title": "Anthropic IPO",
+   "category": "Financials",
+   "frequency": "one_off",
+   "vol24": 66576,
    "open_markets": 6,
-   "median_spread": 0.13,
-   "quotes": 123,
-   "events": 9,
-   "brier_market": 0.2066,
+   "median_spread": 0.01,
+   "quotes": 2,
+   "events": 1,
+   "brier_market": null,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXHORMUZMAX",
+   "title": "Maximum traffic through the Strait of Hormuz?",
+   "category": "Politics",
+   "frequency": "weekly",
+   "vol24": 63895,
+   "open_markets": 14,
+   "median_spread": 0.01,
+   "quotes": 126,
+   "events": 6,
+   "brier_market": 0.0926,
+   "fade": {
+    "trades": 8,
+    "pnl": 3.4,
+    "roi": 0.0444,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXNBAPRA",
+   "title": "NBA Player Points + Rebounds + Assists",
+   "category": "Sports",
+   "frequency": "custom",
+   "vol24": 62144,
+   "open_markets": 293,
+   "median_spread": 0.03,
+   "quotes": 492,
+   "events": 10,
+   "brier_market": 0.2247,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 1,
+    "pnl": -9.77,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   },
+   "corrected_holdout": {
+    "trades": 13,
+    "pnl": -31.74,
+    "roi": -0.2356,
+    "roi_ci": [
+     -0.8596,
+     0.6238
+    ],
+    "win_rate": 0.231
+   }
+  },
+  {
+   "series": "KXNFL1H",
+   "title": "Pro Football 1st Half Winner",
+   "category": "Sports",
+   "frequency": "one_off",
+   "vol24": 60107,
+   "open_markets": 3,
+   "median_spread": 0.01,
+   "quotes": 87,
+   "events": 10,
+   "brier_market": 0.1481,
+   "fade": {
+    "trades": 9,
+    "pnl": 6.7,
+    "roi": 0.0804,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 2,
+    "pnl": -20.48,
+    "roi": -1.0,
+    "roi_ci": null,
+    "win_rate": 0.0
+   }
+  },
+  {
+   "series": "KXTRUTHSOCIAL",
+   "title": "Number of Trump Truth Social posts this week?",
+   "category": "Politics",
+   "frequency": "weekly",
+   "vol24": 58109,
+   "open_markets": 10,
+   "median_spread": 0.025,
+   "quotes": 90,
+   "events": 8,
+   "brier_market": 0.0929,
    "fade": {
     "trades": 5,
-    "pnl": -7.68,
-    "roi": -0.1611,
+    "pnl": -8.07,
+    "roi": -0.1679,
     "roi_ci": null,
     "win_rate": 0.8
    },
    "favorite": {
-    "trades": 7,
-    "pnl": -6.3,
-    "roi": -0.0936,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 0.857
+    "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 5,
-    "pnl": -7.78,
-    "roi": -0.1503,
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
     "roi_ci": null,
-    "win_rate": 0.4
+    "win_rate": null
    }
   },
   {
-   "series": "KXBOXING",
-   "title": "Boxing Match Champion",
+   "series": "KXATPGSPREAD",
+   "title": "ATP Game Spread",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 138645,
-   "open_markets": 60,
-   "median_spread": 0.03,
-   "quotes": 40,
-   "events": 10,
-   "brier_market": 0.1911,
+   "vol24": 57453,
+   "open_markets": 3,
+   "median_spread": 0.01,
+   "quotes": 143,
+   "events": 20,
+   "brier_market": 0.2213,
    "fade": {
     "trades": 1,
-    "pnl": 0.84,
-    "roi": 0.0917,
+    "pnl": -9.26,
+    "roi": -1.0,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": 0.0
    },
    "favorite": {
     "trades": 1,
@@ -3359,24 +4082,24 @@
     "win_rate": 1.0
    },
    "corrected_holdout": {
-    "trades": 1,
-    "pnl": -10.31,
-    "roi": -1.0,
+    "trades": 3,
+    "pnl": 27.02,
+    "roi": 0.8722,
     "roi_ci": null,
-    "win_rate": 0.0
+    "win_rate": 0.333
    }
   },
   {
-   "series": "KXPGAROUNDSCORE",
-   "title": "Golf Round Scores",
+   "series": "KXPERLIGA1GAME",
+   "title": "Peru Liga 1 Game",
    "category": "Sports",
    "frequency": "custom",
-   "vol24": 131466,
-   "open_markets": 14,
-   "median_spread": 0.795,
-   "quotes": 298,
-   "events": 10,
-   "brier_market": 0.2547,
+   "vol24": 55704,
+   "open_markets": 9,
+   "median_spread": 0.01,
+   "quotes": 152,
+   "events": 17,
+   "brier_market": 0.1751,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -3392,90 +4115,24 @@
     "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 3,
-    "pnl": 32.14,
-    "roi": 1.0415,
+    "trades": 5,
+    "pnl": -14.81,
+    "roi": -0.2859,
     "roi_ci": null,
-    "win_rate": 1.0
+    "win_rate": 0.2
    }
   },
   {
-   "series": "KXHIGHCHI",
-   "title": "Highest temperature in Chicago",
+   "series": "KXHIGHMIA",
+   "title": "Highest temperature in Miami",
    "category": "Climate and Weather",
    "frequency": "daily",
-   "vol24": 127081,
+   "vol24": 54777,
    "open_markets": 12,
    "median_spread": 0.01,
-   "quotes": 108,
-   "events": 20,
-   "brier_market": 0.0442,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.56,
-    "roi": 0.0593,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXUEFANL1HTOTAL",
-   "title": "1st Half Total",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 120791,
-   "open_markets": 57,
-   "median_spread": 0.02,
-   "quotes": 90,
-   "events": 10,
-   "brier_market": 0.2033,
-   "fade": {
-    "trades": 3,
-    "pnl": -8.14,
-    "roi": -0.2893,
-    "roi_ci": null,
-    "win_rate": 0.667
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXLPGATOUR",
-   "title": "PGA Tour",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 120574,
-   "open_markets": 109,
-   "median_spread": 0.029,
-   "quotes": 23,
-   "events": 5,
-   "brier_market": 0.0379,
+   "quotes": 146,
+   "events": 30,
+   "brier_market": null,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -3499,16 +4156,16 @@
    }
   },
   {
-   "series": "KXODIMATCH",
-   "title": "Men's ODI Cricket Match",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 117184,
-   "open_markets": 10,
-   "median_spread": 0.21,
-   "quotes": 108,
-   "events": 20,
-   "brier_market": 0.2331,
+   "series": "KXDANCINGWITHTHESTARS",
+   "title": "Who will win dancing with the stars?",
+   "category": "Entertainment",
+   "frequency": "one_off",
+   "vol24": 51659,
+   "open_markets": 6,
+   "median_spread": 0.01,
+   "quotes": 6,
+   "events": 1,
+   "brier_market": 0.0013,
    "fade": {
     "trades": 1,
     "pnl": 0.37,
@@ -3517,72 +4174,6 @@
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 1,
-    "pnl": 0.46,
-    "roi": 0.0482,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 4,
-    "pnl": -15.57,
-    "roi": -0.3745,
-    "roi_ci": null,
-    "win_rate": 0.25
-   }
-  },
-  {
-   "series": "KXUEFANLTEAMTOTAL",
-   "title": "Team Total",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 112509,
-   "open_markets": 119,
-   "median_spread": 0.03,
-   "quotes": 186,
-   "events": 10,
-   "brier_market": 0.1415,
-   "fade": {
-    "trades": 7,
-    "pnl": 3.51,
-    "roi": 0.0528,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 6,
-    "pnl": -5.32,
-    "roi": -0.0928,
-    "roi_ci": null,
-    "win_rate": 0.833
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXNCAAWBSPREAD",
-   "title": "Women's College Basketball Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 111235,
-   "open_markets": 341,
-   "median_spread": 0.33,
-   "quotes": 198,
-   "events": 17,
-   "brier_market": 0.1747,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
     "trades": 0,
     "pnl": 0.0,
     "roi": null,
@@ -3598,82 +4189,16 @@
    }
   },
   {
-   "series": "KXCOPADELREYADVANCE",
-   "title": "Copa Del Rey To Advance",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 108773,
-   "open_markets": 4,
-   "median_spread": 0.08,
-   "quotes": 46,
-   "events": 10,
-   "brier_market": 0.138,
-   "fade": {
-    "trades": 2,
-    "pnl": 0.92,
-    "roi": 0.0482,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 2,
-    "pnl": 0.92,
-    "roi": 0.0482,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXCONCACAFNLTOTAL",
-   "title": "Point Total",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 108687,
-   "open_markets": 98,
-   "median_spread": 0.02,
-   "quotes": 167,
-   "events": 10,
-   "brier_market": 0.23,
-   "fade": {
-    "trades": 7,
-    "pnl": -36.3,
-    "roi": -0.5475,
-    "roi_ci": null,
-    "win_rate": 0.429
-   },
-   "favorite": {
-    "trades": 9,
-    "pnl": 6.54,
-    "roi": 0.0756,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXHIGHLAX",
-   "title": "Highest temperature in Los Angeles",
-   "category": "Climate and Weather",
-   "frequency": "daily",
-   "vol24": 105256,
-   "open_markets": 12,
-   "median_spread": 0.02,
-   "quotes": 95,
-   "events": 20,
-   "brier_market": null,
+   "series": "KXYTVIEWSW",
+   "title": "Highest daily view count this week",
+   "category": "Entertainment",
+   "frequency": "weekly",
+   "vol24": 49266,
+   "open_markets": 488,
+   "median_spread": 0.8,
+   "quotes": 163,
+   "events": 9,
+   "brier_market": 0.0116,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -3701,8 +4226,8 @@
    "title": "Traffic through the Strait of Hormuz",
    "category": "Politics",
    "frequency": "weekly",
-   "vol24": 97942,
-   "open_markets": 9,
+   "vol24": 48582,
+   "open_markets": 21,
    "median_spread": 0.01,
    "quotes": 234,
    "events": 9,
@@ -3733,146 +4258,47 @@
    }
   },
   {
-   "series": "KXHOUSERACE",
-   "title": "House Race Winner?",
-   "category": "Elections",
-   "frequency": "one_off",
-   "vol24": 97520,
-   "open_markets": 888,
-   "median_spread": 0.05,
-   "quotes": 110,
-   "events": 19,
-   "brier_market": 0.0011,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 1.13,
-    "roi": 0.1145,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXFED",
-   "title": "Fed funds rate",
-   "category": "Economics",
-   "frequency": "custom",
-   "vol24": 95309,
-   "open_markets": 236,
-   "median_spread": 0.22,
-   "quotes": 6,
-   "events": 2,
-   "brier_market": 0.0097,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 1.23,
-    "roi": 0.1259,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXFEATURE",
-   "title": "who will be featured on album",
-   "category": "Entertainment",
-   "frequency": "one_off",
-   "vol24": 94252,
-   "open_markets": 130,
-   "median_spread": 0.02,
-   "quotes": 14,
-   "events": 3,
-   "brier_market": 0.0018,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXDANCINGWITHTHESTARS",
-   "title": "Who will win dancing with the stars?",
-   "category": "Entertainment",
-   "frequency": "one_off",
-   "vol24": 94109,
-   "open_markets": 6,
-   "median_spread": 0.01,
-   "quotes": 6,
-   "events": 1,
-   "brier_market": 0.0013,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.37,
-    "roi": 0.0384,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXHIGHMIA",
-   "title": "Highest temperature in Miami",
+   "series": "KXHIGHCHI",
+   "title": "Highest temperature in Chicago",
    "category": "Climate and Weather",
    "frequency": "daily",
-   "vol24": 90852,
+   "vol24": 36638,
    "open_markets": 12,
-   "median_spread": 0.01,
-   "quotes": 99,
+   "median_spread": 0.015,
+   "quotes": 151,
+   "events": 30,
+   "brier_market": 0.0442,
+   "fade": {
+    "trades": 1,
+    "pnl": 0.56,
+    "roi": 0.0593,
+    "roi_ci": null,
+    "win_rate": 1.0
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXHIGHTHOU",
+   "title": "Daily High Temperature Houston",
+   "category": "Climate and Weather",
+   "frequency": "daily",
+   "vol24": 27914,
+   "open_markets": 12,
+   "median_spread": 0.02,
+   "quotes": 98,
    "events": 20,
    "brier_market": null,
    "fade": {
@@ -3898,55 +4324,22 @@
    }
   },
   {
-   "series": "KXATPSETWINNER",
-   "title": "ATP Set Winner",
-   "category": "Sports",
+   "series": "KXWAYMOCITY",
+   "title": "Waymo new city",
+   "category": "Science and Technology",
    "frequency": "custom",
-   "vol24": 90309,
-   "open_markets": 8,
-   "median_spread": 0.025,
-   "quotes": 48,
-   "events": 10,
-   "brier_market": 0.2619,
+   "vol24": 14622,
+   "open_markets": 37,
+   "median_spread": 0.03,
+   "quotes": 4,
+   "events": 1,
+   "brier_market": 0.0382,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
     "roi": null,
     "roi_ci": null,
     "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": 14.58,
-    "roi": 1.3992,
-    "roi_ci": null,
-    "win_rate": 1.0
-   }
-  },
-  {
-   "series": "KXUEFANL1H",
-   "title": "1st Half Winner",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 89693,
-   "open_markets": 57,
-   "median_spread": 0.02,
-   "quotes": 89,
-   "events": 10,
-   "brier_market": 0.2185,
-   "fade": {
-    "trades": 2,
-    "pnl": 1.68,
-    "roi": 0.0917,
-    "roi_ci": null,
-    "win_rate": 1.0
    },
    "favorite": {
     "trades": 0,
@@ -3964,115 +4357,16 @@
    }
   },
   {
-   "series": "KXDOTA2GAME",
-   "title": "Dota 2 Game",
-   "category": "Sports",
+   "series": "KXPNEUMONICPLAGUE",
+   "title": "Pneumonic Plague in the US",
+   "category": "Science and Technology",
    "frequency": "custom",
-   "vol24": 85816,
-   "open_markets": 54,
-   "median_spread": 0.125,
-   "quotes": 94,
-   "events": 20,
-   "brier_market": 0.2257,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 3,
-    "pnl": 2.64,
-    "roi": 0.0931,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": -10.51,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   }
-  },
-  {
-   "series": "KXATPGTOTAL",
-   "title": "ATP Total Games",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 85040,
-   "open_markets": 6,
-   "median_spread": 0.07,
-   "quotes": 153,
-   "events": 20,
-   "brier_market": 0.2084,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 1.13,
-    "roi": 0.1145,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": 14.58,
-    "roi": 1.3992,
-    "roi_ci": null,
-    "win_rate": 1.0
-   }
-  },
-  {
-   "series": "KXAFCONTOTAL",
-   "title": "Point Total",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 83006,
-   "open_markets": 114,
-   "median_spread": 0.02,
-   "quotes": 169,
-   "events": 10,
-   "brier_market": 0.1186,
-   "fade": {
-    "trades": 9,
-    "pnl": 5.57,
-    "roi": 0.066,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 9,
-    "pnl": -2.63,
-    "roi": -0.0304,
-    "roi_ci": null,
-    "win_rate": 0.889
-   },
-   "corrected_holdout": {
-    "trades": 4,
-    "pnl": 68.51,
-    "roi": 1.6512,
-    "roi_ci": null,
-    "win_rate": 0.5
-   }
-  },
-  {
-   "series": "KXBTCMAXMON",
-   "title": "Bitcoin monthly one touch",
-   "category": "Crypto",
-   "frequency": "monthly",
-   "vol24": 81881,
-   "open_markets": 7,
+   "vol24": 11571,
+   "open_markets": 2,
    "median_spread": 0.01,
-   "quotes": 11,
-   "events": 3,
-   "brier_market": 0.0958,
+   "quotes": 3,
+   "events": 1,
+   "brier_market": 0.0002,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -4096,69 +4390,36 @@
    }
   },
   {
-   "series": "KXPGATOP20",
-   "title": "PGA Top 20 Finisher",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 76389,
-   "open_markets": 119,
-   "median_spread": 0.08,
-   "quotes": 180,
-   "events": 6,
-   "brier_market": 0.1238,
+   "series": "KXNATGASW",
+   "title": "Natural Gas Weekly",
+   "category": "Commodities",
+   "frequency": "weekly",
+   "vol24": 45336,
+   "open_markets": 40,
+   "median_spread": 0.02,
+   "quotes": 94,
+   "events": 9,
+   "brier_market": 0.0661,
    "fade": {
-    "trades": 4,
-    "pnl": 1.84,
+    "trades": 3,
+    "pnl": 1.38,
     "roi": 0.0482,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "favorite": {
-    "trades": 3,
-    "pnl": 1.98,
-    "roi": 0.0682,
+    "trades": 6,
+    "pnl": 4.57,
+    "roi": 0.0796,
     "roi_ci": null,
     "win_rate": 1.0
    },
    "corrected_holdout": {
     "trades": 2,
-    "pnl": 5.29,
-    "roi": 0.2554,
-    "roi_ci": null,
-    "win_rate": 0.5
-   }
-  },
-  {
-   "series": "KXAAAGASM",
-   "title": "US gas price",
-   "category": "Economics",
-   "frequency": "monthly",
-   "vol24": 76157,
-   "open_markets": 26,
-   "median_spread": 0.01,
-   "quotes": 20,
-   "events": 2,
-   "brier_market": 0.0054,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 2,
-    "pnl": 1.71,
-    "roi": 0.0886,
+    "pnl": 3.8,
+    "roi": 0.1979,
     "roi_ci": null,
     "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
    }
   },
   {
@@ -4166,9 +4427,9 @@
    "title": "WTI oil high",
    "category": "Commodities",
    "frequency": "annual",
-   "vol24": 70752,
-   "open_markets": 30,
-   "median_spread": 0.04,
+   "vol24": 35128,
+   "open_markets": 40,
+   "median_spread": 0.005,
    "quotes": 45,
    "events": 2,
    "brier_market": 0.0996,
@@ -4187,509 +4448,11 @@
     "win_rate": null
    },
    "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXUEFANLFIRSTGOAL",
-   "title": "UEFA Nations League First Goal",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 68916,
-   "open_markets": 60,
-   "median_spread": 0.1,
-   "quotes": 42,
-   "events": 8,
-   "brier_market": null,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXDWTSFINALS",
-   "title": "Dancing with the Stars finalists",
-   "category": "Entertainment",
-   "frequency": "one_off",
-   "vol24": 68277,
-   "open_markets": 6,
-   "median_spread": 0.01,
-   "quotes": 13,
-   "events": 1,
-   "brier_market": 0.153,
-   "fade": {
-    "trades": 2,
-    "pnl": 1.21,
-    "roi": 0.0644,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
     "trades": 1,
-    "pnl": -9.77,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXAFCONSPREAD",
-   "title": "Spread",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 68244,
-   "open_markets": 83,
-   "median_spread": 0.02,
-   "quotes": 88,
-   "events": 10,
-   "brier_market": 0.0556,
-   "fade": {
-    "trades": 7,
-    "pnl": 3.51,
-    "roi": 0.0528,
+    "pnl": 1.55,
+    "roi": 0.164,
     "roi_ci": null,
     "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXATPEXACTMATCH",
-   "title": "ATP Exact Match Score",
-   "category": "Sports",
-   "frequency": "custom",
-   "vol24": 67308,
-   "open_markets": 8,
-   "median_spread": 0.13,
-   "quotes": 213,
-   "events": 20,
-   "brier_market": 0.1531,
-   "fade": {
-    "trades": 6,
-    "pnl": 3.34,
-    "roi": 0.0589,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXDEEPSHARE",
-   "title": "DeepSeek market share",
-   "category": "Science and Technology",
-   "frequency": "one_off",
-   "vol24": 67300,
-   "open_markets": 9,
-   "median_spread": 0.05,
-   "quotes": 24,
-   "events": 9,
-   "brier_market": 0.0152,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXCOPADELREYSPREAD",
-   "title": "Copa Del Rey Spread",
-   "category": "Sports",
-   "frequency": "one_off",
-   "vol24": 65674,
-   "open_markets": 6,
-   "median_spread": null,
-   "quotes": 82,
-   "events": 9,
-   "brier_market": 0.1469,
-   "fade": {
-    "trades": 3,
-    "pnl": 1.1,
-    "roi": 0.0381,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 1.03,
-    "roi": 0.1033,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 3,
-    "pnl": 20.94,
-    "roi": 0.6742,
-    "roi_ci": null,
-    "win_rate": 0.667
-   }
-  },
-  {
-   "series": "KXDIESELD",
-   "title": "Daily Diesel Price",
-   "category": "Economics",
-   "frequency": "daily",
-   "vol24": 65509,
-   "open_markets": 21,
-   "median_spread": 0.01,
-   "quotes": 138,
-   "events": 10,
-   "brier_market": 0.0661,
-   "fade": {
-    "trades": 9,
-    "pnl": 3.94,
-    "roi": 0.0458,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 5,
-    "pnl": 3.15,
-    "roi": 0.0658,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXLOWTAUS",
-   "title": "Lowest temperature in Austin",
-   "category": "Climate and Weather",
-   "frequency": "daily",
-   "vol24": 50399,
-   "open_markets": 12,
-   "median_spread": 0.05,
-   "quotes": 67,
-   "events": 10,
-   "brier_market": 0.1115,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXOPENSHARE",
-   "title": "OpenAI Market Share",
-   "category": "Science and Technology",
-   "frequency": "one_off",
-   "vol24": 42827,
-   "open_markets": 9,
-   "median_spread": 0.02,
-   "quotes": 39,
-   "events": 9,
-   "brier_market": 0.0527,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXGOOGSHARE",
-   "title": "Google AI Market Share",
-   "category": "Science and Technology",
-   "frequency": "one_off",
-   "vol24": 42773,
-   "open_markets": 9,
-   "median_spread": 0.02,
-   "quotes": 30,
-   "events": 8,
-   "brier_market": 0.0013,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXGPT",
-   "title": "ChatGPT Release Date",
-   "category": "Science and Technology",
-   "frequency": "one_off",
-   "vol24": 40068,
-   "open_markets": 6,
-   "median_spread": 0.02,
-   "quotes": 7,
-   "events": 1,
-   "brier_market": 0.0013,
-   "fade": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXGOLDW",
-   "title": "Gold Weekly price ",
-   "category": "Commodities",
-   "frequency": "weekly",
-   "vol24": 22282,
-   "open_markets": 40,
-   "median_spread": 0.02,
-   "quotes": 185,
-   "events": 8,
-   "brier_market": 0.1092,
-   "fade": {
-    "trades": 5,
-    "pnl": 2.4,
-    "roi": 0.0504,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "favorite": {
-    "trades": 10,
-    "pnl": -5.43,
-    "roi": -0.0563,
-    "roi_ci": [
-     -0.2631,
-     0.0634
-    ],
-    "win_rate": 0.9
-   },
-   "corrected_holdout": {
-    "trades": 1,
-    "pnl": -10.05,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   }
-  },
-  {
-   "series": "KXCOMPANYLAYOFF",
-   "title": "Company Layoffs",
-   "category": "Companies",
-   "frequency": "one_off",
-   "vol24": 1926,
-   "open_markets": 3,
-   "median_spread": 0.04,
-   "quotes": 3,
-   "events": 1,
-   "brier_market": 0.003,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 0.27,
-    "roi": 0.0277,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXTRUMPSAY",
-   "title": "What will trump say",
-   "category": "Mentions",
-   "frequency": "one_off",
-   "vol24": 46400,
-   "open_markets": 34,
-   "median_spread": 0.04,
-   "quotes": 200,
-   "events": 10,
-   "brier_market": 0.179,
-   "fade": {
-    "trades": 2,
-    "pnl": -19.17,
-    "roi": -1.0,
-    "roi_ci": null,
-    "win_rate": 0.0
-   },
-   "favorite": {
-    "trades": 1,
-    "pnl": 0.84,
-    "roi": 0.0917,
-    "roi_ci": null,
-    "win_rate": 1.0
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXPSAKIMENTION",
-   "title": "Jen Psaki Mention",
-   "category": "Mentions",
-   "frequency": "one_off",
-   "vol24": 44166,
-   "open_markets": 15,
-   "median_spread": 0.18,
-   "quotes": 138,
-   "events": 9,
-   "brier_market": 0.189,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
    }
   },
   {
@@ -4697,9 +4460,9 @@
    "title": "NVIDIA Mention",
    "category": "Mentions",
    "frequency": "one_off",
-   "vol24": 13753,
+   "vol24": 33317,
    "open_markets": 18,
-   "median_spread": 0.04,
+   "median_spread": 0.01,
    "quotes": 40,
    "events": 1,
    "brier_market": 0.0822,
@@ -4726,49 +4489,49 @@
    }
   },
   {
-   "series": "KXWORLDNEWSMENTION",
-   "title": "World News Mention",
+   "series": "KXMSFTMENTION",
+   "title": "Microsoft Mention",
    "category": "Mentions",
    "frequency": "one_off",
-   "vol24": 13116,
+   "vol24": 4105,
    "open_markets": 16,
+   "median_spread": 0.04,
+   "quotes": 41,
+   "events": 1,
+   "brier_market": 0.2175,
+   "fade": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "favorite": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   },
+   "corrected_holdout": {
+    "trades": 0,
+    "pnl": 0.0,
+    "roi": null,
+    "roi_ci": null,
+    "win_rate": null
+   }
+  },
+  {
+   "series": "KXMAMDANIMENTION",
+   "title": "What will Zohran Mamdani say? ",
+   "category": "Mentions",
+   "frequency": "one_off",
+   "vol24": 3293,
+   "open_markets": 19,
    "median_spread": 0.03,
-   "quotes": 311,
-   "events": 19,
-   "brier_market": 0.184,
-   "fade": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   },
-   "corrected_holdout": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
-    "roi_ci": null,
-    "win_rate": null
-   }
-  },
-  {
-   "series": "KXTRUMPSAYCOMPANY",
-   "title": "Will Trump mention company",
-   "category": "Mentions",
-   "frequency": "one_off",
-   "vol24": 11340,
-   "open_markets": 33,
-   "median_spread": 0.09,
-   "quotes": 44,
+   "quotes": 121,
    "events": 3,
-   "brier_market": 0.1272,
+   "brier_market": 0.2069,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -4777,11 +4540,11 @@
     "win_rate": null
    },
    "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 1,
+    "pnl": 0.37,
+    "roi": 0.0384,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "corrected_holdout": {
     "trades": 0,
@@ -4792,16 +4555,16 @@
    }
   },
   {
-   "series": "KXALLINMENTION",
-   "title": "All in with Chris Hayes",
-   "category": "Mentions",
+   "series": "KXCOMPANYLAYOFF",
+   "title": "Company Layoffs",
+   "category": "Companies",
    "frequency": "one_off",
-   "vol24": 10609,
-   "open_markets": 8,
-   "median_spread": null,
-   "quotes": 66,
-   "events": 5,
-   "brier_market": 0.205,
+   "vol24": 1655,
+   "open_markets": 3,
+   "median_spread": 0.03,
+   "quotes": 3,
+   "events": 1,
+   "brier_market": 0.003,
    "fade": {
     "trades": 0,
     "pnl": 0.0,
@@ -4810,11 +4573,11 @@
     "win_rate": null
    },
    "favorite": {
-    "trades": 0,
-    "pnl": 0.0,
-    "roi": null,
+    "trades": 1,
+    "pnl": 0.27,
+    "roi": 0.0277,
     "roi_ci": null,
-    "win_rate": null
+    "win_rate": 1.0
    },
    "corrected_holdout": {
     "trades": 0,
@@ -4828,85 +4591,85 @@
  "timing": [
   {
    "hours_before": 24,
-   "quotes": 9652,
+   "quotes": 12220,
    "median_spread": 0.02,
-   "brier_market": 0.143,
+   "brier_market": 0.1477,
    "fade": {
-    "trades": 1290,
-    "pnl": -233.59,
-    "roi": -0.019,
+    "trades": 1632,
+    "pnl": -274.19,
+    "roi": -0.0177,
     "roi_ci": [
-     -0.0323,
-     -0.0052
+     -0.0287,
+     -0.0077
     ],
-    "win_rate": 0.934
+    "win_rate": 0.935
    },
    "favorite": {
-    "trades": 455,
-    "pnl": -176.78,
-    "roi": -0.0406,
+    "trades": 636,
+    "pnl": -258.89,
+    "roi": -0.0425,
     "roi_ci": [
-     -0.065,
-     -0.015
+     -0.0642,
+     -0.0202
     ],
     "win_rate": 0.895
    }
   },
   {
    "hours_before": 6,
-   "quotes": 10654,
+   "quotes": 14322,
    "median_spread": 0.01,
-   "brier_market": 0.1471,
+   "brier_market": 0.1474,
    "fade": {
-    "trades": 1510,
-    "pnl": -358.53,
-    "roi": -0.025,
+    "trades": 1945,
+    "pnl": -390.2,
+    "roi": -0.0211,
     "roi_ci": [
-     -0.0369,
-     -0.0138
+     -0.0304,
+     -0.0115
     ],
-    "win_rate": 0.926
+    "win_rate": 0.93
    },
    "favorite": {
-    "trades": 603,
-    "pnl": -105.69,
-    "roi": -0.0183,
+    "trades": 835,
+    "pnl": -180.12,
+    "roi": -0.0225,
     "roi_ci": [
-     -0.0374,
-     0.0019
+     -0.0437,
+     -0.0043
     ],
-    "win_rate": 0.912
+    "win_rate": 0.908
    }
   },
   {
    "hours_before": 1,
-   "quotes": 9685,
+   "quotes": 12677,
    "median_spread": 0.02,
-   "brier_market": 0.1305,
+   "brier_market": 0.1291,
    "fade": {
-    "trades": 1385,
-    "pnl": -181.46,
-    "roi": -0.0138,
+    "trades": 1740,
+    "pnl": -174.08,
+    "roi": -0.0105,
     "roi_ci": [
-     -0.0237,
-     -0.0038
+     -0.0204,
+     -0.0013
     ],
-    "win_rate": 0.939
+    "win_rate": 0.943
    },
    "favorite": {
-    "trades": 615,
-    "pnl": 9.48,
-    "roi": 0.0016,
+    "trades": 778,
+    "pnl": 25.15,
+    "roi": 0.0034,
     "roi_ci": [
-     -0.0152,
-     0.0191
+     -0.0131,
+     0.0198
     ],
-    "win_rate": 0.933
+    "win_rate": 0.934
    }
   }
  ],
  "arbitrage": {
-  "ladders_checked": 277,
+  "ladders_checked": 426,
   "opportunities": [],
   "count": 0
  }
