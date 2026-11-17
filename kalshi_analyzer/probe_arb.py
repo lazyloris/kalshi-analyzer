@@ -11,25 +11,26 @@ GAMMA = "https://gamma-api.polymarket.com"
 def main():
     now = dt.datetime.now(dt.timezone.utc)
     print("now", now.isoformat())
-    for q in ("bitcoin-above", "ethereum-above", "bitcoin-price", "what-price-will-bitcoin-hit"):
+    for slug in ("bitcoin-above-on-november-17", "bitcoin-above-on-november-18", "ethereum-above-on-november-17",
+                 "bitcoin-price-on-november-17", "what-price-will-bitcoin-hit-in-november-2026"):
         try:
-            evs = get_json(f"{GAMMA}/events", {"slug_contains": q, "closed": "false", "limit": 20})
+            evs = get_json(f"{GAMMA}/events", {"slug": slug})
         except Exception as e:
-            print(q, "ERR", e)
-            evs = []
-        if not evs:
-            try:
-                evs = [e for e in get_json(f"{GAMMA}/events", {"closed": "false", "limit": 500, "tag_slug": "crypto"}) if q in e.get("slug", "")]
-            except Exception as e:
-                print("tag fallback ERR", e)
-        print(f"\n== {q}: {len(evs)} events")
-        for e in evs[:6]:
+            print(slug, "ERR", e); continue
+        print(f"\n== {slug}: {len(evs)} events")
+        for e in evs[:1]:
             ms = e.get("markets") or []
-            print(e.get("slug"), "| end", e.get("endDate"), "| markets", len(ms))
-            print("   desc:", (e.get("description") or "")[:400].replace("\n", " "))
-            for m in ms[:4]:
-                print("   ", m.get("question"), "| bid", m.get("bestBid"), "ask", m.get("bestAsk"), "| outcomePrices", m.get("outcomePrices"),
-                      "| fees?", m.get("feesEnabled", m.get("makerBaseFee")), "| end", m.get("endDate"))
+            print("end", e.get("endDate"), "| markets", len(ms))
+            print("   desc:", (e.get("description") or "")[:700].replace("\n", " "))
+            for m in ms[:30]:
+                print("   ", m.get("question"), "| bid", m.get("bestBid"), "ask", m.get("bestAsk"), "| fees", m.get("feesEnabled"),
+                      "| liq", m.get("liquidityNum"), "| vol24", m.get("volume24hr"))
+    try:
+        r = get_json(f"{GAMMA}/public-search", {"q": "bitcoin above", "limit_per_type": 10})
+        for e in (r.get("events") or [])[:10]:
+            print("search:", e.get("slug"), e.get("endDate"))
+    except Exception as e:
+        print("search ERR", e)
     print("\n== Kalshi open KXBTCD events")
     data = get_json(f"{C.KALSHI_API}/events", {"series_ticker": "KXBTCD", "status": "open", "limit": 50})
     for e in sorted(data.get("events") or [], key=lambda e: e.get("event_ticker"))[:30]:
