@@ -14,7 +14,9 @@ import statistics
 from collections import defaultdict
 
 from .. import config as C
+from ..model import taker_fee
 from . import data as D
+from . import engine as E
 from . import ladder as L
 
 BANDS = ((0.75, 0.88), (0.93, 0.96))
@@ -73,12 +75,76 @@ def run():
                   "skipped": stats([x for x in rows if x["chg24"] <= MAIN_CUT])},
          "context": {str(c): stats([x for x in rows if x["chg24"] > c]) for c in CONTEXT_CUTS},
          "buckets": {f"{lo:+.0%} to {hi:+.0%}": stats([x for x in rows if lo < x["chg24"] <= hi]) for lo, hi in BUCKETS}}
+    r["calibration"] = calibrate(rows)
+    r["stops"] = stop_table(data, rows)
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(r, indent=1))
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text(markdown(r))
     D.log(f"wrote {OUT_MD}")
     return r
+
+
+STOP_MAIN = 0.50                 # pre-registered: sell when the bid is half our price (about -$5 on $10)
+STOP_CONTEXT = (0.25, 0.35, 0.65, 0.75)
+
+
+def with_stop(data, rows, frac):
+    """Sell at the bid (taker fee) the first hour the bid is at or below price * (1 - frac).
+    Hourly candles only, so a real stop could fill better or worse than this."""
+    out = []
+    for r in rows:
+        m, cs = data["markets"][r["ticker"]], data["candles"][r["ticker"]]
+        close = L._ts(m["close_time"])
+        level = r["price"] * (1 - frac)
+        t = r["ts"] + 3600
+        new = dict(r, stopped=False)
+        while t <= close - 3600:
+            q = E.quote(cs, t, max_age_h=1)
+            if q and q[0] <= level:
+                n = r["contracts"]
+                pnl = n * q[0] - taker_fee(n, q[0], C.FEE_RATE) - r["cost"]
+                new.update(stopped=True, won=False, pnl=round(pnl, 4))
+                break
+            t += 3600
+        out.append(new)
+    return out
+
+
+def stop_table(data, rows):
+    res = {"none": stats(rows)}
+    for f in (STOP_MAIN,) + STOP_CONTEXT:
+        st = with_stop(data, rows, f)
+        s = stats(st)
+        s["stopped"] = sum(x["stopped"] for x in st)
+        s["stopped_would_have_won"] = sum(1 for x, o in zip(st, rows) if x["stopped"] and o["won"])
+        res[str(f)] = s
+    return res
+
+
+def calibrate(rows, span_days=60):
+    """Kill-rule calibration: over every 60-day stretch of history, the worst drop from peak in
+    running P&L, and how often 3 losing days landed within 10 trading days (the old rule)."""
+    days = defaultdict(float)
+    for r in rows:
+        days[r["date"]] += r["pnl"]
+    order = sorted(days)
+    dds, trips = [], 0
+    for i, start in enumerate(order):
+        end = (dt.date.fromisoformat(start) + dt.timedelta(days=span_days)).isoformat()
+        win = [d for d in order[i:] if d < end]
+        if (dt.date.fromisoformat(order[-1]) - dt.date.fromisoformat(start)).days < span_days:
+            break
+        run = peak = dd = 0.0
+        for d in win:
+            run += days[d]; peak = max(peak, run); dd = max(dd, peak - run)
+        dds.append(dd)
+        trips += any(sum(1 for d in win[j:j + 10] if days[d] < 0) >= 3 for j in range(len(win)))
+    dds.sort()
+    q = lambda f: round(dds[min(len(dds) - 1, int(f * len(dds)))], 2) if dds else None
+    return {"windows": len(dds), "old_rule_trip_rate": round(trips / len(dds), 3) if dds else None,
+            "max_drawdown_p50": q(0.5), "p90": q(0.9), "p95": q(0.95), "p99": q(0.99), "max": dds[-1] if dds else None,
+            "daily_pnl": {d: round(days[d], 2) for d in order}}
 
 
 def _p(v):
@@ -97,6 +163,18 @@ def markdown(r):
            head, line("All trades (no filter)", r["all"]), line("Kept (filter on)", r["main"]["kept"]),
            line("Skipped (down >=3%)", r["main"]["skipped"]), "", "## Other cutoffs (context only, don't pick the best)", "", head]
     out += [line(f"Skip when down >= {-float(c):.0%}", s) for c, s in r["context"].items()]
+    c = r.get("calibration") or {}
+    out += ["", "## Kill-rule calibration (60-day stretches of history)", "",
+            f"Windows: {c.get('windows')}. Old rule (3 losing days in 10) would have tripped in {c.get('old_rule_trip_rate')} of them.",
+            f"Worst drop from peak per window: median ${c.get('max_drawdown_p50')}, 90th ${c.get('p90')}, 95th ${c.get('p95')}, 99th ${c.get('p99')}, max ${c.get('max')}."]
+    st = r.get("stops") or {}
+    if st:
+        out += ["", "## Stop-loss test (main, picked before looking: sell at half our price, about -$5 per $10)", "",
+                "Stopped = trades sold early; 'would have won' = of those, how many would have paid out if held.", "", head]
+        for k, v in st.items():
+            nm = "No stop" if k == "none" else f"Stop at -{float(k):.0%} of price" + (" (main)" if float(k) == STOP_MAIN else "")
+            extra = "" if k == "none" else f" stopped {v.get('stopped')}, would have won {v.get('stopped_would_have_won')}"
+            out.append(line(nm, v) + extra)
     out += ["", "## By BTC 24h change", "", head] + [line(k, s) for k, s in r["buckets"].items()] + [""]
     return "\n".join(out)
 

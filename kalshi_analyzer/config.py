@@ -144,14 +144,18 @@ BOOKS = {
     #   - return per $ below 0 once 60 days have passed or 120 trades have settled
     #   - 3 losing days within any 10 trading days
     "bitcoin_fav": {
-        "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)", "short": "BTC favorites",
+        "name": "WATCHING: Bitcoin 5pm favorites (official test failed 11/17, kept as data)", "short": "★ BTC favorites (watching)",
         "kind": "crypto", "asset": "BTC-USD", "version": "btc-fav-v1", "bankroll": 1000.0, "unit": "$",
         "strategy": "favorite",
         # (low, high, backtest win rate): the win rate is only logged as the "model" chance.
         "fav_bands": ((0.75, 0.88, 0.90), (0.93, 0.96, 0.985)),
         "fav_lead_hours": (3.5, 4.5),          # backtest entry: 4h before close (hourly candles)
         "test_start": "2026-11-10", "test_days": 60,
-        "kill": {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10},
+        # Official test FAILED 2026-11-17 (owner's call): the fair kill rule, a drop from peak worse
+        # than the worst 5% of 60-day stretches in history ($28), tripped at -$28.69 after week 1.
+        # The book keeps paper trading as an unofficial data log, so the kill rules are off.
+        # Old rules: {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10}.
+        "kill": None, "official_test": "failed 2026-11-17",
         "series": {"KXBTCD": "BTC"}, "event_suffix": "17", "fallback_vol": 0.50,
         "rules": {"MAX_SPREAD": 0.05, "MAX_POSITIONS_PER_EVENT": 2, "MAX_PRICE": 0.96, "MIN_PRICE": 0.75},
     },

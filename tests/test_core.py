@@ -256,7 +256,8 @@ def test_favorite_buys_band_only_in_window():
     assert strategy.evaluate("bitcoin_fav", _fav_market("A", 0.80), {}, at4h + dt.timedelta(hours=1))[1] is None  # 3h out
 
 
-def test_favorite_kill_rules():
+def test_favorite_kill_rules(monkeypatch):
+    monkeypatch.setitem(C.BOOKS["bitcoin_fav"], "kill", {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10})
     now = dt.datetime(2026, 11, 20, tzinfo=dt.timezone.utc)
     t = lambda day, pnl: {"status": "settled", "target_date": day, "pnl": pnl, "cost": 10}
     ok = [t(f"2026-11-{d:02d}", 0.5) for d in range(10, 20)]
@@ -266,6 +267,8 @@ def test_favorite_kill_rules():
     late = dt.datetime(2027, 1, 10, tzinfo=dt.timezone.utc)
     assert "finished" in strategy.kill_reason("bitcoin_fav", ok, late)
     assert strategy.kill_reason("bitcoin", [t("2026-11-15", -9)] * 5, now) is None  # other books: no kill rules
+    monkeypatch.setitem(C.BOOKS["bitcoin_fav"], "kill", None)
+    assert strategy.kill_reason("bitcoin_fav", bad, late) is None  # unofficial data log: never stops
 
 
 def test_favorite_run_one_per_band_and_only_its_book(tmp_repo):
