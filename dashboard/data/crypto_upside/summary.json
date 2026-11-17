@@ -1,0 +1,58 @@
+{
+ "book": "crypto_upside",
+ "name": "TESTING: Crypto 5pm upside long shots, buy NO (pre-registered, from 11/17)",
+ "short": "\u2605 Crypto upside NO (testing)",
+ "kind": "crypto",
+ "unit": "$",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-17T06:35+00:00",
+ "strategy_version": "crypto-upside-v1",
+ "rules": {
+  "MIN_EDGE": 0.08,
+  "MIN_PRICE": 0.88,
+  "MAX_PRICE": 0.97,
+  "MAX_SPREAD": 0.03,
+  "MIN_LEAD_HOURS": 6,
+  "MAX_POSITIONS_PER_EVENT": 20,
+  "STAKE_DOLLARS": 10.0
+ },
+ "strategy": "upside_no",
+ "model": {
+  "fallback_vol": 0.5,
+  "asset": "BTC-USD"
+ },
+ "markets": [
+  "KXBTCD",
+  "KXETHD"
+ ],
+ "bankroll": 1000.0,
+ "open_exposure": 0,
+ "totals": {
+  "n": 0
+ },
+ "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
+ "breakdowns": {
+  "city": {},
+  "side": {},
+  "edge": {},
+  "price": {},
+  "days_ahead": {},
+  "bracket_distance": {},
+  "bracket_type": {},
+  "cause": {},
+  "version": {}
+ },
+ "calibration": [],
+ "forecast_accuracy": [],
+ "suggestions": [
+  {
+   "priority": 0,
+   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+  }
+ ],
+ "bankroll_curve": []
+}

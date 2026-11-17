@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T04:32+00:00",
+ "generated_at": "2026-11-17T06:35+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 965.14,
    "starting_bankroll": 1000.0,
    "settled": 77,
-   "open": 20,
+   "open": 21,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-14T14:00+00:00"
   },
@@ -19,7 +19,7 @@
    "bankroll": 991.18,
    "starting_bankroll": 1000.0,
    "settled": 31,
-   "open": 11,
+   "open": 13,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-17T14:00+00:00"
   },
@@ -98,6 +98,17 @@
    "settled": 10,
    "open": 0,
    "version": "btc-fav-v1",
+   "next_results_by": ""
+  },
+  {
+   "id": "crypto_upside",
+   "name": "TESTING: Crypto 5pm upside long shots, buy NO (pre-registered, from 11/17)",
+   "short": "\u2605 Crypto upside NO (testing)",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 0,
+   "version": "crypto-upside-v1",
    "next_results_by": ""
   }
  ]
