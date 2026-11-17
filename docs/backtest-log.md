@@ -255,3 +255,23 @@ The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, a
 - Plan: run the Bitcoin favorite rule and Fable's upside-NO rule, both "4h before close", on the 10am, 1pm and 9pm ET hourly events.
 - Finding: those hourly KXBTCD events only trade in their last hour. Across 57k strikes with candles, every market's first hourly candle is at the close. Nothing exists 4h before, so neither rule can trade there (0 trades). Only the 5pm daily event is open all day.
 - Decision: drop the other-hours test; don't retry it. The only honest check left for both rules is forward paper trading: bitcoin_fav (unofficial data log) and crypto_upside (pre-registered from 2026-11-17).
+
+## 2026-11-17 Inflation: Cleveland Fed CPI nowcast vs Kalshi CPI markets (branch cpi-test, run 44089928940)
+
+**Setup:** KXCPI (headline) and KXCPICORE (core), month over month, "more than X%" markets, 2021 to 2026.
+- Real-time daily nowcast vintages come from clevelandfed.org nowcast_month.json. Only values dated before the entry day are used.
+- Error spread is walk-forward: it uses only earlier releases, and the first 12 events are calibration only. That leaves 35 tradable events per series.
+- P(YES) = 1 − Φ((K + 0.05 − nowcast) / σ).
+- Taker trades, fee 0.07·p·(1−p). Leads: 14d, 7d, 3d, 1d and 3h before the 8:30am ET release. Edges 3/5/10c.
+- **Pass bar:** +5%/$, 100+ trades, event t ≥ 3, both halves positive.
+
+**Headline CPI: FAILED.** The market's Brier score is better than the nowcast at every lead (e.g. 0.091 vs 0.097 at 7d). Trades scatter around zero: the best is +15%/$ on 55 trades, t 0.8, with the second half negative. The 1-day lead loses −7% to −17%.
+
+**Core CPI: LEAD, NOT PROVEN.**
+- The nowcast beats the market's Brier score at 14d (0.093 vs 0.101), 1d (0.088 vs 0.098) and 3h (0.091 vs 0.103), and ties at 7d and 3d.
+- Trades are positive at almost every setting. Examples:
+  - 3h before the release, edge 5c: +18.7%/$ on 60 trades over 32 events, both halves positive, t 1.2.
+  - 14d before, edge 10c: +50.7%/$ on 31 trades, t 1.9.
+- Fails the bar: under 100 trades and t < 2. The best cells were picked from 15, so expect them to shrink. There are only about 12 releases a year, so proving it takes years of paper data.
+
+**Next:** at most, a cheap pre-registered paper book on core CPI (3h before the release, edge 5c). Don't add filters on these 35 events.
