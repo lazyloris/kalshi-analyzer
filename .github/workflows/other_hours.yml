@@ -1,0 +1,44 @@
+name: Favorite rule at other hours
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [other-hours]
+    paths: [kalshi_analyzer/backtest/other_hours.py, .github/workflows/other_hours.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Restore earlier downloads of this test
+        uses: actions/cache/restore@v4
+        with:
+          path: data/backtest_cache
+          key: btc-hours-${{ github.run_id }}
+          restore-keys: btc-hours-
+      - name: Download and score
+        run: python -m kalshi_analyzer.backtest.other_hours --budget 250
+      - name: Save downloads
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: data/backtest_cache
+          key: btc-hours-${{ github.run_id }}
+      - name: Save results to the repo
+        if: ${{ !cancelled() }}
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add reports/other_hours.md dashboard/data/other_hours.json 2>/dev/null || true
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "other hours $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
