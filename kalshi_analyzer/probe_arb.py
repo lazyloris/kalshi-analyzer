@@ -11,26 +11,30 @@ GAMMA = "https://gamma-api.polymarket.com"
 def main():
     now = dt.datetime.now(dt.timezone.utc)
     print("now", now.isoformat())
-    for slug in ("bitcoin-above-on-november-17", "bitcoin-above-on-november-18", "ethereum-above-on-november-17",
-                 "bitcoin-price-on-november-17", "what-price-will-bitcoin-hit-in-november-2026"):
-        try:
-            evs = get_json(f"{GAMMA}/events", {"slug": slug})
-        except Exception as e:
-            print(slug, "ERR", e); continue
-        print(f"\n== {slug}: {len(evs)} events")
-        for e in evs[:1]:
-            ms = e.get("markets") or []
-            print("end", e.get("endDate"), "| markets", len(ms))
-            print("   desc:", (e.get("description") or "")[:700].replace("\n", " "))
-            for m in ms[:30]:
-                print("   ", m.get("question"), "| bid", m.get("bestBid"), "ask", m.get("bestAsk"), "| fees", m.get("feesEnabled"),
-                      "| liq", m.get("liquidityNum"), "| vol24", m.get("volume24hr"))
-    try:
-        r = get_json(f"{GAMMA}/public-search", {"q": "bitcoin above", "limit_per_type": 10})
-        for e in (r.get("events") or [])[:10]:
-            print("search:", e.get("slug"), e.get("endDate"))
-    except Exception as e:
-        print("search ERR", e)
+    seen = {}
+    for tag in ("bitcoin", "ethereum", "crypto", "crypto-prices"):
+        for off in (0, 100, 200):
+            try:
+                evs = get_json(f"{GAMMA}/events", {"tag_slug": tag, "closed": "false", "active": "true", "limit": 100,
+                                                   "offset": off, "order": "endDate", "ascending": "true",
+                                                   "end_date_min": "2026-11-17T00:00:00Z"})
+            except Exception as e:
+                print(tag, off, "ERR", e); break
+            for e in evs:
+                seen[e.get("slug")] = e
+            if len(evs) < 100:
+                break
+    print(f"\n== {len(seen)} open crypto events")
+    for slug, e in sorted(seen.items(), key=lambda kv: kv[1].get("endDate") or ""):
+        if (e.get("endDate") or "") > "2026-11-25":
+            continue
+        ms = e.get("markets") or []
+        print(e.get("endDate"), slug, "| mkts", len(ms), "| vol24", e.get("volume24hr"))
+        if any(k in slug for k in ("above", "price-on", "up-or-down")) and ms:
+            print("   desc:", (e.get("description") or "")[:300].replace("\n", " "))
+            for m in ms[:14]:
+                print("     ", m.get("question"), "| bid", m.get("bestBid"), "ask", m.get("bestAsk"),
+                      "| fees", m.get("feesEnabled"), "| liq", m.get("liquidityNum"))
     print("\n== Kalshi open KXBTCD events")
     data = get_json(f"{C.KALSHI_API}/events", {"series_ticker": "KXBTCD", "status": "open", "limit": 50})
     for e in sorted(data.get("events") or [], key=lambda e: e.get("event_ticker"))[:30]:
