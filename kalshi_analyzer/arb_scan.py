@@ -16,6 +16,7 @@ import json
 import math
 import os
 import pathlib
+import re
 import sys
 import time
 from zoneinfo import ZoneInfo
@@ -81,16 +82,10 @@ def poly_quotes(slug):
     for m in e.get("markets") or []:
         if m.get("closed") or not m.get("active", True):
             continue
-        k = None
-        for key in ("groupItemThreshold", "line"):
-            k = _f(m.get(key))
-            if k:
-                break
-        if not k:
-            q = (m.get("question") or "").replace(",", "")
-            nums = [float(w.strip("$?")) for w in q.split() if w.strip("$?").replace(".", "").isdigit()]
-            nums = [n for n in nums if n > 500]
-            k = nums[0] if nums else None
+        q = m.get("question") or ""
+        nums = [float(x.replace(",", "")) for x in re.findall(r"\$?(\d[\d,]*(?:\.\d+)?)", q)]
+        nums = [x for x in nums if x >= 100 and x != 2026]
+        k = nums[0] if nums else None
         if k is None:
             continue
         bid, ask = _f(m.get("bestBid")), _f(m.get("bestAsk"))
