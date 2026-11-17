@@ -25,7 +25,7 @@ jobs:
           key: btc-hours-${{ github.run_id }}
           restore-keys: btc-hours-
       - name: Download and score
-        run: python -m kalshi_analyzer.backtest.other_hours --budget 250
+        run: python -m kalshi_analyzer.backtest.other_hours --budget 15
       - name: Save downloads
         if: always()
         uses: actions/cache/save@v4

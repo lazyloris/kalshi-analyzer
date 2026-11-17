@@ -114,6 +114,20 @@ def upside_no(sub, hours=4, lo=0.03, hi=0.12, max_spread=0.03):
     return out
 
 
+def diagnose(cache):
+    """Per hour: markets with candles, how many are non-empty, and how early before close the first candle is."""
+    out = {}
+    for h in HOURS:
+        tk = [t for t, m in cache["markets"].items() if m["event_ticker"].endswith(h) and t in cache["candles"]]
+        ne = [t for t in tk if cache["candles"][t]]
+        leads = sorted((L._ts(cache["markets"][t]["close_time"]) - cache["candles"][t][0][0]) / 3600 for t in ne)
+        two = [t for t in ne if any(c[1] is not None and c[2] is not None for c in cache["candles"][t])]
+        out[h] = {"with_candles": len(tk), "non_empty": len(ne), "two_sided": len(two),
+                  "first_candle_hours_before_close_median": leads[len(leads) // 2] if leads else None,
+                  "max": leads[-1] if leads else None}
+    return out
+
+
 def score(cache):
     res = {}
     for h in HOURS:
@@ -142,7 +156,8 @@ def markdown(r):
     head = "| Close (ET) | Trades | Days | Win | P&L | Return/$ | Older | Newer | Losing days | Worst day | t (day) | Pass |\n|---|---|---|---|---|---|---|---|---|---|---|---|"
     out = [f"# Bitcoin favorite rule at other close times ({r['generated_at']})", "",
            "Same rule as 5pm, picked before looking. Pass = positive in both older and newer halves.",
-           f"Strikes still missing candles: {r['missing']} (0 = complete).", "", head]
+           f"Strikes still missing candles: {r['missing']} (0 = complete).",
+           f"Diagnostics: {r.get('diagnose')}", "", head]
     for h, s in ((k, v) for k, v in r["hours"].items() if k in HOURS):
         if not s.get("trades"):
             out.append(f"| {h}:00 | 0 | | | | | | | | | | |")
@@ -167,7 +182,7 @@ def markdown(r):
 
 def run(days=365, budget=240):
     cache, missing = fetch(days, budget)
-    r = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "missing": max(0, missing), "hours": score(cache)}
+    r = {"generated_at": dt.datetime.now(dt.timezone.utc).isoformat(timespec="minutes"), "missing": max(0, missing), "hours": score(cache), "diagnose": diagnose(cache)}
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(r, indent=1))
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
