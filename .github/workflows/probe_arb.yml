@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
   push:
     branches: [arb-scan]
-    paths: [kalshi_analyzer/probe_arb.py, kalshi_analyzer/arb_scan.py, .github/workflows/probe_arb.yml]
+    paths: [kalshi_analyzer/probe_arb.py, kalshi_analyzer/arb_scan.py, .github/scripts/arb_show.py, .github/workflows/probe_arb.yml]
 
 jobs:
   probe:
@@ -15,4 +15,4 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: python -m kalshi_analyzer.arb_scan 2 && tail -c 3000 data/arb/*.jsonl
+      - run: python -m kalshi_analyzer.arb_scan 2 && python .github/scripts/arb_show.py
