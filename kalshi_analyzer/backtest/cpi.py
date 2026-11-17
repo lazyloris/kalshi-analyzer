@@ -25,6 +25,7 @@ import json
 import math
 import statistics as stats
 import sys
+import time
 import urllib.request
 from concurrent.futures import ThreadPoolExecutor
 
@@ -115,9 +116,13 @@ def load_markets(series):
     evs = get_json(f"{C.KALSHI_API}/events", {"series_ticker": series, "limit": 200}).get("events") or []
     tickers = [e["event_ticker"] for e in evs]
     rows = []
-    with ThreadPoolExecutor(4) as ex:
-        for rs in ex.map(lambda t: D.settled_markets(event_ticker=t), tickers):
-            rows += rs
+    for t in tickers:                      # one at a time: parallel calls hit 429s and dropped old events
+        rs = D.settled_markets(event_ticker=t)
+        if not rs:
+            time.sleep(3)
+            rs = D.settled_markets(event_ticker=t)
+        rows += rs
+        time.sleep(0.3)
     rows = [r for r in rows if r["strike_type"] == "greater" and r["floor"] is not None]
     D.log(f"{series}: {len(tickers)} events, {len(rows)} settled 'greater' markets")
 
@@ -127,7 +132,7 @@ def load_markets(series):
         except Exception as e:
             D.log(f"  candles {m['ticker']}: {e}")
             return m["ticker"], []
-    with ThreadPoolExecutor(4) as ex:
+    with ThreadPoolExecutor(2) as ex:
         cs = dict(ex.map(job, rows))
     return rows, cs
 
