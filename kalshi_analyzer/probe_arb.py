@@ -12,18 +12,21 @@ def main():
     now = dt.datetime.now(dt.timezone.utc)
     print("now", now.isoformat())
     seen = {}
-    for tag in ("bitcoin", "ethereum", "crypto", "crypto-prices"):
-        for off in (0, 100, 200):
+    variants = [{"tag_slug": "crypto", "closed": "false", "limit": 50},
+                {"tag_slug": "bitcoin", "closed": "false", "limit": 50},
+                {"tag_slug": "crypto-prices", "closed": "false", "limit": 50},
+                {"closed": "false", "limit": 50, "end_date_min": "2026-11-17T00:00:00Z", "end_date_max": "2026-11-20T00:00:00Z"}]
+    for v in variants:
+        for off in range(0, 500, 50):
             try:
-                evs = get_json(f"{GAMMA}/events", {"tag_slug": tag, "closed": "false", "active": "true", "limit": 100,
-                                                   "offset": off, "order": "endDate", "ascending": "true",
-                                                   "end_date_min": "2026-11-17T00:00:00Z"})
+                evs = get_json(f"{GAMMA}/events", dict(v, offset=off))
             except Exception as e:
-                print(tag, off, "ERR", e); break
+                print(v, off, "ERR", e); break
             for e in evs:
                 seen[e.get("slug")] = e
-            if len(evs) < 100:
+            if len(evs) < 50:
                 break
+        print(v, "->", len(seen))
     print(f"\n== {len(seen)} open crypto events")
     for slug, e in sorted(seen.items(), key=lambda kv: kv[1].get("endDate") or ""):
         if (e.get("endDate") or "") > "2026-11-25":
