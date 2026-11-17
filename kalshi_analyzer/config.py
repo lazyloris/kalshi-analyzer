@@ -151,7 +151,11 @@ BOOKS = {
         "fav_bands": ((0.75, 0.88, 0.90), (0.93, 0.96, 0.985)),
         "fav_lead_hours": (3.5, 4.5),          # backtest entry: 4h before close (hourly candles)
         "test_start": "2026-11-10", "test_days": 60,
-        "kill": {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10},
+        # Official test FAILED 2026-11-17 (owner's call): the fair kill rule, a drop from peak worse
+        # than the worst 5% of 60-day stretches in history ($28), tripped at -$28.69 after week 1.
+        # The book keeps paper trading as an unofficial data log, so the kill rules are off.
+        # Old rules: {"min_days": 60, "min_trades": 120, "losing_days": 3, "window_days": 10}.
+        "kill": None, "official_test": "failed 2026-11-17",
         "series": {"KXBTCD": "BTC"}, "event_suffix": "17", "fallback_vol": 0.50,
         "rules": {"MAX_SPREAD": 0.05, "MAX_POSITIONS_PER_EVENT": 2, "MAX_PRICE": 0.96, "MIN_PRICE": 0.75},
     },
