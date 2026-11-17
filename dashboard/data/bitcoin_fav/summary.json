@@ -1,11 +1,11 @@
 {
  "book": "bitcoin_fav",
- "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)",
- "short": "BTC favorites",
+ "name": "WATCHING: Bitcoin 5pm favorites (official test failed 11/17, kept as data)",
+ "short": "\u2605 BTC favorites (watching)",
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-16T22:11+00:00",
+ "generated_at": "2026-11-17T03:41+00:00",
  "strategy_version": "btc-fav-v1",
  "rules": {
   "MIN_EDGE": 0.08,
