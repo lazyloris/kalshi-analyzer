@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-17T14:30+00:00",
+ "generated_at": "2026-11-17T18:15+00:00",
  "strategy_version": "crypto-upside-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,15 +26,23 @@
   "KXETHD"
  ],
  "bankroll": 1000.0,
- "open_exposure": 0,
+ "open_exposure": 38.57,
  "totals": {
   "n": 0
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 4,
+ "open_mark_pnl": -0.69,
+ "open_marked": 4,
+ "open_expected_pnl": 1.61,
+ "upcoming": [
+  {
+   "results_by": "2026-11-17T23:00+00:00",
+   "closes_at": "2026-11-17T22:00:00Z",
+   "n": 4,
+   "at_risk": 38.57,
+   "expected_pnl": 1.61
+  }
+ ],
  "breakdowns": {
   "city": {},
   "side": {},
