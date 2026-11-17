@@ -282,3 +282,27 @@ def test_favorite_run_one_per_band_and_only_its_book(tmp_repo):
     assert len(ledger.read(C.paths("bitcoin_fav")["trades"])) == 2  # cap survives a second look
     idx = json.loads((C.DASHBOARD_DATA / "books.json").read_text())
     assert [b["id"] for b in idx["books"]] == list(C.BOOKS)
+
+
+def test_upside_no_rule():
+    at4h = dt.datetime(2026, 11, 10, 18, 0, tzinfo=dt.timezone.utc)
+    mkt = lambda t, bid, ask, st="greater": mk(t, st, 80000, None, bid, ask, day="2026-11-10", series="KXBTCD",
+                                              close="2026-11-10T22:00:00Z", event="KXBTCD-26NOV1017")
+    _, c = strategy.evaluate("crypto_upside", mkt("A", 0.05, 0.07), {}, at4h)
+    assert c["side"] == "no" and c["price"] == 0.95 and c["cap_key"] == "A"
+    assert strategy.evaluate("crypto_upside", mkt("B", 0.02, 0.04), {}, at4h)[1] is None    # bid under 3c
+    assert strategy.evaluate("crypto_upside", mkt("C", 0.12, 0.14), {}, at4h)[1] is None    # bid at 12c
+    assert strategy.evaluate("crypto_upside", mkt("D", 0.05, 0.09), {}, at4h)[1] is None    # spread 4c
+    assert strategy.evaluate("crypto_upside", mkt("E", 0.05, 0.07, "less"), {}, at4h)[1] is None
+    assert strategy.evaluate("crypto_upside", mkt("A", 0.05, 0.07), {}, at4h - dt.timedelta(hours=2))[1] is None
+
+
+def test_upside_kill_rules():
+    now = dt.datetime(2026, 11, 25, tzinfo=dt.timezone.utc)
+    t = lambda day, pnl: {"status": "settled", "target_date": day, "pnl": pnl, "cost": 10, "closed_at": day}
+    ok = [t(f"2026-11-{d:02d}", 0.5) for d in range(17, 25)]
+    assert strategy.kill_reason("crypto_upside", ok, now) is None
+    assert "drop from peak" in strategy.kill_reason("crypto_upside", ok + [t("2026-11-25", -9.5)] * 5, now)
+    sev = ok + [t("2026-11-25", -1)] * 7
+    assert "7 losses" in strategy.kill_reason("crypto_upside", sev, now)
+    assert "finished" in strategy.kill_reason("crypto_upside", ok, dt.datetime(2027, 1, 17, tzinfo=dt.timezone.utc))

@@ -159,6 +159,21 @@ BOOKS = {
         "series": {"KXBTCD": "BTC"}, "event_suffix": "17", "fallback_vol": 0.50,
         "rules": {"MAX_SPREAD": 0.05, "MAX_POSITIONS_PER_EVENT": 2, "MAX_PRICE": 0.96, "MIN_PRICE": 0.75},
     },
+    # Fable's crypto upside rule (docs: project note kalshi/review-2026-11-17.md, section 8), started as a
+    # pre-registered paper test on 2026-11-17. Backtest, 600 days: 809 trades, 98.0% won, +3.5%/$ after
+    # fees, day-level t 5.1, both years positive, max drawdown $45. Found by scanning (in-sample), so
+    # this paper book is the honest test. FIXED rules; don't tune mid-test.
+    # Kill rules (Fable's, set before any live data): drop from peak over $45, or 7 losses in the
+    # first 130 trades. Test runs 60 days.
+    "crypto_upside": {
+        "name": "TESTING: Crypto 5pm upside long shots, buy NO (pre-registered, from 11/17)", "short": "★ Crypto upside NO (testing)",
+        "kind": "crypto", "asset": "BTC-USD", "version": "crypto-upside-v1", "bankroll": 1000.0, "unit": "$",
+        "strategy": "upside_no", "lead_hours": (3.5, 4.5), "yes_bid_band": (0.03, 0.12), "backtest_win_rate": 0.98,
+        "test_start": "2026-11-17", "test_days": 60,
+        "kill": {"max_drawdown": 45.0, "max_losses": 7, "loss_window_trades": 130},
+        "series": {"KXBTCD": "BTC", "KXETHD": "ETH"}, "event_suffix": "17", "fallback_vol": 0.50,
+        "rules": {"MAX_SPREAD": 0.03, "MAX_POSITIONS_PER_EVENT": 20, "MAX_PRICE": 0.97, "MIN_PRICE": 0.88},
+    },
 }
 ASSET_NAMES = {"BTC": "Bitcoin", "ETH": "Ethereum", "GOLD": "Gold"}
 
