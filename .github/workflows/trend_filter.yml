@@ -3,7 +3,7 @@ name: Favorite falling-market filter
 on:
   workflow_dispatch:
   push:
-    branches: [trend-filter]
+    branches: [trend-filter, kill-calibrate]
     paths: [kalshi_analyzer/backtest/trend_filter.py, .github/workflows/trend_filter.yml]
 
 permissions:
