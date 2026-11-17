@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-17T18:15+00:00",
+ "generated_at": "2026-11-17T22:56+00:00",
  "strategy_version": "crypto-upside-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -25,42 +25,196 @@
   "KXBTCD",
   "KXETHD"
  ],
- "bankroll": 1000.0,
- "open_exposure": 38.57,
+ "bankroll": 1002.43,
+ "open_exposure": 0,
  "totals": {
-  "n": 0
+  "n": 4,
+  "wins": 4,
+  "win_rate": 1.0,
+  "pnl": 2.43,
+  "roi": 0.063,
+  "fees": 0.18,
+  "avg_edge": 0.038,
+  "avg_model_p": 0.98,
+  "brier_model": 0.0004,
+  "brier_market": 0.0047
  },
- "open_count": 4,
- "open_mark_pnl": -0.69,
- "open_marked": 4,
- "open_expected_pnl": 1.61,
- "upcoming": [
+ "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
+ "breakdowns": {
+  "city": {
+   "Bitcoin": {
+    "n": 3,
+    "wins": 3,
+    "win_rate": 1.0,
+    "pnl": 2.06,
+    "roi": 0.071,
+    "fees": 0.15,
+    "avg_edge": 0.045,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0058
+   },
+   "Ethereum": {
+    "n": 1,
+    "wins": 1,
+    "win_rate": 1.0,
+    "pnl": 0.37,
+    "roi": 0.038,
+    "fees": 0.03,
+    "avg_edge": 0.017,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0016
+   }
+  },
+  "side": {
+   "NO": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "edge": {
+   "8-12c": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "price": {
+   "75-90c": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "days_ahead": {
+   "under 6h": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "bracket_distance": {
+   "n/a": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "bracket_type": {
+   "greater": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "cause": {
+   "longshot_held": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  },
+  "version": {
+   "crypto-upside-v1": {
+    "n": 4,
+    "wins": 4,
+    "win_rate": 1.0,
+    "pnl": 2.43,
+    "roi": 0.063,
+    "fees": 0.18,
+    "avg_edge": 0.038,
+    "avg_model_p": 0.98,
+    "brier_model": 0.0004,
+    "brier_market": 0.0047
+   }
+  }
+ },
+ "calibration": [
   {
-   "results_by": "2026-11-17T23:00+00:00",
-   "closes_at": "2026-11-17T22:00:00Z",
+   "bucket": "90-100%",
    "n": 4,
-   "at_risk": 38.57,
-   "expected_pnl": 1.61
+   "predicted": 0.98,
+   "actual": 1.0
   }
  ],
- "breakdowns": {
-  "city": {},
-  "side": {},
-  "edge": {},
-  "price": {},
-  "days_ahead": {},
-  "bracket_distance": {},
-  "bracket_type": {},
-  "cause": {},
-  "version": {}
- },
- "calibration": [],
  "forecast_accuracy": [],
  "suggestions": [
   {
    "priority": 0,
-   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+   "text": "Only 4 settled trades. Wait for 20+ before changing any rule."
   }
  ],
- "bankroll_curve": []
+ "bankroll_curve": [
+  {
+   "t": "2026-11-17T22:56+00:00",
+   "bankroll": 1001.13
+  },
+  {
+   "t": "2026-11-17T22:56+00:00",
+   "bankroll": 1001.69
+  },
+  {
+   "t": "2026-11-17T22:56+00:00",
+   "bankroll": 1002.06
+  },
+  {
+   "t": "2026-11-17T22:56+00:00",
+   "bankroll": 1002.43
+  }
+ ]
 }
