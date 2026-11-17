@@ -14,27 +14,29 @@ def raw(url):
 
 
 def main():
-    for s in ("KXCPI", "KXCPIYOY", "KXCPICORE", "KXCPICOREYOY", "KXPAYROLLS", "KXU3", "KXFED", "KXGDP"):
+    import datetime as dt
+    m = get_json(f"{C.KALSHI_API}/markets", {"event_ticker": "KXCPI-26SEP", "limit": 50}).get("markets") or []
+    for x in m[:2]:
+        o = int(dt.datetime.fromisoformat(x["open_time"].replace("Z", "+00:00")).timestamp())
+        c = int(dt.datetime.fromisoformat(x["close_time"].replace("Z", "+00:00")).timestamp())
+        for per in (60, 1440):
+            try:
+                cs = get_json(f"{C.KALSHI_API}/series/KXCPI/markets/{x['ticker']}/candlesticks",
+                              {"start_ts": max(o, c - 4900 * per * 60), "end_ts": c, "period_interval": per}).get("candlesticks") or []
+                print(x["ticker"], per, len(cs), json.dumps(cs[-1])[:500] if cs else "")
+            except Exception as ex:
+                print(x["ticker"], per, "ERR", str(ex)[:150])
+    for f in ("nowcast_month", "nowcast_quarter"):
         try:
-            evs = get_json(f"{C.KALSHI_API}/events", {"series_ticker": s, "limit": 200}).get("events") or []
-            st = {}
-            for e in evs:
-                st[e.get("status") or "?"] = st.get(e.get("status") or "?", 0) + 1
-            print(s, len(evs), "events", st, [e.get("event_ticker") for e in evs[:3]], [e.get("event_ticker") for e in evs[-2:]])
+            d = json.loads(raw(f"https://www.clevelandfed.org/-/media/files/webcharts/inflationnowcasting/{f}.json"))
+            print(f, type(d).__name__, len(d))
+            if isinstance(d, list):
+                print(json.dumps(d[0])[:1500]); print(json.dumps(d[-1])[:1500])
+            else:
+                print(list(d)[:20]); print(json.dumps(d)[:1500])
         except Exception as ex:
-            print(s, "ERR", str(ex)[:120])
-    try:
-        m = get_json(f"{C.KALSHI_API}/markets", {"series_ticker": "KXCPI", "status": "settled", "limit": 5}).get("markets") or []
-        for x in m[:3]:
-            print(json.dumps({k: x.get(k) for k in ("ticker", "event_ticker", "open_time", "close_time", "floor_strike", "cap_strike",
-                                                    "strike_type", "result", "volume", "rules_primary")})[:500])
-        if m:
-            t = m[0]
-            c = get_json(f"{C.KALSHI_API}/series/KXCPI/markets/{t['ticker']}/candlesticks",
-                         {"start_ts": 0, "end_ts": 2000000000, "period_interval": 1440})
-            print("candles", len(c.get("candlesticks") or []), json.dumps((c.get("candlesticks") or [{}])[0])[:400])
-    except Exception as ex:
-        print("KXCPI markets ERR", str(ex)[:200])
+            print(f, "ERR", str(ex)[:200])
+    return
     for url in ("https://www.clevelandfed.org/indicators-and-data/inflation-nowcasting",):
         try:
             h = raw(url)
