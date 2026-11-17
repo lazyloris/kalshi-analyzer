@@ -1,4 +1,4 @@
-# Bitcoin favorite: falling-market filter (2026-11-17T03:18+00:00)
+# Bitcoin favorite: falling-market filter (2026-11-17T03:35+00:00)
 
 Main test, picked before looking: skip the day when BTC is down 3% or more over the 24h before entry.
 
@@ -20,6 +20,19 @@ Main test, picked before looking: skip the day when BTC is down 3% or more over 
 
 Windows: 329. Old rule (3 losing days in 10) would have tripped in 0.307 of them.
 Worst drop from peak per window: median $18.99, 90th $27.53, 95th $28.03, 99th $28.03, max $49.360000000000014.
+
+## Stop-loss test (main, picked before looking: sell at half our price, about -$5 per $10)
+
+Stopped = trades sold early; 'would have won' = of those, how many would have paid out if held.
+
+| Set | Trades | Days | Win | P&L | Return/$ | Older | Newer | Losing days | Worst day | t (day) |
+|---|---|---|---|---|---|---|---|---|---|---|
+| No stop | 638 | 380 | 93% | $378.57 | +6.2% | +5.1% | +6.9% | 36 | $-38.52 | 4.19 |
+| Stop at -50% of price (main) | 638 | 380 | 90% | $272.96 | +4.5% | +2.7% | +5.7% | 53 | $-34.03 | 3.0 | stopped 45, would have won 21
+| Stop at -25% of price | 638 | 380 | 84% | $142.74 | +2.3% | +0.1% | +3.9% | 88 | $-29.02 | 1.72 | stopped 91, would have won 60
+| Stop at -35% of price | 638 | 380 | 88% | $238.65 | +3.9% | +1.3% | +5.7% | 65 | $-29.51 | 2.78 | stopped 64, would have won 35
+| Stop at -65% of price | 638 | 380 | 91% | $305.4 | +5.0% | +3.4% | +6.1% | 45 | $-34.03 | 3.34 | stopped 29, would have won 11
+| Stop at -75% of price | 638 | 380 | 92% | $343.63 | +5.6% | +4.2% | +6.6% | 40 | $-37.06 | 3.79 | stopped 18, would have won 5
 
 ## By BTC 24h change
 
