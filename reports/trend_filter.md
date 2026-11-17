@@ -1,4 +1,4 @@
-# Bitcoin favorite: falling-market filter (2026-11-17T02:51+00:00)
+# Bitcoin favorite: falling-market filter (2026-11-17T03:18+00:00)
 
 Main test, picked before looking: skip the day when BTC is down 3% or more over the 24h before entry.
 
@@ -15,6 +15,11 @@ Main test, picked before looking: skip the day when BTC is down 3% or more over 
 | Skip when down >= 2% | 506 | 309 | 92% | $259.1 | +5.3% | +3.2% | +6.8% | 33 | $-19.51 | 3.31 |
 | Skip when down >= 4% | 620 | 369 | 94% | $406.94 | +6.8% | +4.8% | +8.2% | 34 | $-19.51 | 5.05 |
 | Skip when down >= 5% | 632 | 376 | 93% | $369.4 | +6.1% | +4.9% | +6.9% | 36 | $-38.52 | 4.09 |
+
+## Kill-rule calibration (60-day stretches of history)
+
+Windows: 329. Old rule (3 losing days in 10) would have tripped in 0.307 of them.
+Worst drop from peak per window: median $18.99, 90th $27.53, 95th $28.03, 99th $28.03, max $49.360000000000014.
 
 ## By BTC 24h change
 
