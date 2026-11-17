@@ -239,3 +239,9 @@ The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, a
 - Owner chose to replace it with a limit sized from history: a drop from peak worse than the worst 5% of 60-day stretches. That's $28.03 (median $19, max $49).
 - Result: the live book is down $28.69 from its peak after week 1 (7 of 10 won, -$21.24). The fair rule trips, so the official test FAILED. Choosing a looser limit after seeing the result would be moving the goalposts.
 - Decision (owner, 2026-11-17): keep bitcoin_fav paper trading as an unofficial data log with the kill rules off. If the next ~50 trades look like history again (around 93% wins), start a fresh test with this calibrated rule set from day one.
+
+## 2026-11-17 Bitcoin favorite: stop-loss test (same run family, branch kill-calibrate)
+- Question (owner): would cutting losers early, e.g. at about -$5 of a $10 bet, help?
+- Test: on the same 638 trades, sell at the bid (with the taker fee) the first hour the bid falls to (1 - x) of our price. Main x = 50%, picked before looking. Hourly candles only.
+- Result: NO, every level hurts. 50% stop: +4.5%/$ vs +6.2% with no stop, and more losing days (53 vs 36). 45 trades stopped, and 21 of them would have won if held. Tighter stops are worse (25%: +2.3%).
+- Why: favorites often dip and then recover before the close, so a stop sells the dip. Take-profit can't get to "+$10" either: a $10 bet at 82c pays at most about $2.20.
