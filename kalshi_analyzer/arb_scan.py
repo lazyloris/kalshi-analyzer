@@ -33,6 +33,19 @@ SPOT = {"BTC": ("BTC-USD", "BTCUSDT"), "ETH": ("ETH-USD", "ETHUSDT")}
 KEEP_ABOVE = -0.02
 
 
+def post_json(url, body, timeout=20):
+    import urllib.request
+    req = urllib.request.Request(url, data=json.dumps(body).encode(), method="POST",
+                                 headers={"User-Agent": C.USER_AGENT, "Content-Type": "application/json", "Accept": "application/json"})
+    with urllib.request.urlopen(req, timeout=timeout) as resp:
+        return json.loads(resp.read().decode())
+
+
+def best_ask(book):
+    asks = [(float(a["price"]), float(a["size"])) for a in book.get("asks") or []]
+    return min(asks) if asks else (None, 0.0)
+
+
 def fee(p):
     return 0.07 * p * (1 - p)
 
@@ -69,7 +82,7 @@ def kalshi_quotes(event_ticker):
         if k is None:
             continue
         out.append({"venue": "kalshi", "id": m.get("ticker"), "strike": round(k + 0.01, 2),
-                    "yes_bid": bid if bid and bid > 0 else None, "yes_ask": ask if ask and ask < 1 else None})
+                    "yes_ask": ask if ask and ask < 1 else None, "no_ask": round(1 - bid, 4) if bid and bid > 0 else None})
     return out, close
 
 
@@ -94,7 +107,21 @@ def poly_quotes(slug):
         except ValueError:
             tokens = []
         out.append({"venue": "poly", "id": m.get("slug") or m.get("id"), "strike": k, "tokens": tokens,
-                    "yes_bid": bid if bid and bid > 0 else None, "yes_ask": ask if ask and ask < 1 else None})
+                    "gamma_bid": bid, "gamma_ask": ask, "yes_ask": None, "no_ask": None})
+    toks = [t for q in out for t in q["tokens"][:2]]
+    books = {}
+    if toks:
+        try:
+            for b in post_json(f"{CLOB}/books", [{"token_id": t} for t in toks]):
+                books[b.get("asset_id")] = b
+        except Exception as ex:
+            print("books ERR", str(ex)[:150], flush=True)
+    for q in out:
+        if len(q["tokens"]) < 2:
+            continue
+        ya, ys = best_ask(books.get(q["tokens"][0], {}))
+        na, ns = best_ask(books.get(q["tokens"][1], {}))
+        q.update(yes_ask=ya if ya and ya < 1 else None, yes_ask_size=ys, no_ask=na if na and na < 1 else None, no_ask_size=ns)
     return out, e.get("endDate")
 
 
@@ -120,9 +147,9 @@ def pairs(kal, pol):
             if y["yes_ask"] is None:
                 continue
             for n in no_side:
-                if n["yes_bid"] is None or n["strike"] < y["strike"] - 0.5:
+                if n["no_ask"] is None or n["strike"] < y["strike"] - 0.5:
                     continue
-                no_ask = 1 - n["yes_bid"]
+                no_ask = n["no_ask"]
                 cost = y["yes_ask"] + no_ask
                 edge = 1 - cost - fee(y["yes_ask"]) - fee(no_ask)
                 if edge > KEEP_ABOVE:
@@ -130,6 +157,7 @@ def pairs(kal, pol):
                                   "no_venue": n["venue"], "no_id": n["id"], "no_strike": n["strike"], "no_ask": round(no_ask, 4),
                                   "gross": round(1 - cost, 4), "edge": round(edge, 4),
                                   "same_strike": abs(n["strike"] - y["strike"]) <= 0.5,
+                                  "yes_top_size": y.get("yes_ask_size"), "no_top_size": n.get("no_ask_size"),
                                   "_ytok": y.get("tokens"), "_ntok": n.get("tokens")})
     return found
 
