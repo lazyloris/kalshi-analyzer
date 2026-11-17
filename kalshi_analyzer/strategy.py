@@ -89,6 +89,9 @@ def evaluate(book_id, m, ctx, now):
     if book.get("strategy") == "favorite":
         snap.update(forecast="", sigma="", model_p="")
         return snap, favorite(book_id, m, now)
+    if book.get("strategy") == "upside_no":
+        snap.update(forecast="", sigma="", model_p="")
+        return snap, upside_no(book_id, m, now)
     try:
         res = model(book_id, m, ctx, now)
     except ValueError:  # bracket type the model doesn't understand
@@ -225,6 +228,39 @@ def favorite(book_id, m, now):
     }
 
 
+def upside_no(book_id, m, now):
+    """Fable's crypto upside rule (review 2026-11-17, section 8): 3.5-4.5h before close, buy NO at
+    1 - yes_bid on 'greater' strikes whose YES bid is 3-12c with spread <= 3c. No model; the 'model'
+    chance logged is the backtest win rate."""
+    book, R = C.BOOKS[book_id], C.rules(book_id)
+    ya, yb = m["yes_ask"], m["yes_bid"]
+    close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
+    if ya is None or yb is None or close is None or m["strike_type"] != "greater":
+        return None
+    hours = (close - now).total_seconds() / 3600
+    lo_h, hi_h = book["lead_hours"]
+    lo_b, hi_b = book["yes_bid_band"]
+    if not (lo_h <= hours <= hi_h) or ya - yb > R["MAX_SPREAD"] + 1e-9 or not (lo_b <= yb < hi_b) or ya >= 1:
+        return None
+    price = round(1 - yb, 4)
+    contracts = max(1, math.floor(R["STAKE_DOLLARS"] / price))
+    fee = taker_fee(contracts, price, C.FEE_RATE)
+    p = book["backtest_win_rate"]
+    st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
+    return {
+        "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
+        "series": m["series"], "city": C.ASSET_NAMES.get(book["series"][m["series"]], m["series"]),
+        "ticker": m["ticker"], "event_ticker": m["event_ticker"], "target_date": m["target_date"],
+        "bracket": bracket_label(st, lo, hi, book["unit"]), "strike_type": st, "floor": m["floor"], "cap": m["cap"],
+        "side": "no", "contracts": contracts, "price": price, "fee": fee,
+        "cost": round(contracts * price + fee, 2), "model_p": p, "market_p": price,
+        "edge": round(p - price - fee / contracts, 4), "forecast": "", "sigma": "", "unit": book["unit"],
+        "lead_hours": round(hours, 2), "lead_days": 0, "distance": "",
+        "spread": round(ya - yb, 4), "volume": m["volume"], "status": "open", "cap_key": m["ticker"],
+        **timing(book_id, m, contracts, p, contracts * price + fee),
+    }
+
+
 def kill_reason(book_id, trades, now):
     """Pre-registered kill rules for the favorite test. Returns why the test has stopped, or None."""
     book = C.BOOKS[book_id]
@@ -237,6 +273,18 @@ def kill_reason(book_id, trades, now):
     for t in settled:
         days[t["target_date"]] = days.get(t["target_date"], 0.0) + float(t["pnl"])
     order = sorted(days)
+    if k.get("max_drawdown") is not None:
+        run = peak = 0.0
+        for d in order:
+            run += days[d]; peak = max(peak, run)
+            if peak - run > k["max_drawdown"]:
+                return f"drop from peak over ${k['max_drawdown']:.0f} (on {d})"
+        first = sorted(settled, key=lambda t: t.get("closed_at") or t["target_date"])[:k["loss_window_trades"]]
+        if sum(1 for t in first if float(t["pnl"]) < 0) >= k["max_losses"]:
+            return f"{k['max_losses']} losses within the first {k['loss_window_trades']} trades"
+        if now.date() >= end:
+            return f"test finished on {end.isoformat()}"
+        return None
     for i in range(len(order)):
         window = order[i:i + k["window_days"]]
         if sum(1 for d in window if days[d] < 0) >= k["losing_days"]:

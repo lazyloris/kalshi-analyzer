@@ -47,7 +47,7 @@ jobs:
         if: steps.wait.outputs.go == 'true'
         run: |
           git pull --rebase || true
-          python -m kalshi_analyzer run --books bitcoin_fav
+          python -m kalshi_analyzer run --books bitcoin_fav,crypto_upside
       - name: Save results to the repo
         if: steps.wait.outputs.go == 'true'
         run: |
