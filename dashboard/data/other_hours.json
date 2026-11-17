@@ -1,22 +1,68 @@
 {
- "generated_at": "2026-11-17T07:53+00:00",
- "missing": 82957,
+ "generated_at": "2026-11-17T08:32+00:00",
+ "missing": 79457,
  "hours": {
   "10": {
    "trades": 0,
-   "pass": false
+   "pass": false,
+   "upside": {
+    "trades": 0
+   }
   },
   "13": {
    "trades": 0,
-   "pass": false
+   "pass": false,
+   "upside": {
+    "trades": 0
+   }
   },
   "21": {
    "trades": 0,
-   "pass": false
+   "pass": false,
+   "upside": {
+    "trades": 0
+   }
   },
   "17": {
    "trades": 0,
+   "pass": false,
+   "upside": {
+    "trades": 0
+   }
+  },
+  "upside_pooled_other_hours": {
+   "trades": 0,
    "pass": false
+  }
+ },
+ "diagnose": {
+  "10": {
+   "with_candles": 40112,
+   "non_empty": 40013,
+   "two_sided": 40013,
+   "first_candle_hours_before_close_median": 0.0,
+   "max": 0.0
+  },
+  "13": {
+   "with_candles": 17388,
+   "non_empty": 17308,
+   "two_sided": 17308,
+   "first_candle_hours_before_close_median": 0.0,
+   "max": 0.0
+  },
+  "21": {
+   "with_candles": 0,
+   "non_empty": 0,
+   "two_sided": 0,
+   "first_candle_hours_before_close_median": null,
+   "max": null
+  },
+  "17": {
+   "with_candles": 0,
+   "non_empty": 0,
+   "two_sided": 0,
+   "first_candle_hours_before_close_median": null,
+   "max": null
   }
  }
 }
