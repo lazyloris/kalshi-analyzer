@@ -31,6 +31,7 @@ OUT = pathlib.Path("data/arb")
 SERIES = {"KXBTCD": ("bitcoin", "BTC"), "KXETHD": ("ethereum", "ETH")}
 SPOT = {"BTC": ("BTC-USD", "BTCUSDT"), "ETH": ("ETH-USD", "ETHUSDT")}
 KEEP_ABOVE = -0.02
+BUFFER = 0.0003   # room for Binance-vs-index drift before settlement: 0.03% of price (~$20 on BTC)
 
 
 def post_json(url, body, timeout=20):
@@ -139,15 +140,23 @@ def spot(asset):
     return row
 
 
-def pairs(kal, pol):
-    """Every locked combination: YES on one venue at strike a, NO on the other at strike b >= a."""
+def pairs(kal, pol, ratio, buffer):
+    """Locked combinations: YES on one venue, NO on the other, where in USD terms the YES strike sits at or below
+    the NO strike (so at least one leg pays). Polymarket strikes are in USDT on Binance; we convert them to the
+    Kalshi (USD index) scale with ratio = Binance / Coinbase and demand `buffer` dollars of room for the two
+    prices drifting apart before settlement."""
+    def usd(q):
+        return q["strike"] / ratio if q["venue"] == "poly" else q["strike"]
     found = []
     for yes_side, no_side in ((kal, pol), (pol, kal)):
         for y in yes_side:
             if y["yes_ask"] is None:
                 continue
             for n in no_side:
-                if n["no_ask"] is None or n["strike"] < y["strike"] - 0.5:
+                if n["no_ask"] is None:
+                    continue
+                room = usd(n) - usd(y)
+                if room < buffer:
                     continue
                 no_ask = n["no_ask"]
                 cost = y["yes_ask"] + no_ask
@@ -155,8 +164,7 @@ def pairs(kal, pol):
                 if edge > KEEP_ABOVE:
                     found.append({"yes_venue": y["venue"], "yes_id": y["id"], "yes_strike": y["strike"], "yes_ask": y["yes_ask"],
                                   "no_venue": n["venue"], "no_id": n["id"], "no_strike": n["strike"], "no_ask": round(no_ask, 4),
-                                  "gross": round(1 - cost, 4), "edge": round(edge, 4),
-                                  "same_strike": abs(n["strike"] - y["strike"]) <= 0.5,
+                                  "gross": round(1 - cost, 4), "edge": round(edge, 4), "room_usd": round(room, 2),
                                   "yes_top_size": y.get("yes_ask_size"), "no_top_size": n.get("no_ask_size"),
                                   "_ytok": y.get("tokens"), "_ntok": n.get("tokens")})
     return found
@@ -220,11 +228,17 @@ def loop_once(now):
                     continue
                 if sp is None:
                     sp = spot(asset)
-                ps = pairs(kal, pol)
+                if not (sp.get("coinbase") and sp.get("binance")):
+                    rows.append({"kind": "error", "where": f"spot {asset}", "err": "missing spot price, skipped"})
+                    continue
+                ratio = sp["binance"] / sp["coinbase"]
+                buffer = BUFFER * sp["coinbase"]
+                ps = pairs(kal, pol, ratio, buffer)
                 mins = round((close - now).total_seconds() / 60, 1)
                 rows.append({"kind": "loop", "asset": asset, "kalshi_event": et, "poly_slug": slug, "poly_end": pend,
                              "close": close.isoformat(), "mins_left": mins, "n_kalshi": len(kal), "n_poly": len(pol),
-                             "best_edge": max([p["edge"] for p in ps], default=None), **{f"spot_{k}": v for k, v in sp.items()}})
+                             "best_edge": max([p["edge"] for p in ps], default=None),
+                             "basis": round(ratio - 1, 6), "buffer_usd": round(buffer, 2), **{f"spot_{k}": v for k, v in sp.items()}})
                 for p in ps:
                     if p["edge"] > 0:
                         yv, nv = p["yes_venue"], p["no_venue"]
