@@ -227,3 +227,9 @@ The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, a
 - **Day 1:** both trades won, +$2.59. YES on >$72,500 at 82c and YES on >$72,000 at 94c.
 - **Fix:** favorites.yml is now scheduled hourly from 09:07 to 17:07 UTC. The first run that starts waits until 1pm ET, then trades. Later runs exit, or can't double up because of the one-per-band cap.
 - **Trading rules and kill rules are unchanged.**
+
+## 2026-11-17 Bitcoin favorite: falling-market filter (run 44005948054)
+- Question: after week-1 paper losses on 11/13-14 (BTC fell ~$72k to $63k), does the favorite rule lose when BTC is already falling?
+- Test: same 638 trades as the verified finding (75-88c / 93-96c YES, 4h before the 5pm close), split by BTC's 24h change before entry. Main filter, picked before looking: skip when down 3%+.
+- Result: NO. Unfiltered +6.2%/$ (93% win, 36 losing days of 380). Filter on: +6.2%, same. Trades on down-3%+ days made +5.8%. No 24h-change bucket loses overall.
+- Decision: no filter. Week 1 (7 of 10 won) looks like bad luck against a 93% base rate, not a falling-market flaw. Live test continues unchanged. Report: reports/trend_filter.md.
