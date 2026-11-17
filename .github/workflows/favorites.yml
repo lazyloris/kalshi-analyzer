@@ -7,7 +7,7 @@ name: Bitcoin favorites window
 # one-per-band cap means a second run in the window can't double up. Public repo: minutes are free.
 on:
   schedule:
-    - cron: "7 9-17 * * *"
+    - cron: "*/10 9-17 * * *"
   workflow_dispatch: {}
 
 permissions:
