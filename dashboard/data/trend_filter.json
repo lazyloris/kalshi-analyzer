@@ -1,0 +1,154 @@
+{
+ "generated_at": "2026-11-17T02:51+00:00",
+ "all": {
+  "trades": 638,
+  "days": 380,
+  "win_rate": 0.929,
+  "pnl": 378.57,
+  "roi": 0.0618,
+  "losing_days": 36,
+  "worst_day": -38.52,
+  "t_day": 4.19,
+  "roi_older": 0.0507,
+  "roi_newer": 0.0694
+ },
+ "main": {
+  "cut": -0.03,
+  "kept": {
+   "trades": 576,
+   "days": 346,
+   "win_rate": 0.931,
+   "pnl": 344.33,
+   "roi": 0.0623,
+   "losing_days": 34,
+   "worst_day": -19.51,
+   "t_day": 4.31,
+   "roi_older": 0.0415,
+   "roi_newer": 0.0769
+  },
+  "skipped": {
+   "trades": 62,
+   "days": 34,
+   "win_rate": 0.919,
+   "pnl": 34.24,
+   "roi": 0.0576,
+   "losing_days": 2,
+   "worst_day": -38.52,
+   "t_day": 0.8,
+   "roi_older": 0.156,
+   "roi_newer": 0.0075
+  }
+ },
+ "context": {
+  "-0.02": {
+   "trades": 506,
+   "days": 309,
+   "win_rate": 0.923,
+   "pnl": 259.1,
+   "roi": 0.0533,
+   "losing_days": 33,
+   "worst_day": -19.51,
+   "t_day": 3.31,
+   "roi_older": 0.0316,
+   "roi_newer": 0.0683
+  },
+  "-0.04": {
+   "trades": 620,
+   "days": 369,
+   "win_rate": 0.935,
+   "pnl": 406.94,
+   "roi": 0.0683,
+   "losing_days": 34,
+   "worst_day": -19.51,
+   "t_day": 5.05,
+   "roi_older": 0.0483,
+   "roi_newer": 0.0822
+  },
+  "-0.05": {
+   "trades": 632,
+   "days": 376,
+   "win_rate": 0.929,
+   "pnl": 369.4,
+   "roi": 0.0609,
+   "losing_days": 36,
+   "worst_day": -38.52,
+   "t_day": 4.09,
+   "roi_older": 0.0494,
+   "roi_newer": 0.0686
+  }
+ },
+ "buckets": {
+  "-100% to -5%": {
+   "trades": 6,
+   "days": 4,
+   "win_rate": 1.0,
+   "pnl": 9.17,
+   "roi": 0.1614,
+   "losing_days": 0,
+   "worst_day": 0.65,
+   "t_day": 3.29,
+   "roi_older": 0.1352,
+   "roi_newer": 0.2137
+  },
+  "-5% to -3%": {
+   "trades": 56,
+   "days": 30,
+   "win_rate": 0.911,
+   "pnl": 25.07,
+   "roi": 0.0466,
+   "losing_days": 2,
+   "worst_day": -38.52,
+   "t_day": 0.59,
+   "roi_older": 0.1608,
+   "roi_newer": -0.003
+  },
+  "-3% to -1%": {
+   "trades": 139,
+   "days": 80,
+   "win_rate": 0.95,
+   "pnl": 108.87,
+   "roi": 0.0816,
+   "losing_days": 6,
+   "worst_day": -18.82,
+   "t_day": 3.22,
+   "roi_older": 0.0465,
+   "roi_newer": 0.1133
+  },
+  "-1% to +1%": {
+   "trades": 242,
+   "days": 154,
+   "win_rate": 0.93,
+   "pnl": 152.89,
+   "roi": 0.0658,
+   "losing_days": 13,
+   "worst_day": -19.51,
+   "t_day": 2.81,
+   "roi_older": 0.0285,
+   "roi_newer": 0.0843
+  },
+  "+1% to +3%": {
+   "trades": 125,
+   "days": 77,
+   "win_rate": 0.896,
+   "pnl": 18.53,
+   "roi": 0.0154,
+   "losing_days": 13,
+   "worst_day": -10.08,
+   "t_day": 0.47,
+   "roi_older": 0.0312,
+   "roi_newer": 0.0018
+  },
+  "+3% to +100%": {
+   "trades": 70,
+   "days": 35,
+   "win_rate": 0.957,
+   "pnl": 64.04,
+   "roi": 0.0952,
+   "losing_days": 2,
+   "worst_day": -19.03,
+   "t_day": 2.38,
+   "roi_older": 0.079,
+   "roi_newer": 0.1114
+  }
+ }
+}
