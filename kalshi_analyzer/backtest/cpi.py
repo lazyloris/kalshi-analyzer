@@ -5,8 +5,8 @@ Data (all public, no keys):
     expiration_value is the released number (single decimal).
   - Cleveland Fed nowcast_month.json: for each target month, the nowcast as published each business day
     (real-time vintages, so no look-ahead if we only use values dated before the entry day).
-  - FRED CPIAUCSL / CPILFESL (no key, CSV) only to size the nowcast's error from 2013-07 to 2021-06,
-    which is before any Kalshi market in this test. So the model's spread is fixed before the test period.
+  - The nowcast's error spread at each lead is measured walk-forward: only from events released before the
+    one being traded (12 needed), so the first year is calibration only.
 
 Model: released value X (rounded to 0.1) ~ Normal(nowcast, sigma(lead)). YES on "more than K" wins when
 the unrounded value is >= K + 0.05, so P(YES) = 1 - Phi((K + 0.05 - nowcast) / sigma).
@@ -141,31 +141,48 @@ def quote_at(cands, ts):
 
 
 def run(series):
-    name, fsid = SERIES[series]
+    """Walk-forward: the nowcast's error spread at each lead is measured only on events released before the
+    one being traded (needs 12 earlier events), using Kalshi's own released values. No outside data needed."""
+    name, _ = SERIES[series]
     nc = nowcasts()
-    fred = fred_mom(fsid)
-    sig = sigma_table(nc, name, fred)
-    D.log(f"{series} sigma by lead (pre-2021): " + ", ".join(f"{L}d {s:.3f} (n {n})" for L, (s, n) in sig.items() if s))
     rows, cs = load_markets(series)
-    obs = []   # one per market x lead: prob, market mid, outcome
+    events = {}
     for m in rows:
-        ym = target_month(m["event_ticker"])
+        events.setdefault(m["event_ticker"], []).append(m)
+    order = sorted(events, key=lambda e: events[e][0]["close_time"])
+    hist = {L: [] for L in LEADS}
+    obs, sig_used = [], {}
+    for ev in order:
+        ms = events[ev]
+        ym = target_month(ev)
+        try:
+            actual = float(next(m["value"] for m in ms if m["value"] not in ("", None)))
+        except (StopIteration, ValueError):
+            actual = None
         if ym not in nc or name not in nc[ym]:
             continue
-        close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00"))
+        close = dt.datetime.fromisoformat(ms[0]["close_time"].replace("Z", "+00:00"))
+        vint = {L: vintage(nc[ym][name], (close - dt.timedelta(days=L)).date()) for L in LEADS}
         for L in LEADS:
-            s = sig[L][0]
-            if not s:
+            if len(hist[L]) < 12 or vint[L] is None:
                 continue
+            s_ = math.sqrt(stats.fmean(e * e for e in hist[L]))
+            sig_used.setdefault(L, []).append(s_)
             t = close - dt.timedelta(days=L)
-            v = vintage(nc[ym][name], t.date())
-            q = quote_at(cs.get(m["ticker"]) or [], int(t.timestamp()))
-            if v is None or q is None:
-                continue
-            k = float(m["floor"])
-            p = 1 - phi((k + 0.05 - v) / s)
-            obs.append({"event": m["event_ticker"], "ticker": m["ticker"], "lead": L, "strike": k, "nowcast": v, "p": p,
-                        "bid": q[1], "ask": q[2], "yes": m["result"] == "yes", "value": m["value"], "close": m["close_time"][:10]})
+            for m in ms:
+                q = quote_at(cs.get(m["ticker"]) or [], int(t.timestamp()))
+                if q is None:
+                    continue
+                k = float(m["floor"])
+                p = 1 - phi((k + 0.05 - vint[L]) / s_)
+                obs.append({"event": ev, "ticker": m["ticker"], "lead": L, "strike": k, "nowcast": vint[L], "p": p,
+                            "bid": q[1], "ask": q[2], "yes": m["result"] == "yes", "value": actual, "close": m["close_time"][:10]})
+        if actual is not None:
+            for L in LEADS:
+                if vint[L] is not None:
+                    hist[L].append(actual - vint[L])
+    sig = {L: (round(stats.fmean(v), 3) if v else None, len(hist[L])) for L, v in ((L, sig_used.get(L)) for L in LEADS)}
+    D.log(f"{series}: {len(order)} events; mean sigma used by lead: {sig}")
     return sig, obs
 
 
