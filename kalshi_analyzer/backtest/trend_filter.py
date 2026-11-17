@@ -14,7 +14,9 @@ import statistics
 from collections import defaultdict
 
 from .. import config as C
+from ..model import taker_fee
 from . import data as D
+from . import engine as E
 from . import ladder as L
 
 BANDS = ((0.75, 0.88), (0.93, 0.96))
@@ -74,12 +76,50 @@ def run():
          "context": {str(c): stats([x for x in rows if x["chg24"] > c]) for c in CONTEXT_CUTS},
          "buckets": {f"{lo:+.0%} to {hi:+.0%}": stats([x for x in rows if lo < x["chg24"] <= hi]) for lo, hi in BUCKETS}}
     r["calibration"] = calibrate(rows)
+    r["stops"] = stop_table(data, rows)
     OUT_JSON.parent.mkdir(parents=True, exist_ok=True)
     OUT_JSON.write_text(json.dumps(r, indent=1))
     OUT_MD.parent.mkdir(parents=True, exist_ok=True)
     OUT_MD.write_text(markdown(r))
     D.log(f"wrote {OUT_MD}")
     return r
+
+
+STOP_MAIN = 0.50                 # pre-registered: sell when the bid is half our price (about -$5 on $10)
+STOP_CONTEXT = (0.25, 0.35, 0.65, 0.75)
+
+
+def with_stop(data, rows, frac):
+    """Sell at the bid (taker fee) the first hour the bid is at or below price * (1 - frac).
+    Hourly candles only, so a real stop could fill better or worse than this."""
+    out = []
+    for r in rows:
+        m, cs = data["markets"][r["ticker"]], data["candles"][r["ticker"]]
+        close = L._ts(m["close_time"])
+        level = r["price"] * (1 - frac)
+        t = r["ts"] + 3600
+        new = dict(r, stopped=False)
+        while t <= close - 3600:
+            q = E.quote(cs, t, max_age_h=1)
+            if q and q[0] <= level:
+                n = r["contracts"]
+                pnl = n * q[0] - taker_fee(n, q[0], C.FEE_RATE) - r["cost"]
+                new.update(stopped=True, won=False, pnl=round(pnl, 4))
+                break
+            t += 3600
+        out.append(new)
+    return out
+
+
+def stop_table(data, rows):
+    res = {"none": stats(rows)}
+    for f in (STOP_MAIN,) + STOP_CONTEXT:
+        st = with_stop(data, rows, f)
+        s = stats(st)
+        s["stopped"] = sum(x["stopped"] for x in st)
+        s["stopped_would_have_won"] = sum(1 for x, o in zip(st, rows) if x["stopped"] and o["won"])
+        res[str(f)] = s
+    return res
 
 
 def calibrate(rows, span_days=60):
@@ -127,6 +167,14 @@ def markdown(r):
     out += ["", "## Kill-rule calibration (60-day stretches of history)", "",
             f"Windows: {c.get('windows')}. Old rule (3 losing days in 10) would have tripped in {c.get('old_rule_trip_rate')} of them.",
             f"Worst drop from peak per window: median ${c.get('max_drawdown_p50')}, 90th ${c.get('p90')}, 95th ${c.get('p95')}, 99th ${c.get('p99')}, max ${c.get('max')}."]
+    st = r.get("stops") or {}
+    if st:
+        out += ["", "## Stop-loss test (main, picked before looking: sell at half our price, about -$5 per $10)", "",
+                "Stopped = trades sold early; 'would have won' = of those, how many would have paid out if held.", "", head]
+        for k, v in st.items():
+            nm = "No stop" if k == "none" else f"Stop at -{float(k):.0%} of price" + (" (main)" if float(k) == STOP_MAIN else "")
+            extra = "" if k == "none" else f" stopped {v.get('stopped')}, would have won {v.get('stopped_would_have_won')}"
+            out.append(line(nm, v) + extra)
     out += ["", "## By BTC 24h change", "", head] + [line(k, s) for k, s in r["buckets"].items()] + [""]
     return "\n".join(out)
 

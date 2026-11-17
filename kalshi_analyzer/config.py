@@ -144,7 +144,7 @@ BOOKS = {
     #   - return per $ below 0 once 60 days have passed or 120 trades have settled
     #   - 3 losing days within any 10 trading days
     "bitcoin_fav": {
-        "name": "Crypto: Bitcoin 5pm favorites (pre-registered test)", "short": "BTC favorites",
+        "name": "WATCHING: Bitcoin 5pm favorites (official test failed 11/17, kept as data)", "short": "★ BTC favorites (watching)",
         "kind": "crypto", "asset": "BTC-USD", "version": "btc-fav-v1", "bankroll": 1000.0, "unit": "$",
         "strategy": "favorite",
         # (low, high, backtest win rate): the win rate is only logged as the "model" chance.
