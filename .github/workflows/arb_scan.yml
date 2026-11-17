@@ -1,0 +1,33 @@
+name: Arb scan (Kalshi vs Polymarket, paper)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "7 */6 * * *"
+  push:
+    branches: [arb-scan]
+    paths: [kalshi_analyzer/arb_scan.py, .github/workflows/arb_scan.yml]
+
+concurrency:
+  group: arb-scan
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan every 30 seconds for about 5h45m
+        env:
+          ARB_COMMIT: "1"
+        run: python -m kalshi_analyzer.arb_scan 340
+      - name: Save the rest
+        if: always()
+        run: bash .github/scripts/commit_arb.sh
