@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-18T14:06+00:00",
+ "generated_at": "2026-11-18T18:00+00:00",
  "strategy_version": "btc-fav-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -25,7 +25,7 @@
   "KXBTCD"
  ],
  "bankroll": 980.96,
- "open_exposure": 0,
+ "open_exposure": 19.39,
  "totals": {
   "n": 12,
   "wins": 9,
@@ -38,11 +38,19 @@
   "brier_model": 0.2193,
   "brier_market": 0.1875
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 2,
+ "open_mark_pnl": -0.51,
+ "open_marked": 2,
+ "open_expected_pnl": 1.26,
+ "upcoming": [
+  {
+   "results_by": "2026-11-18T23:00+00:00",
+   "closes_at": "2026-11-18T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.39,
+   "expected_pnl": 1.26
+  }
+ ],
  "breakdowns": {
   "city": {
    "Bitcoin": {
