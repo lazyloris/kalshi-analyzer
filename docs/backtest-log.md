@@ -275,3 +275,7 @@ The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, a
 - Fails the bar: under 100 trades and t < 2. The best cells were picked from 15, so expect them to shrink. There are only about 12 releases a year, so proving it takes years of paper data.
 
 **Next:** at most, a cheap pre-registered paper book on core CPI (3h before the release, edge 5c). Don't add filters on these 35 events.
+
+## 2026-11-17 Core CPI side test started (paper book core_cpi, owner approved)
+
+Rules are fixed from the PR #29 backtest. 2.5-3.5h before each 8:30am ET core CPI release, model the released value as Normal(latest Cleveland Fed nowcast dated before today, sigma 0.10). Buy YES or NO (taker) when the model's chance minus price and fee is at least 5c. $10 stakes. Workflow cpi_book.yml. No kill rule, since there are about 2 trades a month. Review after 12 releases. The owner knows this is a slow side test.

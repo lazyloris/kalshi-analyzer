@@ -92,6 +92,8 @@ def evaluate(book_id, m, ctx, now):
     if book.get("strategy") == "upside_no":
         snap.update(forecast="", sigma="", model_p="")
         return snap, upside_no(book_id, m, now)
+    if book.get("strategy") == "nowcast":
+        return snap, nowcast_trade(book_id, m, ctx, now, snap)
     try:
         res = model(book_id, m, ctx, now)
     except ValueError:  # bracket type the model doesn't understand
@@ -258,6 +260,48 @@ def upside_no(book_id, m, now):
         "lead_hours": round(hours, 2), "lead_days": 0, "distance": "",
         "spread": round(ya - yb, 4), "volume": m["volume"], "status": "open", "cap_key": m["ticker"],
         **timing(book_id, m, contracts, p, contracts * price + fee),
+    }
+
+
+def nowcast_trade(book_id, m, ctx, now, snap):
+    """Core CPI side test (PR #29): Normal(nowcast, sigma) on the released value, taker, 5c edge, 2.5-3.5h out."""
+    book, R = C.BOOKS[book_id], C.rules(book_id)
+    snap.update(forecast="", sigma="", model_p="")
+    ya, yb = m["yes_ask"], m["yes_bid"]
+    close = dt.datetime.fromisoformat(m["close_time"].replace("Z", "+00:00")) if m.get("close_time") else None
+    nc = (ctx.get("nowcast") or {}).get(m["event_ticker"])
+    if ya is None or yb is None or close is None or nc is None or m["strike_type"] != "greater" or m["floor"] in (None, ""):
+        return None
+    k, sigma = float(m["floor"]), book["sigma"]
+    p = 1 - 0.5 * (1 + math.erf((k + 0.05 - nc) / (sigma * math.sqrt(2))))
+    snap.update(forecast=round(nc, 4), sigma=sigma, model_p=round(p, 4))
+    hours = (close - now).total_seconds() / 3600
+    lo_h, hi_h = book["lead_hours"]
+    if not (lo_h <= hours <= hi_h) or ya - yb > R["MAX_SPREAD"] + 1e-9:
+        return None
+    best = None
+    for side, price, chance in (("yes", ya, p), ("no", round(1 - yb, 4), 1 - p)):
+        if not (R["MIN_PRICE"] <= price <= R["MAX_PRICE"]):
+            continue
+        contracts = max(1, math.floor(R["STAKE_DOLLARS"] / price))
+        fee = taker_fee(contracts, price, C.FEE_RATE)
+        edge = chance - price - fee / contracts
+        if edge >= R["MIN_EDGE"] and (best is None or edge > best[4]):
+            best = (side, price, chance, contracts, edge, fee)
+    if best is None:
+        return None
+    side, price, chance, contracts, edge, fee = best
+    st, lo, hi = m["strike_type"], _f(m["floor"]), _f(m["cap"])
+    return {
+        "book": book_id, "strategy_version": book["version"], "opened_at": now.isoformat(timespec="minutes"),
+        "series": m["series"], "city": "Core CPI", "ticker": m["ticker"], "event_ticker": m["event_ticker"],
+        "target_date": m["target_date"], "bracket": bracket_label(st, lo, hi, book["unit"]), "strike_type": st,
+        "floor": m["floor"], "cap": m["cap"], "side": side, "contracts": contracts, "price": price, "fee": fee,
+        "cost": round(contracts * price + fee, 2), "model_p": round(chance, 4), "market_p": price,
+        "edge": round(edge, 4), "forecast": round(nc, 4), "sigma": sigma, "unit": book["unit"],
+        "lead_hours": round(hours, 2), "lead_days": 0, "distance": round(nc - (k + 0.05), 4),
+        "spread": round(ya - yb, 4), "volume": m["volume"], "status": "open", "cap_key": m["ticker"],
+        **timing(book_id, m, contracts, chance, contracts * price + fee),
     }
 
 
