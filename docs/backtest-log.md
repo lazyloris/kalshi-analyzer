@@ -279,3 +279,10 @@ The 15-minute schedule fired only once in two days, and that was at 21:37 UTC, a
 ## 2026-11-17 Core CPI side test started (paper book core_cpi, owner approved)
 
 Rules are fixed from the PR #29 backtest. 2.5-3.5h before each 8:30am ET core CPI release, model the released value as Normal(latest Cleveland Fed nowcast dated before today, sigma 0.10). Buy YES or NO (taker) when the model's chance minus price and fee is at least 5c. $10 stakes. Workflow cpi_book.yml. No kill rule, since there are about 2 trades a month. Review after 12 releases. The owner knows this is a slow side test.
+
+## 2026-11-17 Fed decisions: Kalshi vs Polymarket (branch fed-test, run 44237565125): FAILED
+
+KXFEDDECISION (hold / cut 25 / cut 50+) was matched to Polymarket's Fed decision markets ($100M-$650M volume per meeting) by meeting month and wording. That gave 24 meetings and 310 quotes, at 14d, 7d, 3d, 1d and 6h before the decision.
+- The prices nearly match: the mean gap between the Kalshi mid and the Polymarket price is 0.6-1.0c. Brier scores are equal (e.g. 1d: 0.0084 vs 0.0083).
+- Only 2 trades in all 15 cells cleared a 3c edge after fees, and both lost.
+- **Conclusion:** Kalshi already tracks Polymarket closely on Fed decisions. There's no lag to trade. Don't retry.
