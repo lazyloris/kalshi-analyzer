@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T22:56+00:00",
+ "generated_at": "2026-11-18T04:26+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -19,7 +19,7 @@
    "bankroll": 983.11,
    "starting_bankroll": 1000.0,
    "settled": 36,
-   "open": 14,
+   "open": 15,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-18T14:00+00:00"
   },
@@ -109,6 +109,17 @@
    "settled": 4,
    "open": 0,
    "version": "crypto-upside-v1",
+   "next_results_by": ""
+  },
+  {
+   "id": "core_cpi",
+   "name": "SIDE TEST: Core inflation vs Cleveland Fed forecast (from 11/17)",
+   "short": "\u2605 Core CPI (side test)",
+   "bankroll": 1000.0,
+   "starting_bankroll": 1000.0,
+   "settled": 0,
+   "open": 0,
+   "version": "core-cpi-v1",
    "next_results_by": ""
   }
  ]

@@ -1,0 +1,54 @@
+{
+ "book": "core_cpi",
+ "name": "SIDE TEST: Core inflation vs Cleveland Fed forecast (from 11/17)",
+ "short": "\u2605 Core CPI (side test)",
+ "kind": "macro",
+ "unit": "%",
+ "starting_bankroll": 1000.0,
+ "generated_at": "2026-11-18T04:26+00:00",
+ "strategy_version": "core-cpi-v1",
+ "rules": {
+  "MIN_EDGE": 0.05,
+  "MIN_PRICE": 0.01,
+  "MAX_PRICE": 0.99,
+  "MAX_SPREAD": 0.1,
+  "MIN_LEAD_HOURS": 6,
+  "MAX_POSITIONS_PER_EVENT": 20,
+  "STAKE_DOLLARS": 10.0
+ },
+ "strategy": "nowcast",
+ "model": {},
+ "markets": [
+  "KXCPICORE"
+ ],
+ "bankroll": 1000.0,
+ "open_exposure": 0,
+ "totals": {
+  "n": 0
+ },
+ "open_count": 0,
+ "open_mark_pnl": 0,
+ "open_marked": 0,
+ "open_expected_pnl": 0,
+ "upcoming": [],
+ "breakdowns": {
+  "city": {},
+  "side": {},
+  "edge": {},
+  "price": {},
+  "days_ahead": {},
+  "bracket_distance": {},
+  "bracket_type": {},
+  "cause": {},
+  "version": {}
+ },
+ "calibration": [],
+ "forecast_accuracy": [],
+ "suggestions": [
+  {
+   "priority": 0,
+   "text": "Only 0 settled trades. Wait for 20+ before changing any rule."
+  }
+ ],
+ "bankroll_curve": []
+}
