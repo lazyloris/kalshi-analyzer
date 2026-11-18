@@ -1,0 +1,22 @@
+name: Inflation nowcast test (backtest)
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [cpi-test]
+    paths: [kalshi_analyzer/backtest/cpi.py, .github/workflows/cpi_test.yml]
+
+jobs:
+  cpi:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m kalshi_analyzer.backtest.cpi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: cpi-test
+          path: data/cpi_test.json
