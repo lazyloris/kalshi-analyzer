@@ -1,0 +1,17 @@
+name: Probe Fed markets
+
+on:
+  push:
+    branches: [fed-test]
+    paths: [kalshi_analyzer/probe_fed.py, .github/workflows/probe_fed.yml]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m kalshi_analyzer.probe_fed
