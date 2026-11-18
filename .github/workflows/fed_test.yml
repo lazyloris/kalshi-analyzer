@@ -1,0 +1,17 @@
+name: Fed decision test (backtest)
+
+on:
+  push:
+    branches: [fed-test]
+    paths: [kalshi_analyzer/probe_fed.py, kalshi_analyzer/backtest/fed.py, .github/workflows/fed_test.yml]
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python -m kalshi_analyzer.backtest.fed
