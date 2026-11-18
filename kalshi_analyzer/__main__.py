@@ -68,6 +68,27 @@ class Fetcher:
         return self._get(("mid", series, ticker, hours), self._mid_before, series, ticker, hours)
 
 
+def macro_nowcasts(book, markets, now):
+    """{event_ticker: latest Cleveland Fed nowcast dated before today} for the events' target months."""
+    from .backtest.cpi import nowcasts, target_month, vintage
+    try:
+        nc = nowcasts()
+    except Exception as e:  # no nowcast, no trades this run
+        log(f"nowcast fetch failed: {e}")
+        return {}
+    out = {}
+    for ev in {m["event_ticker"] for m in markets}:
+        try:
+            vals = nc.get(target_month(ev), {}).get(book["nowcast_series"])
+        except (KeyError, ValueError):
+            continue
+        v = vintage(vals, now.date()) if vals else None
+        if v is not None:
+            out[ev] = v
+    log(f"nowcasts: {out}")
+    return out
+
+
 def run_book(book_id, f, now, do_settle=True):
     book, R, P = C.BOOKS[book_id], C.rules(book_id), C.paths(book_id)
     trades = ledger.read(P["trades"], {"book": book_id, "unit": book["unit"]})
@@ -94,6 +115,8 @@ def run_book(book_id, f, now, do_settle=True):
         markets = f.markets(series)
         if markets is None:
             continue
+        if book["kind"] == "macro" and markets:
+            ctx["nowcast"] = macro_nowcasts(book, markets, now)
         if book.get("event_suffix"):
             markets = [m for m in markets if m["event_ticker"].endswith(book["event_suffix"])]
         if book["kind"] == "crypto" and markets:

@@ -306,3 +306,21 @@ def test_upside_kill_rules():
     sev = ok + [t("2026-11-25", -1)] * 7
     assert "7 losses" in strategy.kill_reason("crypto_upside", sev, now)
     assert "finished" in strategy.kill_reason("crypto_upside", ok, dt.datetime(2027, 1, 17, tzinfo=dt.timezone.utc))
+
+
+def test_core_cpi_nowcast_rule():
+    import datetime as dt
+    from kalshi_analyzer import strategy
+    now = dt.datetime(2026, 12, 10, 10, 30, tzinfo=dt.timezone.utc)
+    m = {"series": "KXCPICORE", "ticker": "KXCPICORE-26NOV-T0.2", "event_ticker": "KXCPICORE-26NOV", "target_date": "2026-12-10",
+         "strike_type": "greater", "floor": 0.2, "cap": None, "yes_bid": 0.40, "yes_ask": 0.42, "no_bid": 0.58, "no_ask": 0.60,
+         "volume": 100, "close_time": "2026-12-10T13:29:00Z"}
+    # nowcast 0.35: P(value >= 0.25) = Phi(1.0) ~ 0.84, YES at 42c is a big edge
+    snap, c = strategy.evaluate("core_cpi", m, {"nowcast": {"KXCPICORE-26NOV": 0.35}}, now)
+    assert c and c["side"] == "yes" and abs(c["model_p"] - 0.8413) < 0.001 and c["bracket"] == ">0.2%"
+    # nowcast 0.15: P ~ 0.16, NO at 60c is the edge
+    _, c = strategy.evaluate("core_cpi", m, {"nowcast": {"KXCPICORE-26NOV": 0.15}}, now)
+    assert c and c["side"] == "no"
+    # outside the 2.5-3.5h window: no trade, but the snapshot still logs the model chance
+    snap, c = strategy.evaluate("core_cpi", m, {"nowcast": {"KXCPICORE-26NOV": 0.35}}, now - dt.timedelta(hours=5))
+    assert c is None and snap["model_p"] != ""

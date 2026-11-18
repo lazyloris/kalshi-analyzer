@@ -17,7 +17,7 @@ FEE_RATE = 0.07
 # Rough hours from a market's close until Kalshi posts the result (so you know when to check back).
 # Weather waits for the NWS daily climate report the next morning; 5pm prices settle within the hour.
 # Estimates, refined once we see real settle times.
-SETTLE_DELAY_HOURS = {"weather": 8, "crypto": 1, "fade": 12}  # Kalshi taker fee: ceil(0.07 * contracts * p * (1-p)) to the cent
+SETTLE_DELAY_HOURS = {"weather": 8, "crypto": 1, "fade": 12, "macro": 2}  # Kalshi taker fee: ceil(0.07 * contracts * p * (1-p)) to the cent
 
 # Settlement stations (NWS Daily Climate Report). Used to ask NWS for the point forecast.
 STATIONS = {
@@ -174,8 +174,22 @@ BOOKS = {
         "series": {"KXBTCD": "BTC", "KXETHD": "ETH"}, "event_suffix": "17", "fallback_vol": 0.50,
         "rules": {"MAX_SPREAD": 0.03, "MAX_POSITIONS_PER_EVENT": 20, "MAX_PRICE": 0.97, "MIN_PRICE": 0.88},
     },
+    # 2026-11-17: core CPI vs the Cleveland Fed nowcast (backtest PR #29, docs/backtest-log.md). Walk-forward on
+    # 35 releases, 3h before the 8:30am ET release with a 5c edge: +18.7%/$ on 60 trades, both halves positive,
+    # but t 1.2, so far from proven. Owner chose to paper-trade it as a slow side test. FIXED rules:
+    #   model: released value ~ Normal(latest nowcast dated before today, sigma 0.10), YES on ">K" needs >= K+0.05
+    #   buy YES or NO when model chance - (price + fee per contract) >= 5c, 2.5-3.5h before the release, taker.
+    # No kill rule: about 2 trades a month. Review after 12 releases.
+    "core_cpi": {
+        "name": "SIDE TEST: Core inflation vs Cleveland Fed forecast (from 11/17)", "short": "★ Core CPI (side test)",
+        "kind": "macro", "version": "core-cpi-v1", "bankroll": 1000.0, "unit": "%",
+        "strategy": "nowcast", "nowcast_series": "Core CPI Inflation", "sigma": 0.10, "lead_hours": (2.5, 3.5),
+        "test_start": "2026-11-17", "kill": None,
+        "series": {"KXCPICORE": "CORE"},
+        "rules": {"MIN_EDGE": 0.05, "MIN_PRICE": 0.01, "MAX_PRICE": 0.99, "MAX_SPREAD": 0.10, "MAX_POSITIONS_PER_EVENT": 20},
+    },
 }
-ASSET_NAMES = {"BTC": "Bitcoin", "ETH": "Ethereum", "GOLD": "Gold"}
+ASSET_NAMES = {"BTC": "Bitcoin", "ETH": "Ethereum", "GOLD": "Gold", "CORE": "Core CPI"}
 
 
 def rules(book_id):

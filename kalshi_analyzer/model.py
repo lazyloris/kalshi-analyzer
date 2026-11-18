@@ -51,9 +51,9 @@ def taker_fee(contracts: int, price: float, rate: float) -> float:
 
 
 def bracket_label(strike_type, floor, cap, unit="F"):
-    f = (lambda v: f"${v:,.0f}") if unit == "$" else (lambda v: f"{v:g}F")
+    f = (lambda v: f"${v:,.0f}") if unit == "$" else (lambda v: f"{v:g}{unit}")
     if strike_type == "between":
-        return f"{f(floor)}-{f(cap)}" if unit == "$" else f"{floor:g}-{cap:g}F"
+        return f"{f(floor)}-{f(cap)}" if unit == "$" else f"{floor:g}-{cap:g}{unit}"
     if strike_type == "greater":
         return f">{f(floor)}"
     if strike_type == "greater_or_equal":

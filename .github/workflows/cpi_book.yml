@@ -1,0 +1,63 @@
+name: Core CPI side test (paper)
+
+# Core CPI comes out at 8:30am ET about once a month. Several early-morning tries because GitHub's cron
+# often fires late; each one exits unless a release is 2.5-7.5h away, then waits until 3h before it.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * *"
+    - cron: "0 7 * * *"
+    - cron: "0 8 * * *"
+
+concurrency:
+  group: cpi-book
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    timeout-minutes: 330
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Wait until 3 hours before a core CPI release (skip if none today)
+        id: wait
+        run: |
+          python - <<'PY'
+          import datetime as dt, os, time
+          from kalshi_analyzer.kalshi import open_markets
+          now = dt.datetime.now(dt.timezone.utc)
+          closes = sorted({m["close_time"] for m in open_markets("KXCPICORE") if m.get("close_time")})
+          go, wait = False, 0
+          for c in closes:
+              t = dt.datetime.fromisoformat(c.replace("Z", "+00:00"))
+              left = (t - now).total_seconds() / 3600
+              if 2.5 <= left <= 7.5:
+                  go, wait = True, max(0, (t - dt.timedelta(hours=3) - now).total_seconds())
+                  break
+          print(f"now {now:%Y-%m-%d %H:%M}Z, next closes {closes[:2]}, go={go}, wait {wait / 60:.0f} min")
+          with open(os.environ["GITHUB_OUTPUT"], "a") as f:
+              f.write(f"go={'true' if go else 'false'}\n")
+          if go and wait:
+              time.sleep(wait)
+          PY
+      - name: Paper trade the core CPI book
+        if: steps.wait.outputs.go == 'true'
+        run: |
+          git pull --rebase || true
+          python -m kalshi_analyzer run --books core_cpi
+      - name: Save results to the repo
+        if: steps.wait.outputs.go == 'true'
+        run: |
+          git config user.name "kalshi-paper-bot"
+          git config user.email "kalshi-paper-bot@users.noreply.github.com"
+          git add -A data dashboard/data reports
+          if git diff --cached --quiet; then echo "nothing new"; exit 0; fi
+          git commit -m "core cpi run $(date -u +%Y-%m-%dT%H:%MZ)"
+          for i in 1 2 3; do git pull --rebase && git push && exit 0; sleep 5; done
+          exit 1
