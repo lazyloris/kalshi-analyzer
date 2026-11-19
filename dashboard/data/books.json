@@ -1,14 +1,14 @@
 {
- "generated_at": "2026-11-19T03:34+00:00",
+ "generated_at": "2026-11-19T13:18+00:00",
  "books": [
   {
    "id": "weather_high",
    "name": "Weather: daily highs",
    "short": "Highs",
-   "bankroll": 957.09,
+   "bankroll": 950.24,
    "starting_bankroll": 1000.0,
-   "settled": 98,
-   "open": 21,
+   "settled": 104,
+   "open": 16,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-14T14:00+00:00"
   },
@@ -16,10 +16,10 @@
    "id": "weather_low",
    "name": "Weather: daily lows",
    "short": "Lows",
-   "bankroll": 987.0,
+   "bankroll": 988.08,
    "starting_bankroll": 1000.0,
-   "settled": 44,
-   "open": 13,
+   "settled": 48,
+   "open": 9,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-19T14:00+00:00"
   },
