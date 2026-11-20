@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-20T18:00+00:00",
+ "generated_at": "2026-11-20T21:11+00:00",
  "strategy_version": "btc-tod-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,7 +26,7 @@
   "KXBTCD"
  ],
  "bankroll": 1020.48,
- "open_exposure": 19.55,
+ "open_exposure": 58.62,
  "totals": {
   "n": 22,
   "wins": 18,
@@ -39,10 +39,10 @@
   "brier_model": 0.1503,
   "brier_market": 0.1497
  },
- "open_count": 2,
- "open_mark_pnl": 5.2,
- "open_marked": 2,
- "open_expected_pnl": 3.66,
+ "open_count": 6,
+ "open_mark_pnl": 3.69,
+ "open_marked": 6,
+ "open_expected_pnl": 8.58,
  "upcoming": [
   {
    "results_by": "2026-11-20T23:00+00:00",
@@ -50,6 +50,20 @@
    "n": 2,
    "at_risk": 19.55,
    "expected_pnl": 3.66
+  },
+  {
+   "results_by": "2026-11-21T23:00+00:00",
+   "closes_at": "2026-11-21T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.59,
+   "expected_pnl": 2.54
+  },
+  {
+   "results_by": "2026-11-27T23:00+00:00",
+   "closes_at": "2026-11-27T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.48,
+   "expected_pnl": 2.38
   }
  ],
  "breakdowns": {
