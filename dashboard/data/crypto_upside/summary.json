@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-20T12:59+00:00",
+ "generated_at": "2026-11-20T18:00+00:00",
  "strategy_version": "crypto-upside-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,7 +26,7 @@
   "KXETHD"
  ],
  "bankroll": 1007.09,
- "open_exposure": 0,
+ "open_exposure": 38.97,
  "totals": {
   "n": 11,
   "wins": 11,
@@ -39,11 +39,19 @@
   "brier_model": 0.0004,
   "brier_market": 0.0053
  },
- "open_count": 0,
- "open_mark_pnl": 0,
- "open_marked": 0,
- "open_expected_pnl": 0,
- "upcoming": [],
+ "open_count": 4,
+ "open_mark_pnl": -0.58,
+ "open_marked": 4,
+ "open_expected_pnl": 1.21,
+ "upcoming": [
+  {
+   "results_by": "2026-11-20T23:00+00:00",
+   "closes_at": "2026-11-20T22:00:00Z",
+   "n": 4,
+   "at_risk": 38.97,
+   "expected_pnl": 1.21
+  }
+ ],
  "breakdowns": {
   "city": {
    "Bitcoin": {
