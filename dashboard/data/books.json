@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-11-21T18:00+00:00",
+ "generated_at": "2026-11-21T18:02+00:00",
  "books": [
   {
    "id": "weather_high",
    "name": "Weather: daily highs",
    "short": "Highs",
-   "bankroll": 957.83,
+   "bankroll": 962.29,
    "starting_bankroll": 1000.0,
-   "settled": 120,
-   "open": 19,
+   "settled": 128,
+   "open": 17,
    "version": "weather-fade-v2",
-   "next_results_by": "2026-11-21T14:00+00:00"
+   "next_results_by": "2026-11-22T14:00+00:00"
   },
   {
    "id": "weather_low",
    "name": "Weather: daily lows",
    "short": "Lows",
-   "bankroll": 991.48,
+   "bankroll": 994.89,
    "starting_bankroll": 1000.0,
-   "settled": 57,
-   "open": 17,
+   "settled": 65,
+   "open": 12,
    "version": "weather-low-fade-v2",
-   "next_results_by": "2026-11-21T14:00+00:00"
+   "next_results_by": "2026-11-22T14:00+00:00"
   },
   {
    "id": "bitcoin",

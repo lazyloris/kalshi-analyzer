@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-21T18:00+00:00",
+ "generated_at": "2026-11-21T18:02+00:00",
  "strategy_version": "weather-low-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -36,53 +36,25 @@
   "KXLOWTDEN",
   "KXLOWTLAX"
  ],
- "bankroll": 991.48,
- "open_exposure": 162.44,
+ "bankroll": 994.89,
+ "open_exposure": 114.94,
  "totals": {
-  "n": 57,
-  "wins": 54,
-  "win_rate": 0.947,
-  "pnl": -8.52,
-  "roi": -0.016,
-  "fees": 1.92,
+  "n": 65,
+  "wins": 62,
+  "win_rate": 0.954,
+  "pnl": -5.11,
+  "roi": -0.008,
+  "fees": 2.21,
   "avg_edge": -0.017,
-  "avg_model_p": 0.946,
-  "brier_model": 0.0491,
-  "brier_market": 0.0496
+  "avg_model_p": 0.945,
+  "brier_model": 0.0435,
+  "brier_market": 0.0438
  },
- "open_count": 17,
- "open_mark_pnl": -88.24,
- "open_marked": 17,
- "open_expected_pnl": -3.19,
+ "open_count": 12,
+ "open_mark_pnl": -9.34,
+ "open_marked": 12,
+ "open_expected_pnl": -2.69,
  "upcoming": [
-  {
-   "results_by": "2026-11-21T14:00+00:00",
-   "closes_at": "2026-11-21T06:00:00Z",
-   "n": 3,
-   "at_risk": 28.8,
-   "expected_pnl": -0.55
-  },
-  {
-   "results_by": "2026-11-21T15:00+00:00",
-   "closes_at": "2026-11-21T07:00:00Z",
-   "n": 2,
-   "at_risk": 19.08,
-   "expected_pnl": -0.33
-  },
-  {
-   "results_by": "2026-11-21T16:00+00:00",
-   "closes_at": "2026-11-21T08:00:00Z",
-   "n": 2,
-   "at_risk": 19.17,
-   "expected_pnl": -0.32
-  },
-  {
-   "results_by": "2026-11-21T17:00+00:00",
-   "closes_at": "2026-11-21T09:00:00Z",
-   "n": 1,
-   "at_risk": 9.54,
-   "expected_pnl": -0.14
-  },
   {
    "results_by": "2026-11-22T14:00+00:00",
    "closes_at": "2026-11-22T06:00:00Z",
@@ -110,226 +82,240 @@
    "n": 1,
    "at_risk": 9.54,
    "expected_pnl": -0.24
+  },
+  {
+   "results_by": "2026-11-23T14:00+00:00",
+   "closes_at": "2026-11-23T06:00:00Z",
+   "n": 2,
+   "at_risk": 19.36,
+   "expected_pnl": -0.56
+  },
+  {
+   "results_by": "2026-11-23T15:00+00:00",
+   "closes_at": "2026-11-23T07:00:00Z",
+   "n": 1,
+   "at_risk": 9.73,
+   "expected_pnl": -0.28
   }
  ],
  "breakdowns": {
   "city": {
    "Austin": {
-    "n": 9,
-    "wins": 9,
-    "win_rate": 1.0,
-    "pnl": 2.82,
-    "roi": 0.032,
-    "fees": 0.28,
-    "avg_edge": -0.016,
-    "avg_model_p": 0.952,
-    "brier_model": 0.0024,
-    "brier_market": 0.0013
-   },
-   "Chicago": {
-    "n": 7,
-    "wins": 7,
-    "win_rate": 1.0,
-    "pnl": 2.94,
-    "roi": 0.044,
-    "fees": 0.26,
-    "avg_edge": -0.019,
-    "avg_model_p": 0.939,
-    "brier_model": 0.0038,
-    "brier_market": 0.0024
-   },
-   "Denver": {
-    "n": 11,
-    "wins": 10,
-    "win_rate": 0.909,
-    "pnl": -5.0,
-    "roi": -0.048,
-    "fees": 0.4,
-    "avg_edge": -0.02,
-    "avg_model_p": 0.935,
-    "brier_model": 0.0862,
-    "brier_market": 0.0862
-   },
-   "Los Angeles": {
-    "n": 4,
-    "wins": 4,
-    "win_rate": 1.0,
-    "pnl": 1.46,
-    "roi": 0.038,
-    "fees": 0.14,
-    "avg_edge": -0.016,
-    "avg_model_p": 0.948,
-    "brier_model": 0.0029,
-    "brier_market": 0.0019
-   },
-   "Miami": {
     "n": 10,
     "wins": 10,
     "win_rate": 1.0,
-    "pnl": 2.8,
+    "pnl": 3.09,
+    "roi": 0.032,
+    "fees": 0.31,
+    "avg_edge": -0.016,
+    "avg_model_p": 0.953,
+    "brier_model": 0.0023,
+    "brier_market": 0.0012
+   },
+   "Chicago": {
+    "n": 8,
+    "wins": 8,
+    "win_rate": 1.0,
+    "pnl": 3.59,
+    "roi": 0.047,
+    "fees": 0.31,
+    "avg_edge": -0.019,
+    "avg_model_p": 0.936,
+    "brier_model": 0.0043,
+    "brier_market": 0.0027
+   },
+   "Denver": {
+    "n": 13,
+    "wins": 12,
+    "win_rate": 0.923,
+    "pnl": -4.17,
+    "roi": -0.034,
+    "fees": 0.47,
+    "avg_edge": -0.019,
+    "avg_model_p": 0.936,
+    "brier_model": 0.0735,
+    "brier_market": 0.0733
+   },
+   "Los Angeles": {
+    "n": 5,
+    "wins": 5,
+    "win_rate": 1.0,
+    "pnl": 1.92,
+    "roi": 0.04,
+    "fees": 0.18,
+    "avg_edge": -0.016,
+    "avg_model_p": 0.946,
+    "brier_model": 0.0031,
+    "brier_market": 0.002
+   },
+   "Miami": {
+    "n": 11,
+    "wins": 11,
+    "win_rate": 1.0,
+    "pnl": 3.07,
     "roi": 0.029,
-    "fees": 0.3,
+    "fees": 0.33,
     "avg_edge": -0.016,
     "avg_model_p": 0.956,
     "brier_model": 0.002,
     "brier_market": 0.001
    },
    "New York": {
-    "n": 9,
-    "wins": 8,
-    "win_rate": 0.889,
-    "pnl": -6.41,
-    "roi": -0.074,
-    "fees": 0.31,
+    "n": 10,
+    "wins": 9,
+    "win_rate": 0.9,
+    "pnl": -5.85,
+    "roi": -0.061,
+    "fees": 0.35,
     "avg_edge": -0.015,
-    "avg_model_p": 0.945,
-    "brier_model": 0.0966,
-    "brier_market": 0.0999
+    "avg_model_p": 0.943,
+    "brier_model": 0.0875,
+    "brier_market": 0.0902
    },
    "Philadelphia": {
-    "n": 7,
-    "wins": 6,
-    "win_rate": 0.857,
-    "pnl": -7.13,
-    "roi": -0.106,
-    "fees": 0.23,
-    "avg_edge": -0.014,
-    "avg_model_p": 0.945,
-    "brier_model": 0.1288,
-    "brier_market": 0.1334
+    "n": 8,
+    "wins": 7,
+    "win_rate": 0.875,
+    "pnl": -6.76,
+    "roi": -0.088,
+    "fees": 0.26,
+    "avg_edge": -0.015,
+    "avg_model_p": 0.944,
+    "brier_model": 0.1132,
+    "brier_market": 0.117
    }
   },
   "side": {
    "NO": {
-    "n": 57,
-    "wins": 54,
-    "win_rate": 0.947,
-    "pnl": -8.52,
-    "roi": -0.016,
-    "fees": 1.92,
+    "n": 65,
+    "wins": 62,
+    "win_rate": 0.954,
+    "pnl": -5.11,
+    "roi": -0.008,
+    "fees": 2.21,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0491,
-    "brier_market": 0.0496
+    "avg_model_p": 0.945,
+    "brier_model": 0.0435,
+    "brier_market": 0.0438
    }
   },
   "edge": {
    "8-12c": {
-    "n": 57,
-    "wins": 54,
-    "win_rate": 0.947,
-    "pnl": -8.52,
-    "roi": -0.016,
-    "fees": 1.92,
+    "n": 65,
+    "wins": 62,
+    "win_rate": 0.954,
+    "pnl": -5.11,
+    "roi": -0.008,
+    "fees": 2.21,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0491,
-    "brier_market": 0.0496
+    "avg_model_p": 0.945,
+    "brier_model": 0.0435,
+    "brier_market": 0.0438
    }
   },
   "price": {
    "75-90c": {
-    "n": 57,
-    "wins": 54,
-    "win_rate": 0.947,
-    "pnl": -8.52,
-    "roi": -0.016,
-    "fees": 1.92,
+    "n": 65,
+    "wins": 62,
+    "win_rate": 0.954,
+    "pnl": -5.11,
+    "roi": -0.008,
+    "fees": 2.21,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0491,
-    "brier_market": 0.0496
+    "avg_model_p": 0.945,
+    "brier_model": 0.0435,
+    "brier_market": 0.0438
    }
   },
   "days_ahead": {
    "0 day(s)": {
-    "n": 5,
-    "wins": 5,
+    "n": 6,
+    "wins": 6,
     "win_rate": 1.0,
-    "pnl": 1.45,
-    "roi": 0.03,
-    "fees": 0.15,
-    "avg_edge": -0.02,
-    "avg_model_p": 0.951,
-    "brier_model": 0.0025,
-    "brier_market": 0.001
+    "pnl": 1.91,
+    "roi": 0.033,
+    "fees": 0.19,
+    "avg_edge": -0.019,
+    "avg_model_p": 0.949,
+    "brier_model": 0.0027,
+    "brier_market": 0.0013
    },
    "1 day(s)": {
-    "n": 52,
-    "wins": 49,
-    "win_rate": 0.942,
-    "pnl": -9.97,
-    "roi": -0.02,
-    "fees": 1.77,
+    "n": 59,
+    "wins": 56,
+    "win_rate": 0.949,
+    "pnl": -7.02,
+    "roi": -0.012,
+    "fees": 2.02,
     "avg_edge": -0.016,
     "avg_model_p": 0.945,
-    "brier_model": 0.0536,
-    "brier_market": 0.0543
+    "brier_model": 0.0477,
+    "brier_market": 0.0481
    }
   },
   "bracket_distance": {
    "n/a": {
-    "n": 57,
-    "wins": 54,
-    "win_rate": 0.947,
-    "pnl": -8.52,
-    "roi": -0.016,
-    "fees": 1.92,
+    "n": 65,
+    "wins": 62,
+    "win_rate": 0.954,
+    "pnl": -5.11,
+    "roi": -0.008,
+    "fees": 2.21,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0491,
-    "brier_market": 0.0496
+    "avg_model_p": 0.945,
+    "brier_model": 0.0435,
+    "brier_market": 0.0438
    }
   },
   "bracket_type": {
    "between": {
-    "n": 39,
-    "wins": 37,
-    "win_rate": 0.949,
-    "pnl": -5.7,
-    "roi": -0.015,
-    "fees": 1.3,
+    "n": 44,
+    "wins": 42,
+    "win_rate": 0.955,
+    "pnl": -3.48,
+    "roi": -0.008,
+    "fees": 1.48,
     "avg_edge": -0.016,
-    "avg_model_p": 0.947,
-    "brier_model": 0.0486,
-    "brier_market": 0.049
+    "avg_model_p": 0.946,
+    "brier_model": 0.0435,
+    "brier_market": 0.0437
    },
    "greater": {
-    "n": 13,
-    "wins": 12,
-    "win_rate": 0.923,
-    "pnl": -5.23,
-    "roi": -0.042,
-    "fees": 0.43,
+    "n": 15,
+    "wins": 14,
+    "win_rate": 0.933,
+    "pnl": -4.31,
+    "roi": -0.03,
+    "fees": 0.51,
     "avg_edge": -0.018,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0678,
-    "brier_market": 0.0695
+    "avg_model_p": 0.944,
+    "brier_model": 0.0593,
+    "brier_market": 0.0606
    },
    "less": {
-    "n": 5,
-    "wins": 5,
+    "n": 6,
+    "wins": 6,
     "win_rate": 1.0,
-    "pnl": 2.41,
-    "roi": 0.051,
-    "fees": 0.19,
-    "avg_edge": -0.02,
-    "avg_model_p": 0.932,
-    "brier_model": 0.0047,
-    "brier_market": 0.0028
+    "pnl": 2.68,
+    "roi": 0.047,
+    "fees": 0.22,
+    "avg_edge": -0.019,
+    "avg_model_p": 0.937,
+    "brier_model": 0.0042,
+    "brier_market": 0.0025
    }
   },
   "cause": {
    "longshot_held": {
-    "n": 54,
-    "wins": 54,
+    "n": 62,
+    "wins": 62,
     "win_rate": 1.0,
-    "pnl": 20.18,
-    "roi": 0.039,
-    "fees": 1.82,
+    "pnl": 23.59,
+    "roi": 0.04,
+    "fees": 2.11,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0031,
+    "avg_model_p": 0.945,
+    "brier_model": 0.0032,
     "brier_market": 0.0019
    },
    "longshot_hit": {
@@ -347,25 +333,25 @@
   },
   "version": {
    "weather-low-fade-v2": {
-    "n": 57,
-    "wins": 54,
-    "win_rate": 0.947,
-    "pnl": -8.52,
-    "roi": -0.016,
-    "fees": 1.92,
+    "n": 65,
+    "wins": 62,
+    "win_rate": 0.954,
+    "pnl": -5.11,
+    "roi": -0.008,
+    "fees": 2.21,
     "avg_edge": -0.017,
-    "avg_model_p": 0.946,
-    "brier_model": 0.0491,
-    "brier_market": 0.0496
+    "avg_model_p": 0.945,
+    "brier_model": 0.0435,
+    "brier_market": 0.0438
    }
   }
  },
  "calibration": [
   {
    "bucket": "90-100%",
-   "n": 57,
-   "predicted": 0.946,
-   "actual": 0.947
+   "n": 65,
+   "predicted": 0.945,
+   "actual": 0.954
   }
  ],
  "forecast_accuracy": [
@@ -383,10 +369,10 @@
    "series": "KXLOWTAUS",
    "city": "Austin",
    "days_ahead": 1,
-   "n": 13,
-   "bias": -0.23,
-   "mae": 2.08,
-   "stdev": 2.64,
+   "n": 14,
+   "bias": -0.57,
+   "mae": 2.29,
+   "stdev": 2.82,
    "sigma_used": 2.0
   },
   {
@@ -403,50 +389,50 @@
    "series": "KXLOWTCHI",
    "city": "Chicago",
    "days_ahead": 1,
-   "n": 13,
-   "bias": -0.54,
-   "mae": 1.92,
-   "stdev": 2.37,
+   "n": 14,
+   "bias": -0.79,
+   "mae": 2.07,
+   "stdev": 2.45,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTDEN",
    "city": "Denver",
    "days_ahead": 0,
-   "n": 9,
-   "bias": -1.11,
-   "mae": 1.78,
-   "stdev": 2.33,
+   "n": 10,
+   "bias": -1.2,
+   "mae": 1.8,
+   "stdev": 2.23,
    "sigma_used": 1.5
   },
   {
    "series": "KXLOWTDEN",
    "city": "Denver",
    "days_ahead": 1,
-   "n": 13,
-   "bias": -2.15,
-   "mae": 2.77,
-   "stdev": 3.5,
+   "n": 14,
+   "bias": -2.14,
+   "mae": 2.71,
+   "stdev": 3.38,
    "sigma_used": 2.0
   },
   {
    "series": "KXLOWTLAX",
    "city": "Los Angeles",
    "days_ahead": 0,
-   "n": 12,
-   "bias": 0.25,
-   "mae": 2.08,
-   "stdev": 2.59,
-   "sigma_used": 1.5
-  },
-  {
-   "series": "KXLOWTLAX",
-   "city": "Los Angeles",
-   "days_ahead": 1,
    "n": 13,
    "bias": 0.31,
-   "mae": 2.31,
-   "stdev": 2.73,
+   "mae": 2.0,
+   "stdev": 2.49,
+   "sigma_used": 1.5
+  },
+  {
+   "series": "KXLOWTLAX",
+   "city": "Los Angeles",
+   "days_ahead": 1,
+   "n": 14,
+   "bias": 0.36,
+   "mae": 2.21,
+   "stdev": 2.64,
    "sigma_used": 2.0
   },
   {
@@ -463,10 +449,10 @@
    "series": "KXLOWTMIA",
    "city": "Miami",
    "days_ahead": 1,
-   "n": 12,
-   "bias": -0.5,
-   "mae": 2.17,
-   "stdev": 2.47,
+   "n": 13,
+   "bias": -0.46,
+   "mae": 2.0,
+   "stdev": 2.37,
    "sigma_used": 2.0
   },
   {
@@ -483,10 +469,10 @@
    "series": "KXLOWTNYC",
    "city": "New York",
    "days_ahead": 1,
-   "n": 12,
-   "bias": 0.17,
-   "mae": 2.5,
-   "stdev": 3.16,
+   "n": 13,
+   "bias": 0.77,
+   "mae": 2.92,
+   "stdev": 3.68,
    "sigma_used": 2.0
   },
   {
@@ -503,21 +489,21 @@
    "series": "KXLOWTPHIL",
    "city": "Philadelphia",
    "days_ahead": 1,
-   "n": 12,
+   "n": 13,
    "bias": 1.08,
-   "mae": 1.58,
-   "stdev": 1.8,
+   "mae": 1.54,
+   "stdev": 1.73,
    "sigma_used": 2.0
   }
  ],
  "suggestions": [
   {
    "priority": 2,
-   "text": "NWS runs warm in Denver (0 day(s) ahead, avg error -1.1F over 9 days). Try bias['KXLOWTDEN'] = -1.1 in this book's config."
+   "text": "NWS runs warm in Denver (0 day(s) ahead, avg error -1.2F over 10 days). Try bias['KXLOWTDEN'] = -1.2 in this book's config."
   },
   {
    "priority": 2,
-   "text": "NWS runs warm in Denver (1 day(s) ahead, avg error -2.1F over 13 days). Try bias['KXLOWTDEN'] = -2.1 in this book's config."
+   "text": "NWS runs warm in Denver (1 day(s) ahead, avg error -2.1F over 14 days). Try bias['KXLOWTDEN'] = -2.1 in this book's config."
   },
   {
    "priority": 2,
@@ -525,7 +511,7 @@
   },
   {
    "priority": 2,
-   "text": "NWS runs cold in Philadelphia (1 day(s) ahead, avg error +1.1F over 12 days). Try bias['KXLOWTPHIL'] = +1.1 in this book's config."
+   "text": "NWS runs cold in Philadelphia (1 day(s) ahead, avg error +1.1F over 13 days). Try bias['KXLOWTPHIL'] = +1.1 in this book's config."
   },
   {
    "priority": 1,
@@ -533,7 +519,7 @@
   },
   {
    "priority": 1,
-   "text": "Measured forecast spread in Austin (1 day(s) ahead) is 2.64F but the model assumes 2.0F."
+   "text": "Measured forecast spread in Austin (1 day(s) ahead) is 2.82F but the model assumes 2.0F."
   },
   {
    "priority": 1,
@@ -541,19 +527,23 @@
   },
   {
    "priority": 1,
-   "text": "Measured forecast spread in Denver (1 day(s) ahead) is 3.5F but the model assumes 2.0F."
+   "text": "Measured forecast spread in Denver (0 day(s) ahead) is 2.23F but the model assumes 1.5F."
   },
   {
    "priority": 1,
-   "text": "Measured forecast spread in Los Angeles (0 day(s) ahead) is 2.59F but the model assumes 1.5F."
+   "text": "Measured forecast spread in Denver (1 day(s) ahead) is 3.38F but the model assumes 2.0F."
   },
   {
    "priority": 1,
-   "text": "Measured forecast spread in Los Angeles (1 day(s) ahead) is 2.73F but the model assumes 2.0F."
+   "text": "Measured forecast spread in Los Angeles (0 day(s) ahead) is 2.49F but the model assumes 1.5F."
   },
   {
    "priority": 1,
-   "text": "Measured forecast spread in New York (1 day(s) ahead) is 3.16F but the model assumes 2.0F."
+   "text": "Measured forecast spread in Los Angeles (1 day(s) ahead) is 2.64F but the model assumes 2.0F."
+  },
+  {
+   "priority": 1,
+   "text": "Measured forecast spread in New York (1 day(s) ahead) is 3.68F but the model assumes 2.0F."
   }
  ],
  "bankroll_curve": [
@@ -784,6 +774,38 @@
   {
    "t": "2026-11-20T21:11+00:00",
    "bankroll": 991.48
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 991.75
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 992.02
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 992.58
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 992.85
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 993.41
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 994.06
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 994.43
+  },
+  {
+   "t": "2026-11-21T18:02+00:00",
+   "bankroll": 994.89
   }
  ]
 }
