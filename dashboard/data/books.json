@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-21T18:02+00:00",
+ "generated_at": "2026-11-21T23:23+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 962.29,
    "starting_bankroll": 1000.0,
    "settled": 128,
-   "open": 17,
+   "open": 18,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-22T14:00+00:00"
   },
@@ -19,7 +19,7 @@
    "bankroll": 994.89,
    "starting_bankroll": 1000.0,
    "settled": 65,
-   "open": 12,
+   "open": 17,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-22T14:00+00:00"
   },
@@ -27,12 +27,12 @@
    "id": "bitcoin",
    "name": "Crypto: Bitcoin 5pm price",
    "short": "Bitcoin",
-   "bankroll": 1028.98,
+   "bankroll": 1009.24,
    "starting_bankroll": 1000.0,
-   "settled": 24,
+   "settled": 26,
    "open": 4,
    "version": "crypto-v2",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "gold",
@@ -60,56 +60,56 @@
    "id": "ethereum",
    "name": "Crypto: Ethereum 5pm price",
    "short": "Ethereum",
-   "bankroll": 1003.96,
+   "bankroll": 984.18,
    "starting_bankroll": 1000.0,
-   "settled": 24,
+   "settled": 26,
    "open": 4,
    "version": "eth-v1",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "bitcoin_tod",
    "name": "Crypto: Bitcoin 5pm, hour-by-hour vol",
    "short": "BTC hourly-vol",
-   "bankroll": 1025.93,
+   "bankroll": 1006.34,
    "starting_bankroll": 1000.0,
-   "settled": 24,
+   "settled": 26,
    "open": 4,
    "version": "btc-tod-v1",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "ethereum_tod",
    "name": "Crypto: Ethereum 5pm, hour-by-hour vol",
    "short": "ETH hourly-vol",
-   "bankroll": 993.82,
+   "bankroll": 974.04,
    "starting_bankroll": 1000.0,
-   "settled": 24,
+   "settled": 26,
    "open": 4,
    "version": "eth-tod-v1",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "bitcoin_fav",
    "name": "WATCHING: Bitcoin 5pm favorites (official test failed 11/17, kept as data)",
    "short": "\u2605 BTC favorites (watching)",
-   "bankroll": 954.74,
+   "bankroll": 957.42,
    "starting_bankroll": 1000.0,
-   "settled": 18,
-   "open": 2,
+   "settled": 20,
+   "open": 0,
    "version": "btc-fav-v1",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": ""
   },
   {
    "id": "crypto_upside",
    "name": "TESTING: Crypto 5pm upside long shots, buy NO (pre-registered, from 11/17)",
    "short": "\u2605 Crypto upside NO (testing)",
-   "bankroll": 1009.12,
+   "bankroll": 1010.69,
    "starting_bankroll": 1000.0,
-   "settled": 15,
-   "open": 3,
+   "settled": 18,
+   "open": 0,
    "version": "crypto-upside-v1",
-   "next_results_by": "2026-11-21T23:00+00:00"
+   "next_results_by": ""
   },
   {
    "id": "core_cpi",
