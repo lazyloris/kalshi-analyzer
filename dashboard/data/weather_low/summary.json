@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-21T23:23+00:00",
+ "generated_at": "2026-11-22T06:56+00:00",
  "strategy_version": "weather-low-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -51,7 +51,7 @@
   "brier_market": 0.0438
  },
  "open_count": 17,
- "open_mark_pnl": -12.0,
+ "open_mark_pnl": -42.3,
  "open_marked": 17,
  "open_expected_pnl": -3.8,
  "upcoming": [
