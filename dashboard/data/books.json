@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-22T15:24+00:00",
+ "generated_at": "2026-11-22T18:00+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -96,9 +96,9 @@
    "bankroll": 957.42,
    "starting_bankroll": 1000.0,
    "settled": 20,
-   "open": 0,
+   "open": 2,
    "version": "btc-fav-v1",
-   "next_results_by": ""
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "crypto_upside",
@@ -107,9 +107,9 @@
    "bankroll": 1010.69,
    "starting_bankroll": 1000.0,
    "settled": 18,
-   "open": 0,
+   "open": 3,
    "version": "crypto-upside-v1",
-   "next_results_by": ""
+   "next_results_by": "2026-11-22T23:00+00:00"
   },
   {
    "id": "core_cpi",
