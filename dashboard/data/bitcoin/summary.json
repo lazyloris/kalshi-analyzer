@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-22T18:00+00:00",
+ "generated_at": "2026-11-22T21:50+00:00",
  "strategy_version": "crypto-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -26,7 +26,7 @@
   "KXBTCD"
  ],
  "bankroll": 1009.24,
- "open_exposure": 39.68,
+ "open_exposure": 59.03,
  "totals": {
   "n": 26,
   "wins": 20,
@@ -39,10 +39,10 @@
   "brier_model": 0.2012,
   "brier_market": 0.1985
  },
- "open_count": 4,
- "open_mark_pnl": -11.19,
- "open_marked": 4,
- "open_expected_pnl": 7.07,
+ "open_count": 6,
+ "open_mark_pnl": -4.66,
+ "open_marked": 6,
+ "open_expected_pnl": 12.61,
  "upcoming": [
   {
    "results_by": "2026-11-22T23:00+00:00",
@@ -50,6 +50,13 @@
    "n": 2,
    "at_risk": 20.2,
    "expected_pnl": 4.67
+  },
+  {
+   "results_by": "2026-11-23T23:00+00:00",
+   "closes_at": "2026-11-23T22:00:00Z",
+   "n": 2,
+   "at_risk": 19.35,
+   "expected_pnl": 5.54
   },
   {
    "results_by": "2026-11-27T23:00+00:00",
