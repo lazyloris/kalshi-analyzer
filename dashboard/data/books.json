@@ -1,27 +1,27 @@
 {
- "generated_at": "2026-11-24T11:00+00:00",
+ "generated_at": "2026-11-24T21:17+00:00",
  "books": [
   {
    "id": "weather_high",
    "name": "Weather: daily highs",
    "short": "Highs",
-   "bankroll": 964.13,
+   "bankroll": 968.74,
    "starting_bankroll": 1000.0,
-   "settled": 151,
-   "open": 19,
+   "settled": 161,
+   "open": 12,
    "version": "weather-fade-v2",
-   "next_results_by": "2026-11-24T14:00+00:00"
+   "next_results_by": "2026-11-25T14:00+00:00"
   },
   {
    "id": "weather_low",
    "name": "Weather: daily lows",
    "short": "Lows",
-   "bankroll": 981.89,
+   "bankroll": 982.97,
    "starting_bankroll": 1000.0,
-   "settled": 82,
-   "open": 11,
+   "settled": 86,
+   "open": 12,
    "version": "weather-low-fade-v2",
-   "next_results_by": "2026-11-24T14:00+00:00"
+   "next_results_by": "2026-11-25T14:00+00:00"
   },
   {
    "id": "bitcoin",
@@ -30,7 +30,7 @@
    "bankroll": 1022.69,
    "starting_bankroll": 1000.0,
    "settled": 30,
-   "open": 4,
+   "open": 6,
    "version": "crypto-v2",
    "next_results_by": "2026-11-24T23:00+00:00"
   },
@@ -63,7 +63,7 @@
    "bankroll": 992.88,
    "starting_bankroll": 1000.0,
    "settled": 30,
-   "open": 4,
+   "open": 6,
    "version": "eth-v1",
    "next_results_by": "2026-11-24T23:00+00:00"
   },
@@ -74,7 +74,7 @@
    "bankroll": 1019.79,
    "starting_bankroll": 1000.0,
    "settled": 30,
-   "open": 4,
+   "open": 6,
    "version": "btc-tod-v1",
    "next_results_by": "2026-11-24T23:00+00:00"
   },
@@ -85,7 +85,7 @@
    "bankroll": 982.74,
    "starting_bankroll": 1000.0,
    "settled": 30,
-   "open": 4,
+   "open": 6,
    "version": "eth-tod-v1",
    "next_results_by": "2026-11-24T23:00+00:00"
   },
