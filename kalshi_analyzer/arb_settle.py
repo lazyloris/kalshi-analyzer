@@ -29,23 +29,26 @@ def main():
                 kal[t] = f"err {str(e)[:40]}"
         return kal[t]
 
-    def p_res(slug):
-        if slug not in pol:
+    events_seen = set()
+
+    def p_res(slug, event_slug):
+        if slug not in pol and event_slug not in events_seen:
+            events_seen.add(event_slug)
             try:
-                m = get_json(f"{GAMMA}/markets", {"slug": slug})[0]
-                px = [float(x) for x in json.loads(m.get("outcomePrices") or "[]")]
-                pol[slug] = "yes" if px and px[0] > 0.99 else "no" if px and px[0] < 0.01 else f"open {px}"
+                for m in get_json(f"{GAMMA}/events", {"slug": event_slug})[0].get("markets") or []:
+                    px = [float(x) for x in json.loads(m.get("outcomePrices") or "[]")]
+                    pol[m.get("slug")] = "yes" if px and px[0] > 0.99 else "no" if px and px[0] < 0.01 else f"open {px}"
             except Exception as e:
-                pol[slug] = f"err {str(e)[:40]}"
-        return pol[slug]
+                print("event", event_slug, e)
+        return pol.get(slug, "missing")
 
     out = collections.Counter()
     pnl = 0.0
     bad = []
     for (yv, yid, nv, nid, close), v in ep.items():
         b = max(v, key=lambda r: r["edge"] * min(r["yes_depth"], r["no_depth"]))
-        ry = k_res(yid) if yv == "kalshi" else p_res(yid)
-        rn = k_res(nid) if nv == "kalshi" else p_res(nid)
+        ry = k_res(yid) if yv == "kalshi" else p_res(yid, b["poly_slug"])
+        rn = k_res(nid) if nv == "kalshi" else p_res(nid, b["poly_slug"])
         if ry not in ("yes", "no") or rn not in ("yes", "no"):
             out["unknown"] += 1
             continue
