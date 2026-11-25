@@ -56,6 +56,7 @@ def main():
         pnl += size * (paid - cost)
         if paid == 0:
             bad.append((close, b["asset"], yv, b["yes_strike"], nv, b["no_strike"], b["room_usd"], round(size * cost, 2)))
+    print("sample kalshi:", list(kal.items())[:3]); print("sample poly:", list(pol.items())[:3])
     print(len(ep), "episodes:", dict(out))
     print("P&L if every episode was taken once at its best snapshot and full depth:", round(pnl, 2))
     for x in bad:
