@@ -43,6 +43,7 @@ def main():
         return pol.get(slug, "missing")
 
     out = collections.Counter()
+    byroom = {c: [0, 0.0, 0] for c in (0.0003, 0.001, 0.002, 0.003)}
     pnl = 0.0
     bad = []
     for (yv, yid, nv, nid, close), v in ep.items():
@@ -57,11 +58,17 @@ def main():
         size = min(b["yes_depth"], b["no_depth"])
         cost = b["yes_ask"] + b["no_ask"] + 0.07 * b["yes_ask"] * (1 - b["yes_ask"]) + 0.07 * b["no_ask"] * (1 - b["no_ask"])
         pnl += size * (paid - cost)
+        room_pct = b["room_usd"] / (b["yes_strike"] or 1)
+        for cut in (0.0003, 0.001, 0.002, 0.003):
+            if room_pct >= cut:
+                byroom[cut][0] += 1; byroom[cut][1] += size * (paid - cost); byroom[cut][2] += (paid == 0)
         if paid == 0:
             bad.append((close, b["asset"], yv, b["yes_strike"], nv, b["no_strike"], b["room_usd"], round(size * cost, 2)))
     print("sample kalshi:", list(kal.items())[:3]); print("sample poly:", list(pol.items())[:3])
     print(len(ep), "episodes:", dict(out))
     print("P&L if every episode was taken once at its best snapshot and full depth:", round(pnl, 2))
+    for c, (n, p_, b0) in byroom.items():
+        print(f"room >= {c:.2%} of price: {n} episodes, P&L {p_:+.2f}, both-lost {b0}")
     for x in bad:
         print("BOTH LOST:", x)
 
