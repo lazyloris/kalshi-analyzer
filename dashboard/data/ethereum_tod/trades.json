@@ -43,9 +43,9 @@
   "closes_at": "2026-11-26T22:00:00Z",
   "results_by": "2026-11-26T23:00+00:00",
   "expected_pnl": "1.31",
-  "mark_price": 0.01,
-  "mark_pnl": -9.34,
-  "marked_at": "2026-11-26T09:36+00:00",
+  "mark_price": 0.99,
+  "mark_pnl": 1.44,
+  "marked_at": "2026-11-26T19:40+00:00",
   "cap_key": ""
  },
  {
@@ -92,9 +92,9 @@
   "closes_at": "2026-11-26T22:00:00Z",
   "results_by": "2026-11-26T23:00+00:00",
   "expected_pnl": "0.96",
-  "mark_price": 0.2,
-  "mark_pnl": -7.67,
-  "marked_at": "2026-11-26T09:36+00:00",
+  "mark_price": 0.99,
+  "mark_pnl": 1.02,
+  "marked_at": "2026-11-26T19:40+00:00",
   "cap_key": ""
  },
  {
@@ -533,9 +533,9 @@
   "closes_at": "2026-11-27T22:00:00Z",
   "results_by": "2026-11-27T23:00+00:00",
   "expected_pnl": "2.07",
-  "mark_price": 0.0,
-  "mark_pnl": -9.93,
-  "marked_at": "2026-11-26T09:36+00:00",
+  "mark_price": 0.99,
+  "mark_pnl": 2.94,
+  "marked_at": "2026-11-26T19:40+00:00",
   "cap_key": ""
  },
  {
@@ -582,9 +582,9 @@
   "closes_at": "2026-11-27T22:00:00Z",
   "results_by": "2026-11-27T23:00+00:00",
   "expected_pnl": "1.83",
-  "mark_price": 0.35,
-  "mark_pnl": -5.19,
-  "marked_at": "2026-11-26T09:36+00:00",
+  "mark_price": 0.47,
+  "mark_pnl": -3.75,
+  "marked_at": "2026-11-26T19:40+00:00",
   "cap_key": ""
  },
  {
