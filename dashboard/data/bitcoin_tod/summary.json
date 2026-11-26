@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-26T00:26+00:00",
+ "generated_at": "2026-11-26T09:36+00:00",
  "strategy_version": "btc-tod-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -40,7 +40,7 @@
   "brier_market": 0.1702
  },
  "open_count": 4,
- "open_mark_pnl": -8.04,
+ "open_mark_pnl": -18.05,
  "open_marked": 4,
  "open_expected_pnl": 6.28,
  "upcoming": [
