@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-27T02:53+00:00",
+ "generated_at": "2026-11-27T12:33+00:00",
  "strategy_version": "crypto-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -40,7 +40,7 @@
   "brier_market": 0.1774
  },
  "open_count": 2,
- "open_mark_pnl": -11.44,
+ "open_mark_pnl": -13.48,
  "open_marked": 2,
  "open_expected_pnl": 2.4,
  "upcoming": [
