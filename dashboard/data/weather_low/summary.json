@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-26T19:40+00:00",
+ "generated_at": "2026-11-27T02:53+00:00",
  "strategy_version": "weather-low-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -37,7 +37,7 @@
   "KXLOWTLAX"
  ],
  "bankroll": 987.74,
- "open_exposure": 86.4,
+ "open_exposure": 114.83,
  "totals": {
   "n": 99,
   "wins": 94,
@@ -50,10 +50,10 @@
   "brier_model": 0.0471,
   "brier_market": 0.0478
  },
- "open_count": 9,
- "open_mark_pnl": -0.1,
- "open_marked": 9,
- "open_expected_pnl": -1.55,
+ "open_count": 12,
+ "open_mark_pnl": -1.23,
+ "open_marked": 12,
+ "open_expected_pnl": -2.03,
  "upcoming": [
   {
    "results_by": "2026-11-27T14:00+00:00",
@@ -86,16 +86,16 @@
   {
    "results_by": "2026-11-28T14:00+00:00",
    "closes_at": "2026-11-28T06:00:00Z",
-   "n": 1,
-   "at_risk": 9.73,
-   "expected_pnl": -0.13
+   "n": 2,
+   "at_risk": 19.46,
+   "expected_pnl": -0.31
   },
   {
    "results_by": "2026-11-28T15:00+00:00",
    "closes_at": "2026-11-28T07:00:00Z",
-   "n": 2,
-   "at_risk": 19.36,
-   "expected_pnl": -0.36
+   "n": 3,
+   "at_risk": 28.71,
+   "expected_pnl": -0.51
   },
   {
    "results_by": "2026-11-28T16:00+00:00",
@@ -103,6 +103,13 @@
    "n": 2,
    "at_risk": 19.26,
    "expected_pnl": -0.36
+  },
+  {
+   "results_by": "2026-11-28T17:00+00:00",
+   "closes_at": "2026-11-28T09:00:00Z",
+   "n": 1,
+   "at_risk": 9.35,
+   "expected_pnl": -0.15
   }
  ],
  "breakdowns": {
