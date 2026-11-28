@@ -5,7 +5,7 @@
  "kind": "crypto",
  "unit": "$",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-28T18:01+00:00",
+ "generated_at": "2026-11-28T18:18+00:00",
  "strategy_version": "btc-fav-v1",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -39,7 +39,7 @@
   "brier_market": 0.2072
  },
  "open_count": 2,
- "open_mark_pnl": -0.36,
+ "open_mark_pnl": 0.07,
  "open_marked": 2,
  "open_expected_pnl": 0.96,
  "upcoming": [
