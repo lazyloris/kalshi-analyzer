@@ -1,7 +1,8 @@
 name: Clock (starts time-sensitive jobs on time)
 
 # GitHub's cron runs hours late on this repo (e.g. 06:00 UTC jobs starting at 16:00). This job stays
-# awake ~5h45m, dispatches favorites.yml at 12:15 ET and cpi_book.yml at 5:00 ET, then restarts itself.
+# awake ~5h45m, dispatches favorites.yml at 12:15 ET, cpi_book.yml at 5:00 ET, hourly.yml every hour and
+# arb_scan.yml every 6 hours, then restarts itself.
 # The cron entries are only a backup to restart the chain if it ever breaks. Public repo: minutes are free.
 on:
   workflow_dispatch:
