@@ -45,7 +45,7 @@
   "expected_pnl": "-0.08",
   "mark_price": 0.96,
   "mark_pnl": -0.13,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -92,9 +92,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.92,
-  "mark_pnl": -0.53,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "mark_price": 0.93,
+  "mark_pnl": -0.43,
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -143,7 +143,7 @@
   "expected_pnl": "-0.2",
   "mark_price": 0.95,
   "mark_pnl": 0.15,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -190,9 +190,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.98,
-  "mark_pnl": 0.07,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "mark_price": 0.97,
+  "mark_pnl": -0.03,
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -239,9 +239,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.11",
-  "mark_price": 0.92,
-  "mark_pnl": -0.06,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "mark_price": 0.95,
+  "mark_pnl": 0.24,
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -279,8 +279,8 @@
   "result": "no",
   "actual": "",
   "won": "1",
-  "payout": 10.0,
-  "pnl": 0.46,
+  "payout": "10.0",
+  "pnl": "0.46",
   "forecast_error": "",
   "cause": "longshot_held",
   "why": "Won NO on 70\u00b0 to 71\u00b0. Model 94% vs price 95%. The long shot missed, as the rule expects.",
@@ -288,8 +288,8 @@
   "closes_at": "2026-11-28T07:00:00Z",
   "results_by": "2026-11-28T15:00+00:00",
   "expected_pnl": "-0.09",
-  "mark_price": 0.0,
-  "mark_pnl": -9.54,
+  "mark_price": "0.0",
+  "mark_pnl": "-9.54",
   "marked_at": "2026-11-28T13:06+00:00",
   "cap_key": ""
  },
@@ -339,7 +339,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.92,
   "mark_pnl": -0.24,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -386,9 +386,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.11",
-  "mark_price": 0.9,
-  "mark_pnl": -0.26,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "mark_price": 0.88,
+  "mark_pnl": -0.46,
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -437,7 +437,7 @@
   "expected_pnl": "-0.14",
   "mark_price": 0.96,
   "mark_pnl": 0.16,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -486,7 +486,7 @@
   "expected_pnl": "-0.19",
   "mark_price": 0.94,
   "mark_pnl": -0.04,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -535,7 +535,7 @@
   "expected_pnl": "-0.19",
   "mark_price": 0.0,
   "mark_pnl": -9.44,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -573,8 +573,8 @@
   "result": "no",
   "actual": "",
   "won": "1",
-  "payout": 10.0,
-  "pnl": 0.46,
+  "payout": "10.0",
+  "pnl": "0.46",
   "forecast_error": "",
   "cause": "longshot_held",
   "why": "Won NO on 49\u00b0 to 50\u00b0. Model 94% vs price 95%. The long shot missed, as the rule expects.",
@@ -582,8 +582,8 @@
   "closes_at": "2026-11-28T07:00:00Z",
   "results_by": "2026-11-28T15:00+00:00",
   "expected_pnl": "-0.09",
-  "mark_price": 0.0,
-  "mark_pnl": -9.54,
+  "mark_price": "0.0",
+  "mark_pnl": "-9.54",
   "marked_at": "2026-11-28T13:06+00:00",
   "cap_key": ""
  },
@@ -769,8 +769,8 @@
   "result": "no",
   "actual": "",
   "won": "1",
-  "payout": 10.0,
-  "pnl": 0.27,
+  "payout": "10.0",
+  "pnl": "0.27",
   "forecast_error": "",
   "cause": "longshot_held",
   "why": "Won NO on 43\u00b0 to 44\u00b0. Model 96% vs price 97%. The long shot missed, as the rule expects.",
@@ -778,8 +778,8 @@
   "closes_at": "2026-11-28T07:00:00Z",
   "results_by": "2026-11-28T15:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.0,
-  "mark_pnl": -9.73,
+  "mark_price": "0.0",
+  "mark_pnl": "-9.73",
   "marked_at": "2026-11-28T13:06+00:00",
   "cap_key": ""
  },
@@ -818,8 +818,8 @@
   "result": "no",
   "actual": "",
   "won": "1",
-  "payout": 10.0,
-  "pnl": 0.46,
+  "payout": "10.0",
+  "pnl": "0.46",
   "forecast_error": "",
   "cause": "longshot_held",
   "why": "Won NO on 66\u00b0 to 67\u00b0. Model 94% vs price 95%. The long shot missed, as the rule expects.",
@@ -827,8 +827,8 @@
   "closes_at": "2026-11-28T07:00:00Z",
   "results_by": "2026-11-28T15:00+00:00",
   "expected_pnl": "-0.09",
-  "mark_price": 0.0,
-  "mark_pnl": -9.54,
+  "mark_price": "0.0",
+  "mark_pnl": "-9.54",
   "marked_at": "2026-11-28T13:06+00:00",
   "cap_key": ""
  },
@@ -878,7 +878,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
@@ -927,7 +927,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T13:06+00:00",
+  "marked_at": "2026-11-28T13:18+00:00",
   "cap_key": ""
  },
  {
