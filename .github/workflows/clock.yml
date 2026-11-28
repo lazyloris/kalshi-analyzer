@@ -1,0 +1,35 @@
+name: Clock (starts time-sensitive jobs on time)
+
+# GitHub's cron runs hours late on this repo (e.g. 06:00 UTC jobs starting at 16:00). This job stays
+# awake ~5h45m, dispatches favorites.yml at 12:15 ET and cpi_book.yml at 5:00 ET, then restarts itself.
+# The cron entries are only a backup to restart the chain if it ever breaks. Public repo: minutes are free.
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "23 */3 * * *"
+
+concurrency:
+  group: clock
+  cancel-in-progress: false
+
+permissions:
+  actions: write
+  contents: read
+
+jobs:
+  tick:
+    runs-on: ubuntu-latest
+    timeout-minutes: 355
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python .github/scripts/clock.py
+      - name: Restart the chain even if the step above failed
+        if: failure() || cancelled()
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh api -X POST repos/${{ github.repository }}/actions/workflows/clock.yml/dispatches -f ref=main || true
