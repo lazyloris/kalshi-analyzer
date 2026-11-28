@@ -5,7 +5,7 @@
  "kind": "weather",
  "unit": "F",
  "starting_bankroll": 1000.0,
- "generated_at": "2026-11-28T16:17+00:00",
+ "generated_at": "2026-11-28T17:17+00:00",
  "strategy_version": "weather-fade-v2",
  "rules": {
   "MIN_EDGE": 0.08,
@@ -37,7 +37,7 @@
   "KXHIGHLAX"
  ],
  "bankroll": 974.98,
- "open_exposure": 142.71,
+ "open_exposure": 152.44,
  "totals": {
   "n": 198,
   "wins": 186,
@@ -50,10 +50,10 @@
   "brier_model": 0.0557,
   "brier_market": 0.0558
  },
- "open_count": 15,
- "open_mark_pnl": -1.01,
- "open_marked": 15,
- "open_expected_pnl": -1.91,
+ "open_count": 16,
+ "open_mark_pnl": -2.04,
+ "open_marked": 16,
+ "open_expected_pnl": -1.99,
  "upcoming": [
   {
    "results_by": "2026-11-29T14:00+00:00",
@@ -79,9 +79,9 @@
   {
    "results_by": "2026-11-30T14:00+00:00",
    "closes_at": "2026-11-30T06:00:00Z",
-   "n": 4,
-   "at_risk": 38.44,
-   "expected_pnl": -0.59
+   "n": 5,
+   "at_risk": 48.17,
+   "expected_pnl": -0.67
   },
   {
    "results_by": "2026-11-30T16:00+00:00",
