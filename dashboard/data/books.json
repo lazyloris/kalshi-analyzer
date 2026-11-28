@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T22:00+00:00",
+ "generated_at": "2026-11-28T03:57+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -8,7 +8,7 @@
    "bankroll": 980.18,
    "starting_bankroll": 1000.0,
    "settled": 188,
-   "open": 14,
+   "open": 16,
    "version": "weather-fade-v2",
    "next_results_by": "2026-11-28T14:00+00:00"
   },
@@ -19,7 +19,7 @@
    "bankroll": 989.69,
    "starting_bankroll": 1000.0,
    "settled": 103,
-   "open": 13,
+   "open": 15,
    "version": "weather-low-fade-v2",
    "next_results_by": "2026-11-28T14:00+00:00"
   },
@@ -27,12 +27,12 @@
    "id": "bitcoin",
    "name": "Crypto: Bitcoin 5pm price",
    "short": "Bitcoin",
-   "bankroll": 1028.71,
+   "bankroll": 1033.23,
    "starting_bankroll": 1000.0,
-   "settled": 36,
+   "settled": 38,
    "open": 2,
    "version": "crypto-v2",
-   "next_results_by": "2026-11-27T23:00+00:00"
+   "next_results_by": "2026-12-04T23:00+00:00"
   },
   {
    "id": "gold",
@@ -60,34 +60,34 @@
    "id": "ethereum",
    "name": "Crypto: Ethereum 5pm price",
    "short": "Ethereum",
-   "bankroll": 1010.51,
+   "bankroll": 1016.19,
    "starting_bankroll": 1000.0,
-   "settled": 36,
+   "settled": 38,
    "open": 2,
    "version": "eth-v1",
-   "next_results_by": "2026-11-27T23:00+00:00"
+   "next_results_by": "2026-12-04T23:00+00:00"
   },
   {
    "id": "bitcoin_tod",
    "name": "Crypto: Bitcoin 5pm, hour-by-hour vol",
    "short": "BTC hourly-vol",
-   "bankroll": 1024.62,
+   "bankroll": 1029.14,
    "starting_bankroll": 1000.0,
-   "settled": 36,
+   "settled": 38,
    "open": 2,
    "version": "btc-tod-v1",
-   "next_results_by": "2026-11-27T23:00+00:00"
+   "next_results_by": "2026-12-04T23:00+00:00"
   },
   {
    "id": "ethereum_tod",
    "name": "Crypto: Ethereum 5pm, hour-by-hour vol",
    "short": "ETH hourly-vol",
-   "bankroll": 997.1,
+   "bankroll": 1002.78,
    "starting_bankroll": 1000.0,
-   "settled": 36,
+   "settled": 38,
    "open": 2,
    "version": "eth-tod-v1",
-   "next_results_by": "2026-11-27T23:00+00:00"
+   "next_results_by": "2026-12-04T23:00+00:00"
   },
   {
    "id": "bitcoin_fav",
