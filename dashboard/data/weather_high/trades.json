@@ -45,7 +45,7 @@
   "expected_pnl": "-0.2",
   "mark_price": 0.9,
   "mark_pnl": -0.35,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -92,9 +92,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.97,
-  "mark_pnl": -0.03,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.98,
+  "mark_pnl": 0.07,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -143,7 +143,7 @@
   "expected_pnl": "-0.11",
   "mark_price": 0.92,
   "mark_pnl": -0.06,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -192,7 +192,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -239,9 +239,9 @@
   "closes_at": "2026-11-29T09:00:00Z",
   "results_by": "2026-11-29T17:00+00:00",
   "expected_pnl": "-0.09",
-  "mark_price": 0.92,
-  "mark_pnl": -0.24,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.82,
+  "mark_pnl": -1.24,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -288,9 +288,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.11",
-  "mark_price": 0.8,
-  "mark_pnl": -1.26,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.82,
+  "mark_pnl": -1.06,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -337,9 +337,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.14",
-  "mark_price": 0.96,
-  "mark_pnl": 0.16,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.98,
+  "mark_pnl": 0.36,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -386,9 +386,9 @@
   "closes_at": "2026-11-29T09:00:00Z",
   "results_by": "2026-11-29T17:00+00:00",
   "expected_pnl": "-0.19",
-  "mark_price": 0.95,
-  "mark_pnl": 0.06,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.97,
+  "mark_pnl": 0.26,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -437,7 +437,7 @@
   "expected_pnl": "-0.19",
   "mark_price": 0.99,
   "mark_pnl": 0.46,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -486,7 +486,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -535,7 +535,7 @@
   "expected_pnl": "-0.24",
   "mark_price": 0.0,
   "mark_pnl": -9.44,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -584,7 +584,7 @@
   "expected_pnl": "-0.08",
   "mark_price": 0.0,
   "mark_pnl": -9.73,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -633,7 +633,7 @@
   "expected_pnl": "-0.11",
   "mark_price": 0.0,
   "mark_pnl": -9.16,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -682,7 +682,7 @@
   "expected_pnl": "-0.08",
   "mark_price": 0.0,
   "mark_pnl": -9.73,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -731,7 +731,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -778,9 +778,9 @@
   "closes_at": "2026-11-28T08:00:00Z",
   "results_by": "2026-11-28T16:00+00:00",
   "expected_pnl": "-0.09",
-  "mark_price": 0.99,
-  "mark_pnl": 0.36,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "mark_price": 0.0,
+  "mark_pnl": -9.54,
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
@@ -829,7 +829,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.99,
   "mark_pnl": 0.36,
-  "marked_at": "2026-11-28T07:17+00:00",
+  "marked_at": "2026-11-28T08:17+00:00",
   "cap_key": ""
  },
  {
