@@ -45,7 +45,7 @@
   "expected_pnl": "-0.08",
   "mark_price": 0.96,
   "mark_pnl": -0.13,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -92,9 +92,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.94,
-  "mark_pnl": -0.33,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.93,
+  "mark_pnl": -0.43,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -141,9 +141,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.2",
-  "mark_price": 0.91,
-  "mark_pnl": -0.25,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.93,
+  "mark_pnl": -0.05,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -190,9 +190,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.08",
-  "mark_price": 0.98,
-  "mark_pnl": 0.07,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.97,
+  "mark_pnl": -0.03,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -239,9 +239,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.11",
-  "mark_price": 0.89,
-  "mark_pnl": -0.36,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.9,
+  "mark_pnl": -0.26,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -290,7 +290,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -339,7 +339,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.91,
   "mark_pnl": -0.34,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -386,9 +386,9 @@
   "closes_at": "2026-11-29T06:00:00Z",
   "results_by": "2026-11-29T14:00+00:00",
   "expected_pnl": "-0.11",
-  "mark_price": 0.87,
-  "mark_pnl": -0.56,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.89,
+  "mark_pnl": -0.36,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -435,9 +435,9 @@
   "closes_at": "2026-11-29T07:00:00Z",
   "results_by": "2026-11-29T15:00+00:00",
   "expected_pnl": "-0.14",
-  "mark_price": 0.96,
-  "mark_pnl": 0.16,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.98,
+  "mark_pnl": 0.36,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -484,9 +484,9 @@
   "closes_at": "2026-11-29T09:00:00Z",
   "results_by": "2026-11-29T17:00+00:00",
   "expected_pnl": "-0.19",
-  "mark_price": 0.95,
-  "mark_pnl": 0.06,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "mark_price": 0.94,
+  "mark_pnl": -0.04,
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -535,7 +535,7 @@
   "expected_pnl": "-0.19",
   "mark_price": 0.0,
   "mark_pnl": -9.44,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -584,7 +584,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -618,22 +618,22 @@
   "distance": "",
   "spread": "0.04",
   "volume": "3716.76",
-  "status": "open",
-  "result": "",
+  "status": "settled",
+  "result": "no",
   "actual": "",
-  "won": "",
-  "payout": "",
-  "pnl": "",
+  "won": "1",
+  "payout": 10.0,
+  "pnl": 0.56,
   "forecast_error": "",
-  "cause": "",
-  "why": "",
-  "closed_at": "",
+  "cause": "longshot_held",
+  "why": "Won NO on 61\u00b0 to 62\u00b0. Model 92% vs price 94%. The long shot missed, as the rule expects.",
+  "closed_at": "2026-11-28T12:17+00:00",
   "closes_at": "2026-11-28T06:00:00Z",
   "results_by": "2026-11-28T14:00+00:00",
   "expected_pnl": "-0.24",
   "mark_price": 0.0,
   "mark_pnl": -9.44,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -667,22 +667,22 @@
   "distance": "",
   "spread": "0.01",
   "volume": "645.88",
-  "status": "open",
-  "result": "",
+  "status": "settled",
+  "result": "no",
   "actual": "",
-  "won": "",
-  "payout": "",
-  "pnl": "",
+  "won": "1",
+  "payout": 10.0,
+  "pnl": 0.27,
   "forecast_error": "",
-  "cause": "",
-  "why": "",
-  "closed_at": "",
+  "cause": "longshot_held",
+  "why": "Won NO on 59\u00b0 to 60\u00b0. Model 96% vs price 97%. The long shot missed, as the rule expects.",
+  "closed_at": "2026-11-28T12:17+00:00",
   "closes_at": "2026-11-28T06:00:00Z",
   "results_by": "2026-11-28T14:00+00:00",
   "expected_pnl": "-0.08",
   "mark_price": 0.0,
   "mark_pnl": -9.73,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -716,22 +716,22 @@
   "distance": "",
   "spread": "0.01",
   "volume": "508.01",
-  "status": "open",
-  "result": "",
+  "status": "settled",
+  "result": "yes",
   "actual": "",
-  "won": "",
-  "payout": "",
-  "pnl": "",
+  "won": "0",
+  "payout": 0.0,
+  "pnl": -9.16,
   "forecast_error": "",
-  "cause": "",
-  "why": "",
-  "closed_at": "",
+  "cause": "longshot_hit",
+  "why": "Lost NO on 59\u00b0 to 60\u00b0. Model 90% vs price 91%. The long shot came in. One of these wipes out several small wins.",
+  "closed_at": "2026-11-28T12:17+00:00",
   "closes_at": "2026-11-28T06:00:00Z",
   "results_by": "2026-11-28T14:00+00:00",
   "expected_pnl": "-0.11",
   "mark_price": 0.0,
   "mark_pnl": -9.16,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -780,7 +780,7 @@
   "expected_pnl": "-0.08",
   "mark_price": 0.0,
   "mark_pnl": -9.73,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -829,7 +829,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -878,7 +878,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
@@ -927,7 +927,7 @@
   "expected_pnl": "-0.09",
   "mark_price": 0.0,
   "mark_pnl": -9.54,
-  "marked_at": "2026-11-28T11:18+00:00",
+  "marked_at": "2026-11-28T12:17+00:00",
   "cap_key": ""
  },
  {
