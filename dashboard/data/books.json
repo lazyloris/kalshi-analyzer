@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-28T10:18+00:00",
+ "generated_at": "2026-11-28T11:18+00:00",
  "books": [
   {
    "id": "weather_high",
@@ -30,9 +30,9 @@
    "bankroll": 1033.23,
    "starting_bankroll": 1000.0,
    "settled": 38,
-   "open": 2,
+   "open": 4,
    "version": "crypto-v2",
-   "next_results_by": "2026-12-04T23:00+00:00"
+   "next_results_by": "2026-11-28T23:00+00:00"
   },
   {
    "id": "gold",
